@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import leftImage from "../additionalFile/collage2.jpg"
 
 const Authentication = () => {
   const { token } = useSelector((state) => state.auth || {});
@@ -26,7 +27,7 @@ const Authentication = () => {
           {/* Main Sections */}
           <div className="h-screen flex overflow-hidden">
             <div className="w-[55%] border-black border-2 flex-shrink-0">
-              <p>HEELo</p>
+              <img src={leftImage} alt="" className="h-[100%]"/>
             </div>
             <div className="w-[45%] mx-auto border-black border-2 relative">
               {/* <img src={logo} alt="" className="ml-[35%]"/> */}
