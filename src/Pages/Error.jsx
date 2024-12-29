@@ -2,8 +2,8 @@ import React from 'react'
 
 const Error = () => {
   return (
-    <div>
-      Error
+    <div className="min-h-screen flex justify-center items-center">
+      Error!!
     </div>
   )
 }
