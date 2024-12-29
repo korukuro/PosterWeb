@@ -6,8 +6,8 @@ import { Link, useNavigate } from "react-router-dom"
 import { login } from "../../../services/operations/authAPI"
 
 function LoginForm() {
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const navigate = useNavigate() //what is useNavigate? It is a hook that returns a navigate function that can be used to programmatically navigate to a different location.eg: navigate('/login')
+  const dispatch = useDispatch() //what is dispatch? It is a function that is used to dispatch actions to the Redux store.eg: dispatch(login(email, password, navigate))
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -36,7 +36,7 @@ function LoginForm() {
     >
       <label className="w-full">
         <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
-          Email Address <sup className="text-pink-200">*</sup>
+          E-mail 
         </p>
         <input
           required
@@ -49,8 +49,8 @@ function LoginForm() {
         />
       </label>
       <label className="relative">
-        <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
-          Password <sup className="text-pink-200">*</sup>
+        <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">  
+          PASSWORD 
         </p>
         <input
           required

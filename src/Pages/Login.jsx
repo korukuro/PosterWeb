@@ -6,6 +6,7 @@ function Login() {
       title="Welcome Back"
       formType="login"
     />
+    
   )
 }
 
