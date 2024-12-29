@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import leftImage from "../additionalFile/collage2.jpg";
+import Template from "../components/core/auth/Template";
 
 const Authentication = () => {
   const { token } = useSelector((state) => state.auth || {});
@@ -32,10 +33,10 @@ const Authentication = () => {
             <div className="w-[45%] mx-auto border-black border-2 relative">
               {/* <img src={logo} alt="" className="ml-[35%]"/> */}
 
-              {/* <Template
-          title="Welcome Back!!"
-          formType="login"
-        /> */}
+              <Template
+                title="Welcome Back!!"
+                formType="login"
+                />
             </div>
           </div>
         </>
