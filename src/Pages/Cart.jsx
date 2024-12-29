@@ -7,7 +7,6 @@ import spider from "../additionalFile/spider.png"
 
 
 const Cart = () => {
-
   const { cart } = useSelector((state) => state);
   const [totalAmount,setTotalAmount] = useState(0);
 
@@ -40,7 +39,9 @@ const Cart = () => {
                 </div>
                 <div>
                   <p className="text-gray-700 font-semibold mb-3">Total Amount: <span className="font-bold text-black">${totalAmount.toFixed(2)}</span> </p>
-                  <button className="bg-[#000000] text-white px-7 py-2 rounded-lg text-md font-bold w-full">Check Out</button>
+                  <Link to="/checkout">
+                    <button className="bg-[#000000] text-white px-7 py-2 rounded-lg text-md font-bold w-full">Check Out</button>
+                  </Link>
                 </div>
               </div>
 

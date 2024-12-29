@@ -1,10 +1,11 @@
-import React from 'react'
+import Template from "../components/core/auth/Template"
 
-const Signup = () => {
+function Signup() {
   return (
-    <div>
-      Signup
-    </div>
+    <Template
+      title="Sign UP!!"
+      formType="signup"
+    />
   )
 }
 
