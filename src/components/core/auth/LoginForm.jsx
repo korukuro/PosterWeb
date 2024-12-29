@@ -96,10 +96,10 @@ function LoginForm() {
       <div className="flex items-center justify-evenly">
         <span>Login With</span>
         <div className="flex items-center">
-          <img src={googleLogo} alt="google logo" width={18}/><span className="text-blue-700 ml-1 text-lg">Google</span>
+          <img src={googleLogo} alt="google logo" width={18}/><span className="text-blue-700 ml-1 text-base">Google</span>
         </div>
         <div className="flex items-center">
-          <img src={facebookLogo} alt="facebook logo" width={18}/><span className="text-blue-700 ml-1 text-lg">facebook</span>
+          <img src={facebookLogo} alt="facebook logo" width={18}/><span className="text-blue-700 ml-1 text-base">facebook</span>
         </div>
       </div>
     </form>
