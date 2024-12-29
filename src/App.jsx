@@ -24,7 +24,7 @@ function App() {
   const location = useLocation();
 
   // Specify the paths where the Navbar should be hidden
-  const hideNavbarPaths = ["/login", "/signup", "/verify-email"];
+  const hideNavbarPaths = ["/login", "/signup", "/verify-email", "/authentication"];
   const shouldHideNavbar = hideNavbarPaths.includes(location.pathname);
 
   return (
