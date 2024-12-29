@@ -27,7 +27,7 @@ const Authentication = () => {
           {/* Main Sections */}
           <div className="h-screen flex overflow-hidden">
             <div className="w-[55%] border-black border-2 flex-shrink-0">
-              <img src={leftImage} alt="" className="h-[100%]"/>
+              <img src={leftImage} alt="" className="h-[95%]"/>
             </div>
             <div className="w-[45%] mx-auto border-black border-2 relative">
               {/* <img src={logo} alt="" className="ml-[35%]"/> */}
