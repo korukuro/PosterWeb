@@ -25,46 +25,23 @@ const Navbar = () => {
           <img src={loupe} alt="" className="h-7 absolute top-1 right-3" />
         </div>
 
-        {/* Login / Signup / Dashboard */}
-        <div className="hidden md:flex items-center gap-4 border-2">
-          {user && (
-
-            // <Link to="/dashboard/cart">
-            //   <img src={userIcon} alt="userIcon" className="h-7" />
-            // </Link>
-
-            <Link to="/dashboard/cart">
-              <div className="relative">
-                <img src={bag} alt="bag" className="h-7" />
-                {cart.length > 0 && (
-                  <span
-                    className="absolute -top-1 -right-2 bg-black text-xs w-5 h-5 flex 
+        <Link to="/cart">
+          <div className="relative">
+            <img src={bag} alt="bag" className="h-7" />
+            {cart.length > 0 && (
+              <span
+                className="absolute -top-1 -right-2 bg-black text-xs w-5 h-5 flex 
                 justify-center items-center animate-bounce rounded-full text-white"
-                  >
-                    {cart.length}
-                  </span>
-                )}
-              </div>
-            </Link>
-          )}
-          {console.log("token", token)}
-          {!token && (
+              >
+                {cart.length}
+              </span>
+            )}
+          </div>
+        </Link>
 
-            <div>
-              
-              <Link to="/login">
-                <button className="bg-[#000000] text-white px-7 py-2 rounded-lg text-md font-bold">
-                  Login
-                </button>
-              </Link>
-              <Link to="/signup">
-                <button className="bg-[#000000] text-white px-7 py-2 rounded-lg text-md font-bold">
-                  Signup
-                </button>
-              </Link>
-            </div>
-          )}
-        </div>
+        <Link to="/authentication">
+          <img src={userIcon} alt="userIcon" className="h-7" />
+        </Link>
       </div>
     </div>
   );

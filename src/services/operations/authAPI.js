@@ -43,7 +43,6 @@ export function sendOtp(email, navigate) {
 }
 
 export function signUp(
-  accountType,
   firstName,
   lastName,
   email,
@@ -57,7 +56,6 @@ export function signUp(
     dispatch(setLoading(true))
     try {
       const response = await apiConnector("POST", SIGNUP_API, {
-        accountType,
         firstName,
         lastName,
         email,
