@@ -13,12 +13,12 @@ const Authentication = () => {
           {/* Buttons Section */}
           <div className="flex flex-col items-center justify-center mt-8 absolute left-[47%] top-[23%]">
             <Link to="/login">
-              <button className="bg-[#000000] text-white pl-5 w-[7.5rem] h-[3.5rem] py-2 rounded-l-full text-md font-bold">
+              <button className="bg-[#00000053] text-white pl-5 w-[7.5rem] h-[3.5rem] py-2 rounded-l-full text-md font-bold">
                 Login
               </button>
             </Link>
             <Link to="/signup">
-              <button className="bg-[#000000] text-white pl-5 py-2 w-[7.5rem] h-[3.5rem] rounded-l-full text-md font-bold">
+              <button className="bg-[#00000053] text-white pl-5 py-2 w-[7.5rem] h-[3.5rem] rounded-l-full text-md font-bold">
                 Signup
               </button>
             </Link>
