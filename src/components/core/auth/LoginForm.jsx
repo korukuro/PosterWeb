@@ -78,7 +78,7 @@ function LoginForm() {
       </label>
       <div className="flex items-center justify-between w-full mt-6">
         <Link to="/forgot-password">
-          <p className="text-base text-blue-700">forgot Password?</p>
+          <p className="text-base text-blue-700">forgot password?</p>
         </Link>
 
         <button
