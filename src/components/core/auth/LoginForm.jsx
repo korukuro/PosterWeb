@@ -34,8 +34,8 @@ function LoginForm() {
       onSubmit={handleOnSubmit}
       className="mt-6 flex w-full flex-col gap-y-4"
     >
-      <label className="w-full">
-        <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
+      <label className="w-full top-[47.194rem] border-2 border-black">
+        <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5 ">
           E-mail 
         </p>
         <input
