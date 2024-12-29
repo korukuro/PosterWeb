@@ -29,12 +29,7 @@ const LoginSignupAndImg = () => {
                 <img src={leftImage} alt="" className="object-full h-screen" />
               </div>
               <div className="w-[45%] mx-auto border-black border-2 relative">
-                {/* <img src={logo} alt="" className="ml-[35%]"/> */}
-  
-                {/* <Template
-            title="Welcome Back!!"
-            formType="login"
-          /> */}
+                
               </div>
             </div>
           </>
