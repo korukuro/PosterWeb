@@ -12,7 +12,7 @@ import Login from './Pages/Login';
 import Signup from './Pages/Signup';
 import VerifyEmail from './Pages/VerifyEmail';
 import Dashboard from './Pages/Dashboard';
-import Error from './Pages/Error';
+import {Error} from './Pages/Error';
 
 // auth
 import OpenRoute from './components/core/auth/OpenRoute';
