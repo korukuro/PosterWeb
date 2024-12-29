@@ -1,5 +1,5 @@
 import './App.css';
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, useLocation } from "react-router-dom";
 
 // common
 import Navbar from './components/common/Navbar';
@@ -19,17 +19,22 @@ import OpenRoute from './components/core/auth/OpenRoute';
 import PrivateRoute from './components/core/auth/PrivateRoute';
 
 function App() {
+  const location = useLocation();
+
+  // Specify the paths where the Navbar should be hidden
+  const hideNavbarPaths = ["/login", "/signup", "/verify-email"];
+  const shouldHideNavbar = hideNavbarPaths.includes(location.pathname);
+
   return (
     <div className='flex flex-col'>
+      {!shouldHideNavbar && (
+        <div>
+          <Navbar />
+        </div>
+      )}
 
-      <div className=''>
-        <Navbar />
-      </div>
-
-        <Routes>
-          <Route path='/' element={<Home />}></Route>
-          
-        
+      <Routes>
+        <Route path='/' element={<Home />} />
 
         {/* Open Route - for Only Non Logged in User */}
         <Route
@@ -65,16 +70,13 @@ function App() {
             </PrivateRoute>
           }
         >
-          {/* Route for all users */}
-          {/* <Route path="dashboard/my-profile" element={<MyProfile />} /> */}
-          {/* <Route path="dashboard/Settings" element={<Settings />} /> */}
-          <Route path='/dashboard/cart' element={<Cart />}></Route>
+          <Route path='/dashboard/cart' element={<Cart />} />
         </Route>
 
         {/* 404 Page */}
         <Route path="*" element={<Error />} />
-
       </Routes>
+      
       {/* <Footer /> */}
     </div>
   );
