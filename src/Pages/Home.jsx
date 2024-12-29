@@ -49,7 +49,7 @@ const Home = () => {
             </div>
           ) : (
             <div className="flex justify-center items-center min-h-screen">
-              <p>No data was found</p>
+              <p>No data found</p>
             </div>
           )}
         </div>
