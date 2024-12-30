@@ -18,7 +18,6 @@ import {Error} from './Pages/Error';
 import OpenRoute from './components/core/auth/OpenRoute';
 import PrivateRoute from './components/core/auth/PrivateRoute';
 import CheckOut from './Pages/CheckOut';
-import Authentication from './Pages/Authentication';
 
 function App() {
   const location = useLocation();
@@ -38,21 +37,8 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/cart' element={<Cart />} />
-        <Route path='/authentication' element={<Authentication />} />
+
         {/* Open Route - for Only Non Logged in User */}
-
-        <Route
-          element={
-            <OpenRoute>
-              <Authentication />
-            </OpenRoute>
-          }
-          >
-            {/* <Route path="login" element={<Login />} />
-            <Route path="signup" element={<Signup />} />
-            <Route path="verify-email" element={<VerifyEmail />} /> */}
-
-          </Route>
         <Route
           path="login"
           element={

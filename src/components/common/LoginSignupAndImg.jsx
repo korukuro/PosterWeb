@@ -7,11 +7,11 @@ const LoginSignupAndImg = () => {
     const { token } = useSelector((state) => state.auth || {});
 
     return (
-      <div className="h-screen overflow-hidden">
+      <div className="h-screen">
         {!token && (
           <>
             {/* Buttons Section */}
-            <div className="flex flex-col items-center justify-center mt-8 absolute left-[47%] top-[23%]">
+            <div className="flex flex-col items-center justify-center mt-8 absolute right-[40%] top-[23%]">
               <Link to="/login">
                 <button className="bg-[#00000053] text-white pl-5 w-[7.5rem] h-[3.5rem] py-2 rounded-l-full text-md font-bold">
                   Login
@@ -26,15 +26,10 @@ const LoginSignupAndImg = () => {
   
             {/* Main Sections */}
             <div className="flex h-[100%]">
-              <div className="w-[55%] border-black border-2 flex-shrink-0">
+              <div className="">
                 <img src={leftImage} alt="" className="object-full h-screen" />
               </div>
-              <div className="w-[45%] mx-auto border-black border-2 relative">
-                <Template
-          title="Welcome Back!!"
-          formType="login"
-        />
-              </div>
+              
             </div>
           </>
         )}

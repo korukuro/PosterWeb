@@ -39,7 +39,7 @@ const Navbar = () => {
           </div>
         </Link>
 
-        <Link to="/authentication">
+        <Link to="/login">
           <img src={userIcon} alt="userIcon" className="h-7" />
         </Link>
       </div>
