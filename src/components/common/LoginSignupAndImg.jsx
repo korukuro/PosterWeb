@@ -11,7 +11,7 @@ const LoginSignupAndImg = () => {
         {!token && (
           <>
             {/* Buttons Section */}
-            <div className="flex flex-col items-center justify-center mt-8 absolute right-[40%] top-[23%]">
+            <div className="flex flex-col items-center justify-center mt-8 right-[34.5%] top-[23%] fixed">
               <Link to="/login">
                 <button className="bg-[#00000053] text-white pl-5 w-[7.5rem] h-[3.5rem] py-2 rounded-l-full text-md font-bold">
                   Login
