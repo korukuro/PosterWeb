@@ -22,6 +22,8 @@ import CheckOut from './Pages/CheckOut';
 // Dashboard
 import MyProfile from './components/core/Dashboard/MyProfile';
 import Settings from './components/core/Dashboard/Settings';
+import OrderHistory from './components/core/Dashboard/OrderHistory';
+
 function App() {
   const location = useLocation();
 
@@ -78,6 +80,7 @@ function App() {
           {/* Route for all users */}
           <Route path="dashboard/my-profile" element={<MyProfile />} />
           <Route path="dashboard/Settings" element={<Settings />} />
+          <Route path="dashboard/order-history" element={<OrderHistory />} />
         </Route>
         
         <Route
