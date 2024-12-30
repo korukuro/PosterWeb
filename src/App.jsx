@@ -11,7 +11,7 @@ import Cart from './Pages/Cart';
 import Login from './Pages/Login';
 import Signup from './Pages/Signup';
 import VerifyEmail from './Pages/VerifyEmail';
-import Dashboard from './Pages/Dashboard';
+import {SidebarDemo} from './Pages/Dashboard';
 import {Error} from './Pages/Error';
 
 // auth
@@ -19,6 +19,9 @@ import OpenRoute from './components/core/auth/OpenRoute';
 import PrivateRoute from './components/core/auth/PrivateRoute';
 import CheckOut from './Pages/CheckOut';
 
+// Dashboard
+import MyProfile from './components/core/Dashboard/MyProfile';
+import Settings from './components/core/Dashboard/Settings';
 function App() {
   const location = useLocation();
 
@@ -68,10 +71,13 @@ function App() {
         <Route
           element={
             <PrivateRoute>
-              <Dashboard />
+              <SidebarDemo />
             </PrivateRoute>
           }
         >
+          {/* Route for all users */}
+          <Route path="dashboard/my-profile" element={<MyProfile />} />
+          <Route path="dashboard/Settings" element={<Settings />} />
         </Route>
         
         <Route
