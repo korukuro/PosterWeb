@@ -8,7 +8,11 @@ import {
 } from "@tabler/icons-react";
 import { motion } from "framer-motion";
 import { cn } from "../utils/cd";
-import { Outlet } from "react-router-dom";
+import { Outlet, Link, useNavigate } from "react-router-dom";
+import ConfirmationModal from "../components/common/ConfirmationModal";
+import { useDispatch } from "react-redux";
+import { logout } from "../services/operations/authAPI";
+import { LuLogOut } from "react-icons/lu";
 
 import { BackgroundBeams } from "../components/ui/background-beam";  
 
@@ -35,16 +39,12 @@ export function SidebarDemo() {
         <IconSettings className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
     },
-    {
-      label: "Logout",
-      href: "#",
-      icon: (
-        <IconArrowLeft className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
-      ),
-    },
   ];
 
   const [open, setOpen] = useState(false);
+  const [confirmationModal, setConfirmationModal] = useState(null);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   return (
     <div
@@ -56,14 +56,36 @@ export function SidebarDemo() {
       {/* Sidebar */}
       <Sidebar open={open} setOpen={setOpen}>
         <SidebarBody className="justify-between gap-10">
-          <div className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden ">
+          <div className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
             <div className="mt-8 flex flex-col gap-6">
               {links.map((link, idx) => (
-                <SidebarLink key={idx} link={link} />
+                <Link to={link.href} key={idx}>
+                  <SidebarLink link={link} />
+                </Link>
               ))}
+            <button
+              className="flex"
+              onClick={() =>
+                setConfirmationModal({
+                  text1: "Are you sure?",
+                  text2: "You will be logged out of your account.",
+                  btn1Text: "Logout",
+                  btn2Text: "Cancel",
+                  btn1Handler: () => {
+                    dispatch(logout(navigate));
+                    setConfirmationModal(null);
+                  },
+                  btn2Handler: () => setConfirmationModal(null),
+                })
+              }
+            >
+              
+              <LuLogOut className="text-neutral-700 group dark:text-neutral-200 h-5 w-5 flex-shrink-0"/>
+            </button>
             </div>
           </div>
         </SidebarBody>
+        {confirmationModal && <ConfirmationModal modalData={confirmationModal} />}
       </Sidebar>
 
       {/* Main Content */}
@@ -85,15 +107,20 @@ export const LogoIcon = () => {
   );
 };
 
-// Dummy dashboard component with content
 const Dashboard = () => {
   return (
+<<<<<<< HEAD
     <div className="flex flex-1 min-h-screen overflow-auto">
       <div className="p-2 md:p-10 rounded-tl-2xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-200 flex flex-col gap-2 flex-1 w-full h-full">
       <BackgroundBeams />
         <div className="flex gap-2">
           <Outlet />
         </div>
+=======
+    <div className="flex flex-1 min-h-screen overflow-auto text-white">
+      <div className="p-4 md:p-10 rounded-tl-2xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-black/95 flex flex-col gap-2 flex-1 w-full h-full">
+        <Outlet />
+>>>>>>> a07daf5da561ead1354a8f2138165d70735446c3
       </div>
     </div>
   );
