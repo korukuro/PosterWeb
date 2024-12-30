@@ -4,6 +4,8 @@ import Product from "../components/Product";
 
 import brickWall from "../additionalFile/background.png";
 
+import {BackgroundBeams} from "../components/ui/background-beam";
+
 const Home = () => {
   const API_URL = "https://fakestoreapi.com/products";
 
@@ -30,6 +32,8 @@ const Home = () => {
   }, []);
 
   return (
+      <>
+        <BackgroundBeams />
     <div className="relative overflow-hidden h-screen">
       {/* Background Image */}
       <img src={brickWall} alt="" className="absolute top-0 left-0 w-full object-contain -z-10" />
@@ -55,7 +59,9 @@ const Home = () => {
         </div>
       </div>
     </div> 
+    </>
   );
+
 };
 
 export default Home;

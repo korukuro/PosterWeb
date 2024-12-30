@@ -3,6 +3,7 @@ import { toast } from "react-hot-toast";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
 import { sendOtp } from "../../../services/operations/authAPI";
 import { setSignupData } from "../../../slices/authSlice";
@@ -25,6 +26,15 @@ function SignupForm() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const { firstName, lastName, email, password, confirmPassword } = formData;
+
+  const {
+      register,
+      handleSubmit,
+      formState: { errors },
+      watch,
+    } = useForm();
+
+  const conformPasswordValue = watch("conformPassword", "");
 
   // Handle input fields, when some value changes
   const handleOnChange = (e) => {
@@ -151,7 +161,7 @@ function SignupForm() {
               placeholder="Confirm Password"
               className="form-style w-full !pr-10 bg-gray-300 border-2 border-black rounded-lg h-10 pl-2"
             />
-            {password&&<span
+            {conformPasswordValue&&<span
               onClick={() => setShowConfirmPassword((prev) => !prev)}
               className="absolute right-3 top-[2.2rem] z-[10] cursor-pointer"
             >

@@ -5,6 +5,8 @@ import loupe from "../../additionalFile/loupe.png";
 import bag from "../../additionalFile/shopping-bag.png";
 import userIcon from "../../additionalFile/user.png";
 
+import {BackgroundBeams} from "../ui/background-beam";
+
 const Navbar = () => {
   // Add fallback to prevent errors if state.auth or state.profile is undefined
   const { token } = useSelector((state) => state.auth || {});
@@ -13,6 +15,8 @@ const Navbar = () => {
 
   return (
     <div className="flex justify-between text-black p-3 items-center h-[4rem]">
+      <BackgroundBeams />
+
       <NavLink to="/">
         <div>
           <img src={logo} className="h-20 mr-2 mix-blend-darken" alt="shopping app" />
