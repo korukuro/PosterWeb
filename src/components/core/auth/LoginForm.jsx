@@ -36,7 +36,7 @@ function LoginForm() {
   return (
     <form
       onSubmit={handleOnSubmit}
-      className="mt-10 flex w-full flex-col gap-y-4 rounded-[8px] ml-9 "
+      className="mt-10 flex w-full flex-col gap-y-4 rounded-[8px] ml-4 "
     >
       <label className="w-full top-[47.194rem] ">
         <p className="mb-1 text-[1.2rem] leading-[1.375rem] text-richblack-5 ">
