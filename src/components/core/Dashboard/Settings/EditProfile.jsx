@@ -161,20 +161,20 @@ export default function EditProfile() {
             </div>
             <div className="flex flex-col gap-2 lg:w-[48%]">
               <label htmlFor="about" className="lable-style">
-                About
+                Address
               </label>
               <input
                 type="text"
-                name="about"
-                id="about"
-                placeholder="Enter Bio Details"
+                name="address"
+                id="address"
+                placeholder="Enter Address Details"
                 className="form-style"
-                {...register("about", { required: true })}
-                defaultValue={user?.additionalDetails?.about}
+                {...register("address", { required: true })}
+                defaultValue={user?.additionalDetails?.address}
               />
-              {errors.about && (
+              {errors.address && (
                 <span className="-mt-1 text-[12px] text-yellow-100">
-                  Please enter your About.
+                  Please enter your Address.
                 </span>
               )}
             </div>

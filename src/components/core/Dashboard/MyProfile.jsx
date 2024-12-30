@@ -1,6 +1,8 @@
 import React from "react";
-
+import { useSelector } from "react-redux";
 const MyProfile = () => {
+  const {user} = useSelector(state => state.profile);
+  // console.log("user: ",user);
   return (
     <div className="h-[37.188rem] w-full flex flex-col">
       {/* Heading at the top */}
@@ -10,7 +12,7 @@ const MyProfile = () => {
         
         <div>
           <img
-            src="path-to-pic.jpg"
+            src={user.image}
             alt="Profile Pic"
             className="h-16 w-16 rounded-full"
           />
@@ -20,21 +22,18 @@ const MyProfile = () => {
       {/* Bordered section below */}
       <div className="flex-grow flex flex-col gap-y-8 mt-4 border-2 border-white w-full rounded-xl pl-5 pt-20">
         <p className="mb-1 text-[1.3rem] leading-[1.375rem] text-richblack-5">
-          Name : //name
+          Name : <span>{user.firstName} {user.lastName}</span>
         </p>
         <p className="mb-1 text-[1.3rem] leading-[1.375rem] text-richblack-5">
-          EMAIL : //Email
+          EMAIL : <span>{user.email}</span>
         </p>
         <p className="mb-1 text-[1.3rem] leading-[1.375rem] text-richblack-5">
-          PHONE : //phone
+          PHONE : <span>{user.additionalDetails.contactNumber}</span>
         </p>
         <p className="mb-1 text-[1.3rem] leading-[1.375rem] text-richblack-5">
-          ADDRESS : //address
+          ADDRESS : <span>{user.additionalDetails.address}</span>
         </p>
-        <input
-          type="text"
-          className="h-32 w-2/3 border border-gray-300 rounded-md"
-        />
+        
       </div>
     </div>
   );

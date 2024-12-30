@@ -10,7 +10,7 @@ exports.updateProfile = async (req, res) => {
       firstName = "",
       lastName = "",
       dateOfBirth = "",
-      about = "",
+      address = "",
       contactNumber = "",
       gender = "",
     } = req.body
@@ -28,7 +28,7 @@ exports.updateProfile = async (req, res) => {
 
     // Update the profile fields
     profile.dateOfBirth = dateOfBirth
-    profile.about = about
+    profile.address = address
     profile.contactNumber = contactNumber
     profile.gender = gender
 
