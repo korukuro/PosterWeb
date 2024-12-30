@@ -17,8 +17,8 @@ router.delete("/deleteProfile", verifyToken, deleteAccount)
 router.put("/updateProfile", verifyToken, updateProfile)
 router.get("/getUserDetails", verifyToken, getAllUserDetails)
 
-// // Get Enrolled poster
+// Update Details
 // router.get("/posterBought", verifyToken, posterBought)
-// router.put("/updateDisplayPicture", verifyToken, updateDisplayPicture)
+router.put("/updateDisplayPicture", verifyToken, updateDisplayPicture)
 
 module.exports = router

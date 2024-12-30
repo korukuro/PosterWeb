@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import {usericon} from "../../../additionalFile/user.png";
 const MyProfile = () => {
   const {user} = useSelector(state => state.profile);
   // console.log("user: ",user);

@@ -1,6 +1,7 @@
 const Profile = require("../models/Profile")
 const Poster = require("../models/Poster")
 const User = require("../models/User")
+const { uploadImageToCloudinary } = require("../utils/imageUploader")
 const mongoose = require("mongoose")
  
 // Method for updating a profile
