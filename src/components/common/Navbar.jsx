@@ -40,7 +40,7 @@ const Navbar = () => {
         </Link>
 
         <Link to="/login">
-          <img src={userIcon} alt="userIcon" className="h-7" />
+          <img src={user?user.image:userIcon} alt="userIcon" className="h-7 rounded-full" />
         </Link>
       </div>
     </div>
