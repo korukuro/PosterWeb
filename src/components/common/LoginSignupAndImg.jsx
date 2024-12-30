@@ -13,15 +13,15 @@ const LoginSignupAndImg = () => {
         {!token && (
           <>
             {/* Buttons Section */}
-            <div className="flex flex-col gap-4 items-center justify-center mt-8 right-[34.5%] top-[23%] fixed">
+            <div className="flex flex-col gap-4 items-center justify-center mt-8 right-[34.5%] top-[23%] fixed ">
               <Link to="/login">
               {
                 vistcheck === "Login" ? (
-                  <button className="bg-red-600 text-white pl-5 w-[7.5rem] h-[3.5rem] py-2 rounded-l-full text-md font-bold">
+                  <button className="bg-[#0000008e] text-white pl-5 w-[7.5rem] h-[3.5rem] py-2 rounded-l-full text-md font-bold">
                     Login
                   </button>
                 ) : (
-                  <button className="bg-[#00000053] text-white pl-5 w-[7.5rem] h-[3.5rem] py-2 rounded-l-full text-md font-bold">
+                  <button className="text-white pl-5 w-[7.5rem] h-[3.5rem] py-2 rounded-l-full text-md font-bold">
                     Login
                   </button>
                 )
@@ -30,11 +30,11 @@ const LoginSignupAndImg = () => {
               <Link to="/signup">
               {
                 vistcheck === "Signup" ? (
-                  <button className="bg-red-600 text-white pl-5 py-2 w-[7.5rem] h-[3.5rem] rounded-l-full text-md font-bold">
+                  <button className="bg-[#0000008e] text-white pl-5 py-2 w-[7.5rem] h-[3.5rem] rounded-l-full text-md font-bold">
                     Signup
                   </button>
                 ) : (
-                  <button className="bg-[#00000053] text-white pl-5 py-2 w-[7.5rem] h-[3.5rem] rounded-l-full text-md font-bold">
+                  <button className=" text-white pl-5 py-2 w-[7.5rem] h-[3.5rem] rounded-l-full text-md font-bold">
                     Signup
                   </button>
                 )
