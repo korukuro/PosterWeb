@@ -33,7 +33,7 @@ const Home = () => {
 
   return (
       <>
-        <BackgroundBeams /> //skaflsfd
+        <BackgroundBeams />
     <div className="relative overflow-hidden h-screen">
       {/* Background Image */}
       <img src={brickWall} alt="" className="absolute top-0 left-0 w-full object-contain -z-10" />
