@@ -8,7 +8,6 @@ import { login } from "../../../services/operations/authAPI";
 import googleLogo from "../../../additionalFile/google.png";
 import facebookLogo from "../../../additionalFile/facebook.png";
 
-
 function LoginForm() {
   const navigate = useNavigate(); //what is useNavigate? It is a hook that returns a navigate function that can be used to programmatically navigate to a different location.eg: navigate('/login')
   const dispatch = useDispatch(); //what is dispatch? It is a function that is used to dispatch actions to the Redux store.eg: dispatch(login(email, password, navigate))
@@ -65,16 +64,18 @@ function LoginForm() {
           placeholder="Enter Password"
           className="form-style w-full bg-gray-300 rounded-lg text-gray-700 p-2 border-2 border-black"
         />
-        <span
-          onClick={() => setShowPassword((prev) => !prev)}
-          className="absolute right-3 top-[35px] z-[10] cursor-pointer"
-        >
-          {showPassword ? (
-            <AiOutlineEyeInvisible fontSize={24} fill="#111111" />
-          ) : (
-            <AiOutlineEye fontSize={24} fill="#111111" />
-          )}
-        </span>
+        {password && ( // Conditionally render the eye icon only if there's text in the input
+          <span
+            onClick={() => setShowPassword((prev) => !prev)}
+            className="absolute right-3 top-[35px] z-[10] cursor-pointer"
+          >
+            {showPassword ? (
+              <AiOutlineEyeInvisible fontSize={24} fill="#AFB2BF" />
+            ) : (
+              <AiOutlineEye fontSize={24} fill="#AFB2BF" />
+            )}
+          </span>
+        )}
       </label>
       <div className="flex items-center justify-between w-full mt-6">
         <Link to="/forgot-password">
@@ -96,10 +97,12 @@ function LoginForm() {
       <div className="flex items-center justify-evenly">
         <span>Login With</span>
         <div className="flex items-center">
-          <img src={googleLogo} alt="google logo" width={18}/><span className="text-blue-700 ml-1 text-base">Google</span>
+          <img src={googleLogo} alt="google logo" width={18} />
+          <span className="text-blue-700 ml-1 text-base">Google</span>
         </div>
         <div className="flex items-center">
-          <img src={facebookLogo} alt="facebook logo" width={18}/><span className="text-blue-700 ml-1 text-base">facebook</span>
+          <img src={facebookLogo} alt="facebook logo" width={18} />
+          <span className="text-blue-700 ml-1 text-base">facebook</span>
         </div>
       </div>
     </form>

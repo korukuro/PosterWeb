@@ -125,7 +125,7 @@ function SignupForm() {
               placeholder="Enter Password"
               className="form-style w-full !pr-10 bg-gray-300 border-2 border-black rounded-lg h-10 pl-2"
             />
-            <span
+            {password && <span
               onClick={() => setShowPassword((prev) => !prev)}
               className="absolute right-3 top-[2.2rem] z-[10] cursor-pointer"
             >
@@ -134,7 +134,7 @@ function SignupForm() {
               ) : (
                 <AiOutlineEye fontSize={24} fill="#AFB2BF" />
               )}
-            </span>
+            </span>}
           </label>
         </div>
         <div>
@@ -151,7 +151,7 @@ function SignupForm() {
               placeholder="Confirm Password"
               className="form-style w-full !pr-10 bg-gray-300 border-2 border-black rounded-lg h-10 pl-2"
             />
-            <span
+            {password&&<span
               onClick={() => setShowConfirmPassword((prev) => !prev)}
               className="absolute right-3 top-[2.2rem] z-[10] cursor-pointer"
             >
@@ -160,7 +160,7 @@ function SignupForm() {
               ) : (
                 <AiOutlineEye fontSize={24} fill="#AFB2BF" />
               )}
-            </span>
+            </span>}
           </label>
         </div>
         <button
