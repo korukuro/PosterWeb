@@ -1,6 +1,8 @@
-import toast from "react-hot-toast";
-import { useDispatch, useSelector } from "react-redux";
 import { add, remove } from "../slices/cartSlice";
+import React from "react";
+import { CardBody, CardContainer, CardItem } from "./ui/3d-card";
+import { useDispatch, useSelector } from "react-redux";
+import toast from "react-hot-toast";
 
 const Product = ({ post }) => {
 
@@ -16,42 +18,54 @@ const Product = ({ post }) => {
     toast.error("Item removed from Cart");
   }
   return (
-    <div className="flex flex-col items-center justify-between shadow-xl
-    hover:scale-110 transition duration-300 ease-in gap-3 p-4 mt-10 ml-5 rounded-xl">
-      <div>
-        <p className="text-gray-700 font-semibold text-lg text-left truncate w-40 mt-1">{post.title}</p>
-      </div>
-      <div>
-        <p className="w-40 text-gray-400 font-normal text-[10px] text-left">{post.description.split(" ").slice(0, 10).join(" ") + "..."}</p>
-      </div>
-      <div className="h-[180px]">
-        <img src={post.image} className="h-full w-full " alt="item img" />
-      </div>
-      <div className="flex justify-between gap-12 items-center w-full mt-5">
-        <div>
+    <div className="">
+      <CardContainer
+        className="w-[20rem] h-96 flex-shrink-0 flex justify-center px-2"
+      >
+        <CardBody className="relative group/card h-full flex justify-center items-center border-2 border-black bg-[#00000031] rounded-lg">
+          <CardItem
+            as="p"
+            translateZ="100"
+            className="absolute text-neutral-500 text-sm max-w-sm mt-2 dark:text-neutral-300 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 break-words"
+          >
+            {post.description}
+          </CardItem>
+          {
+            cart.some((p) => p.id === post.id) ?
 
-          <p className="text-green-600 font-semibold">${post.price}</p>
-        </div>
+              <CardItem translateZ="100" className="absolute top-[23rem] left-[20rem]">
+                <button
+                  onClick={removeItem}
+                  className="absolute w-28 h-14 bottom-4 right-4 text-black border-2 border-black rounded-full font-semibold text-[12px] p-1 px-3 uppercase 
+                          opacity-0 group-hover/card:opacity-100 hover:bg-black hover:text-white transition duration-300 ease-in"
+                >
+                  Remove from cart
+                </button>
+              </CardItem>
+              :
+              <CardItem translateZ="100" className="absolute top-[23rem] left-[20rem]">
+                <button
+                  onClick={addToCart}
+                  className="absolute w-28 h-14 bottom-4 right-4 text-black border-2 border-black rounded-full font-semibold text-[12px] p-1 px-3 uppercase 
+                        opacity-0 group-hover/card:opacity-100 hover:bg-black hover:text-white transition duration-300 ease-in"
+                >
+                  Add to Cart
+                </button>
+              </CardItem>
+          }
 
-
-        {
-          cart.some((p) => p.id === post.id) ?
-            (
-              <button onClick={removeItem} className="text-gray-700 border-2 border-gray-700 rounded-full font-semibold 
-          text-[12px] p-1 px-3 uppercase 
-          hover:bg-gray-700
-          hover:text-white transition duration-300 ease-in">
-                Remove Item
-              </button>
-            ) :
-            <button onClick={addToCart} className="text-gray-700 border-2 border-gray-700 rounded-full font-semibold 
-        text-[12px] p-1 px-3 uppercase 
-        hover:bg-gray-700
-        hover:text-white transition duration-300 ease-in">
-              Add to Cart
-            </button>
-        }
-      </div>
+          <CardItem
+            translateZ="60"
+            className="w-full h-full flex justify-center items-center"
+          >
+            <img
+              src={post.image}
+              alt="poster-image"
+              className="object-contain w-full h-full p-2"
+            />
+          </CardItem>
+        </CardBody>
+      </CardContainer>
 
 
     </div>
