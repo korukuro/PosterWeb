@@ -42,7 +42,7 @@ const Carousel = ({ images }) => {
                 key={index}
                 className="w-[22rem] h-96 flex-shrink-0 flex justify-center px-2"
               >
-                <CardBody className="relative group/card h-full flex justify-center items-center border-2 border-black">
+                <CardBody className="relative group/card h-full flex justify-center items-center border-2 border-black bg-[#00000031] rounded-lg">
                   <CardItem
                     as="p"
                     translateZ="100"
@@ -53,8 +53,8 @@ const Carousel = ({ images }) => {
 
                   <CardItem translateZ="100" className="absolute top-[23rem] left-[20rem]">
                     <button
-                      className="absolute w-28 h-14 bottom-4 right-4 text-gray-700 border-2 border-gray-700 rounded-full font-semibold text-[12px] p-1 px-3 uppercase 
-                    opacity-0 group-hover/card:opacity-100 hover:bg-gray-700 hover:text-white transition duration-300 ease-in"
+                      className="absolute w-28 h-14 bottom-4 right-4 text-black border-2 border-black rounded-full font-semibold text-[12px] p-1 px-3 uppercase 
+                    opacity-0 group-hover/card:opacity-100 hover:bg-black hover:text-white transition duration-300 ease-in"
                     >
                       Add to Cart
                     </button>
