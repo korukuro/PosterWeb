@@ -39,7 +39,7 @@ const Home = () => {
 
       {/* Main Content */}
       <div className="h-full flex justify-center items-center">
-        <div className="pt-16 z-10 relative  w-full h-full"> {/* Add padding to offset the Navbar */}
+        <div className="pt-2 z-10 relative  w-full h-full"> {/* Add padding to offset the Navbar */}
           {loading ? (
             <div className="flex justify-center items-center min-h-screen"> {/* Center Spinner */}
               <Spinner />
