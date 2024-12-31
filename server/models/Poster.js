@@ -2,9 +2,11 @@ const mongoose = require('mongoose');
 
 const posterSchema = new mongoose.Schema({
   posterName: String,
-  image: String, // URL
   description: String,
+  image: String,
   price: Number,
+  quantity: Number,
+  size: [String]
 });
 
 module.exports = mongoose.model('Poster', posterSchema);
