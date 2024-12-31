@@ -38,14 +38,14 @@ const Home = () => {
       <img src={brickWall} alt="" className="absolute top-0 left-0 w-full object-contain -z-10" />
 
       {/* Main Content */}
-      <div>
-        <div className="pt-16 z-10 relative"> {/* Add padding to offset the Navbar */}
+      <div className="h-full flex justify-center items-center">
+        <div className="pt-16 z-10 relative  w-full h-full"> {/* Add padding to offset the Navbar */}
           {loading ? (
             <div className="flex justify-center items-center min-h-screen"> {/* Center Spinner */}
               <Spinner />
             </div>
           ) : posts.length > 0 ? (
-            <div className="flex p-2">
+            <div className="flex p-2 w-full h-full ">
               <Carousel images={posts.map((post) => post.image)} />
               {/* // {posts.map((post) => (
               //   <Product key={post.id} post={post} />

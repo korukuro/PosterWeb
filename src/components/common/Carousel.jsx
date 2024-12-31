@@ -1,28 +1,36 @@
 import React, { useState } from 'react';
 import { Button } from './Button'; // Assuming Button is a local component or you can use a library like Material UI, etc.
-import { FaChevronLeft,FaChevronRight } from "react-icons/fa";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import arrow from '../../additionalFile/right-arrow.png'
+
 const Carousel = ({ images }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const imagesPerSlide = 4;
 
   const goToPrevious = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex - imagesPerSlide < 0 ? images.length - imagesPerSlide : prevIndex - imagesPerSlide
+      prevIndex - imagesPerSlide < 0
+        ? images.length - imagesPerSlide
+        : prevIndex - imagesPerSlide
     );
   };
 
   const goToNext = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex + imagesPerSlide >= images.length ? 0 : prevIndex + imagesPerSlide
+      prevIndex + imagesPerSlide >= images.length
+        ? 0
+        : prevIndex + imagesPerSlide
     );
   };
 
   return (
-    <div className="relative w-full max-w-4xl mx-auto">
-      <div className="relative h-64 overflow-hidden rounded-lg">
+    <div className="relative flex justify-center items-baseline w-full h-full mx-auto border-2 border-gray-950">
+      <div className="relative h-64 overflow-hidden w-full">
         <div
           className="flex transition-transform duration-500 ease-in-out"
-          style={{ transform: `translateX(-${(currentIndex * 100) / imagesPerSlide}%)` }}
+          style={{
+            transform: `translateX(-${(currentIndex * 100) / imagesPerSlide}%)`,
+          }}
         >
           {images.map((image, index) => (
             <div key={index} className="w-1/4 flex-shrink-0 px-1">
@@ -35,21 +43,24 @@ const Carousel = ({ images }) => {
           ))}
         </div>
       </div>
+      
+
+      
       <Button
-        variant="outline"
+        // variant="outline"
         className="absolute left-2 top-1/2 transform -translate-y-1/2"
         onClick={goToPrevious}
       >
-        <FaChevronLeft className="h-4 w-4" />
+        <img src={arrow} alt="right-arrow" className='h-36 rotate-180'/>
       </Button>
       <Button
-        variant="outline"
+        // variant="outline"
         className="absolute right-2 top-1/2 transform -translate-y-1/2"
         onClick={goToNext}
       >
-        <FaChevronRight className="h-4 w-4" />
+        <img src={arrow} alt="right-arrow" className='h-36'/>
       </Button>
-    </div>
+      </div>
   );
 };
 
