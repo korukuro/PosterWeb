@@ -24,20 +24,20 @@ const Carousel = ({ images }) => {
   };
 
   return (
-    <div className="relative flex justify-center items-baseline w-full h-full mx-auto border-2 border-gray-950">
-      <div className="relative h-64 overflow-hidden w-full">
+    <div className="relative flex justify-center items-baseline w-full h-full mx-auto ">
+      <div className="relative h-64 overflow-hidden w-[100%]">
         <div
-          className="flex transition-transform duration-500 ease-in-out"
+          className="flex  gap-4 transition-transform duration-500 ease-in-out "
           style={{
             transform: `translateX(-${(currentIndex * 100) / imagesPerSlide}%)`,
           }}
         >
           {images.map((image, index) => (
-            <div key={index} className="w-1/4 flex-shrink-0 px-1">
+            <div key={index} className="w-1/4 flex-shrink-0 flex justify-center px-1 ">
               <img
                 src={image}
                 alt={`Slide ${index + 1}`}
-                className="object-cover w-full h-full rounded-lg"
+                className="rounded-lg h-64 object-contain"
               />
             </div>
           ))}
@@ -48,14 +48,14 @@ const Carousel = ({ images }) => {
       
       <Button
         // variant="outline"
-        className="absolute left-2 top-1/2 transform -translate-y-1/2"
+        className="absolute left-2 top-2/3 transform -translate-y-1/2"
         onClick={goToPrevious}
       >
         <img src={arrow} alt="right-arrow" className='h-36 rotate-180'/>
       </Button>
       <Button
         // variant="outline"
-        className="absolute right-2 top-1/2 transform -translate-y-1/2"
+        className="absolute right-2 top-2/3 transform -translate-y-1/2"
         onClick={goToNext}
       >
         <img src={arrow} alt="right-arrow" className='h-36'/>
