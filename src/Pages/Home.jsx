@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import Spinner from "../components/Spinner";
 import Product from "../components/Product";
 import brickWall from "../additionalFile/background.png";
+import { getAllPoster } from "../services/operations/posterDetailsAPI";
 
 const Home = () => {
-  const API_URL = "https://fakestoreapi.com/products";
+  // const API_URL = "https://fakestoreapi.com/products";
 
   const [loading, setLoading] = useState(false);
   const [posts, setPosts] = useState([]);
@@ -12,8 +13,7 @@ const Home = () => {
   async function fetchProductData() {
     setLoading(true);
     try {
-      const response = await fetch(API_URL);
-      const data = await response.json();
+      const data = await getAllPoster();
       console.log(data);
 
       setPosts(data);

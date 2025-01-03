@@ -7,17 +7,26 @@ const posterSchema = new mongoose.Schema({
   description: {
     type: String,
   },
+  admin: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: "user",
+  },
   price: {
     type: Number,
   },
   image: {
-    type: Number,
+    type: String,
   },
   size: {
-    type: [Number],
+    type: [String],
   },
   quantity: {
     type: Number,
+  },
+  category: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Category",
   },
 });
 

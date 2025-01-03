@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
 
 const Product = ({ post }) => {
-
+  console.log("post: ", post);
   const { cart } = useSelector((state) => state)
   const dispatch = useDispatch();
 
@@ -28,7 +28,7 @@ const Product = ({ post }) => {
             translateZ="100"
             className="absolute text-neutral-500 text-sm max-w-sm mt-2 dark:text-neutral-300 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 break-words"
           >
-            {post.description}
+            {post.posterName}
           </CardItem>
           {/* { */}
             {/* cart.some((p) => p.id === post.id) ? */}

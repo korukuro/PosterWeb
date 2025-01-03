@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { remove } from "../slices/cartSlice";
 
 const CartItem = ({item}) => {
-
   const dispatch = useDispatch();
   const removeItem = ()=>{
     dispatch(remove(item.id));
@@ -17,8 +16,8 @@ const CartItem = ({item}) => {
       
 
       <div className="flex flex-col justify-evenly">
-        <h1 className="text-gray-700 font-semibold text-lg text-left mt-1">{item.title}</h1>
-        <p className=" text-gray-400 font-normal text-[14px] text-left">{item.description.split(" ").slice(0,15).join(" ")+"..."} </p>
+        <h1 className="text-gray-700 font-semibold text-lg text-left mt-1">{item.posterName}</h1>
+        <p className=" text-gray-400 font-normal text-[14px] text-left">{item.description} </p>
         <div className="flex justify-between items-center my-2 ">
           <span className="text-black-700 font-semibold">${item.price}</span>
           <div className=" cursor-pointer bg-red-300 p-[0.4rem] rounded-full">

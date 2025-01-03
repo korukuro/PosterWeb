@@ -40,6 +40,10 @@ const userSchema = new mongoose.Schema(
     resetPasswordExpires: {
       type: Date,
     },
+    accountType: {
+      type: String,
+      enum: ["Admin"],
+    },
 
     image: {
       type: String,

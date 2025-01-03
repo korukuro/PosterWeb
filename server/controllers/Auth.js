@@ -9,7 +9,6 @@ const Profile = require("../models/Profile")
 require("dotenv").config()
 
 // Signup Controller for Registering USers
- 
 exports.signup = async (req, res) => {
   try {
     // Destructure fields from the request body
@@ -21,6 +20,7 @@ exports.signup = async (req, res) => {
       confirmPassword,
       contactNumber,
       otp,
+      accountType,
     } = req.body
     // Check if All Details are there or not
     if (
@@ -78,13 +78,14 @@ exports.signup = async (req, res) => {
     const profileDetails = await Profile.create({
       gender: null,
       dateOfBirth: null,
-      about: null,
+      address: null,
       contactNumber: null,
     })
     const user = await User.create({
       firstName,
       lastName,
       email,
+      accountType: accountType,
       contactNumber,
       password: hashedPassword,
       additionalDetails: profileDetails._id,
@@ -104,7 +105,6 @@ exports.signup = async (req, res) => {
     })
   }
 }
-
 // Login controller for authenticating users
 exports.login = async (req, res) => {
   try {
@@ -122,7 +122,7 @@ exports.login = async (req, res) => {
 
     // Find user with provided email
     const user = await User.findOne({ email }).populate("additionalDetails")
-
+    console.log("user:",user)
     // If user not found with provided email
     if (!user) {
       // Return 401 Unauthorized status code with error message
@@ -217,7 +217,6 @@ exports.sendotp = async (req, res) => {
     return res.status(500).json({ success: false, error: error.message })
   }
 }
-
 // Controller for Changing Password
 exports.changePassword = async (req, res) => {
   try {
