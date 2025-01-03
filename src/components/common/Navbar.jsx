@@ -43,7 +43,7 @@ const Navbar = () => {
         </Link>
 
         <Link to="/login">
-          <img src={user?user.image:userIcon} alt="userIcon" className="h-7 rounded-full" />
+          <img src={user?user.image:userIcon} alt="userIcon" className="h-10 rounded-full aspect-square object-cover" />
         </Link>
       </div>
     </div>
