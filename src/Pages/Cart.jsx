@@ -24,7 +24,6 @@ const Cart = () => {
               return <CartItem key={item.id} item={item} itemIndex={index} />;
             })}
           </div>
-          <BackgroundBeams />
           <div className=" flex flex-col justify-around m-3 my-20 ml-10 p-4 w-[30%] summary-box ">
             <div>
               <div className="text-black-700 mb-2">
@@ -57,7 +56,6 @@ const Cart = () => {
             alt="empty-box"
             className="w-50 mix-blend-darken"
           />
-          <BackgroundBeams />
           <img
             src={spider}
             alt="empty-box"
