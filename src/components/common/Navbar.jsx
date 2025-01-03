@@ -15,7 +15,6 @@ const Navbar = () => {
 
   return (
     <div className="flex justify-between text-black p-3 items-center h-[4rem]">
-      <BackgroundBeams />
 
       <NavLink to="/">
         <div>
