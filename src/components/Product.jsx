@@ -3,8 +3,10 @@ import React from "react";
 import { CardBody, CardContainer, CardItem } from "./ui/3d-card";
 import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const Product = ({ post }) => {
+  const navigate = useNavigate();
   console.log("post: ", post);
   const { cart } = useSelector((state) => state)
   const dispatch = useDispatch();
@@ -16,6 +18,10 @@ const Product = ({ post }) => {
   const removeItem = () => {
     dispatch(remove(post._id));
     toast.error("Item removed from Cart");
+  }
+
+  const handlePosterDetails = () => {
+    navigate(`/poster/${post._id}`);
   }
   return (
     <div className="">
@@ -59,6 +65,7 @@ const Product = ({ post }) => {
             className="w-full h-full flex justify-center items-center"
           >
             <img
+              onClick={handlePosterDetails}
               src={post.image}
               alt="poster-image"
               className="object-contain w-full h-full p-2"

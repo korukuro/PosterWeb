@@ -23,6 +23,7 @@ import CheckOut from './Pages/CheckOut';
 import MyProfile from './components/core/Dashboard/MyProfile';
 import Settings from './components/core/Dashboard/Settings';
 import OrderHistory from './components/core/Dashboard/OrderHistory';
+import PosterDetails from './Pages/PosterDetails';
 
 function App() {
   const location = useLocation();
@@ -42,6 +43,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/cart' element={<Cart />} />
+        <Route path='/poster/:id' element={<PosterDetails />} />
 
         {/* Open Route - for Only Non Logged in User */}
         <Route
