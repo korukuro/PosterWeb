@@ -31,7 +31,7 @@ const Home = () => {
 
   return (
     <>
-      <div className="relative h-[42.5rem] overflow-hidden">
+      <div className="relative h-[91.2vh] overflow-hidden">
         {/* Background Image */}
         <img
           src={brickWall}
