@@ -1,24 +1,24 @@
-import { add, remove } from "../slices/cartSlice";
+import { add } from "../slices/cartSlice";
 import React from "react";
 import { CardBody, CardContainer, CardItem } from "./ui/3d-card";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 const Product = ({ post }) => {
   const navigate = useNavigate();
   console.log("post: ", post);
-  const { cart } = useSelector((state) => state)
+  // const { cart } = useSelector((state) => state)
   const dispatch = useDispatch();
 
   const addToCart = () => {
     dispatch(add(post));
     toast.success("Item added to Cart")
   }
-  const removeItem = () => {
-    dispatch(remove(post._id));
-    toast.error("Item removed from Cart");
-  }
+  // const removeItem = () => {
+  //   dispatch(remove(post._id));
+  //   toast.error("Item removed from Cart");
+  // }
 
   const handlePosterDetails = () => {
     navigate(`/poster/${post._id}`);
