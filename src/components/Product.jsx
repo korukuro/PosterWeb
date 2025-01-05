@@ -28,7 +28,7 @@ const Product = ({ post }) => {
       <CardContainer
         className="w-[20rem] h-96 flex-shrink-0 flex justify-center px-2"
       >
-        <CardBody className="relative group/card h-full flex justify-center items-center border-2 border-black bg-[#00000031] rounded-lg">
+        <CardBody className="relative group/card h-full flex justify-center items-center rounded-lg">
           <CardItem
             as="p"
             translateZ="100"
