@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Spinner from "../components/Spinner";
 import Product from "../components/Product";
+import Footer from "../components/common/Footer";
 import brickWall from "../additionalFile/background.png";
 import { getAllPoster } from "../services/operations/posterDetailsAPI";
 
