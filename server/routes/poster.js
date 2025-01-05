@@ -38,7 +38,7 @@ router.delete("/deletePoster", verifyToken, isAdmin, deletePoster)
 // Get all Registered Posters
 router.get("/getAllPoster", getAllPoster)
 // Get Details for a Specific Posters
-router.get("/getPosterDetails", getPosterDetails)
+router.post("/getPosterDetails", getPosterDetails)
 
 
 // ********************************************************************************************************

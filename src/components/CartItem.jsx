@@ -2,6 +2,7 @@ import { RiDeleteBin5Line } from "react-icons/ri";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { remove } from "../slices/cartSlice";
+import { useNavigate } from "react-router-dom";
 
 const CartItem = ({item}) => {
   console.log("item: ", item);
@@ -10,8 +11,12 @@ const CartItem = ({item}) => {
     dispatch(remove(item._id));
     // toast.error("Item removed from Cart");
   }
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(`/poster/${item._id}`);
+  }
   return (
-    <div className="flex border-b-black h-[max-content] w-[550px] border-b-2 m-4 p-4 cart-item">
+    <div onClick={handleClick} className="flex cursor-pointer border-b-black h-[max-content] w-[550px] border-b-2 m-4 p-4 cart-item">
       
         <img src={item.image} alt="item img" className="w-[40%] mx-1 mr-5 p-2" />
       

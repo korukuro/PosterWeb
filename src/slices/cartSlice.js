@@ -21,9 +21,22 @@ const saveCartToLocalStorage = (cart) => {
   }
 };
 
+const initialState = {
+  cart: localStorage.getItem("cart")
+    ? JSON.parse(localStorage.getItem("cart"))
+    : [],
+  total: localStorage.getItem("total")
+    ? JSON.parse(localStorage.getItem("total"))
+    : 0,
+  totalItems: localStorage.getItem("totalItems")
+    ? JSON.parse(localStorage.getItem("totalItems"))
+    : 0,
+}
+
 export const cartSlice = createSlice({
   name: "cart",
   initialState: loadCartFromLocalStorage(),
+  // initialState,
   reducers: {
     add: (state, action) => {
       const poster = action.payload;
