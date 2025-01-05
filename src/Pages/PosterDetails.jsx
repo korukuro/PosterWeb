@@ -11,7 +11,10 @@ const PosterDetails = () => {
         </div>
       </div>
       <div className="flex flex-col w-[55%] gap-5 p-16">
-        <h1 className="font-bold text-2xl">Name Of The Poster</h1>
+        <div className="flex items-center justify-between">
+          <h1 className="font-bold text-2xl">Name Of The Poster</h1>
+          <div className="w-10 text-2xl">*****</div>
+        </div>
         <span>Price:</span>
         <div className="space-x-4">
         <span>Size:</span>
