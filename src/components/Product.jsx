@@ -24,7 +24,7 @@ const Product = ({ post }) => {
     navigate(`/poster/${post._id}`);
   }
   return (
-    <div className="">
+    <div>
       <CardContainer
         className="w-[20rem] h-96 flex-shrink-0 flex justify-center px-2"
       >
