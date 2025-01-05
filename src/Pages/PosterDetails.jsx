@@ -4,7 +4,7 @@ import { TiMinus } from "react-icons/ti";
 
 const PosterDetails = () => {
   return (
-    <div className="border-2 border-black h-[42.38rem] flex">
+    <div className="border-2 border-black h-[42.38rem] flex overflow-hidden">
       <div className="w-[45%] border-blue-800 border-2 flex justify-center items-center">
         <div className="border-2 border-yellow-700 h-[35rem] w-[28rem] text-center">
           hi
