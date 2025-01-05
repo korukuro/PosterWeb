@@ -16,9 +16,9 @@ const CartItem = ({item}) => {
     navigate(`/poster/${item._id}`);
   }
   return (
-    <div onClick={handleClick} className="flex cursor-pointer border-b-black h-[max-content] w-[550px] border-b-2 m-4 p-4 cart-item">
+    <div className="flex cursor-pointer border-b-black h-[max-content] w-[550px] border-b-2 m-4 p-4 cart-item">
       
-        <img src={item.image} alt="item img" className="w-[40%] mx-1 mr-5 p-2" />
+        <img onClick={handleClick} src={item.image} alt="item img" className="w-[40%] mx-1 mr-5 p-2" />
       
 
       <div className="flex flex-col justify-evenly">

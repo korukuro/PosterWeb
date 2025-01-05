@@ -5,14 +5,19 @@ import { useEffect, useState } from "react";
 import emptyBox from "../additionalFile/empty-box.png";
 import spider from "../additionalFile/spider.png";
 
-import {BackgroundBeams} from "../components/ui/background-beam";
+import { BackgroundBeams } from "../components/ui/background-beam";
 
 const Cart = () => {
-  const { cart } = useSelector((state) => state);
+  const { cart } = useSelector((state) => state); // Ensure correct access to cart state
   const [totalAmount, setTotalAmount] = useState(0);
 
   useEffect(() => {
-    setTotalAmount(cart.reduce((acc, curr) => acc + curr.price, 0));
+    // Calculate total price whenever the cart changes
+    const total = cart.reduce(
+      (sum, item) => sum + item.price * item.quantity,
+      0
+    );
+    setTotalAmount(total);
   }, [cart]);
 
   return (
@@ -24,14 +29,15 @@ const Cart = () => {
               return <CartItem key={item.id} item={item} itemIndex={index} />;
             })}
           </div>
-          <div className=" flex flex-col justify-around m-3 my-20 ml-10 p-4 w-[30%] summary-box ">
+          <div className="flex flex-col justify-around m-3 my-20 ml-10 p-4 w-[30%] summary-box ">
             <div>
               <div className="text-black-700 mb-2">
                 <p className="font-semibold">Your Cart</p>
                 <h1 className="text-3xl font-bold">SUMMARY</h1>
               </div>
               <p className="text-gray-700 font-semibold">
-                Total items: {cart.length}
+                Total items:{" "}
+                {cart.reduce((sum, item) => sum + item.quantity, 0)}
               </p>
             </div>
             <div>
@@ -39,7 +45,7 @@ const Cart = () => {
                 Total Amount:{" "}
                 <span className="font-bold text-black">
                   ${totalAmount.toFixed(2)}
-                </span>{" "}
+                </span>
               </p>
               <Link to="/checkout">
                 <button className="bg-[#000000] text-white px-7 py-2 rounded-lg text-md font-bold w-full">
@@ -64,9 +70,6 @@ const Cart = () => {
           <h1 className="font-semibold text-gray-700 m-4">
             NO ITEM IN THE BAG
           </h1>
-          {/* <Link to="/">
-                <button className="bg-[#299a52] text-white px-7 py-2 rounded-lg text-md font-bold">Shop Now</button>
-              </Link> */}
         </div>
       )}
     </div>
