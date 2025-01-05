@@ -40,7 +40,7 @@ const PosterDetails = () => {
 
 
   return (
-    <div className="flex justify-evenly w-11/12 m-6">
+    <div className="flex justify-evenly w-11/12 mt-6 h-[88.2vh] mx-auto">
       {
         loading ? 
         <div className="flex justify-center items-center h-full w-full">
