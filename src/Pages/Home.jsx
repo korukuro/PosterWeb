@@ -31,12 +31,12 @@ const Home = () => {
 
   return (
     <>
-      <div className="relative h-screen">
+      <div className="relative h-[42.5rem] overflow-hidden">
         {/* Background Image */}
         <img
           src={brickWall}
           alt=""
-          className="absolute top-0 left-0 w-full object-contain -z-10"
+          className="absolute top-0 left-0 w-full object-fill -z-10"
         />
 
         {/* Main Content */}
