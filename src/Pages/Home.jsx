@@ -40,7 +40,7 @@ const Home = () => {
         />
 
         {/* Main Content */}
-        <div className="h-full flex justify-center items-center mx-3">
+        <div className="h-full w-full flex justify-center items-center ">
           <div className="pt-2 z-10 relative w-full h-full">
             {loading ? (
               <div className="flex justify-center items-center min-h-screen">
