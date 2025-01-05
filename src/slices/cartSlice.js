@@ -36,7 +36,6 @@ const initialState = {
 export const cartSlice = createSlice({
   name: "cart",
   initialState: loadCartFromLocalStorage(),
-  // initialState,
   reducers: {
     add: (state, action) => {
       const poster = action.payload;
