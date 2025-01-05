@@ -5,17 +5,23 @@ import { useState } from "react";
 import { getPosterDetails } from "../services/operations/posterDetailsAPI";
 import { useLocation } from "react-router-dom";
 import Spinner from "../components/Spinner";
+import { add } from "../slices/cartSlice";
+import { useDispatch } from "react-redux";
+import { toast } from "react-hot-toast";
 
 const PosterDetails = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
   const posterId = useLocation().pathname.split("/")[2];
 
+  const dispatch = useDispatch();
+
   async function fetchProductData(posterId) {
     setLoading(true);
     try {
       const data = await getPosterDetails(posterId);
-      setPosts(data || {});
+      // console.log("data: ", data.posterDetails);
+      setPosts(data.posterDetails || {});
     } catch (error) {
       console.error("Failed to fetch poster data:", error);
       setPosts({});
@@ -25,6 +31,12 @@ const PosterDetails = () => {
   useEffect(() => {
     fetchProductData(posterId);
   }, []);
+
+  const addToCart = () => {
+    dispatch(add(posts));
+    console.log("posts: ", posts);
+    toast.success("Item added to Cart")
+  }
 
 
   return (
@@ -38,15 +50,15 @@ const PosterDetails = () => {
           <div className="flex gap-10">
             <div className="w-[45%]flex justify-center items-center">
               <div className="h-[35rem] w-[28rem] text-center">
-                <img src={posts?.posterDetails?.image} alt="poster-image" />
+                <img src={posts?.image} alt="poster-image" />
               </div>
             </div>
             <div className="flex flex-col w-[55%] gap-5 p-16">
               <div className="flex items-center justify-between">
-                <h1 className="font-bold text-2xl">{posts?.posterDetails?.posterName}</h1>
+                <h1 className="font-bold text-2xl">{posts?.posterName}</h1>
                 <div className="w-10 text-2xl">*****</div>
               </div>
-              <span>{`Price: ₹${posts?.posterDetails?.price}`}</span>
+              <span>{`Price: ₹${posts?.price}`}</span>
               <div className="space-x-4">
                 <span>Size:</span>
                 <button className="w-20 h-12 text-base bg-black text-white rounded-full font-semibold text-[12px] p-1 px-3 uppercase">
@@ -69,7 +81,7 @@ const PosterDetails = () => {
                   <TiPlus />
                 </div>
 
-                <button className="w-28 h-14 bg-black text-white rounded-full font-semibold text-[12px] p-1 px-3 uppercase">
+                <button onClick={addToCart} className="w-28 h-14 bg-black text-white rounded-full font-semibold text-[12px] p-1 px-3 uppercase">
                   Add to Cart
                 </button>
               </div>
