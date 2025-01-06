@@ -21,15 +21,15 @@ const Community = ["Forums", "Chapters", "Events"];
 const Footer = () => {
   return (
     <div
-      className="relative h-[35.5rem]"
+      className="relative h-[50rem]"
       style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)" }}
     >
-      <div className="fixed h-[35.5rem] w-full bottom-0 bg-slate-600">
-        <div className="border-b w-[100%] flex flex-col lg:flex-row pb-5 border-richblack-700">
+      <div className="fixed h-[50rem] w-full bottom-0 bg-slate-600">
+          <img src={Logo} alt="" className="object-contain mt-14 " />
+        <div className="border-b border-t w-[100%] flex flex-col lg:flex-row pb-5 pt-5 border-richblack-700">
           {/* Section 1 */}
           <div className="lg:w-[50%] flex flex-wrap flex-row justify-between lg:border-r lg:border-richblack-700 pl-3 lg:pr-5 gap-3">
             <div className="w-[30%] flex flex-col gap-3 lg:w-[30%] mb-7 lg:pl-0">
-              {/* <img src={Logo} alt="" className="object-contain" /> */}
               <h1 className="text-richblack-50 font-semibold text-[16px]">
                 Company
               </h1>
@@ -147,9 +147,7 @@ const Footer = () => {
             })}
           </div>
         </div>
-      </div>
-
-      <div className="flex flex-row items-center justify-between w-11/12 max-w-maxContent text-richblack-400 mx-auto  pb-14 text-sm">
+      <div className="flex flex-row items-center justify-between w-11/12 max-w-maxContent text-richblack-400 mx-auto pb-14 text-sm">
         {/* Section 1 */}
         <div className="flex justify-between lg:items-start items-center flex-col lg:flex-row gap-3 w-full">
           <div className="flex flex-row">
@@ -160,7 +158,7 @@ const Footer = () => {
                   className={` ${
                     BottomFooter.length - 1 === i
                       ? ""
-                      : "border-r border-richblack-700 cursor-pointer hover:text-richblack-50 transition-all duration-200"
+                      : "cursor-pointer hover:text-white transition-all duration-200"
                   } px-3 `}
                 >
                   <Link to={ele.split(" ").join("-").toLocaleLowerCase()}>
@@ -176,6 +174,8 @@ const Footer = () => {
           </div>
         </div>
       </div>
+      </div>
+
     </div>
   );
 };
