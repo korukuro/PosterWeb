@@ -40,19 +40,20 @@ const PosterDetails = () => {
 
 
   return (
-    <div className="flex justify-evenly w-11/12 mt-6 h-[88.2vh] mx-auto">
+    <div className="flex justify-evenly w-[100%] h-[91.2vh] mx-auto overflow-x-hidden">
       {
         loading ? 
         <div className="flex justify-center items-center h-full w-full">
                 <Spinner />
          </div>
           :
-          <div className="flex gap-10">
-            <div className="w-[45%]flex justify-center items-center">
-              <div className="h-[35rem] w-[28rem] text-center">
+          <div className="flex gap-10 w-full">
+            <div className="w-[45%] h-[100%] flex justify-end">
+              <div className="w-[24rem] h-[40.1rem]">
                 <img src={posts?.image} alt="poster-image" />
               </div>
             </div>
+            
             <div className="flex flex-col w-[55%] gap-5 p-16">
               <div className="flex items-center justify-between">
                 <h1 className="font-bold text-2xl">{posts?.posterName}</h1>
