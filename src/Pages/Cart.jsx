@@ -5,8 +5,6 @@ import { useEffect, useState } from "react";
 import emptyBox from "../additionalFile/empty-box.png";
 import spider from "../additionalFile/spider.png";
 
-import { BackgroundBeams } from "../components/ui/background-beam";
-
 const Cart = () => {
   const { cart } = useSelector((state) => state); // Ensure correct access to cart state
   const [totalAmount, setTotalAmount] = useState(0);
@@ -24,7 +22,7 @@ const Cart = () => {
     <div className="bg-[#d9d9d9] h-[42.375rem]">
       {cart.length > 0 ? (
         <div className="flex justify-center m-3 cart-box ">
-          <div className="overflow-y-auto overflow-x-hidden h-[37.188rem] scrollbar-thin scrollbar-black scrollbar-track-gray-200">
+          <div className="overflow-y-auto overflow-x-hidden h-[40rem] scrollbar-thin scrollbar-black scrollbar-track-gray-200">
             {cart.map((item, index) => {
               return <CartItem key={item.id} item={item} itemIndex={index} />;
             })}

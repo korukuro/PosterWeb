@@ -30,7 +30,7 @@ const CheckOutItem = ({ item }) => {
                 </div>
                 <div className="flex justify-between items-center my-2 gap-4">
                     <span className="text-black-700 font-semibold">${item.price}</span>
-                    <span className="text-black-700 font-semibold">{`quantity: ${item.quantity}`}</span>
+                    <span className="text-gray-700 font-semibold">{`quantity: ${item.quantity}`}</span>
 
 
                 </div>

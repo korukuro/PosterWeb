@@ -2,12 +2,10 @@ import React from "react";
 import { useSelector } from "react-redux";
 import CheckOutItem from "../components/CheckOutItem";
 const CheckOut = () => {
-
-  const {cart} = useSelector((state) => state);
+  const { cart } = useSelector((state) => state);
   return (
-    <div className=" flex flex-col lg:flex-row">
-      {/* Left Section */}
-      <div className="lg:w-[50%] border-2 border-black w-full h-auto border-t-2 p-10 lg:pl-56 lg:pt-16">
+    <div className=" flex flex-col lg:flex-row w-full h-auto lg:h-[91.2vh] mx-auto overflow-x-hidden">
+      <div className="lg:w-[50%] border-black w-full h-auto border-t-2 p-10 lg:pl-56 lg:pt-16">
         <h1 className="text-2xl mb-4">Delivery</h1>
         <form className="flex flex-col gap-y-4">
           <label>
@@ -94,22 +92,22 @@ const CheckOut = () => {
         </form>
       </div>
 
-      {/* Right Section */}
-      <div className="lg:w-[50%] w-full h-auto border-t-2 lg:border-t-2 border-black lg:pl-12 lg:pt-16">
-        <div className="w-full lg:w-[35.5rem] space-y-4">
-          <div className="flexspace-x-4">
-            {/* <div className="w-20 h-24 flex-shrink-0 flex justify-center items-center"> */}
-            <div className="flex flex-col  overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-black scrollbar-track-gray-200">
-            {cart.map((item, index) => {
-              return <CheckOutItem key={item.id} item={item} itemIndex={index} />;
-            })}
+      <div className="lg:w-[50%] w-full h-auto border-t-2 border-l lg:border-t-2 border-black lg:pl-12 lg:pt-16 overflow-hidden">
+        <div className="w-full lg:w-[35.5rem] space-y-6 overflow-hidden">
+          <div className="flex space-x-4">
+            <div className="flex flex-col h-[30rem] pr-5 overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-black scrollbar-track-gray-200">
+              {cart.map((item, index) => {
+                return (
+                  <CheckOutItem key={item.id} item={item} itemIndex={index} />
+                );
+              })}
+            </div>
           </div>
-          </div>
-          <div className="flex justify-between text-sm">
+          <div className="flex justify-between text-md text-gray-600">
             <span>Shipment:</span>
-            <span>Price</span>
+            <span>Free</span>
           </div>
-          <div className="flex justify-between text-lg font-bold">
+          <div className="flex justify-between text-xl font-bold">
             <span>Total:</span>
             <span>Price</span>
           </div>
