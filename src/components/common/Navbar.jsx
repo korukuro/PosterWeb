@@ -24,7 +24,7 @@ const Navbar = () => {
 
       <div className="flex items-center font-medium gap-4">
         <div className="relative">
-          <input type="search" className="border-2 border-black rounded-xl p-1 margin-left:4px" />
+          <input type="search" className="border border-black rounded-xl p-1 margin-left:4px" />
           <img src={loupe} alt="" className="h-7 absolute top-1 right-3" />
         </div>
 
