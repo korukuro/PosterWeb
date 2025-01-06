@@ -35,9 +35,8 @@ const CartItem = ({ item }) => {
           {item.description}{" "}
         </p>
         <div className="flex justify-between items-center my-2 gap-4">
-          <span className="text-black-700 font-semibold">${item.price}</span>
-          <span className="text-black-700 font-semibold"> {<TiPlus />} {`quantity:  ${item.quantity}`} <TiMinus /></span>
-            
+          <span className="text-black-700 font-semibold">₹{item.price}</span>
+          <span className="text-black-700 font-semibold">{`quantity: ${item.quantity}`}</span>
           <div className=" cursor-pointer bg-red-300 p-[0.4rem] rounded-full">
             <RiDeleteBin5Line
               onClick={removeItem}
