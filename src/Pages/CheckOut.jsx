@@ -95,7 +95,7 @@ const CheckOut = () => {
       <div className="lg:w-[50%] w-full h-auto border-t-2 border-l lg:border-t-2 border-black lg:pl-12 lg:pt-16 overflow-hidden">
         <div className="w-full lg:w-[35.5rem] space-y-6 overflow-hidden">
           <div className="flex space-x-4">
-            <div className="flex flex-col h-[30rem] pr-5 overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-black scrollbar-track-gray-200">
+            <div className="flex flex-col h-[30rem] pr-5 overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-black scrollbar-track-gray-200 scrollbar-hide">
               {cart.map((item, index) => {
                 return (
                   <CheckOutItem key={item.id} item={item} itemIndex={index} />
