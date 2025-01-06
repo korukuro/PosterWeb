@@ -47,7 +47,7 @@ const Home = () => {
                 <Spinner />
               </div>
             ) : posts.length > 0 ? (
-              <div className="flex p-2 gap-x-20 h-full overflow-x-auto space-x-4">
+              <div className="flex p-2 gap-x-20 h-full overflow-x-auto space-x-4 scrollbar-hide">
                 {posts.map((post) => (
                   <div
                     key={post.id}
