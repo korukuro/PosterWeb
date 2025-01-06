@@ -28,6 +28,7 @@ const Cart = () => {
             {cart.map((item, index) => {
               return <CartItem key={item.id} item={item} itemIndex={index} />;
             })}
+            
           </div>
           <div className="flex flex-col justify-around m-3 my-20 ml-10 p-4 w-[30%] summary-box ">
             <div>
@@ -37,9 +38,12 @@ const Cart = () => {
               </div>
               <p className="text-gray-700 font-semibold">
                 Total items:{" "}
-                {cart.reduce((sum, item) => sum + item.quantity, 0)}
+                <span className="font-bold text-black">
+                  {cart.reduce((sum, item) => sum + item.quantity, 0)}
+                </span>
               </p>
-            </div>
+              </div>
+                
             <div>
               <p className="text-gray-700 font-semibold mb-3">
                 Total Amount:{" "}

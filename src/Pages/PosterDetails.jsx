@@ -49,13 +49,13 @@ const PosterDetails = () => {
           :
           <div className="flex gap-10 w-full">
             <div className="w-[45%] h-[100%] flex justify-end">
-              <div className="w-[24rem] h-[40.1rem]">
+              <div className="w-[24rem] h-[40.1rem] mt-7">
                 <img src={posts?.image} alt="poster-image" />
               </div>
             </div>
             
             <div className="flex flex-col w-[55%] gap-5 p-16">
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between w-[30rem]">
                 <h1 className="font-bold text-2xl">{posts?.posterName}</h1>
                 <div className="w-10 text-2xl">*****</div>
               </div>
