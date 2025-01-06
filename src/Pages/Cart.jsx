@@ -44,7 +44,7 @@ const Cart = () => {
               <p className="text-gray-700 font-semibold mb-3">
                 Total Amount:{" "}
                 <span className="font-bold text-black">
-                  ${totalAmount.toFixed(2)}
+                ₹{totalAmount.toFixed(2)}
                 </span>
               </p>
               <Link to="/checkout">

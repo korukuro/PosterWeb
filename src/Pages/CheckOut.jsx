@@ -1,10 +1,13 @@
 import React from "react";
-
+import { useSelector } from "react-redux";
+import CheckOutItem from "../components/CheckOutItem";
 const CheckOut = () => {
+
+  const {cart} = useSelector((state) => state);
   return (
-    <div className="h-[91.2vh] flex flex-col lg:flex-row">
+    <div className=" flex flex-col lg:flex-row">
       {/* Left Section */}
-      <div className="lg:w-[50%] w-full h-auto border-t-2 border-r border-black p-10 lg:pl-56 lg:pt-16">
+      <div className="lg:w-[50%] border-2 border-black w-full h-auto border-t-2 p-10 lg:pl-56 lg:pt-16">
         <h1 className="text-2xl mb-4">Delivery</h1>
         <form className="flex flex-col gap-y-4">
           <label>
@@ -94,16 +97,13 @@ const CheckOut = () => {
       {/* Right Section */}
       <div className="lg:w-[50%] w-full h-auto border-t-2 lg:border-t-2 border-black lg:pl-12 lg:pt-16">
         <div className="w-full lg:w-[35.5rem] space-y-4">
-          <div className="flex space-x-4">
-            <div className="w-20 h-24 flex-shrink-0 flex justify-center items-center">Image</div>
-            <div className="h-24 flex-grow flex justify-between items-center p-4">
-              <span>Details</span>
-              <span>Price</span>
-            </div>
+          <div className="flexspace-x-4">
+            {/* <div className="w-20 h-24 flex-shrink-0 flex justify-center items-center"> */}
+            <div className="flex flex-col  overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-black scrollbar-track-gray-200">
+            {cart.map((item, index) => {
+              return <CheckOutItem key={item.id} item={item} itemIndex={index} />;
+            })}
           </div>
-          <div className="flex justify-between text-lg">
-            <span>Total Items:</span>
-            <span>Number</span>
           </div>
           <div className="flex justify-between text-sm">
             <span>Shipment:</span>
