@@ -49,7 +49,7 @@ const Product = ({ post }) => {
                 </button>
               </CardItem> */}
               {/* : */}
-              <CardItem translateZ="100" className="absolute top-[23rem] left-[20rem]">
+              {/* <CardItem translateZ="100" className="absolute top-[23rem] left-[20rem]">
                 <button
                   onClick={addToCart}
                   className="absolute w-28 h-14 bottom-4 right-4 text-black border-2 border-black rounded-full font-semibold text-[12px] p-1 px-3 uppercase 
@@ -57,7 +57,7 @@ const Product = ({ post }) => {
                 >
                   Add to Cart
                 </button>
-              </CardItem>
+              </CardItem> */}
           {/* } */}
 
           <CardItem

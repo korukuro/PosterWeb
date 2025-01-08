@@ -7,7 +7,8 @@ const {
   getAllPoster,
   getPosterDetails,
   createPoster,
-  deletePoster
+  deletePoster,
+  updatePoster,
 } = require("../controllers/Poster")
 
 // Categories Controllers Import
@@ -39,6 +40,8 @@ router.delete("/deletePoster", verifyToken, isAdmin, deletePoster)
 router.get("/getAllPoster", getAllPoster)
 // Get Details for a Specific Posters
 router.post("/getPosterDetails", getPosterDetails)
+// Update a Poster
+router.put("/updatePoster", verifyToken, isAdmin, updatePoster)
 
 
 // ********************************************************************************************************

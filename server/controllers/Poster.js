@@ -14,7 +14,8 @@ exports.createPoster = async (req, res) => {
       posterName,
       description,
       price,
-      category
+      category,
+      size
     } = req.body
 
     // // Get poster image from request files
@@ -26,7 +27,8 @@ exports.createPoster = async (req, res) => {
       !description ||
       !price ||
       !poster ||
-      !category
+      !category ||
+      !size
     ) {
       return res.status(400).json({
         success: false,
@@ -68,6 +70,7 @@ exports.createPoster = async (req, res) => {
       price,
       category: categoryDetails._id,
       image: posterImage.secure_url,
+      size,
     })
 
     // Add the new poster to the User Schema of the admin
@@ -186,6 +189,35 @@ exports.deletePoster = async (req, res) => {
     return res.status(200).json({
       success: true,
       message: "Poster deleted successfully",
+    })
+  } catch (error) {
+    console.error(error)
+    return res.status(500).json({
+      success: false,
+      message: "Server error",
+      error: error.message,
+    })
+  }
+}
+
+// Update the Poster
+exports.updatePoster = async (req, res) => {
+  try {
+    const { posterId } = req.body
+    const poster = await Poster.findById(posterId)
+    if (!poster) {
+      return res.status(404).json({ message: "Poster not found" })
+    }
+
+    const updatedPoster = await Poster.findByIdAndUpdate(posterId, req.body, {
+      new: true,
+      runValidators: true,
+    })
+
+    return res.status(200).json({
+      success: true,
+      data: updatedPoster,
+      message: "Poster updated successfully",
     })
   } catch (error) {
     console.error(error)
