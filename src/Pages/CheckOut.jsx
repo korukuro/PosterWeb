@@ -11,7 +11,7 @@ const CheckOut = () => {
           <label>
             <input
               type="text"
-              placeholder="INDIA"
+              value="INDIA" readonly
               className="w-full lg:w-80 h-12 px-2 border border-black rounded"
             />
           </label>
