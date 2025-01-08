@@ -11,9 +11,10 @@ const CartItem = ({ item }) => {
   console.log("item: ", item);
   const dispatch = useDispatch();
   const removeItem = () => {
-    dispatch(remove(item._id));
-    // toast.error("Item removed from Cart");
+    dispatch(remove({ productId: item._id, size: item.size }));
+    toast.error("Item removed from Cart");
   };
+  
   const navigate = useNavigate();
   const handleClick = () => {
     navigate(`/poster/${item._id}`);
