@@ -75,7 +75,7 @@ const PosterDetails = () => {
                   13x19
                 </button>
               </div>
-              <div className="w-[100%] flex flex-col justify-center space-y-4 ml-20 translate-x-[6rem]">
+              <div className="w-[100%] flex justify-center ml-20 translate-x-[6rem]">
                 <div className="border-2 border-black w-28 h-14 rounded-l-full rounded-r-full flex justify-evenly items-center">
                   <TiMinus />
                   <div>1</div>

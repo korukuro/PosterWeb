@@ -1,5 +1,4 @@
 import Template from "../components/core/auth/Template";
-import logo from "../additionalFile/logo.png";
 import React from "react";
 import LoginSignupAndImg from "../components/common/LoginSignupAndImg";
 
