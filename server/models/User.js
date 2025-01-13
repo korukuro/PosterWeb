@@ -48,12 +48,14 @@ const userSchema = new mongoose.Schema(
     image: {
       type: String,
     },
-    posters: [
+    purchasedPosters: [
       {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Poster",
+        posterId: { type: mongoose.Schema.Types.ObjectId, ref: "Poster" }, // Reference to Poster
+        quantity: { type: Number, required: true, default: 1 }, // Quantity purchased
+        purchasedOn: { type: Date, default: Date.now }, // Time of purchase
+        delivered: { type: Boolean, required: true, default: false }, // New field
       },
-    ],
+    ]
   },
 )
 

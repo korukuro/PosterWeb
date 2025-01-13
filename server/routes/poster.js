@@ -9,6 +9,10 @@ const {
   createPoster,
   deletePoster,
   updatePoster,
+  getAllPosterOfUser,
+  getOrderHistory,
+  updateDeliveryStatus,
+  // getMultiplePosterDetails,
 } = require("../controllers/Poster")
 
 // Categories Controllers Import
@@ -40,8 +44,17 @@ router.delete("/deletePoster", verifyToken, isAdmin, deletePoster)
 router.get("/getAllPoster", getAllPoster)
 // Get Details for a Specific Posters
 router.post("/getPosterDetails", getPosterDetails)
+// Get Details for Multiple Posters
+// router.post("/getMultiplePosterDetails", getMultiplePosterDetails)
+// Get poster of a specific user
+router.post("/getUserPoster",verifyToken,getAllPosterOfUser);
 // Update a Poster
 router.put("/updatePoster", verifyToken, isAdmin, updatePoster)
+// get order history
+router.get("/getOrderHistory", verifyToken, getOrderHistory)
+
+// update poster status
+router.put("/updateDeliveryStatus", verifyToken, isAdmin, updateDeliveryStatus)
 
 
 // ********************************************************************************************************

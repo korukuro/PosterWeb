@@ -28,6 +28,10 @@ const posterSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Category",
   },
+  posterBoughtBy: {
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: "user",
+  },
 });
 
 module.exports = mongoose.model('Poster', posterSchema);

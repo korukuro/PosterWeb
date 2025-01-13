@@ -8,14 +8,14 @@ const profileSchema = new mongoose.Schema({
 	dateOfBirth: {
 		type: String,
 	},
-	address: {
-		type: String,
-		trim: true,
-	},
 	contactNumber: {
 		type: Number,
 		trim: true,
 	},
+	address:{
+		type: mongoose.Schema.Types.ObjectId,
+		ref: "Address",
+	}
 }); 
 
 // Export the Profile model

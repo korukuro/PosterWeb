@@ -1,12 +1,9 @@
-import { RiDeleteBin5Line } from "react-icons/ri";
-import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { remove } from "../slices/cartSlice";
 import { useNavigate } from "react-router-dom";
-import { MdCancel } from "react-icons/md";
 
 const CheckOutItem = ({ item }) => {
-    console.log("item: ", item);
+    // console.log("item: ", item);
     const dispatch = useDispatch();
     const removeItem = () => {
         dispatch(remove(item._id));

@@ -135,6 +135,58 @@ exports.getAllPoster = async (req, res) => {
       })
     }
 }
+// Get all Posters purchased by a user along with quantities
+exports.getAllPosterOfUser = async (req, res) => {
+  try {
+    const userId = req.user?.id; // Get the user ID from the request
+    console.log("User ID:", userId); // Debugging log
+
+    if (!userId) {
+      return res.status(400).json({
+        success: false,
+        message: "User ID is required.",
+      });
+    }
+
+    // Step 1: Fetch the user's purchased posters and quantities
+    const user = await User.findById(userId)
+      .select("purchasedPosters")
+      .populate({
+        path: "purchasedPosters.posterId", // Populate the poster details
+        select: "posterName price image ratingAndReviews", // Fields to include from Poster
+      })
+      .exec();
+
+    if (!user || !user.purchasedPosters || user.purchasedPosters.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: "No posters found for this user.",
+      });
+    }
+
+    console.log("User's Purchased Posters:", user.purchasedPosters);
+
+    // Step 2: Format the data for the response
+    const postersWithQuantities = user.purchasedPosters.map((item) => ({
+      poster: item.posterId, // Poster details
+      quantity: item.quantity, // Quantity purchased
+    }));
+
+    // Step 3: Respond with the posters and their quantities
+    return res.status(200).json({
+      success: true,
+      data: postersWithQuantities,
+    });
+  } catch (error) {
+    console.error("Error fetching posters:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Unable to fetch posters.",
+      error: error.message,
+    });
+  }
+};
+
 // Get Single Poster Details
 exports.getPosterDetails = async (req, res) => {
     try {
@@ -172,6 +224,51 @@ exports.getPosterDetails = async (req, res) => {
       })
     }
 }
+
+// Get Multiple Poster Details
+// exports.getMultiplePosterDetails = async (req, res) => {
+//   try {
+//     // Destructure posterIds from the request body
+//     const { posterIds } = req.body;
+
+//     // Validate that posterIds is provided and is an array
+//     if (!posterIds || !Array.isArray(posterIds)) {
+//       return res.status(400).json({
+//         success: false,
+//         message: "Invalid or missing 'posterIds'. It should be an array of IDs.",
+//       });
+//     }
+
+//     // Fetch poster details using Mongoose
+//     const posterDetails = await Poster.find({
+//       _id: { $in: posterIds },
+//     })
+      
+
+//     // Check if posterDetails is empty
+//     if (!posterDetails || posterDetails.length === 0) {
+//       return res.status(404).json({
+//         success: false,
+//         message: `No posters found with the provided IDs: ${posterIds}`,
+//       });
+//     }
+
+//     // Respond with poster details
+//     return res.status(200).json({
+//       success: true,
+//       data: posterDetails,
+//     });
+//   } catch (error) {
+//     // Handle unexpected errors
+//     console.error("Error fetching poster details:", error);
+//     return res.status(500).json({
+//       success: false,
+//       message: "Internal Server Error",
+//       error: error.message,
+//     });
+//   }
+// };
+
 // Delete the Poster
 exports.deletePoster = async (req, res) => {
   try {
@@ -228,3 +325,77 @@ exports.updatePoster = async (req, res) => {
     })
   }
 }
+
+exports.getOrderHistory = async (req, res) => {
+  try {
+    const userId = req.user?.id; // Assuming user ID is available from authentication middleware
+
+    if (!userId) {
+      return res.status(400).json({ success: false, message: "User ID is required." });
+    }
+
+    // Find the user and populate the purchased posters with their details
+    const user = await User.findById(userId).populate("purchasedPosters.posterId");
+
+    if (!user) {
+      return res.status(404).json({ success: false, message: "User not found." });
+    }
+
+    // Sort the purchasedPosters by purchase time
+    const sortedOrderHistory = user.purchasedPosters
+      .sort((a, b) => new Date(b.purchasedOn) - new Date(a.purchasedOn))
+      .map((order) => ({
+        poster: {
+          id: order.posterId._id,
+          title: order.posterId.title,
+          price: order.posterId.price,
+          image: order.posterId.image,
+        },
+        quantity: order.quantity,
+        totalPrice: order.posterId.price * order.quantity,
+        purchasedOn: order.purchasedOn,
+        delivered: order.delivered,
+      }));
+
+    res.status(200).json({
+      success: true,
+      orderHistory: sortedOrderHistory,
+    });
+  } catch (error) {
+    console.error("Error fetching order history:", error);
+    res.status(500).json({ success: false, message: "Failed to fetch order history." });
+  }
+};
+
+exports.updateDeliveryStatus = async (req, res) => {
+  const { userId, posterId, delivered } = req.body;
+
+  if (!userId || !posterId || typeof delivered !== "boolean") {
+    return res.status(400).json({ success: false, message: "Invalid input." });
+  }
+
+  try {
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ success: false, message: "User not found." });
+    }
+
+    const order = user.purchasedPosters.find(
+      (item) => item.posterId.toString() === posterId
+    );
+
+    if (!order) {
+      return res.status(404).json({ success: false, message: "Order not found." });
+    }
+
+    order.delivered = delivered;
+    await user.save();
+
+    res.status(200).json({ success: true, message: "Delivery status updated." });
+  } catch (error) {
+    console.error("Error updating delivery status:", error);
+    res.status(500).json({ success: false, message: "Internal server error." });
+  }
+};
+
+
