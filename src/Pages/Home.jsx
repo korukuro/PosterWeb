@@ -15,7 +15,6 @@ const Home = () => {
     setLoading(true);
     try {
       const data = await getAllPoster();
-      console.log(data);
 
       setPosts(data);
     } catch (error) {

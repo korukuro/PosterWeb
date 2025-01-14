@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 const userRoutes = require("./routes/user");
 const profileRoutes = require("./routes/profile");
-// const paymentRoutes = require("./routes/payment");
+const paymentRoutes = require("./routes/payment");
 const posterRoutes = require("./routes/poster");
 const database = require("./config/database");
 const cookieParser = require("cookie-parser");
@@ -44,7 +44,7 @@ cloudinaryConnect();
 app.use("/api/v1/auth", userRoutes);
 app.use("/api/v1/profile", profileRoutes);
 app.use("/api/v1/poster", posterRoutes);
-// app.use("/api/v1/payment", paymentRoutes);
+app.use("/api/v1/payment", paymentRoutes);
 
 // Testing the server
 app.get("/", (req, res) => {
