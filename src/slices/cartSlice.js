@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import toast from "react-hot-toast";
 
 // Helper functions for local storage
 const loadCartFromLocalStorage = () => {
@@ -21,42 +20,49 @@ const saveCartToLocalStorage = (cart) => {
   }
 };
 
-const initialState = {
-  cart: localStorage.getItem("cart")
-    ? JSON.parse(localStorage.getItem("cart"))
-    : [],
-  total: localStorage.getItem("total")
-    ? JSON.parse(localStorage.getItem("total"))
-    : 0,
-  totalItems: localStorage.getItem("totalItems")
-    ? JSON.parse(localStorage.getItem("totalItems"))
-    : 0,
-}
+const initialState = loadCartFromLocalStorage();
 
 export const cartSlice = createSlice({
   name: "cart",
-  initialState: loadCartFromLocalStorage(),
+  initialState,
   reducers: {
     add: (state, action) => {
-      const poster = action.payload;
-      const existingItem = state.find((item) => item._id === poster._id);
+      const { poster, size } = action.payload;
+      const existingItem = state.find(
+        (item) => item._id === poster._id && item.size === size
+      ); // Check for both ID and size
       if (existingItem) {
         existingItem.quantity += 1;
       } else {
-        state.push({ ...poster, quantity: 1 });
+        state.push({ ...poster, quantity: 1, size });
+      }
+      saveCartToLocalStorage(state);
+    },
+    addWithQuantity: (state, action) => {
+      const { poster, quantity, size } = action.payload;
+      const existingItem = state.find(
+        (item) => item._id === poster._id && item.size === size
+      ); // Check for both ID and size
+      if (existingItem) {
+        existingItem.quantity += quantity;
+      } else {
+        state.push({ ...poster, quantity, size });
       }
       saveCartToLocalStorage(state);
     },
     remove: (state, action) => {
-      const productId = action.payload;
-      const existingItem = state.find((item) => item._id === productId);
+      const { productId, size } = action.payload;
+      const existingItem = state.find(
+        (item) => item._id === productId && item.size === size
+      ); // Check for both ID and size
       if (existingItem) {
         if (existingItem.quantity > 1) {
           existingItem.quantity -= 1;
         } else {
-          const newState = state.filter((item) => item._id !== productId);
+          const newState = state.filter(
+            (item) => !(item._id === productId && item.size === size)
+          ); // Remove only the matching item
           saveCartToLocalStorage(newState);
-          toast.success("Removed item from the cart");
           return newState;
         }
       }
@@ -65,5 +71,6 @@ export const cartSlice = createSlice({
   },
 });
 
-export const { add, remove } = cartSlice.actions;
+export const { add, addWithQuantity, remove } = cartSlice.actions;
 export default cartSlice.reducer;
+ 

@@ -11,9 +11,10 @@ const CartItem = ({ item }) => {
   console.log("item: ", item);
   const dispatch = useDispatch();
   const removeItem = () => {
-    dispatch(remove(item._id));
-    // toast.error("Item removed from Cart");
+    dispatch(remove({ productId: item._id, size: item.size }));
+    toast.error("Item removed from Cart");
   };
+  
   const navigate = useNavigate();
   const handleClick = () => {
     navigate(`/poster/${item._id}`);
@@ -32,7 +33,7 @@ const CartItem = ({ item }) => {
           {item.posterName}
         </h1>
         <p className=" text-gray-400 font-normal text-[14px] text-left">
-          {item.description}{" "}
+          {item.size}
         </p>
         <div className="flex justify-between items-center my-2 gap-4">
           <span className="text-black-700 font-semibold">₹{item.price}</span>

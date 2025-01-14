@@ -25,7 +25,7 @@ const CheckOutItem = ({ item }) => {
             <div className="flex flex-col col-span-2 gap-4">
                 <div className="flex justify-between items-center">
                     <h1 className="text-gray-700 font-semibold text-lg text-left mt-1">{item.posterName}</h1>
-                    <MdCancel onClick={removeItem} className=" text-md text-red-800" />
+                    <h3 className="text-gray-700 font-semibold text-lg text-left mt-1">{item.size}</h3>
 
                 </div>
                 <div className="flex justify-between items-center my-2 gap-4">
