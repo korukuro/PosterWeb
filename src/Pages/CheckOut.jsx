@@ -38,32 +38,40 @@ const CheckOut = () => {
   };
 
   const handlePayment = async () => {
-    if (
-      !deliveryDetails.firstName ||
-      !deliveryDetails.lastName ||
-      !deliveryDetails.address ||
-      !deliveryDetails.city ||
-      !deliveryDetails.state ||
-      !deliveryDetails.pinCode ||
-      !deliveryDetails.phone
-    ) {
+    // Validate delivery details
+    const isValid = Object.values(deliveryDetails).every(
+      (value) => value.trim() !== ""
+    );
+    if (!isValid) {
       alert("Please fill out all delivery details.");
       return;
     }
 
-    // Create array of poster details with quantities
+    // Prepare poster details from cart
     const posterDetails = cart.map((item) => ({
       posterId: item._id,
       quantity: item.quantity,
     }));
 
-    const user_details = {
+    const userDetails = {
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
     };
 
-    BuyPoster(token, posterDetails, user_details, navigate, dispatch);
+    try {
+      await BuyPoster(
+        token,
+        posterDetails,
+        userDetails,
+        deliveryDetails,
+        navigate,
+        dispatch
+      );
+    } catch (error) {
+      console.error("Error during payment:", error);
+      alert("Payment failed. Please try again.");
+    }
   };
 
   return (

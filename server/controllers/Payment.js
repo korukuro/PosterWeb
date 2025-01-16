@@ -72,11 +72,11 @@ exports.capturePayment = async (req, res) => {
 // Verify the payment
 exports.verifyPayment = async (req, res) => {
   try {
-    const { razorpay_order_id, razorpay_payment_id, razorpay_signature, posterDetails } = req.body;
+    const { razorpay_order_id, razorpay_payment_id, razorpay_signature, posterDetails, deliveryAddress } = req.body;
     const userId = req.user?.id;
 
     // Log incoming data for debugging
-    console.log("Request Data:", { razorpay_order_id, razorpay_payment_id, razorpay_signature, posterDetails, userId });
+    console.log("Request Data:", { razorpay_order_id, razorpay_payment_id, razorpay_signature, posterDetails, deliveryAddress, userId });
 
     if (
       !razorpay_order_id ||
@@ -84,7 +84,8 @@ exports.verifyPayment = async (req, res) => {
       !razorpay_signature ||
       !Array.isArray(posterDetails) ||
       posterDetails.length === 0 ||
-      !userId
+      !userId ||
+      !deliveryAddress
     ) {
       return res.status(400).json({ success: false, message: "Payment verification failed. Missing or invalid data." });
     }
@@ -97,8 +98,8 @@ exports.verifyPayment = async (req, res) => {
       .digest("hex");
 
     if (expectedSignature === razorpay_signature) {
-      // Mark posters as bought for the user
-      await posterBoughtByUser(posterDetails, userId, res);
+      // Mark posters as bought for the user and update delivery details
+      await posterBoughtByUser(posterDetails, userId, deliveryAddress);
       return res.status(200).json({ success: true, message: "Payment verified successfully." });
     }
 
@@ -108,6 +109,7 @@ exports.verifyPayment = async (req, res) => {
     return res.status(500).json({ success: false, message: "Internal server error." });
   }
 };
+
 
 // Send Payment Success Email
 exports.sendPaymentSuccessEmail = async (req, res) => {
@@ -140,9 +142,9 @@ exports.sendPaymentSuccessEmail = async (req, res) => {
   }
 };
 
-const posterBoughtByUser = async (posterDetails, userId) => {
-  if (!posterDetails || !userId) {
-    return { success: false, message: "Please provide poster details and user ID." };
+const posterBoughtByUser = async (posterDetails, userId, deliveryAddress) => {
+  if (!posterDetails || !userId || !deliveryAddress) {
+    return { success: false, message: "Please provide poster details, user ID, and delivery address." };
   }
 
   const errors = [];
@@ -152,7 +154,7 @@ const posterBoughtByUser = async (posterDetails, userId) => {
     try {
       const purchaseTime = new Date(); // Get the current time
 
-      // Update the user's purchasedPosters array
+      // Update the user's purchasedPosters array and deliveryAddress
       const user = await User.findByIdAndUpdate(
         userId,
         {
@@ -162,6 +164,7 @@ const posterBoughtByUser = async (posterDetails, userId) => {
               quantity: quantity,
               purchasedOn: purchaseTime, // Add the purchase time
             },
+            deliveryAddress: deliveryAddress, // Push the delivery address
           },
         },
         { new: true }
@@ -179,5 +182,6 @@ const posterBoughtByUser = async (posterDetails, userId) => {
 
   return { success: true, postersBought: successfulUpdates };
 };
+
 
 
