@@ -13,7 +13,7 @@ const LoginSignupAndImg = () => {
         {!token && (
           <>
             {/* Buttons Section */}
-            <div className="flex flex-col gap-4 items-center justify-center mt-8 right-[34.5%] top-[23%] fixed ">
+            <div className="flex flex-col gap-4 items-center justify-center mt-8 right-[34.5rem] top-[23%] fixed ">
               <Link to="/login">
               {
                 vistcheck === "Login" ? (

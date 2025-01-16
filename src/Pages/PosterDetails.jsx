@@ -52,7 +52,7 @@ const PosterDetails = () => {
       ) : (
         <div className="flex gap-10 w-full">
           <div className="w-[45%] h-full flex justify-end">
-            <div className="w-[24rem] h-[40.1rem] mt-7">
+            <div className="w-[24rem] h-[35.1rem] mt-7">
               <img src={posts?.image} alt="poster-image" className="w-full h-full object-cover" />
             </div>
           </div>

@@ -1,39 +1,48 @@
-import './App.css';
+import "./App.css";
 import { Routes, Route, useLocation } from "react-router-dom";
 
 // common
-import Navbar from './components/common/Navbar';
-import Footer from './components/common/Footer';
+import Navbar from "./components/common/Navbar";
+import Footer from "./components/common/Footer";
 
-// Pages 
-import Home from './Pages/Home';
-import Cart from './Pages/Cart';
-import Login from './Pages/Login';
-import Signup from './Pages/Signup';
-import VerifyEmail from './Pages/VerifyEmail';
-import {SidebarDemo} from './Pages/Dashboard';
-import {Error} from './Pages/Error';
+// Pages
+import Home from "./Pages/Home";
+import Cart from "./Pages/Cart";
+import Login from "./Pages/Login";
+import Signup from "./Pages/Signup";
+import VerifyEmail from "./Pages/VerifyEmail";
+import { SidebarDemo } from "./Pages/Dashboard";
+import { Error } from "./Pages/Error";
 
 // auth
-import OpenRoute from './components/core/auth/OpenRoute';
-import PrivateRoute from './components/core/auth/PrivateRoute';
-import CheckOut from './Pages/CheckOut';
+import OpenRoute from "./components/core/auth/OpenRoute";
+import PrivateRoute from "./components/core/auth/PrivateRoute";
+import CheckOut from "./Pages/CheckOut";
 
 // Dashboard
-import MyProfile from './components/core/Dashboard/MyProfile';
-import Settings from './components/core/Dashboard/Settings';
-import OrderHistory from './components/core/Dashboard/OrderHistory';
-import PosterDetails from './Pages/PosterDetails';
+import MyProfile from "./components/core/Dashboard/MyProfile";
+import Settings from "./components/core/Dashboard/Settings";
+import OrderHistory from "./components/core/Dashboard/OrderHistory";
+import PosterDetails from "./Pages/PosterDetails";
 
 function App() {
   const location = useLocation();
 
   // Specify the paths where the Navbar should be hidden
-  const hideNavbarPaths = ["/login", "/signup", "/verify-email", "/authentication"];
+  const hideNavbarPaths = [
+    "/login",
+    "/signup",
+    "/verify-email",
+    "/authentication",
+  ];
+  const hideFooterPaths = ["/login", "/signup", "/verify-email"];
+
   const shouldHideNavbar = hideNavbarPaths.includes(location.pathname);
+  const shouldHideFooter = hideFooterPaths.includes(location.pathname);
 
   return (
-    <div className='flex flex-col'>
+    <div className="flex flex-col">
+      {/* Conditionally render Navbar */}
       {!shouldHideNavbar && (
         <div>
           <Navbar />
@@ -41,9 +50,9 @@ function App() {
       )}
 
       <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/cart' element={<Cart />} />
-        <Route path='/poster/:id' element={<PosterDetails />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/poster/:id" element={<PosterDetails />} />
 
         {/* Open Route - for Only Non Logged in User */}
         <Route
@@ -84,7 +93,7 @@ function App() {
           <Route path="dashboard/Settings" element={<Settings />} />
           <Route path="dashboard/order-history" element={<OrderHistory />} />
         </Route>
-        
+
         <Route
           path="checkout"
           element={
@@ -97,8 +106,9 @@ function App() {
         {/* 404 Page */}
         <Route path="*" element={<Error />} />
       </Routes>
-      
-      <Footer />
+
+      {/* Conditionally render Footer */}
+      {!shouldHideFooter && <Footer />}
     </div>
   );
 }

@@ -5,8 +5,6 @@ import loupe from "../../additionalFile/loupe.png";
 import bag from "../../additionalFile/shopping-bag.png";
 import userIcon from "../../additionalFile/user.png";
 
-import {BackgroundBeams} from "../ui/background-beam";
-
 const Navbar = () => {
   // Add fallback to prevent errors if state.auth or state.profile is undefined
   const { token } = useSelector((state) => state.auth || {});
