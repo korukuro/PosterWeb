@@ -1,39 +1,81 @@
 import React, { useEffect, useState } from "react";
 import { getOrderHistory } from "../../../services/operations/posterDetailsAPI";
 import { useSelector } from "react-redux";
+import Spinner from "../../Spinner";
+
 const OrderHistory = () => {
-  const [orders, setOrders] = useState([]);
-  const {token} = useSelector(state => state.auth);
+  const [orders, setOrders] = useState([]); // Initialize with an empty array
+  const [loading, setLoading] = useState(true); // Loading state
+  const [error, setError] = useState(null); // Error state
+  const { token } = useSelector((state) => state.auth); // Get token from Redux
 
   const fetchOrders = async (token) => {
     try {
-      const response = await getOrderHistory(token);
+      setLoading(true); // Start loading
+      const response = await getOrderHistory(token); // Fetch data
       console.log("Order History Response: ", response);
-      setOrders(response.orderHistory);
-    } catch (error) {
-      console.error("Error fetching order history:", error);
+
+      if (response?.orderHistory) {
+        setOrders(response.orderHistory); // Update orders if data is present
+      } else {
+        setOrders([]); // Fallback for empty or undefined data
+      }
+      setError(null); // Clear any previous errors
+    } catch (err) {
+      console.error("Error fetching order history:", err);
+      setError("Failed to fetch order history. Please try again later."); // Set error message
+    } finally {
+      setLoading(false); // End loading
     }
   };
 
   useEffect(() => {
-    fetchOrders(token);
-  }, []);
+    if (token) {
+      fetchOrders(token); // Fetch orders if token exists
+    }
+  }, [token]); // Re-run if token changes
 
   return (
     <div>
       <h2>Order History</h2>
-      {orders.length === 0 ? (
-        <p>No orders found.</p>
+      {/* Display loader */}
+      {loading ? (
+        <div className="flex justify-center items-center">
+          <Spinner />
+        </div>
+      ) : error ? (
+        // Display error if any
+        <p>{error}</p>
+      ) : orders.length === 0 ? (
+        // Handle no orders case
+        <p>No orders found. (If there are orders and not visible then try login again)</p>
       ) : (
+        // Display order list
         <ul>
           {orders.map((order, index) => (
             <li key={index}>
-              <h3>{order.poster.title}</h3>
-              <img src={order.poster.image} alt={order.poster.title} width={100} />
-              <p>Price: ₹{order.poster.price}</p>
-              <p>Quantity: {order.quantity}</p>
-              <p>Total: ₹{order.totalPrice}</p>
-              <p>Purchased On: {new Date(order.purchasedOn).toLocaleString()}</p>
+              <h3>{order.poster?.title || "Poster Title Unavailable"}</h3>
+              {order.poster?.image ? (
+                <img
+                  src={order.poster.image}
+                  alt={order.poster.title}
+                  width={100}
+                />
+              ) : (
+                <p>Image unavailable</p>
+              )}
+              <p>Price: ₹{order.poster?.price || "N/A"}</p>
+              <p>Quantity: {order.quantity || 0}</p>
+              <p>
+                Total: ₹
+                {order.totalPrice || "N/A"}
+              </p>
+              <p>
+                Purchased On:{" "}
+                {order.purchasedOn
+                  ? new Date(order.purchasedOn).toLocaleString()
+                  : "Date Unavailable"}
+              </p>
               <p>Status: {order.delivered ? "Delivered" : "Pending"}</p>
             </li>
           ))}

@@ -1,10 +1,10 @@
 // Import the Mongoose library
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 
 // Define the user schema using the Mongoose Schema constructor
 const userSchema = new mongoose.Schema(
   {
-    // Define the name field with type String, required, and trimmed
+    // Define the firstName field with type String, required, and trimmed
     firstName: {
       type: String,
       required: true,
@@ -20,19 +20,29 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
       trim: true,
+      unique: true, // Ensure email is unique
     },
-
-    // Define the password field with type String and required
+    googleId: { type: String, unique: true },
+    
+    // Make password optional for Google login
     password: {
       type: String,
-      required: true,
+      required: function () {
+        // Password is only required if the user is not logging in through Google
+        return this.googleId ? false : true;
+      },
     },
+
+    // Make additionalDetails optional for Google login
     additionalDetails: {
       type: mongoose.Schema.Types.ObjectId,
-      required: true,
       ref: "Profile",
+      required: function () {
+        // Only require additionalDetails if the user is not logging in through Google
+        return !this.googleId;
+      },
     },
-    
+
     token: {
       type: String,
     },
@@ -40,6 +50,7 @@ const userSchema = new mongoose.Schema(
     resetPasswordExpires: {
       type: Date,
     },
+
     accountType: {
       type: String,
       enum: ["Admin"],
@@ -48,16 +59,17 @@ const userSchema = new mongoose.Schema(
     image: {
       type: String,
     },
+
     purchasedPosters: [
       {
-        posterId: { type: mongoose.Schema.Types.ObjectId, ref: "Poster" }, // Reference to Poster
-        quantity: { type: Number, required: true, default: 1 }, // Quantity purchased
-        purchasedOn: { type: Date, default: Date.now }, // Time of purchase
-        delivered: { type: Boolean, required: true, default: false }, // New field
+        posterId: { type: mongoose.Schema.Types.ObjectId, ref: "Poster" },
+        quantity: { type: Number, required: true, default: 1 },
+        purchasedOn: { type: Date, default: Date.now },
+        delivered: { type: Boolean, required: true, default: false },
       },
-    ]
+    ],
   },
-)
+);
 
 // Export the Mongoose model for the user schema, using the name "user"
-module.exports = mongoose.model("user", userSchema)
+module.exports = mongoose.model("user", userSchema);

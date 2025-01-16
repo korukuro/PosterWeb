@@ -1,10 +1,19 @@
 import { useSelector } from "react-redux"
-
+// import {GoogleLogin} from '@react-oauth/google';
 import LoginForm from "./LoginForm"
 import SignupForm from "./SignupForm"
+// import { useDispatch } from "react-redux"
+// import { googleSignIn } from "../../../services/operations/authAPI"
 
-function Template({ title,formType }) {
+function Template({ title, formType }) {
   const { loading } = useSelector((state) => state.auth)
+  // const dispatch = useDispatch();
+
+  // const handleGoogleLogin = (credentialResponse) => {
+  //   const { credential } = credentialResponse;
+  //   // Dispatch action to send the Google token to your backend for verification
+  //   dispatch(googleSignIn(credential));
+  // };
 
   return (
     <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center">
@@ -18,6 +27,13 @@ function Template({ title,formType }) {
             </h1>
             {formType === "signup" ? <SignupForm /> : <LoginForm />}
           </div>
+{/* 
+          <GoogleLogin
+            onSuccess={handleGoogleLogin}
+            onError={() => {
+              console.log('Login Failed');
+            }}
+          /> */}
         </div>
       )}
     </div>
