@@ -54,29 +54,29 @@ const OrderHistory = () => {
         <ul>
           {orders.map((order, index) => (
             <li key={index}>
-              <h3>{order.poster?.title || "Poster Title Unavailable"}</h3>
+              <h3>{order.poster?.posterName || "Poster Title Unavailable"}</h3>
               {order.poster?.image ? (
                 <img
-                  src={order.poster.image}
-                  alt={order.poster.title}
+                  src={order.poster?.image}
+                  alt={order.poster?.posterName}
                   width={100}
                 />
               ) : (
                 <p>Image unavailable</p>
               )}
               <p>Price: ₹{order.poster?.price || "N/A"}</p>
-              <p>Quantity: {order.quantity || 0}</p>
+              <p>Quantity: {order?.quantity || 0}</p>
               <p>
                 Total: ₹
-                {order.totalPrice || "N/A"}
+                {order?.totalPrice || "N/A"}
               </p>
               <p>
                 Purchased On:{" "}
-                {order.purchasedOn
-                  ? new Date(order.purchasedOn).toLocaleString()
+                {order?.purchasedOn
+                  ? new Date(order?.purchasedOn).toLocaleString()
                   : "Date Unavailable"}
               </p>
-              <p>Status: {order.delivered ? "Delivered" : "Pending"}</p>
+              <p>Status: {order?.delivered ? "Delivered" : "Pending"}</p>
             </li>
           ))}
         </ul>

@@ -6,29 +6,39 @@ import bag from "../../additionalFile/shopping-bag.png";
 import userIcon from "../../additionalFile/user.png";
 
 const Navbar = () => {
-  // Add fallback to prevent errors if state.auth or state.profile is undefined
-  const { token } = useSelector((state) => state.auth || {});
-  const { user } = useSelector((state) => state.profile || {});
-  const { cart } = useSelector((state) => state || { cart: [] });
+  // Select only the necessary state slices
+  const token = useSelector((state) => state.auth?.token);
+  const user = useSelector((state) => state.profile?.user);
+  const cart = useSelector((state) => state.cart || []);
 
   return (
     <div className="flex justify-between text-black p-3 items-center h-[4rem]">
-
+      {/* Logo */}
       <NavLink to="/">
-        <div>
-          <img src={logo} className="h-20 mr-2 mix-blend-darken" alt="shopping app" />
-        </div>
+        <img
+          src={logo}
+          className="h-20 mr-2 mix-blend-darken"
+          alt="shopping app"
+        />
       </NavLink>
 
+      {/* Search Bar and Icons */}
       <div className="flex items-center font-medium gap-4">
+        {/* Search Input */}
         <div className="relative">
-          <input type="search" className="border border-black rounded-xl p-1 margin-left:4px" />
-          <img src={loupe} alt="" className="h-7 absolute top-1 right-3" />
+          <input
+            type="search"
+            className="border border-black rounded-xl p-1 margin-left:4px"
+            placeholder="Search"
+          />
+          <img src={loupe} alt="Search Icon" className="h-7 absolute top-1 right-3" />
         </div>
 
+        {/* Cart Icon */}
         <Link to="/cart">
           <div className="relative">
-            <img src={bag} alt="bag" className="h-7" />
+            <img src={bag} alt="Shopping Bag" className="h-7" />
+            {/* Show cart item count */}
             {cart.length > 0 && (
               <span
                 className="absolute -top-1 -right-2 bg-black text-xs w-5 h-5 flex 
@@ -40,8 +50,13 @@ const Navbar = () => {
           </div>
         </Link>
 
-        <Link to="/login">
-          <img src={user?user.image:userIcon} alt="userIcon" className="h-10 rounded-full aspect-square object-cover" />
+        {/* User Profile Icon */}
+        <Link to={token ? "/profile" : "/login"}>
+          <img
+            src={user?.image || userIcon}
+            alt="User Icon"
+            className="h-10 rounded-full aspect-square object-cover"
+          />
         </Link>
       </div>
     </div>

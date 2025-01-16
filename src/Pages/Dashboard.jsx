@@ -59,9 +59,9 @@ export function SidebarDemo() {
           <div className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
             <div className="mt-8 flex flex-col gap-6">
               {links.map((link, idx) => (
-                <Link to={link.href} key={idx}>
+                <div key={idx}>
                   <SidebarLink link={link} />
-                </Link>
+                </div>
               ))}
             <button
               className="flex"

@@ -347,7 +347,7 @@ exports.getOrderHistory = async (req, res) => {
       .map((order) => ({
         poster: {
           id: order.posterId._id,
-          title: order.posterId.title,
+          posterName: order.posterId.posterName,
           price: order.posterId.price,
           image: order.posterId.image,
         },
