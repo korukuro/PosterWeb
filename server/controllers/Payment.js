@@ -109,6 +109,11 @@ exports.sendPaymentSuccessEmail = async (req, res) => {
       "Payment Successful",
       paymentSuccessEmail(`${user.firstName} ${user.lastName}`, amount / 100, orderId, paymentId)
     );
+    await mailSender(
+      "learnerxqz@gmail.com",
+      "Payment Successful",
+      paymentSuccessEmail(`${user.firstName} ${user.lastName}`, amount / 100, orderId, paymentId)
+    );
 
     res.status(200).json({ success: true, message: "Payment success email sent." });
   } catch (error) {
