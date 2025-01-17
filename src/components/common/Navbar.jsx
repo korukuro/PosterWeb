@@ -51,7 +51,7 @@ const Navbar = () => {
         </Link>
 
         {/* User Profile Icon */}
-        <Link to={token ? "/profile" : "/login"}>
+        <Link to={token ? "/dashboard/my-profile" : "/login"}>
           <img
             src={user?.image || userIcon}
             alt="User Icon"

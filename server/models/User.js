@@ -65,21 +65,11 @@ const userSchema = new mongoose.Schema(
         posterId: { type: mongoose.Schema.Types.ObjectId, ref: "Poster" },
         quantity: { type: Number, required: true, default: 1 },
         purchasedOn: { type: Date, default: Date.now },
+        deliveryId: {type: mongoose.Schema.Types.ObjectId, ref: "Delivery"},
         delivered: { type: Boolean, required: true, default: false },
       },
     ],
-    deliveryAddress: [
-      {
-        firstName: { type: String, required: true },
-        lastName: { type: String, required: true },
-        address: { type: String, required: true },
-        city: { type: String, required: true },
-        state: { type: String, required: true },
-        country: { type: String, required: true },
-        postalCode: { type: String, required: true },
-        phoneNumber: { type: String, required: true },
-      },
-    ]
+    deliveryDetails:[{type: mongoose.Schema.Types.ObjectId, ref: "Delivery"}],
   },
 );
 

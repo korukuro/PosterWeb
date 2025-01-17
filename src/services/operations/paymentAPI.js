@@ -25,7 +25,7 @@ async function loadScript(src) {
 }
 
 // Buy the Poster
-export async function BuyPoster(token, posterDetails, userDetails, deliveryAddress, navigate, dispatch) {
+export async function BuyPoster(token, posterDetails, userDetails, deliveryId, navigate, dispatch) {
   const toastId = toast.loading("Initializing payment...");
   try {
     // Step 1: Load Razorpay SDK
@@ -35,10 +35,10 @@ export async function BuyPoster(token, posterDetails, userDetails, deliveryAddre
     }
 
     // Step 2: Create an order through the backend
-    console.log("Initiating payment with details:", { posterDetails, deliveryAddress });
+    console.log("Initiating payment with details:", { posterDetails, deliveryId });
     const payload = {
       posterDetails,
-      deliveryAddress, // Pass delivery address to backend
+      deliveryId, // Pass delivery address to backend
     };
 
     const orderResponse = await apiConnector(
@@ -73,7 +73,7 @@ export async function BuyPoster(token, posterDetails, userDetails, deliveryAddre
         try {
           console.log("Payment Successful Response:", response);
           await sendPaymentSuccessEmail(response, amount, token);
-          await verifyPayment({ ...response, posterDetails, deliveryAddress }, token, navigate, dispatch);
+          await verifyPayment({ ...response, posterDetails, deliveryId }, token, navigate, dispatch);
         } catch (error) {
           console.error("Handler Error:", error);
           toast.error("An error occurred while processing payment.");

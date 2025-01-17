@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const addressSchema = new mongoose.Schema({
+const deliverySchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
@@ -21,10 +21,14 @@ const addressSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    phoneNumber: {
+        type: Number,
+        required: true,
+    },
     isDefault: {
         type: Boolean,
         default: false,
     },
 });
 
-module.exports = mongoose.model("Address",addressSchema);
+module.exports = mongoose.model("Delivery",deliverySchema);

@@ -36,3 +36,9 @@ export const paymentEndpoints = {
   POSTER_VERIFY_API: BASE_URL + "/payment/verifyPayment",
   SEND_PAYMENT_SUCCESS_EMAIL_API: BASE_URL + "/payment/sendPaymentSuccessEmail",
 }
+
+// DELIVERY ENDPOINTS
+export const deliveryEndpoints = {
+  ADD_DELIVERY_API: BASE_URL + "/delivery/addDelivery",
+  GET_DELIVERY_ADDRESS_API: BASE_URL + "/delivery/getDeliveryAddress",
+}

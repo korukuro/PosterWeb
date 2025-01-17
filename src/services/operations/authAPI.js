@@ -1,7 +1,6 @@
 import { toast } from "react-hot-toast"
 
 import { setLoading, setToken } from "../../slices/authSlice"
-import { resetCart } from "../../slices/cartSlice"
 import { setUser } from "../../slices/profileSlice"
 import { apiConnector } from "../apiConnector"
 import { endpoints } from "../apis"
@@ -129,7 +128,6 @@ export function logout(navigate) {
   }
 }
 
-
 export function getPasswordResetToken(email , setEmailSent) {
   return async(dispatch) => {
     dispatch(setLoading(true));
@@ -176,7 +174,6 @@ export function resetPassword(password, confirmPassword, token) {
   }
 }
 
-
 // Google Sign-In
 export function googleSignIn(credential, navigate) {
   return async (dispatch) => {
@@ -212,16 +209,4 @@ export function googleSignIn(credential, navigate) {
   };
 }
 
-// Google Logout
-// export function googleLogout(navigate) {
-//   return (dispatch) => {
-//     dispatch(setToken(null));
-//     dispatch(setUser(null));
-//     localStorage.removeItem("token");
-//     localStorage.removeItem("user");
-
-//     toast.success("Logged Out from Google");
-//     navigate("/login");
-//   };
-// }
 

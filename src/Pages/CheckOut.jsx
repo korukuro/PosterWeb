@@ -3,71 +3,66 @@ import { useSelector, useDispatch } from "react-redux";
 import CheckOutItem from "../components/CheckOutItem";
 import { BuyPoster } from "../services/operations/paymentAPI";
 import { useNavigate } from "react-router-dom";
+import DeliveryForm from "../components/core/CheckOut/DeliveryForm";
+import { FaArrowLeft } from "react-icons/fa";
+import { getDeliveryAddress } from "../services/operations/deliveryAPI";
+import { setSelectedDelivery } from "../slices/deliverySlice";
 
 const CheckOut = () => {
   const { cart } = useSelector((state) => state);
   const { user } = useSelector((state) => state.profile);
   const { token } = useSelector((state) => state.auth);
+  const { deliveryAddress, selectedDelivery } = useSelector((state) => state.delivery);
 
   const [totalAmount, setTotalAmount] = useState(0);
-  const [deliveryDetails, setDeliveryDetails] = useState({
-    firstName: "",
-    lastName: "",
-    address: "",
-    city: "",
-    state: "",
-    pinCode: "",
-    phone: "",
-  });
-
-  useEffect(() => {
-    // Calculate the total amount considering quantities
-    const total = cart.reduce(
-      (sum, item) => sum + item.price * item.quantity,
-      0
-    );
-    setTotalAmount(total);
-  }, [cart]);
+  const [showDeliveryForm, setShowDeliveryForm] = useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setDeliveryDetails((prev) => ({ ...prev, [name]: value }));
-  };
+  useEffect(() => {
+    const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    setTotalAmount(total);
+  }, [cart]);
+
+  useEffect(() => {
+    if (token) {
+      dispatch(getDeliveryAddress(token)); // Fetch delivery details from backend
+    }
+  }, []);
 
   const handlePayment = async () => {
-    // Validate delivery details
-    const isValid = Object.values(deliveryDetails).every(
-      (value) => value.trim() !== ""
-    );
-    if (!isValid) {
-      alert("Please fill out all delivery details.");
+    if (!selectedDelivery) {
+      alert("Please select a delivery address before proceeding.");
       return;
     }
-
-    // Prepare poster details from cart
+  
+    // Retrieve selected delivery address details
+    const deliveryId = deliveryAddress.find(
+      (address) => address._id === selectedDelivery
+    );
+  
+    if (!deliveryId) {
+      alert("Selected delivery address is not valid.");
+      return;
+    }
+  
+    // Prepare poster details
     const posterDetails = cart.map((item) => ({
       posterId: item._id,
       quantity: item.quantity,
     }));
-
+  
+    // Prepare user details
     const userDetails = {
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
     };
-
+  
     try {
-      await BuyPoster(
-        token,
-        posterDetails,
-        userDetails,
-        deliveryDetails,
-        navigate,
-        dispatch
-      );
+      // Make the payment API call
+      await BuyPoster(token, posterDetails, userDetails, deliveryId, navigate, dispatch);
     } catch (error) {
       console.error("Error during payment:", error);
       alert("Payment failed. Please try again.");
@@ -75,134 +70,91 @@ const CheckOut = () => {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row w-full h-auto lg:h-[91.2vh] mx-auto overflow-x-hidden">
+    <div className="flex flex-col lg:flex-row w-full h-auto lg:min-h-screen bg-gray-50">
       {/* Delivery Details Section */}
-      <div className="lg:w-[50%] border-black w-full h-auto border-t-2 p-10 lg:pl-56 lg:pt-16">
-        <h1 className="text-2xl mb-4">Delivery</h1>
-        <form className="flex flex-col gap-y-4">
-          <label>
-            <input
-              type="text"
-              value="INDIA"
-              readOnly
-              className="w-full lg:w-80 h-12 px-2 border border-black rounded"
-            />
-          </label>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <label>
-              <input
-                required
-                type="text"
-                name="firstName"
-                placeholder="First Name"
-                value={deliveryDetails.firstName}
-                onChange={handleInputChange}
-                className="form-style w-full border border-black rounded-lg h-12 pl-2"
-              />
-            </label>
-            <label>
-              <input
-                required
-                type="text"
-                name="lastName"
-                placeholder="Last Name"
-                value={deliveryDetails.lastName}
-                onChange={handleInputChange}
-                className="form-style w-full border border-black rounded-lg h-12 pl-2"
-              />
-            </label>
+      <div className="lg:w-1/2 w-full border-b-2 lg:border-r-2 lg:border-b-0 border-gray-200 p-4">
+        {!showDeliveryForm ? (
+          <div>
+            <h2 className="text-xl font-semibold text-gray-800 mb-4">Select Delivery Address</h2>
+            <form className="space-y-4">
+              {deliveryAddress.length > 0 ? (
+                deliveryAddress.map((address) => (
+                  <label
+                    key={address._id}
+                    className="flex items-start space-x-2 p-3 border rounded-lg cursor-pointer hover:shadow transition"
+                  >
+                    <input
+                      type="radio"
+                      name="deliveryAddress"
+                      value={address._id}
+                      checked={selectedDelivery === address._id}
+                      onChange={() => dispatch(setSelectedDelivery(address._id))}
+                      className="mt-1"
+                    />
+                    <div>
+                      <p className="font-medium">{address.address}</p>
+                      <p className="text-sm text-gray-600">{`${address.city}, ${address.state}, ${address.pincode}`}</p>
+                      <p className="text-sm text-gray-600">{`Phone: ${address.phoneNumber}`}</p>
+                    </div>
+                  </label>
+                ))
+              ) : (
+                <p>No delivery addresses found. Please add one.</p>
+              )}
+            </form>
+
+            <button
+              onClick={() => setShowDeliveryForm(true)}
+              className="mt-6 w-full bg-black text-white font-medium text-lg py-3 rounded-lg transition duration-200"
+            >
+              Add Delivery Details
+            </button>
           </div>
-          <label>
-            <input
-              required
-              type="text"
-              name="address"
-              placeholder="Address"
-              value={deliveryDetails.address}
-              onChange={handleInputChange}
-              className="form-style w-full border border-black rounded-lg h-12 pl-2"
-            />
-          </label>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <label>
-              <input
-                required
-                type="text"
-                name="city"
-                placeholder="City"
-                value={deliveryDetails.city}
-                onChange={handleInputChange}
-                className="form-style w-full border border-black rounded-lg h-12 pl-2"
-              />
-            </label>
-            <label>
-              <input
-                required
-                type="text"
-                name="state"
-                placeholder="State"
-                value={deliveryDetails.state}
-                onChange={handleInputChange}
-                className="form-style w-full border border-black rounded-lg h-12 pl-2"
-              />
-            </label>
-            <label>
-              <input
-                required
-                type="text"
-                name="pinCode"
-                placeholder="PIN Code"
-                value={deliveryDetails.pinCode}
-                onChange={handleInputChange}
-                className="form-style w-full border border-black rounded-lg h-12 pl-2"
-              />
-            </label>
+        ) : (
+          <div>
+            <button
+              onClick={() => setShowDeliveryForm(false)}
+              className="mb-4 flex items-center text-gray-600 hover:text-black transition duration-200"
+            >
+              <FaArrowLeft />
+              <span className="ml-2">Back</span>
+            </button>
+            <DeliveryForm />
           </div>
-          <label>
-            <input
-              required
-              type="text"
-              name="phone"
-              placeholder="Phone"
-              value={deliveryDetails.phone}
-              onChange={handleInputChange}
-              className="form-style w-full border border-black rounded-lg h-12 pl-2"
-            />
-          </label>
-          <div className="flex justify-between mt-4 text-sm">
-            <span className="text-gray-500">Expected Delivery:</span>
-            <span className="text-gray-500">3-4 days</span>
-          </div>
-        </form>
-        <div className="mt-5">
-          <button
-            onClick={handlePayment}
-            className="rounded-lg bg-black py-3 px-6 font-medium text-white w-full sm:w-full"
-          >
-            PAY NOW
-          </button>
-        </div>
+        )}
       </div>
 
       {/* Order Summary Section */}
-      <div className="lg:w-[50%] w-full h-auto border-t-2 border-l lg:border-t-2 border-black lg:pl-12 lg:pt-16 overflow-hidden">
-        <div className="w-full lg:w-[35.5rem] space-y-6 overflow-hidden">
-          <div className="flex space-x-4">
-            <div className="flex flex-col h-[30rem] pr-5 overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-black scrollbar-track-gray-200 scrollbar-hide">
-              {cart.map((item, index) => (
-                <CheckOutItem key={item._id} item={item} itemIndex={index} />
-              ))}
-            </div>
+      <div className="lg:w-1/2 w-full p-4 lg:p-8 flex flex-col justify-between">
+        <h2 className="text-2xl font-semibold text-gray-800 mb-6">Order Summary</h2>
+        <div className="space-y-6">
+          {/* Cart Items */}
+          <div className="h-[15rem] lg:h-[20rem] overflow-y-auto scrollbar-thin scrollbar-track-gray-200 scrollbar-thumb-gray-400">
+            {cart.map((item, index) => (
+              <CheckOutItem key={item._id} item={item} itemIndex={index} />
+            ))}
           </div>
+
+          {/* Shipment Details */}
           <div className="flex justify-between text-md text-gray-600">
             <span>Shipment:</span>
             <span>Free</span>
           </div>
-          <div className="flex justify-between text-xl font-bold">
+
+          {/* Total Price */}
+          <div className="flex justify-between text-xl font-bold text-gray-800">
             <span>Total:</span>
             <span>₹{totalAmount}</span>
           </div>
         </div>
+
+        {/* Pay Now Button */}
+        <button
+          onClick={handlePayment}
+          className="mt-6 w-full bg-black text-white font-medium text-lg py-3 rounded-lg transition duration-200"
+        >
+          PAY NOW
+        </button>
       </div>
     </div>
   );
