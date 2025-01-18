@@ -13,6 +13,8 @@ import Signup from "./Pages/Signup";
 import VerifyEmail from "./Pages/VerifyEmail";
 import { SidebarDemo } from "./Pages/Dashboard";
 import { Error } from "./Pages/Error";
+import ForgotPassword from "./Pages/ForgotPassword";
+import UpdatePassword from "./Pages/UpdatePassword";
 
 // auth
 import OpenRoute from "./components/core/auth/OpenRoute";
@@ -59,6 +61,22 @@ function App() {
           element={
             <OpenRoute>
               <Login />
+            </OpenRoute>
+          }
+        />
+        <Route
+          path="forgot-password"
+          element={
+            <OpenRoute>
+              <ForgotPassword />
+            </OpenRoute>
+          }
+        />
+        <Route
+          path="update-password/:id"
+          element={
+            <OpenRoute>
+              <UpdatePassword />
             </OpenRoute>
           }
         />

@@ -8,7 +8,6 @@ const {
   signup,
   sendotp,
   changePassword,
-  googleLogin
 } = require("../controllers/Auth");
 
 const {
@@ -25,7 +24,6 @@ const { verifyToken } = require("../middleware/auth");
 router.post("/login", login);
 router.post("/signup", signup);
 router.post("/sendotp", sendotp);
-router.post("/googlelogin", googleLogin);
 
 router.post("/changepassword", verifyToken, changePassword);
 
