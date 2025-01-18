@@ -29,11 +29,26 @@ const OrderHistory = () => {
     }
   };
 
+  const groupOrdersByDate = (orders) => {
+    return orders.reduce((groups, order) => {
+      const date = order?.purchasedOn
+        ? new Date(order.purchasedOn).toLocaleDateString()
+        : "Unknown Date";
+      if (!groups[date]) {
+        groups[date] = [];
+      }
+      groups[date].push(order);
+      return groups;
+    }, {});
+  };
+
   useEffect(() => {
     if (token) {
       fetchOrders(token); // Fetch orders if token exists
     }
   }, [token]); // Re-run if token changes
+
+  const groupedOrders = groupOrdersByDate(orders);
 
   return (
     <div className="p-1 overflow-hidden w-full">
@@ -46,75 +61,53 @@ const OrderHistory = () => {
       ) : error ? (
         // Display error if any
         <p>{error}</p>
-      ) : orders.length === 0 ? (
+      ) : Object.keys(groupedOrders).length === 0 ? (
         // Handle no orders case
         <p>
           No orders found. (If there are orders and not visible then try login
           again)
         </p>
       ) : (
-        // Display order list
+        // Display grouped order list
         <>
-          <div className="w-full border-b border-black h-20 flex justify-between items-center">
-            <div className="flex gap-24">
-              <h1>Order Number</h1>
-              <h1>
-                {" "}
-                Purchased On
-                {/* Purchased On:{
-              {orders.map((order, index) => (
-                <span key={index}>
-                  {order?.purchasedOn
-                    ? new Date(order?.purchasedOn).toLocaleString()
-                    : "Date Unavailable"}
-                  {index < orders.length - 1 && ", "}
-                </span>
-              ))} */}
-              </h1>
-              <h1>Date placed</h1>
-              <h1>Total Amount</h1>
-            </div>
+          {Object.entries(groupedOrders).map(([date, orders], index) => (
+            <div key={index} className="mb-6 border-2 border-black">
+              <div>
 
-            <div className="flex gap-3">
-              <button className="border border-black rounded-lg h-10 px-2 flex items-center justify-center">
-                View Order
-              </button>
-              <button className="border border-black rounded-lg h-10 px-2 flex items-center justify-center">
-                View Order
-              </button>
+                <h3 className="text-lg font-semibold mb-4">{date}</h3>
+              </div>
+              <ul>
+                {orders.map((order, idx) => (
+                  <li key={idx} className="border-b border-black p-2">
+                    <div className="flex gap-10">
+                      {order.poster?.image ? (
+                        <img
+                          src={order.poster?.image}
+                          alt={order.poster?.posterName}
+                          width={180}
+                        />
+                      ) : (
+                        <p>Image unavailable</p>
+                      )}
+                      <h3>
+                        {order.poster?.posterName || "Poster Title Unavailable"}
+                      </h3>
+                    </div>
+                    <p>Price: ₹{order.poster?.price || "N/A"}</p>
+                    <p>Quantity: {order?.quantity || 0}</p>
+                    <p>Total: ₹{order?.totalPrice || "N/A"}</p>
+                    {/* <p>
+                      Purchased On:{" "}
+                      {order?.purchasedOn
+                        ? new Date(order?.purchasedOn).toLocaleString()
+                        : "Date Unavailable"}
+                    </p> */}
+                    <p>Status: {order?.delivered ? "Delivered" : "Pending"}</p>
+                  </li>
+                ))}
+              </ul>
             </div>
-          </div>
-          <ul>
-            {orders.map((order, index) => (
-              <li key={index} className="border-b border-black p-2">
-                
-                <div className="flex gap-10">
-                {order.poster?.image ? (
-                  <img
-                    src={order.poster?.image}
-                    alt={order.poster?.posterName}
-                    width={180}
-                  />
-                ) : (
-                  <p>Image unavailable</p>
-                )}
-                <h3>
-                  {order.poster?.posterName || "Poster Title Unavailable"}
-                </h3>
-                </div>
-                <p>Price: ₹{order.poster?.price || "N/A"}</p>
-                <p>Quantity: {order?.quantity || 0}</p>
-                <p>Total: ₹{order?.totalPrice || "N/A"}</p>
-                <p>
-                  Purchased On:{" "}
-                  {order?.purchasedOn
-                    ? new Date(order?.purchasedOn).toLocaleString()
-                    : "Date Unavailable"}
-                </p>
-                <p>Status: {order?.delivered ? "Delivered" : "Pending"}</p>
-              </li>
-            ))}
-          </ul>
+          ))}
         </>
       )}
     </div>
