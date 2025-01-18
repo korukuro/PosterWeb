@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addDelivery } from "../../../services/operations/deliveryAPI";
+import { useNavigate } from "react-router-dom";
 
-const DeliveryForm = () => {
+const DeliveryForm = ({setShowDeliveryForm}) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [deliveryDetails, setDeliveryDetails] = useState({
     firstName: "",
@@ -42,6 +44,7 @@ const DeliveryForm = () => {
           pincode: "",
           phoneNumber: "",
         });
+        setShowDeliveryForm(false);
     } catch (error) {
       console.error("Error during adding delivery details:", error);
       alert("An error occurred. Please try again.");

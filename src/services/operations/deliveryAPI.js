@@ -46,7 +46,7 @@ export function addDelivery(address, city, state, pincode, phoneNumber, isDefaul
       },{Authorization: `Bearer ${token}`})
 
       console.log("ADD DELIVERY API RESPONSE............", response)
-
+      dispatch(getDeliveryAddress(token));
       if (!response.data) {
         throw new Error(response.data.message)
       }
