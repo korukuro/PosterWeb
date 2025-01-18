@@ -29,18 +29,49 @@ const OrderHistory = () => {
     }
   };
 
-  const groupOrdersByExactTime = (orders) => {
-    return orders.reduce((groups, order) => {
-      const exactTime = order?.purchasedOn
-        ? new Date(order.purchasedOn).toLocaleString() // Group by full date and time
-        : "Unknown Time";
-      if (!groups[exactTime]) {
-        groups[exactTime] = [];
+  const groupOrdersByTimeThreshold = (orders, thresholdInSeconds = 10) => {
+    // Sort orders by purchase time (most recent first)
+    const sortedOrders = orders.sort((a, b) =>
+      new Date(b.purchasedOn) - new Date(a.purchasedOn)
+    );
+  
+    // Group orders by time threshold
+    const groups = [];
+    let currentGroup = { orders: [], totalPrice: 0 };
+  
+    sortedOrders.forEach((order, index) => {
+      const orderTime = new Date(order.purchasedOn).getTime();
+      const lastOrderTime = currentGroup.orders.length
+        ? new Date(currentGroup.orders[currentGroup.orders.length - 1].purchasedOn).getTime()
+        : null;
+  
+      if (
+        lastOrderTime &&
+        Math.abs(orderTime - lastOrderTime) <= thresholdInSeconds * 1000
+      ) {
+        // Add to the current group if within the threshold
+        currentGroup.orders.push(order);
+        currentGroup.totalPrice += order.totalPrice || 0;
+      } else {
+        // Save the current group and start a new one
+        if (currentGroup.orders.length) {
+          groups.push(currentGroup);
+        }
+        currentGroup = {
+          orders: [order],
+          totalPrice: order.totalPrice || 0,
+        };
       }
-      groups[exactTime].push(order);
-      return groups;
-    }, {});
+    });
+  
+    // Push the last group if not empty
+    if (currentGroup.orders.length) {
+      groups.push(currentGroup);
+    }
+  
+    return groups;
   };
+  
 
   useEffect(() => {
     if (token) {
@@ -48,7 +79,7 @@ const OrderHistory = () => {
     }
   }, [token]);
 
-  const groupedOrders = groupOrdersByExactTime(orders);
+  const groupedOrders = groupOrdersByTimeThreshold(orders);
 
   return (
     <div className="p-1 overflow-hidden w-full">
@@ -59,17 +90,26 @@ const OrderHistory = () => {
         </div>
       ) : error ? (
         <p>{error}</p>
-      ) : Object.keys(groupedOrders).length === 0 ? (
+      ) : groupedOrders.length === 0 ? (
         <p>No orders found. (If there are orders and not visible then try login again)</p>
       ) : (
         <>
-          {Object.entries(groupedOrders).map(([time, orders], index) => (
-            <div key={index} className="mb-6 border-2 border-black">
-              <div>
-                <h3 className="text-lg font-semibold mb-4">{time}</h3>
+          {groupedOrders.map((group, index) => (
+            <div key={index} className="mb-6 border-2 border-black p-4">
+              <div className="flex gap-4">
+                <div className="">
+                  <h3>Date placed</h3>
+                  <p className="text-lg font-semibold">
+                    {new Date(group.orders[0].purchasedOn).toLocaleDateString()}
+                  </p>
+                </div>
+                <div className="">
+                  <h3>Total Amount</h3>
+                  <p className="font-bold"> ₹{group.totalPrice}</p>
+                </div>
               </div>
               <ul>
-                {orders.map((order, idx) => (
+                {group.orders.map((order, idx) => (
                   <li key={idx} className="border-b border-black p-2">
                     <div className="flex gap-10">
                       {order.poster?.image ? (
@@ -85,8 +125,7 @@ const OrderHistory = () => {
                     </div>
                     <p>Price: ₹{order.poster?.price || "N/A"}</p>
                     <p>Quantity: {order?.quantity || 0}</p>
-                    <p>Total: ₹{order?.totalPrice || "N/A"}</p>
-                    <p>Status: {order?.delivered ? "Delivered" : "Pending"}</p>
+                    <p>{order?.delivered ? "Delivered" : "Delivery Pending"}</p>
                   </li>
                 ))}
               </ul>
