@@ -4,77 +4,69 @@ import { useSelector } from "react-redux";
 import Spinner from "../../Spinner";
 
 const OrderHistory = () => {
-  const [orders, setOrders] = useState([]); // Initialize with an empty array
-  const [loading, setLoading] = useState(true); // Loading state
-  const [error, setError] = useState(null); // Error state
-  const { token } = useSelector((state) => state.auth); // Get token from Redux
+  const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const { token } = useSelector((state) => state.auth);
 
   const fetchOrders = async (token) => {
     try {
-      setLoading(true); // Start loading
-      const response = await getOrderHistory(token); // Fetch data
+      setLoading(true);
+      const response = await getOrderHistory(token);
       console.log("Order History Response: ", response);
 
       if (response?.orderHistory) {
-        setOrders(response.orderHistory); // Update orders if data is present
+        setOrders(response.orderHistory);
       } else {
-        setOrders([]); // Fallback for empty or undefined data
+        setOrders([]);
       }
-      setError(null); // Clear any previous errors
+      setError(null);
     } catch (err) {
       console.error("Error fetching order history:", err);
-      setError("Failed to fetch order history. Please try again later."); // Set error message
+      setError("Failed to fetch order history. Please try again later.");
     } finally {
-      setLoading(false); // End loading
+      setLoading(false);
     }
   };
 
-  const groupOrdersByDate = (orders) => {
+  const groupOrdersByExactTime = (orders) => {
     return orders.reduce((groups, order) => {
-      const date = order?.purchasedOn
-        ? new Date(order.purchasedOn).toLocaleDateString()
-        : "Unknown Date";
-      if (!groups[date]) {
-        groups[date] = [];
+      const exactTime = order?.purchasedOn
+        ? new Date(order.purchasedOn).toLocaleString() // Group by full date and time
+        : "Unknown Time";
+      if (!groups[exactTime]) {
+        groups[exactTime] = [];
       }
-      groups[date].push(order);
+      groups[exactTime].push(order);
       return groups;
     }, {});
   };
 
   useEffect(() => {
     if (token) {
-      fetchOrders(token); // Fetch orders if token exists
+      fetchOrders(token);
     }
-  }, [token]); // Re-run if token changes
+  }, [token]);
 
-  const groupedOrders = groupOrdersByDate(orders);
+  const groupedOrders = groupOrdersByExactTime(orders);
 
   return (
     <div className="p-1 overflow-hidden w-full">
       <h2>Order History</h2>
-      {/* Display loader */}
       {loading ? (
         <div className="flex justify-center items-center">
           <Spinner />
         </div>
       ) : error ? (
-        // Display error if any
         <p>{error}</p>
       ) : Object.keys(groupedOrders).length === 0 ? (
-        // Handle no orders case
-        <p>
-          No orders found. (If there are orders and not visible then try login
-          again)
-        </p>
+        <p>No orders found. (If there are orders and not visible then try login again)</p>
       ) : (
-        // Display grouped order list
         <>
-          {Object.entries(groupedOrders).map(([date, orders], index) => (
+          {Object.entries(groupedOrders).map(([time, orders], index) => (
             <div key={index} className="mb-6 border-2 border-black">
               <div>
-
-                <h3 className="text-lg font-semibold mb-4">{date}</h3>
+                <h3 className="text-lg font-semibold mb-4">{time}</h3>
               </div>
               <ul>
                 {orders.map((order, idx) => (
@@ -89,19 +81,11 @@ const OrderHistory = () => {
                       ) : (
                         <p>Image unavailable</p>
                       )}
-                      <h3>
-                        {order.poster?.posterName || "Poster Title Unavailable"}
-                      </h3>
+                      <h3>{order.poster?.posterName || "Poster Title Unavailable"}</h3>
                     </div>
                     <p>Price: ₹{order.poster?.price || "N/A"}</p>
                     <p>Quantity: {order?.quantity || 0}</p>
                     <p>Total: ₹{order?.totalPrice || "N/A"}</p>
-                    {/* <p>
-                      Purchased On:{" "}
-                      {order?.purchasedOn
-                        ? new Date(order?.purchasedOn).toLocaleString()
-                        : "Date Unavailable"}
-                    </p> */}
                     <p>Status: {order?.delivered ? "Delivered" : "Pending"}</p>
                   </li>
                 ))}
