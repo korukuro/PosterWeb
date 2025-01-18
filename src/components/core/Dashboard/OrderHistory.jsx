@@ -36,7 +36,7 @@ const OrderHistory = () => {
   }, [token]); // Re-run if token changes
 
   return (
-    <div className="p-1 border-2 border-black overflow-hidden w-full">
+    <div className="p-1 overflow-hidden w-full">
       <h2>Order History</h2>
       {/* Display loader */}
       {loading ? (
@@ -93,7 +93,7 @@ const OrderHistory = () => {
                   <img
                     src={order.poster?.image}
                     alt={order.poster?.posterName}
-                    width={100}
+                    width={180}
                   />
                 ) : (
                   <p>Image unavailable</p>
