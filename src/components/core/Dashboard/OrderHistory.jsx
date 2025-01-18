@@ -10,7 +10,7 @@ const OrderHistory = () => {
     try {
       const response = await getOrderHistory(token);
       console.log("Order History Response: ", response);
-      
+
       // Safeguard against undefined or invalid response
       if (response && Array.isArray(response.orderHistory)) {
         setOrders(response.orderHistory);
@@ -31,29 +31,36 @@ const OrderHistory = () => {
   }, [token]);
 
   return (
-    <div>
-      <h2>Order History</h2>
-      {orders.length === 0 ? (
-        <p>No orders found.</p>
-      ) : (
-        <ul>
-          {orders.map((order, index) => (
-            <li key={index}>
-              <h3>{order.poster?.title || "Untitled Poster"}</h3>
-              <img
-                src={order.poster?.image || "/placeholder.png"}
-                alt={order.poster?.title || "No Image"}
-                width={100}
-              />
-              <p>Price: ₹{order.poster?.price || "N/A"}</p>
-              <p>Quantity: {order.quantity || 0}</p>
-              <p>Total: ₹{order.totalPrice || "N/A"}</p>
-              <p>Purchased On: {order.purchasedOn ? new Date(order.purchasedOn).toLocaleString() : "Unknown"}</p>
-              <p>Status: {order.delivered ? "Delivered" : "Pending"}</p>
-            </li>
-          ))}
-        </ul>
-      )}
+    <div className="h-[37.188rem] w-full overflow-hidden">
+      <div className="w-full h-full border-2 border-black">
+        <h2>Order History</h2>
+        {orders.length === 0 ? (
+          <p>No orders found.</p>
+        ) : (
+          <ul>
+            {orders.map((order, index) => (
+              <li key={index}>
+                <h3>{order.poster?.title || "Untitled Poster"}</h3>
+                <img
+                  src={order.poster?.image || "/placeholder.png"}
+                  alt={order.poster?.title || "No Image"}
+                  width={100}
+                />
+                <p>Price: ₹{order.poster?.price || "N/A"}</p>
+                <p>Quantity: {order.quantity || 0}</p>
+                <p>Total: ₹{order.totalPrice || "N/A"}</p>
+                <p>
+                  Purchased On:{" "}
+                  {order.purchasedOn
+                    ? new Date(order.purchasedOn).toLocaleString()
+                    : "Unknown"}
+                </p>
+                <p>Status: {order.delivered ? "Delivered" : "Pending"}</p>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     </div>
   );
 };
