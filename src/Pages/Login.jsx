@@ -1,7 +1,6 @@
 import Template from "../components/core/auth/Template";
 import React from "react";
 import LoginSignupAndImg from "../components/common/LoginSignupAndImg";
-import { GoogleOAuthProvider } from '@react-oauth/google';
 
 
 function Login() {
