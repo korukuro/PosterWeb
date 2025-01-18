@@ -328,20 +328,18 @@ exports.updatePoster = async (req, res) => {
 
 exports.getOrderHistory = async (req, res) => {
   try {
-    const userId = req.user?.id; // Assuming user ID is available from authentication middleware
+    const userId = req.user?.id; // Assuming user ID is attached by the authenticate middleware
 
     if (!userId) {
       return res.status(400).json({ success: false, message: "User ID is required." });
     }
 
-    // Find the user and populate the purchased posters with their details
     const user = await User.findById(userId).populate("purchasedPosters.posterId");
 
     if (!user) {
       return res.status(404).json({ success: false, message: "User not found." });
     }
 
-    // Sort the purchasedPosters by purchase time
     const sortedOrderHistory = user.purchasedPosters
       .sort((a, b) => new Date(b.purchasedOn) - new Date(a.purchasedOn))
       .map((order) => ({
