@@ -353,6 +353,7 @@ exports.getOrderHistory = async (req, res) => {
         totalPrice: order.posterId.price * order.quantity,
         purchasedOn: order.purchasedOn,
         delivered: order.delivered,
+        orderId: order.orderId,
       }));
 
     res.status(200).json({

@@ -29,49 +29,26 @@ const OrderHistory = () => {
     }
   };
 
-  const groupOrdersByTimeThreshold = (orders, thresholdInSeconds = 10) => {
-    // Sort orders by purchase time (most recent first)
-    const sortedOrders = orders.sort((a, b) =>
-      new Date(b.purchasedOn) - new Date(a.purchasedOn)
-    );
-  
-    // Group orders by time threshold
-    const groups = [];
-    let currentGroup = { orders: [], totalPrice: 0 };
-  
-    sortedOrders.forEach((order, index) => {
-      const orderTime = new Date(order.purchasedOn).getTime();
-      const lastOrderTime = currentGroup.orders.length
-        ? new Date(currentGroup.orders[currentGroup.orders.length - 1].purchasedOn).getTime()
-        : null;
-  
-      if (
-        lastOrderTime &&
-        Math.abs(orderTime - lastOrderTime) <= thresholdInSeconds * 1000
-      ) {
-        // Add to the current group if within the threshold
-        currentGroup.orders.push(order);
-        currentGroup.totalPrice += order.totalPrice || 0;
-      } else {
-        // Save the current group and start a new one
-        if (currentGroup.orders.length) {
-          groups.push(currentGroup);
-        }
-        currentGroup = {
-          orders: [order],
-          totalPrice: order.totalPrice || 0,
+  const groupOrdersByOrderId = (orders) => {
+    const grouped = orders.reduce((acc, order) => {
+      const { orderId } = order;
+      if (!acc[orderId]) {
+        acc[orderId] = {
+          orders: [],
+          totalPrice: 0,
+          purchaseDate: order.purchasedOn,
         };
       }
-    });
-  
-    // Push the last group if not empty
-    if (currentGroup.orders.length) {
-      groups.push(currentGroup);
-    }
-  
-    return groups;
+      acc[orderId].orders.push(order);
+      acc[orderId].totalPrice += (order.poster?.price || 0) * (order.quantity || 0);
+      return acc;
+    }, {});
+
+    return Object.entries(grouped).map(([orderId, group]) => ({
+      orderId,
+      ...group,
+    }));
   };
-  
 
   useEffect(() => {
     if (token) {
@@ -79,7 +56,7 @@ const OrderHistory = () => {
     }
   }, [token]);
 
-  const groupedOrders = groupOrdersByTimeThreshold(orders);
+  const groupedOrders = groupOrdersByOrderId(orders);
 
   return (
     <div className="p-1 overflow-hidden w-full">
@@ -93,17 +70,21 @@ const OrderHistory = () => {
       ) : groupedOrders.length === 0 ? (
         <p>No orders found. (If there are orders and not visible then try login again)</p>
       ) : (
-        <>
-          {groupedOrders.map((group, index) => (
-            <div key={index} className="mb-6 border-2 border-black p-4">
+        <div>
+          {groupedOrders.map((group) => (
+            <div key={group.orderId} className="mb-6 border-2 border-black p-4">
               <div className="flex gap-4">
-                <div className="">
-                  <h3>Date placed</h3>
+                <div>
+                  <h3>Order ID</h3>
+                  <p className="text-lg font-semibold">{group.orderId}</p>
+                </div>
+                <div>
+                  <h3>Date Placed</h3>
                   <p className="text-lg font-semibold">
-                    {new Date(group.orders[0].purchasedOn).toLocaleDateString()}
+                    {new Date(group.purchaseDate).toLocaleDateString()}
                   </p>
                 </div>
-                <div className="">
+                <div>
                   <h3>Total Amount</h3>
                   <p className="font-bold"> ₹{group.totalPrice}</p>
                 </div>
@@ -131,7 +112,7 @@ const OrderHistory = () => {
               </ul>
             </div>
           ))}
-        </>
+        </div>
       )}
     </div>
   );

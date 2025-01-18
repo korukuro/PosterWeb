@@ -58,6 +58,7 @@ exports.capturePayment = async (req, res) => {
 };
 
 // Verify Payment
+// Verify Payment
 exports.verifyPayment = async (req, res) => {
   try {
     const { razorpay_order_id, razorpay_payment_id, razorpay_signature, posterDetails, deliveryId } = req.body;
@@ -75,8 +76,8 @@ exports.verifyPayment = async (req, res) => {
       return res.status(400).json({ success: false, message: "Invalid payment signature." });
     }
 
-    // Mark posters as purchased
-    const result = await posterBoughtByUser(posterDetails, userId, deliveryId);
+    // Mark posters as purchased, include razorpay_order_id
+    const result = await posterBoughtByUser(posterDetails, userId, deliveryId, razorpay_order_id);
 
     if (!result.success) {
       return res.status(500).json({ success: false, message: "Error updating user purchase details.", errors: result.errors });
@@ -88,6 +89,7 @@ exports.verifyPayment = async (req, res) => {
     res.status(500).json({ success: false, message: "Internal server error." });
   }
 };
+
 
 // Send Payment Success Email
 exports.sendPaymentSuccessEmail = async (req, res) => {
@@ -123,7 +125,8 @@ exports.sendPaymentSuccessEmail = async (req, res) => {
 };
 
 // Helper: Mark Posters as Purchased by User
-const posterBoughtByUser = async (posterDetails, userId, deliveryId) => {
+// Helper: Mark Posters as Purchased by User
+const posterBoughtByUser = async (posterDetails, userId, deliveryId, razorpay_order_id) => {
   const errors = [];
   const successfulUpdates = [];
 
@@ -140,13 +143,14 @@ const posterBoughtByUser = async (posterDetails, userId, deliveryId) => {
               quantity,
               purchasedOn: purchaseTime,
               deliveryId,
+              orderId: razorpay_order_id, // Store the Razorpay order ID
             },
           },
         },
         { new: true }
       );
 
-      successfulUpdates.push({ posterId, quantity, purchasedOn: purchaseTime, deliveryId });
+      successfulUpdates.push({ posterId, quantity, purchasedOn: purchaseTime, deliveryId, orderId: razorpay_order_id });
     } catch (error) {
       errors.push({ posterId, error: error.message });
     }
@@ -158,3 +162,4 @@ const posterBoughtByUser = async (posterDetails, userId, deliveryId) => {
 
   return { success: true, postersBought: successfulUpdates };
 };
+

@@ -67,6 +67,7 @@ const userSchema = new mongoose.Schema(
         purchasedOn: { type: Date, default: Date.now },
         deliveryId: {type: mongoose.Schema.Types.ObjectId, ref: "Delivery"},
         delivered: { type: Boolean, required: true, default: false },
+        orderId: { type: String, required: true },
       },
     ],
     deliveryDetails:[{type: mongoose.Schema.Types.ObjectId, ref: "Delivery"}],

@@ -39,6 +39,7 @@ export async function BuyPoster(token, posterDetails, userDetails, deliveryId, n
     const payload = {
       posterDetails,
       deliveryId, // Pass delivery address to backend
+      
     };
 
     const orderResponse = await apiConnector(
@@ -112,7 +113,10 @@ async function verifyPayment(paymentData, token, navigate, dispatch) {
     const response = await apiConnector(
       "POST",
       POSTER_VERIFY_API,
-      paymentData,
+      {
+        ...paymentData,
+        orderId: paymentData.razorpay_order_id, // Include the orderId
+      },
       { Authorization: `Bearer ${token}` }
     );
 
@@ -133,6 +137,7 @@ async function verifyPayment(paymentData, token, navigate, dispatch) {
     dispatch(setPaymentLoading(false));
   }
 }
+
 
 // Send Payment Success Email
 async function sendPaymentSuccessEmail(paymentResponse, amount, token) {
