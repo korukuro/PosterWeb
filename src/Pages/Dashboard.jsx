@@ -1,20 +1,16 @@
 import React, { useState } from "react";
 import { Sidebar, SidebarBody, SidebarLink } from "../components/ui/sideBar";
 import {
-  IconArrowLeft,
   IconBrandTabler,
   IconSettings,
   IconUserBolt,
 } from "@tabler/icons-react";
-import { motion } from "framer-motion";
 import { cn } from "../utils/cd";
-import { Outlet, Link, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import ConfirmationModal from "../components/common/ConfirmationModal";
 import { useDispatch } from "react-redux";
 import { logout } from "../services/operations/authAPI";
 import { LuLogOut } from "react-icons/lu";
-
-import { BackgroundBeams } from "../components/ui/background-beam";  
 
 export function SidebarDemo() {
   const links = [
@@ -25,19 +21,32 @@ export function SidebarDemo() {
         <IconBrandTabler className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
     },
-    {
-      label: "Profile",
-      href: "/dashboard/my-profile",
-      icon: (
-        <IconUserBolt className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
-      ),
-    },
+    
     {
       label: "Settings",
       href: "/dashboard/settings",
       icon: (
         <IconSettings className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
+    },
+    {
+      label: "Logout",
+      icon: (
+        <LuLogOut className="text-neutral-700 group dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+      ),
+      onClick: () => {
+        setConfirmationModal({
+          text1: "Are you sure?",
+          text2: "You will be logged out of your account.",
+          btn1Text: "Logout",
+          btn2Text: "Cancel",
+          btn1Handler: () => {
+            dispatch(logout(navigate));
+            setConfirmationModal(null);
+          },
+          btn2Handler: () => setConfirmationModal(null),
+        });
+      },
     },
   ];
 
@@ -63,25 +72,6 @@ export function SidebarDemo() {
                   <SidebarLink link={link} />
                 </div>
               ))}
-            <button
-              className="flex"
-              onClick={() =>
-                setConfirmationModal({
-                  text1: "Are you sure?",
-                  text2: "You will be logged out of your account.",
-                  btn1Text: "Logout",
-                  btn2Text: "Cancel",
-                  btn1Handler: () => {
-                    dispatch(logout(navigate));
-                    setConfirmationModal(null);
-                  },
-                  btn2Handler: () => setConfirmationModal(null),
-                })
-              }
-            >
-              
-              <LuLogOut className="text-neutral-700 group dark:text-neutral-200 h-5 w-5 flex-shrink-0"/>
-            </button>
             </div>
           </div>
         </SidebarBody>

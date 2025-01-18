@@ -125,22 +125,48 @@ export const MobileSidebar = ({ className, children, ...props }) => {
 // SidebarLink for individual links
 export const SidebarLink = ({ link, className, ...props }) => {
   const { open, animate } = useSidebar();
+
+  // Check if the link has an onClick handler
+  const isClickable = link.onClick;
+
   return (
-    <Link
-      to={link.href}
+    <div
       className={cn("flex items-center justify-start gap-2 group/sidebar py-2", className)}
       {...props}
     >
-      {link.icon}
-      <motion.span
-        animate={{
-          opacity: animate ? (open ? 1 : 0) : 1,
-          display: open ? "inline-block" : "none",
-        }}
-        className="text-neutral-700 dark:text-neutral-200 text-sm group-hover/sidebar:translate-x-1 transition duration-150 whitespace-pre"
-      >
-        {link.label}
-      </motion.span>
-    </Link>
+      {isClickable ? (
+        <div
+          onClick={link.onClick}
+          className="cursor-pointer flex items-center gap-2 group"
+        >
+          {link.icon}
+          <motion.span
+            animate={{
+              opacity: animate ? (open ? 1 : 0) : 1,
+              display: open ? "inline-block" : "none",
+            }}
+            className="text-neutral-700 dark:text-neutral-200 text-sm group-hover/sidebar:translate-x-1 transition duration-150 whitespace-pre"
+          >
+            {link.label}
+          </motion.span>
+        </div>
+      ) : (
+        <Link
+          to={link.href}
+          className="flex items-center justify-start gap-2 group/sidebar py-2"
+        >
+          {link.icon}
+          <motion.span
+            animate={{
+              opacity: animate ? (open ? 1 : 0) : 1,
+              display: open ? "inline-block" : "none",
+            }}
+            className="text-neutral-700 dark:text-neutral-200 text-sm group-hover/sidebar:translate-x-1 transition duration-150 whitespace-pre"
+          >
+            {link.label}
+          </motion.span>
+        </Link>
+      )}
+    </div>
   );
 };

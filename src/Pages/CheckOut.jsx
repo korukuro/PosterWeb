@@ -29,7 +29,7 @@ const CheckOut = () => {
     if (token) {
       dispatch(getDeliveryAddress(token)); // Fetch delivery details from backend
     }
-  }, []);
+  },[token]);
 
   const handlePayment = async () => {
     if (!selectedDelivery) {
@@ -119,7 +119,7 @@ const CheckOut = () => {
               <FaArrowLeft />
               <span className="ml-2">Back</span>
             </button>
-            <DeliveryForm />
+            <DeliveryForm setShowDeliveryForm={setShowDeliveryForm} />
           </div>
         )}
       </div>
