@@ -5,107 +5,87 @@ const User = require("../models/User");
 const mailSender = require("../utils/mailSender");
 const { paymentSuccessEmail } = require("../mail/paymentSuccessEmail");
 
-// Capture the payment and initiate the Razorpay order
+// Capture Payment and Create Razorpay Order
 exports.capturePayment = async (req, res) => {
-  const { posterDetails } = req.body; // Array of Poster details, with posterId and quantity
+  const { posterDetails } = req.body;
 
+  // Validate posterDetails
   if (!posterDetails || !Array.isArray(posterDetails) || posterDetails.length === 0) {
-    return res
-      .status(400)
-      .json({ success: false, message: "Please provide valid Poster details (posterId and quantity)." });
+    return res.status(400).json({ success: false, message: "Please provide valid poster details (posterId and quantity)." });
   }
 
   let totalAmount = 0;
-  let errorMessages = [];
+  const errors = [];
 
+  // Calculate total amount and validate poster details
   for (const { posterId, quantity } of posterDetails) {
     try {
-      // Validate quantity (ensure it's a positive integer)
       if (quantity <= 0 || !Number.isInteger(quantity)) {
-        errorMessages.push(`Invalid quantity for poster ID ${posterId}.`);
+        errors.push(`Invalid quantity for poster ID ${posterId}.`);
         continue;
       }
 
-      // Find the Poster by its ID
       const poster = await Poster.findById(posterId);
-
-      // If the Poster is not found, log an error and continue
       if (!poster) {
-        errorMessages.push(`Poster with ID ${posterId} not found.`);
+        errors.push(`Poster with ID ${posterId} not found.`);
         continue;
       }
 
-      // Add the price of the Poster multiplied by quantity to the total amount
       totalAmount += poster.price * quantity;
     } catch (error) {
-      console.error(`Error processing Poster ID ${posterId}:`, error);
-      errorMessages.push(`Error processing Poster ID ${posterId}: ${error.message}`);
+      errors.push(`Error processing poster ID ${posterId}: ${error.message}`);
     }
   }
 
-  // If there were errors, return them
-  if (errorMessages.length > 0) {
-    return res
-      .status(400)
-      .json({ success: false, message: "Errors encountered", errors: errorMessages });
+  if (errors.length > 0) {
+    return res.status(400).json({ success: false, message: "Errors encountered", errors });
   }
 
-  // Create a payment order with Razorpay
+  // Create Razorpay Order
   const options = {
-    amount: totalAmount * 100, // Razorpay expects the amount in paise (INR * 100)
+    amount: totalAmount * 100, // Amount in paise
     currency: "INR",
     receipt: `receipt_${Date.now()}`,
   };
 
   try {
     const paymentResponse = await instance.orders.create(options);
-    res.status(200).json({
-      success: true,
-      data: paymentResponse,
-    });
+    res.status(200).json({ success: true, data: paymentResponse });
   } catch (error) {
     console.error("Payment initiation error:", error);
-    res.status(500).json({ success: false, message: "Could not initiate order." });
+    res.status(500).json({ success: false, message: "Could not initiate payment order." });
   }
 };
 
-// Verify the payment
+// Verify Payment
 exports.verifyPayment = async (req, res) => {
   try {
-    const { razorpay_order_id, razorpay_payment_id, razorpay_signature, posterDetails } = req.body;
+    const { razorpay_order_id, razorpay_payment_id, razorpay_signature, posterDetails, deliveryId } = req.body;
     const userId = req.user?.id;
 
-    // Log incoming data for debugging
-    console.log("Request Data:", { razorpay_order_id, razorpay_payment_id, razorpay_signature, posterDetails, userId });
-
-    if (
-      !razorpay_order_id ||
-      !razorpay_payment_id ||
-      !razorpay_signature ||
-      !Array.isArray(posterDetails) ||
-      posterDetails.length === 0 ||
-      !userId
-    ) {
+    if (!razorpay_order_id || !razorpay_payment_id || !razorpay_signature || !Array.isArray(posterDetails) || posterDetails.length === 0 || !userId || !deliveryId) {
       return res.status(400).json({ success: false, message: "Payment verification failed. Missing or invalid data." });
     }
 
-    // Signature verification
+    // Verify Razorpay Signature
     const body = razorpay_order_id + "|" + razorpay_payment_id;
-    const expectedSignature = crypto
-      .createHmac("sha256", process.env.RAZORPAY_SECRET)
-      .update(body.toString())
-      .digest("hex");
+    const expectedSignature = crypto.createHmac("sha256", process.env.RAZORPAY_SECRET).update(body).digest("hex");
 
-    if (expectedSignature === razorpay_signature) {
-      // Mark posters as bought for the user
-      await posterBoughtByUser(posterDetails, userId, res);
-      return res.status(200).json({ success: true, message: "Payment verified successfully." });
+    if (expectedSignature !== razorpay_signature) {
+      return res.status(400).json({ success: false, message: "Invalid payment signature." });
     }
 
-    return res.status(400).json({ success: false, message: "Invalid payment signature." });
+    // Mark posters as purchased
+    const result = await posterBoughtByUser(posterDetails, userId, deliveryId);
+
+    if (!result.success) {
+      return res.status(500).json({ success: false, message: "Error updating user purchase details.", errors: result.errors });
+    }
+
+    res.status(200).json({ success: true, message: "Payment verified successfully." });
   } catch (error) {
     console.error("Payment verification error:", error);
-    return res.status(500).json({ success: false, message: "Internal server error." });
+    res.status(500).json({ success: false, message: "Internal server error." });
   }
 };
 
@@ -115,21 +95,23 @@ exports.sendPaymentSuccessEmail = async (req, res) => {
   const userId = req.user?.id;
 
   if (!orderId || !paymentId || !amount || !userId) {
-    return res
-      .status(400)
-      .json({ success: false, message: "Please provide all required details." });
+    return res.status(400).json({ success: false, message: "Missing required details for email." });
   }
 
   try {
     const user = await User.findById(userId);
-
     if (!user) {
       return res.status(404).json({ success: false, message: "User not found." });
     }
 
     await mailSender(
       user.email,
-      "Payment Received",
+      "Payment Successful",
+      paymentSuccessEmail(`${user.firstName} ${user.lastName}`, amount / 100, orderId, paymentId)
+    );
+    await mailSender(
+      "learnerxqz@gmail.com",
+      "Payment Successful",
       paymentSuccessEmail(`${user.firstName} ${user.lastName}`, amount / 100, orderId, paymentId)
     );
 
@@ -140,36 +122,33 @@ exports.sendPaymentSuccessEmail = async (req, res) => {
   }
 };
 
-const posterBoughtByUser = async (posterDetails, userId) => {
-  if (!posterDetails || !userId) {
-    return { success: false, message: "Please provide poster details and user ID." };
-  }
-
+// Helper: Mark Posters as Purchased by User
+const posterBoughtByUser = async (posterDetails, userId, deliveryId) => {
   const errors = [];
   const successfulUpdates = [];
 
   for (const { posterId, quantity } of posterDetails) {
     try {
-      const purchaseTime = new Date(); // Get the current time
+      const purchaseTime = new Date();
 
-      // Update the user's purchasedPosters array
-      const user = await User.findByIdAndUpdate(
+      await User.findByIdAndUpdate(
         userId,
         {
           $push: {
             purchasedPosters: {
-              posterId: posterId,
-              quantity: quantity,
-              purchasedOn: purchaseTime, // Add the purchase time
+              posterId,
+              quantity,
+              purchasedOn: purchaseTime,
+              deliveryId,
             },
           },
         },
         { new: true }
       );
 
-      successfulUpdates.push({ posterId, quantity, purchasedOn: purchaseTime });
+      successfulUpdates.push({ posterId, quantity, purchasedOn: purchaseTime, deliveryId });
     } catch (error) {
-      errors.push({ posterId, error });
+      errors.push({ posterId, error: error.message });
     }
   }
 
@@ -179,5 +158,3 @@ const posterBoughtByUser = async (posterDetails, userId) => {
 
   return { success: true, postersBought: successfulUpdates };
 };
-
-

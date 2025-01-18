@@ -6,6 +6,7 @@ export const endpoints = {
   LOGIN_API: BASE_URL + "/auth/login",
   RESETPASSTOKEN_API: BASE_URL + "/auth/reset-password-token",
   RESETPASSWORD_API: BASE_URL + "/auth/reset-password",
+  GOOGLE_SIGNIN_API: BASE_URL + "/auth/googlelogin",
 }
 
 // PROFILE ENDPOINTS
@@ -34,4 +35,10 @@ export const paymentEndpoints = {
   POSTER_PAYMENT_API: BASE_URL + "/payment/capturePayment",
   POSTER_VERIFY_API: BASE_URL + "/payment/verifyPayment",
   SEND_PAYMENT_SUCCESS_EMAIL_API: BASE_URL + "/payment/sendPaymentSuccessEmail",
+}
+
+// DELIVERY ENDPOINTS
+export const deliveryEndpoints = {
+  ADD_DELIVERY_API: BASE_URL + "/delivery/addDelivery",
+  GET_DELIVERY_ADDRESS_API: BASE_URL + "/delivery/getDeliveryAddress",
 }

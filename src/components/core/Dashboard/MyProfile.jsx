@@ -23,16 +23,16 @@ const MyProfile = () => {
       {/* Bordered section below */}
       <div className="flex-grow flex flex-col gap-y-8 mt-4 border-2 border-white w-full rounded-xl pl-5 pt-20">
         <p className="mb-1 text-[1.3rem] leading-[1.375rem] text-richblack-5">
-          Name : <span>{user.firstName} {user.lastName}</span>
+          Name : <span>{user?.firstName} {user?.lastName}</span>
         </p>
         <p className="mb-1 text-[1.3rem] leading-[1.375rem] text-richblack-5">
-          EMAIL : <span>{user.email}</span>
+          EMAIL : <span>{user?.email}</span>
         </p>
         <p className="mb-1 text-[1.3rem] leading-[1.375rem] text-richblack-5">
-          PHONE : <span>{user.additionalDetails.contactNumber}</span>
+          PHONE : <span>{user?.additionalDetails?.contactNumber}</span>
         </p>
         <p className="mb-1 text-[1.3rem] leading-[1.375rem] text-richblack-5">
-          ADDRESS : <span>{user.additionalDetails.address}</span>
+          ADDRESS : <span>{user?.additionalDetails?.address}</span>
         </p>
         
       </div>

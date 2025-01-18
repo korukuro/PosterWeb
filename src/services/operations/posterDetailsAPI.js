@@ -79,6 +79,7 @@ export const getOrderHistory = async (token) => {
         }
 
         result = response.data;
+        console.log("API result:", result);
     } catch (error) {
         console.error("GET_ORDER_HISTORY API ERROR:", error);
         toast.error(error.message || "Something went wrong");
