@@ -70,7 +70,7 @@ const CheckOut = () => {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row w-full h-auto lg:min-h-screen bg-gray-50">
+    <div className="flex flex-col lg:flex-row w-full h-[42.5rem] bg-gray-50">
       {/* Delivery Details Section */}
       <div className="lg:w-1/2 w-full border-b-2 lg:border-r-2 lg:border-b-0 border-gray-200 p-4">
         {!showDeliveryForm ? (
@@ -129,7 +129,7 @@ const CheckOut = () => {
         <h2 className="text-2xl font-semibold text-gray-800 mb-6">Order Summary</h2>
         <div className="space-y-6">
           {/* Cart Items */}
-          <div className="h-[15rem] lg:h-[20rem] overflow-y-auto scrollbar-thin scrollbar-track-gray-200 scrollbar-thumb-gray-400">
+          <div className="h-[15rem] pr-2 lg:h-[20rem] overflow-y-auto scrollbar-thin scrollbar-track-gray-200 scrollbar-thumb-gray-400 overflow-x-hidden">
             {cart.map((item, index) => (
               <CheckOutItem key={item._id} item={item} itemIndex={index} />
             ))}
