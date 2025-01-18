@@ -36,7 +36,7 @@ const OrderHistory = () => {
   }, [token]); // Re-run if token changes
 
   return (
-    <div>
+    <div className="p-1 border-2 border-black overflow-hidden w-full">
       <h2>Order History</h2>
       {/* Display loader */}
       {loading ? (
@@ -48,38 +48,74 @@ const OrderHistory = () => {
         <p>{error}</p>
       ) : orders.length === 0 ? (
         // Handle no orders case
-        <p>No orders found. (If there are orders and not visible then try login again)</p>
+        <p>
+          No orders found. (If there are orders and not visible then try login
+          again)
+        </p>
       ) : (
         // Display order list
-        <ul>
-          {orders.map((order, index) => (
-            <li key={index}>
-              <h3>{order.poster?.posterName || "Poster Title Unavailable"}</h3>
-              {order.poster?.image ? (
-                <img
-                  src={order.poster?.image}
-                  alt={order.poster?.posterName}
-                  width={100}
-                />
-              ) : (
-                <p>Image unavailable</p>
-              )}
-              <p>Price: ₹{order.poster?.price || "N/A"}</p>
-              <p>Quantity: {order?.quantity || 0}</p>
-              <p>
-                Total: ₹
-                {order?.totalPrice || "N/A"}
-              </p>
-              <p>
-                Purchased On:{" "}
-                {order?.purchasedOn
-                  ? new Date(order?.purchasedOn).toLocaleString()
-                  : "Date Unavailable"}
-              </p>
-              <p>Status: {order?.delivered ? "Delivered" : "Pending"}</p>
-            </li>
-          ))}
-        </ul>
+        <>
+          <div className="w-full border-b border-black h-20 flex justify-between items-center">
+            <div className="flex gap-24">
+              <h1>Order Number</h1>
+              <h1>
+                {" "}
+                Purchased On
+                {/* Purchased On:{
+              {orders.map((order, index) => (
+                <span key={index}>
+                  {order?.purchasedOn
+                    ? new Date(order?.purchasedOn).toLocaleString()
+                    : "Date Unavailable"}
+                  {index < orders.length - 1 && ", "}
+                </span>
+              ))} */}
+              </h1>
+              <h1>Date placed</h1>
+              <h1>Total Amount</h1>
+            </div>
+
+            <div className="flex gap-3">
+              <button className="border border-black rounded-lg h-10 px-2 flex items-center justify-center">
+                View Order
+              </button>
+              <button className="border border-black rounded-lg h-10 px-2 flex items-center justify-center">
+                View Order
+              </button>
+            </div>
+          </div>
+          <ul>
+            {orders.map((order, index) => (
+              <li key={index} className="border-b border-black p-2">
+                
+                <div className="flex gap-10">
+                {order.poster?.image ? (
+                  <img
+                    src={order.poster?.image}
+                    alt={order.poster?.posterName}
+                    width={100}
+                  />
+                ) : (
+                  <p>Image unavailable</p>
+                )}
+                <h3>
+                  {order.poster?.posterName || "Poster Title Unavailable"}
+                </h3>
+                </div>
+                <p>Price: ₹{order.poster?.price || "N/A"}</p>
+                <p>Quantity: {order?.quantity || 0}</p>
+                <p>Total: ₹{order?.totalPrice || "N/A"}</p>
+                <p>
+                  Purchased On:{" "}
+                  {order?.purchasedOn
+                    ? new Date(order?.purchasedOn).toLocaleString()
+                    : "Date Unavailable"}
+                </p>
+                <p>Status: {order?.delivered ? "Delivered" : "Pending"}</p>
+              </li>
+            ))}
+          </ul>
+        </>
       )}
     </div>
   );
