@@ -15,6 +15,8 @@ import { SidebarDemo } from "./Pages/Dashboard";
 import { Error } from "./Pages/Error";
 import ForgotPassword from "./Pages/ForgotPassword";
 import UpdatePassword from "./Pages/UpdatePassword";
+import Categories from "./Pages/Categories";
+
 
 // auth
 import OpenRoute from "./components/core/auth/OpenRoute";
@@ -53,6 +55,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/categories" element={<Categories />} />
         <Route path="/poster/:id" element={<PosterDetails />} />
 
         {/* Open Route - for Only Non Logged in User */}

@@ -5,7 +5,8 @@ const {
     POSTER_DETAILS_API,
     GET_ALL_POSTER_API,
     GET_MULTIPLE_POSTER_API,
-    GET_ORDER_HISTORY
+    GET_ORDER_HISTORY,
+    GET_ALL_CATEGORIES_API,
 } = posterEndpoints;
 
 export const getAllPoster = async () =>{
@@ -83,6 +84,26 @@ export const getOrderHistory = async (token) => {
     } catch (error) {
         console.error("GET_ORDER_HISTORY API ERROR:", error);
         toast.error(error.message || "Something went wrong");
+    } finally {
+        toast.dismiss(toastId);
+    }
+    return result;
+};
+
+// get all categories
+export const getAllCategories = async () => {
+    const toastId = toast.loading("Loading");
+    let result = [];
+    try {
+        const response = await apiConnector("GET", GET_ALL_CATEGORIES_API);
+        // console.log("API response:", response);
+        if (!response?.data?.success) {
+            throw new Error("Could not fetch categories");
+        }
+        result = response?.data;
+    } catch (error) {
+        console.error("GET_ALL_CATEGORIES_API API ERROR: ", error);
+        toast.error(error.message);
     } finally {
         toast.dismiss(toastId);
     }

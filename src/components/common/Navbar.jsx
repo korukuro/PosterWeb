@@ -34,6 +34,9 @@ const Navbar = () => {
           <img src={loupe} alt="Search Icon" className="h-7 absolute top-1 right-3" />
         </div>
 
+        {/* Categories */}
+        <Link to="/categories">Categories</Link>
+
         {/* Cart Icon */}
         <Link to="/cart">
           <div className="relative">

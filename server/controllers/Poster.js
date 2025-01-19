@@ -8,6 +8,7 @@ exports.createPoster = async (req, res) => {
   try {
     // Get user ID from request object
     const userId = req.user.id
+    console.log("User ID:", userId)
 
     // Get all required fields from request body
     let {
@@ -74,10 +75,8 @@ exports.createPoster = async (req, res) => {
     })
 
     // Add the new poster to the User Schema of the admin
-    await User.findByIdAndUpdate(
-      {
-        _id: adminDetails._id,
-      },
+    const userPosterDetails = await User.findByIdAndUpdate(
+      adminDetails._id,
       {
         $push: {
           posters: newPoster._id,
@@ -90,7 +89,7 @@ exports.createPoster = async (req, res) => {
       { _id: category },
       {
         $push: {
-          courses: newPoster._id,
+          poster: newPoster._id,
         },
       },
       { new: true }
@@ -272,7 +271,7 @@ exports.getPosterDetails = async (req, res) => {
 // Delete the Poster
 exports.deletePoster = async (req, res) => {
   try {
-    const { posterId } = req.body
+    const { posterId, userId } = req.body
 
     // Find the poster
     const poster = await Poster.findById(posterId)
@@ -282,6 +281,10 @@ exports.deletePoster = async (req, res) => {
 
     // Delete the poster
     await Poster.findByIdAndDelete(posterId)
+
+    await User.findByIdAndDelete(userId, {
+      $pull: { posters: posterId }, 
+    });
 
     return res.status(200).json({
       success: true,

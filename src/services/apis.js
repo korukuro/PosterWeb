@@ -28,6 +28,7 @@ export const posterEndpoints = {
   POSTER_DETAILS_API: BASE_URL + "/poster/getPosterDetails",
   GET_MULTIPLE_POSTER_API: BASE_URL + "/poster/getMultiplePosterDetails",
   GET_ORDER_HISTORY: BASE_URL + "/poster/getOrderHistory",
+  GET_ALL_CATEGORIES_API: BASE_URL + "/poster/showAllCategories",
 }
 
 // PAYMENTS ENDPOINTS

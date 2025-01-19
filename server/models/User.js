@@ -22,7 +22,12 @@ const userSchema = new mongoose.Schema(
       trim: true,
       unique: true, // Ensure email is unique
     },
-    googleId: { type: String, unique: true },
+    posters: [
+        {
+          type: mongoose.Schema.Types.ObjectId, // Reference to the Poster model
+          ref: "Poster",
+        },
+      ],
     
     // Make password optional for Google login
     password: {
