@@ -1,4 +1,4 @@
-import Image from "next/image";
+// import Image from "next/image";
 import React, { useState } from "react";
 import { cn } from "../../utils/cd";
 
@@ -16,8 +16,9 @@ export const Card = React.memo(({
       "rounded-lg relative bg-gray-100 dark:bg-neutral-900 overflow-hidden h-60 md:h-96 w-full transition-all duration-300 ease-out",
       hovered !== null && hovered !== index && "blur-sm scale-[0.98]"
     )}>
-    <Image
-      src={card.src}
+      {console.log("card: ", card)}
+    <img
+      src={card?.image?.props?.src}
       alt={card.title}
       fill
       className="object-cover absolute inset-0" />
