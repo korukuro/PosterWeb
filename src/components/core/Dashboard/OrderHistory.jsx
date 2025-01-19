@@ -40,7 +40,8 @@ const OrderHistory = () => {
         };
       }
       acc[orderId].orders.push(order);
-      acc[orderId].totalPrice += (order.poster?.price || 0) * (order.quantity || 0);
+      acc[orderId].totalPrice +=
+        (order.poster?.price || 0) * (order.quantity || 0);
       return acc;
     }, {});
 
@@ -60,7 +61,7 @@ const OrderHistory = () => {
 
   return (
     <div className="p-1 overflow-hidden w-full">
-      <h2>Order History</h2>
+      <h2>Kuch aur nikhala hoga</h2>
       {loading ? (
         <div className="flex justify-center items-center">
           <Spinner />
@@ -68,30 +69,36 @@ const OrderHistory = () => {
       ) : error ? (
         <p>{error}</p>
       ) : groupedOrders.length === 0 ? (
-        <p>No orders found. (If there are orders and not visible then try login again)</p>
+        <p>
+          No orders found. (If there are orders and not visible then try login
+          again)
+        </p>
       ) : (
         <div>
           {groupedOrders.map((group) => (
-            <div key={group.orderId} className="mb-6 border-2 border-black p-4">
-              <div className="flex gap-4">
-                <div>
-                  <h3>Order ID</h3>
-                  <p className="text-lg font-semibold">{group.orderId}</p>
+            <div
+              key={group.orderId}
+              className="mb-6 border border-black rounded-lg "
+            >
+              <div className="flex gap-24 border-b border-black justify-between pl-2 pr-2 ">
+                <div className="flex gap-3 items-center">
+                  <h3 className="font-normal text-lg">Order ID :</h3>
+                  <p>{group.orderId}</p>
                 </div>
-                <div>
-                  <h3>Date Placed</h3>
-                  <p className="text-lg font-semibold">
-                    {new Date(group.purchaseDate).toLocaleDateString()}
-                  </p>
-                </div>
-                <div>
-                  <h3>Total Amount</h3>
-                  <p className="font-bold"> ₹{group.totalPrice}</p>
+                <div className="flex gap-10">
+                  <div className="flex flex-col items-center justify-center">
+                    <h3 className="font-normal text-lg">Date Placed</h3>
+                    <p>{new Date(group.purchaseDate).toLocaleDateString()}</p>
+                  </div>
+                  <div className="flex flex-col items-center justify-center">
+                    <h3 className="font-normal text-lg">Total Amount</h3>
+                    <p className=""> ₹{group.totalPrice}</p>
+                  </div>
                 </div>
               </div>
               <ul>
                 {group.orders.map((order, idx) => (
-                  <li key={idx} className="border-b border-black p-2">
+                  <li key={idx} className="p-2">
                     <div className="flex gap-10">
                       {order.poster?.image ? (
                         <img
@@ -102,10 +109,12 @@ const OrderHistory = () => {
                       ) : (
                         <p>Image unavailable</p>
                       )}
-                      <h3>{order.poster?.posterName || "Poster Title Unavailable"}</h3>
+                      <h3 className="text-lg">
+                        {order.poster?.posterName || "Poster Title Unavailable"}
+                      </h3>
+                      <p>Price: ₹{order.poster?.price || "N/A"}</p>
+                      <p>Quantity: {order?.quantity || 0}</p>
                     </div>
-                    <p>Price: ₹{order.poster?.price || "N/A"}</p>
-                    <p>Quantity: {order?.quantity || 0}</p>
                     <p>{order?.delivered ? "Delivered" : "Delivery Pending"}</p>
                   </li>
                 ))}
