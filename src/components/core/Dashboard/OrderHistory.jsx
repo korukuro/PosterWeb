@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getOrderHistory } from "../../../services/operations/posterDetailsAPI";
 import { useSelector } from "react-redux";
 import Spinner from "../../Spinner";
+import { FocusCards } from "../../ui/Focus-card";
 
 const OrderHistory = () => {
   const [orders, setOrders] = useState([]);
@@ -97,10 +98,10 @@ const OrderHistory = () => {
                 </div>
               </div>
               <ul>
-                {group.orders.map((order, idx) => (
-                  <li key={idx} className="p-2">
-                    <div className="flex gap-10">
-                      {order.poster?.image ? (
+              {group.orders.map((order, idx) => {
+                  const cards = [
+                    {
+                      image: order.poster?.image ? (
                         <img
                           src={order.poster?.image}
                           alt={order.poster?.posterName}
@@ -108,16 +109,23 @@ const OrderHistory = () => {
                         />
                       ) : (
                         <p>Image unavailable</p>
-                      )}
-                      <h3 className="text-lg">
-                        {order.poster?.posterName || "Poster Title Unavailable"}
-                      </h3>
-                      <p>Price: ₹{order.poster?.price || "N/A"}</p>
-                      <p>Quantity: {order?.quantity || 0}</p>
-                    </div>
-                    <p>{order?.delivered ? "Delivered" : "Delivery Pending"}</p>
-                  </li>
-                ))}
+                      ),
+                      title:
+                        order.poster?.posterName || "Poster Title Unavailable",
+                      price: `Price: ₹${order.poster?.price || "N/A"}`,
+                      quantity: `Quantity: ${order?.quantity || 0}`,
+                    },
+                  ];
+
+                  return (
+                    <li key={idx} className="p-2">
+                      <FocusCards cards={cards} />
+                      <p>
+                        {order?.delivered ? "Delivered" : "Delivery Pending"}
+                      </p>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           ))}
