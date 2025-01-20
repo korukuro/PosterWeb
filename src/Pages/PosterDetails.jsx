@@ -54,6 +54,9 @@ const PosterDetails = () => {
   const changeImage = (newImage) => {
     setCurrentImage(newImage);
   };
+  const prevImage = (prevImage) => {
+    setCurrentImage(prevImage);
+  };
 
   return (
     <div className="flex justify-evenly w-full mx-auto overflow-x-hidden mt-16 overflow-y-hidden">
@@ -78,7 +81,7 @@ const PosterDetails = () => {
 
               </button>
               <button
-                onClick={() => changeImage("previous-image-url.jpg")} // Change the image URL here
+                onClick={() => changeImage(currentImage || posts?.image)} // Change the image URL here
                 className="mt-4 px-4 py-2 rounded-full h-7 absolute text-white bg-black"
               >
                 <SlArrowLeft />
