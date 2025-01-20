@@ -1,6 +1,29 @@
 import React, { useState } from "react";
 import { cn } from "../../utils/cd";
 
+import CarsImage from '../../additionalFile/category-image/Cars.jpeg';
+import AnimeImage from '../../additionalFile/category-image/Anime.jpeg';
+import ComicImage from '../../additionalFile/category-image/Comic.jpeg';
+import GameImage from '../../additionalFile/category-image/Game.jpeg';
+import MovieImage from '../../additionalFile/category-image/Movie.jpeg';
+import MusicImage from '../../additionalFile/category-image/Music.jpeg';
+import QuotesImage from '../../additionalFile/category-image/Quotes.jpeg';
+import SceneryImage from '../../additionalFile/category-image/Scenery.jpeg';
+import SeriesImage from '../../additionalFile/category-image/Series.jpeg';
+import SportsImage from '../../additionalFile/category-image/Sports.jpeg';
+
+const imageMap = {
+    "Cars": CarsImage,
+    "Anime": AnimeImage,
+    "Comics": ComicImage,
+    "Game": GameImage,
+    "Movie": MovieImage,
+    "Music": MusicImage,
+    "Quotes": QuotesImage,
+    "Scenery": SceneryImage,
+    "Series": SeriesImage,
+    "Sports": SportsImage,
+};
 
 export const Card = React.memo(({
   card,
@@ -8,6 +31,7 @@ export const Card = React.memo(({
   hovered,
   setHovered
 }) => (
+
   <div
     onMouseEnter={() => setHovered(index)}
     onMouseLeave={() => setHovered(null)}
@@ -16,7 +40,7 @@ export const Card = React.memo(({
       hovered !== null && hovered !== index && "blur-sm scale-[0.98]"
     )}>
     <img
-      src={card?.image?.props?.src}
+      src={imageMap[card.title]}
       alt={card.title}
       fill
       className="object-cover absolute inset-0" />
@@ -40,7 +64,6 @@ export function FocusCards({
   cards
 }) {
   const [hovered, setHovered] = useState(null);
-
   return (
     (<div
       className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-5xl mx-auto md:px-8 w-full">
