@@ -81,7 +81,7 @@ export function SidebarDemo() {
       </Sidebar>
 
       {/* Main Content */}
-      <div className="flex-1 w-full h-full overflow-auto">
+      <div className="flex-1 w-full h-full overflow-auto scrollbar-hide">
         <Dashboard />
       </div>
     </div>
