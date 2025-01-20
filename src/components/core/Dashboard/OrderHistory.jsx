@@ -136,16 +136,19 @@ const OrderHistory = () => {
                       ) : (
                         <p>Image unavailable</p>
                       )}
-                      {group.orders.length > 1 && (
-                        <div className="absolute top-36 right-5 rounded-full w-8 p-1 bg-white text-black dark:bg-gray-700 dark:text-white">
-                          +{group.orders.length - 1}
-                        </div>
-                      )}
+                      {/* Badge for additional orders */}
+                      {group.orders.length > 1 &&
+                        !openStates[group.orderId] && (
+                          <div className="absolute top-36 right-5 rounded-full w-8 p-1 bg-white text-black dark:bg-gray-700 dark:text-white">
+                            +{group.orders.length - 1}
+                          </div>
+                        )}
                     </div>
                   </li>
                 ))}
               </ul>
 
+              {/* Dropdown Button */}
               {group.orders.length > 1 && (
                 <div
                   onClick={() => handleToggle(group.orderId)}
