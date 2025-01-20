@@ -30,7 +30,7 @@ const Home = () => {
 
   return (
     <>
-      <div className="relative h-[91.2vh] overflow-hidden mt-16">
+      <div className="relative h-[91.2vh] overflow-hidden mt-16 overflow-hidden">
         {/* Background Image */}
         <img
           src={brickWall}

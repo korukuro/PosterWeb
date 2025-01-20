@@ -70,7 +70,7 @@ const CheckOut = () => {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row w-full h-[42.5rem] bg-gray-50">
+    <div className="flex flex-col lg:flex-row w-full h-[42.5rem] bg-gray-50 mt-16 overflow-hidden">
       {/* Delivery Details Section */}
       <div className="lg:w-1/2 w-full border-b-2 lg:border-r-2 lg:border-b-0 border-gray-200 p-4">
         {!showDeliveryForm ? (

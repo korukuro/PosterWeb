@@ -46,7 +46,7 @@ const PosterDetails = () => {
   const sizes = ["A4", "A3", "12x18", "13x19"];
 
   return (
-    <div className="flex justify-evenly w-full h-[91.2vh] mx-auto overflow-x-hidden">
+    <div className="flex justify-evenly w-full h-[91.2vh] mx-auto overflow-x-hidden mt-16 overflow-y-hidden">
       {loading ? (
         <div className="flex justify-center items-center h-full w-full">
           <Spinner />
