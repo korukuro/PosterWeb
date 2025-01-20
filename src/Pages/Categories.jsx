@@ -1,11 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { getAllCategories } from '../services/operations/posterDetailsAPI';
-import CategoryCard from '../components/core/Categories/CategoryCard';
 import { FocusCards } from "../components/ui/Focus-card";
 
 const Categories = () => {
     const [categories, setCategories] = useState([]);
     const [cards, setCards] = useState([]);
+
+    // Image map for categories
+    const imageMap = {
+        "Cars": require('../additionalFile/category-image/Cars.jpeg'),
+        "Anime": require('../additionalFile/category-image/Anime.jpeg'),
+        "Comics": require('../additionalFile/category-image/Comic.jpeg'),
+        "Game": require('../additionalFile/category-image/Game.jpeg'),
+        "Movie": require('../additionalFile/category-image/Movie.jpeg'),
+        "Music": require('../additionalFile/category-image/Music.jpeg'),
+        "Quotes": require('../additionalFile/category-image/Quotes.jpeg'),
+        "Scenery": require('../additionalFile/category-image/Scenery.jpeg'),
+        "Series": require('../additionalFile/category-image/Series.jpeg'),
+        "Sports": require('../additionalFile/category-image/Sports.jpeg'),
+    };
 
     useEffect(() => {
         const fetchCategories = async () => {
@@ -13,10 +26,10 @@ const Categories = () => {
                 const res = await getAllCategories();
                 setCategories(res.data);
 
-                // Dynamically create cards based on categories
+                // Generate cards with dynamic images
                 const generatedCards = res.data.map((category) => ({
                     title: category.name,
-                    src: "https://via.placeholder.com/300", // Replace with actual image URLs if available
+                    src: imageMap[category.name], 
                 }));
                 setCards(generatedCards);
             } catch (error) {
@@ -28,9 +41,7 @@ const Categories = () => {
 
     return (
         <div className='mt-16'>
-            
             <FocusCards cards={cards} />
-            
         </div>
     );
 };
