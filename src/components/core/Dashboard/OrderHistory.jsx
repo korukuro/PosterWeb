@@ -132,10 +132,11 @@ const OrderHistory = () => {
                           alt={order.poster?.posterName}
                           width={120}
                           className="rounded-lg"
-                        />
-                      ) : (
-                        <p>Image unavailable</p>
-                      )}
+                          />
+                        ) : (
+                          <p>Image unavailable</p>
+                        )}
+                        <div className=" absolute top-36 right-5 rounded-full w-8 p-1 bg-white text-black dark:bg-gray-700 dark:text-white">+{group.orders.length-1}</div>
                     </div>
                   </li>
                 ))}
