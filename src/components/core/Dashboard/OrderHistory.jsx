@@ -125,7 +125,7 @@ const OrderHistory = () => {
                         <p>
                           {order?.delivered ? "Delivered" : "Delivery On Way"}
                         </p>
-                        <button className="rounded-r-full rounded-l-full bg-black text-white">Rate</button>
+                        <button className="rounded-r-full rounded-l-full bg-black text-white w-28">Rate</button>
                       </div>
                       {order.poster?.image ? (
                         <img
