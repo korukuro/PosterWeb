@@ -2,13 +2,19 @@ import React, { useEffect, useState } from "react";
 import { getOrderHistory } from "../../../services/operations/posterDetailsAPI";
 import { useSelector } from "react-redux";
 import Spinner from "../../Spinner";
-import { FocusCards } from "../../ui/Focus-card";
+import { SlArrowDown } from "react-icons/sl";
+import { SlArrowUp } from "react-icons/sl";
 
 const OrderHistory = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { token } = useSelector((state) => state.auth);
+  const [isOpen, setIsOpen] = useState(false);
+  const handleToggle = () => {
+    //handle toggle function works to toggle the order history
+    setIsOpen((prevState) => !prevState);
+  };
 
   const fetchOrders = async (token) => {
     try {
@@ -62,7 +68,7 @@ const OrderHistory = () => {
 
   return (
     <div className="p-1 overflow-hidden w-full">
-      <h2>Kuch aur nikhala hoga</h2>
+      <h2>Order History</h2>
       {loading ? (
         <div className="flex justify-center items-center">
           <Spinner />
@@ -71,63 +77,78 @@ const OrderHistory = () => {
         <p>{error}</p>
       ) : groupedOrders.length === 0 ? (
         <p>
-          No orders found. (If there are orders and not visible then try login
-          again)
+          No orders found. (If there are orders and not visible then try logging
+          in again.)
         </p>
       ) : (
-        <div>
+        <div className="flex flex-col justify-center items-center ">
           {groupedOrders.map((group) => (
-            <div
-              key={group.orderId}
-              className="mb-6 border border-black rounded-lg "
-            >
-              <div className="flex gap-24 border-b border-black justify-between pl-2 pr-2 ">
-                <div className="flex gap-3 items-center">
-                  <h3 className="font-normal text-lg">Order ID :</h3>
-                  <p>{group.orderId}</p>
-                </div>
-                <div className="flex gap-10">
-                  <div className="flex flex-col items-center justify-center">
-                    <h3 className="font-normal text-lg">Date Placed</h3>
-                    <p>{new Date(group.purchaseDate).toLocaleDateString()}</p>
-                  </div>
-                  <div className="flex flex-col items-center justify-center">
-                    <h3 className="font-normal text-lg">Total Amount</h3>
-                    <p className=""> ₹{group.totalPrice}</p>
-                  </div>
-                </div>
-              </div>
-              <ul>
-              {group.orders.map((order, idx) => {
-                  const cards = [
-                    {
-                      image: order.poster?.image ? (
-                        <img
-                          src={order.poster?.image}
-                          alt={order.poster?.posterName}
-                          width={180}
-                        />
-                      ) : (
-                        <p>Image unavailable</p>
-                      ),
-                      title:
-                        order.poster?.posterName || "Poster Title Unavailable",
-                      price: `Price: ₹${order.poster?.price || "N/A"}`,
-                      quantity: `Quantity: ${order?.quantity || 0}`,
-                    },
-                  ];
-
-                  return (
-                    <li key={idx} className="p-2">
-                      <FocusCards cards={cards} />
-                      <p>
-                        {order?.delivered ? "Delivered" : "Delivery Pending"}
-                      </p>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
+           <div
+           key={group.orderId}
+           className={`mb-6 border border-black rounded-lg w-[50%] overflow-clip transition-all duration-300 ${
+             isOpen ? "h-auto" : "h-[39.5rem]"
+           }`}
+         >
+           <div className="flex gap-24 border-b border-black justify-between pl-2 pr-2">
+             <div className="flex gap-3 items-center">
+               <h3 className="font-normal text-lg">Order ID:</h3>
+               <p>{group.orderId}</p>
+             </div>
+             <div className="flex gap-10">
+               <div className="flex flex-col items-center justify-center">
+                 <h3 className="font-normal text-lg">Date Placed</h3>
+                 <p>{new Date(group.purchaseDate).toLocaleDateString()}</p>
+               </div>
+               <div className="flex flex-col items-center justify-center">
+                 <h3 className="font-normal text-lg">Total Amount</h3>
+                 <p>₹{group.totalPrice}</p>
+               </div>
+             </div>
+           </div>
+           <ul className="relative">
+             {group.orders.map((order, idx) => (
+               <li key={idx} className="p-2">
+                 <div className="flex gap-10">
+                   {order.poster?.image ? (
+                     <img
+                       src={order.poster?.image}
+                       alt={order.poster?.posterName}
+                       width={180}
+                     />
+                   ) : (
+                     <p>Image unavailable</p>
+                   )}
+                   <div>
+                     <h3 className="text-lg">
+                       {order.poster?.posterName || "Poster Title Unavailable"}
+                     </h3>
+                     <p>Price: ₹{order.poster?.price || "N/A"}</p>
+                     <p>Quantity: {order?.quantity || 0}</p>
+                     <p>{order?.delivered ? "Delivered" : "Delivery Pending"}</p>
+                   </div>
+                 </div>
+               </li>
+             ))}
+             {group.orders.length > 2 && (
+               <div
+                 onClick={handleToggle}
+                 className="cursor-pointer flex items-center justify-center absolute top-[35rem] left-1/2"
+               >
+                 {!isOpen ? (
+                   <div className="flex items-center justify-center">
+                     <SlArrowDown />
+                   </div>
+                 ) : (
+                   <div className="flex items-center justify-center">
+                     <SlArrowUp />
+                   </div>
+                 )}
+               </div>
+             )}
+           </ul>
+           {/* Dropdown Button */}
+         </div>
+         
           ))}
         </div>
       )}
