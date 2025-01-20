@@ -123,8 +123,9 @@ const OrderHistory = () => {
                         </p>
                         <p>Quantity: {order?.quantity || 0}</p>
                         <p>
-                          {order?.delivered ? "Delivered" : "Delivery Pending"}
+                          {order?.delivered ? "Delivered" : "Delivery On Way"}
                         </p>
+                        
                       </div>
                       {order.poster?.image ? (
                         <img
