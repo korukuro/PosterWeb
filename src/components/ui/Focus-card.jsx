@@ -15,7 +15,6 @@ export const Card = React.memo(({
       "rounded-lg relative bg-gray-100 dark:bg-neutral-900 overflow-hidden h-60 md:h-96 w-full transition-all duration-300 ease-out",
       hovered !== null && hovered !== index && "blur-sm scale-[0.98]"
     )}>
-      {console.log("card: ", card)}
     <img
       src={card?.image?.props?.src}
       alt={card.title}
@@ -27,8 +26,9 @@ export const Card = React.memo(({
         hovered === index ? "opacity-100" : "opacity-0"
       )}>
       <div
-        className="text-xl md:text-2xl font-medium bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-200">
+        className="text-xl flex flex-col md:text-2xl font-medium bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-200">
         {card.title}
+        <button className="bg-red-600 text-white rounded-lg">Rate</button>
       </div>
     </div>
   </div>

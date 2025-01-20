@@ -23,11 +23,10 @@ const {
 } = require("../controllers/Category")
 
 // // Rating Controllers Import
-// const {
-//   createRating,
-//   getAverageRating,
-//   getAllRatingReview,
-// } = require("../controllers/Rating")
+const {
+  createRating,
+  getAverageRating,
+} = require("../controllers/Rating")
 
 // Importing Middlewares
 const {verifyToken, isAdmin} = require("../middleware/auth")
@@ -67,7 +66,7 @@ router.post("/getCategoryPageDetails", categoryPageDetails)
 // ********************************************************************************************************
 //                                      Rating and Review
 // ********************************************************************************************************
-// router.post("/createRating", auth, createRating) 
-// router.get("/getAverageRating", getAverageRating)
+router.post("/createRating", verifyToken, createRating) 
+router.post("/getAverageRating", getAverageRating)
 
 module.exports = router

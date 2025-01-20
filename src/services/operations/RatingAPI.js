@@ -1,0 +1,49 @@
+import { apiConnector } from "../../services/apiConnector";
+import { posterEndpoints } from "../apis";
+import { toast } from "react-hot-toast";
+const { GET_AVERAGE_RATING_API,CREATE_POSTER_RATING_API } = posterEndpoints;
+
+export async function getAvgRating(posterId,token) {
+    try {
+        const response = await apiConnector(
+            "POST",
+            GET_AVERAGE_RATING_API,
+            { posterId },
+            {
+                Authorization: `Bearer ${token}`,
+            }
+        );
+
+        console.log("GET AVG RATING API RESPONSE:", response);
+
+        if (!response.data?.success) {
+            throw new Error(response.data?.message || "Failed to fetch rating");
+        }
+
+        return response.data.averageRating;  // Return the rating directly
+    } catch (error) {
+        console.error("GET AVG RATING API ERROR:", error);
+        return null; // Return null or some fallback value
+    }
+}
+
+export const createRating = async (data, token) => {
+    let result = null
+    const toastId = toast.loading("Loading...")
+    try {
+      const response = await apiConnector("POST", CREATE_POSTER_RATING_API, data, {
+        Authorization: `Bearer ${token}`,
+      })
+      console.log("CREATE_RATING_API API RESPONSE............", response)
+      if (!response?.data?.success) {
+        throw new Error("Could Not Add Rating")
+      }
+      toast.success("Rating Added")
+      result = response?.data?.data
+    } catch (error) {
+      console.log("CREATE_RATING_API API ERROR............", error)
+      toast.error(error.message)
+    }
+    toast.dismiss(toastId)
+    return result
+  }

@@ -6,9 +6,11 @@ import Spinner from "../components/Spinner";
 import { addWithQuantity } from "../slices/cartSlice";
 import { useDispatch } from "react-redux";
 import { toast } from "react-hot-toast";
+import RatingStars from "../components/common/RatingStars";
 
 const PosterDetails = () => {
   const [posts, setPosts] = useState({});
+  console.log(posts)
   const [loading, setLoading] = useState(false);
   const posterId = useLocation().pathname.split("/")[2];
   const [quantity, setQuantity] = useState(1);
@@ -60,7 +62,7 @@ const PosterDetails = () => {
           <div className="flex flex-col w-[55%] gap-5 p-16">
             <div className="flex items-center justify-between w-[30rem]">
               <h1 className="font-bold text-2xl">{posts?.posterName}</h1>
-              <div className="w-10 text-2xl">*****</div>
+              <RatingStars Star_Size={30}/>
             </div>
             <span>{`Price: ₹${posts?.price}`}</span>
             <div className="space-x-4">

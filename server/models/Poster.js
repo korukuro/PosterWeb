@@ -32,6 +32,10 @@ const posterSchema = new mongoose.Schema({
     type: [mongoose.Schema.Types.ObjectId],
     ref: "user",
   },
+  rating:{
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: "Rating",
+  }
 });
 
 module.exports = mongoose.model('Poster', posterSchema);

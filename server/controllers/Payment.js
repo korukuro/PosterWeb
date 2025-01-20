@@ -58,7 +58,6 @@ exports.capturePayment = async (req, res) => {
 };
 
 // Verify Payment
-// Verify Payment
 exports.verifyPayment = async (req, res) => {
   try {
     const { razorpay_order_id, razorpay_payment_id, razorpay_signature, posterDetails, deliveryId } = req.body;
@@ -125,7 +124,6 @@ exports.sendPaymentSuccessEmail = async (req, res) => {
 };
 
 // Helper: Mark Posters as Purchased by User
-// Helper: Mark Posters as Purchased by User
 const posterBoughtByUser = async (posterDetails, userId, deliveryId, razorpay_order_id) => {
   const errors = [];
   const successfulUpdates = [];
@@ -150,7 +148,16 @@ const posterBoughtByUser = async (posterDetails, userId, deliveryId, razorpay_or
         { new: true }
       );
 
-      successfulUpdates.push({ posterId, quantity, purchasedOn: purchaseTime, deliveryId, orderId: razorpay_order_id });
+      await Poster.findByIdAndUpdate(
+        posterId,
+        {
+          $push: {
+            posterBoughtBy: userId,
+          },
+        }
+      )
+
+      successfulUpdates.push({ posterId, quantity, purchasedOn: purchaseTime, deliveryId, orderId: razorpay_order_id, userId });
     } catch (error) {
       errors.push({ posterId, error: error.message });
     }

@@ -7,17 +7,27 @@ const ratingSchema = new mongoose.Schema({
 		required: true,
 		ref: "user",
 	},
-	rating: {
-		type: Number,
-		required: true,
-	},
-	posterType: {
+	poster:{
 		type: mongoose.Schema.Types.ObjectId,
 		required: true,
 		ref: "Poster",
-		index: true, // Indexing for faster search
 	},
-});
+	rating: {
+		type: Number,
+		required: true,
+		min: 1,
+		max: 5,
+	},
+	averageRating: {
+		type: Number,
+		default: 0,
+	},
+
+},
+	{
+		timestamps: true, // Adds `createdAt` and `updatedAt` fields automatically
+	}
+);
 
 // Export the Rating model
 module.exports = mongoose.model("Rating", ratingSchema);

@@ -115,7 +115,7 @@ async function verifyPayment(paymentData, token, navigate, dispatch) {
       POSTER_VERIFY_API,
       {
         ...paymentData,
-        orderId: paymentData.razorpay_order_id, // Include the orderId
+        orderId: paymentData.razorpay_order_id,
       },
       { Authorization: `Bearer ${token}` }
     );
