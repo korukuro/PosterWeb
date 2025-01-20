@@ -24,7 +24,7 @@ const Categories = () => {
     }, []);
 
     return (
-        <div className='mt-16'>
+        <div className='mt-16 p-6'>
             <FocusCards cards={cards} />
             
         </div>
