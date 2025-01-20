@@ -118,14 +118,14 @@ const OrderHistory = () => {
                           {order.poster?.posterName ||
                             "Poster Title Unavailable"}
                         </h3>
-                        <p className="mt-4">
+                        <p>
                           Price: ₹{order.poster?.price || "N/A"}
                         </p>
                         <p>Quantity: {order?.quantity || 0}</p>
                         <p>
                           {order?.delivered ? "Delivered" : "Delivery On Way"}
                         </p>
-                        
+                        <button className="rounded-r-full rounded-l-full bg-black text-white">Rate</button>
                       </div>
                       {order.poster?.image ? (
                         <img
