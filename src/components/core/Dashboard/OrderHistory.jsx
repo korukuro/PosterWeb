@@ -126,14 +126,7 @@ const OrderHistory = () => {
                         <p>
                           {order?.delivered ? "Delivered" : "Delivery On Way"}
                         </p>
-                        <button
-                          className="rounded-full bg-black text-white px-4 py-2"
-                          onClick={() =>
-                            handleRatingClick(order)
-                          }
-                        >
-                          Rate
-                        </button>
+                        <button className="rounded-r-full rounded-l-full bg-black text-white">Rate</button>
                       </div>
                       {order.poster?.image ? (
                         <img

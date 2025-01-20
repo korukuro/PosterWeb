@@ -7,14 +7,18 @@ import { addWithQuantity } from "../slices/cartSlice";
 import { useDispatch } from "react-redux";
 import { toast } from "react-hot-toast";
 import RatingStars from "../components/common/RatingStars";
+import { SlArrowRight } from "react-icons/sl";
+import { SlArrowLeft } from "react-icons/sl";
+
+
 
 const PosterDetails = () => {
   const [posts, setPosts] = useState({});
-  console.log(posts)
   const [loading, setLoading] = useState(false);
   const posterId = useLocation().pathname.split("/")[2];
   const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState("");
+  const [currentImage, setCurrentImage] = useState(""); // State for current image
 
   const dispatch = useDispatch();
 
@@ -23,6 +27,7 @@ const PosterDetails = () => {
     try {
       const data = await getPosterDetails(posterId);
       setPosts(data.posterDetails || {});
+      setCurrentImage(data.posterDetails?.image); // Set the initial image
     } catch (error) {
       console.error("Failed to fetch poster data:", error);
       setPosts({});
@@ -45,6 +50,11 @@ const PosterDetails = () => {
 
   const sizes = ["A4", "A3", "12x18", "13x19"];
 
+  // Function to change the image (can be expanded to change based on different images)
+  const changeImage = (newImage) => {
+    setCurrentImage(newImage);
+  };
+
   return (
     <div className="flex justify-evenly w-full mx-auto overflow-x-hidden mt-16 overflow-y-hidden">
       {loading ? (
@@ -54,15 +64,34 @@ const PosterDetails = () => {
       ) : (
         <div className="flex gap-10 w-full">
           <div className="w-[45%] h-full m-7 flex justify-end">
-            <div className="w-[24rem] h-[35.1rem] mt-7 border-2">
-              <img src={posts?.image} alt="poster-image" className="w-full h-full object-cover" />
+            <div className="w-[24rem] h-[35.1rem] mt-7 border-2 flex items-center relative">
+              <img
+                src={currentImage || posts?.image} // Display the current image
+                alt="poster-image"
+                className="w-full h-full object-cover"
+              />
+              <button
+                onClick={() => changeImage("new-image-url.jpg")} // Change the image URL here
+                className="mt-4 px-4 py-2 rounded-full h-7 absolute right-0 text-white bg-black"
+              >
+                <SlArrowRight />
+
+              </button>
+              <button
+                onClick={() => changeImage("previous-image-url.jpg")} // Change the image URL here
+                className="mt-4 px-4 py-2 rounded-full h-7 absolute text-white bg-black"
+              >
+                <SlArrowLeft />
+
+              </button>
             </div>
+            {/* Button to change image */}
           </div>
 
           <div className="flex flex-col w-[55%] gap-5 p-16">
             <div className="flex items-center justify-between w-[30rem]">
               <h1 className="font-bold text-2xl">{posts?.posterName}</h1>
-              <RatingStars Star_Size={30}/>
+              <RatingStars Star_Size={30} />
             </div>
             <span>{`Price: ₹${posts?.price}`}</span>
             <div className="space-x-4">
