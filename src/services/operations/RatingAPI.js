@@ -28,22 +28,28 @@ export async function getAvgRating(posterId,token) {
 }
 
 export const createRating = async (data, token) => {
-    let result = null
-    const toastId = toast.loading("Loading...")
-    try {
-      const response = await apiConnector("POST", CREATE_POSTER_RATING_API, data, {
-        Authorization: `Bearer ${token}`,
-      })
-      console.log("CREATE_RATING_API API RESPONSE............", response)
-      if (!response?.data?.success) {
-        throw new Error("Could Not Add Rating")
-      }
-      toast.success("Rating Added")
-      result = response?.data?.data
-    } catch (error) {
-      console.log("CREATE_RATING_API API ERROR............", error)
-      toast.error(error.message)
+  let result = null;
+  const toastId = toast.loading("Loading...");
+  try {
+    const response = await apiConnector("POST", CREATE_POSTER_RATING_API, data, {
+      Authorization: `Bearer ${token}`,
+    });
+
+    console.log("CREATE_RATING_API API RESPONSE............", response);
+
+    toast.success("Rating Added");
+    result = response?.data?.data;
+  } catch (error) {
+    if(error.status === 403){
+      toast.error("Poster already reviewed by user");
     }
-    toast.dismiss(toastId)
-    return result
+    else{
+      console.log("CREATE_RATING_API API ERROR............", error);
+      toast.error(error.message || "Something went wrong while adding the rating");
+    }
+  } finally {
+    toast.dismiss(toastId);
   }
+  return result;
+};
+

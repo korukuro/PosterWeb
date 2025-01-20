@@ -10,7 +10,6 @@ import IconBtn from "../common/IconBtn"
 export default function PosterRatingModal({ setRatingModal,order }) {
   const { user } = useSelector((state) => state.profile)
   const { token } = useSelector((state) => state.auth)
-  
 
   const {
     handleSubmit,

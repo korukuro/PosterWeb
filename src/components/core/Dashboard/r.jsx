@@ -2,24 +2,30 @@ import React, { useEffect, useState } from "react";
 import { getOrderHistory } from "../../../services/operations/posterDetailsAPI";
 import { useSelector } from "react-redux";
 import Spinner from "../../Spinner";
-import { SlArrowDown, SlArrowUp } from "react-icons/sl";
-import PosterRatingModal from "../PosterRatingModal";
+import { SlArrowDown } from "react-icons/sl";
+import { SlArrowUp } from "react-icons/sl";
 
 const OrderHistory = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { token } = useSelector((state) => state.auth);
-  const [openStates, setOpenStates] = useState({});
-  const [ratingModal, setRatingModal] = useState(false);
-  const [selectedOrder, setSelectedOrder] = useState(null);
+  const [openStates, setOpenStates] = useState({}); // Object to track open states for each order group
 
+  const handleToggle = (orderId) => {
+    // Toggle the open state for the specific order group
+    setOpenStates((prevStates) => ({
+      ...prevStates,
+      [orderId]: !prevStates[orderId],
+    }));
+  };
 
-  // Fetch orders from API
-  const fetchOrders = async () => {
+  const fetchOrders = async (token) => {
     try {
       setLoading(true);
       const response = await getOrderHistory(token);
+      console.log("Order History Response: ", response);
+
       if (response?.orderHistory) {
         setOrders(response.orderHistory);
       } else {
@@ -27,19 +33,13 @@ const OrderHistory = () => {
       }
       setError(null);
     } catch (err) {
+      console.error("Error fetching order history:", err);
       setError("Failed to fetch order history. Please try again later.");
     } finally {
       setLoading(false);
     }
   };
 
-  useEffect(() => {
-    if (token) {
-      fetchOrders();
-    }
-  }, [token]);
-
-  // Group orders by orderId
   const groupOrdersByOrderId = (orders) => {
     const grouped = orders.reduce((acc, order) => {
       const { orderId } = order;
@@ -55,25 +55,18 @@ const OrderHistory = () => {
         (order.poster?.price || 0) * (order.quantity || 0);
       return acc;
     }, {});
+
     return Object.entries(grouped).map(([orderId, group]) => ({
       orderId,
       ...group,
     }));
   };
 
-  // Handle expanding/collapsing grouped orders
-  const handleToggle = (orderId) => {
-    setOpenStates((prevStates) => ({
-      ...prevStates,
-      [orderId]: !prevStates[orderId],
-    }));
-  };
-
-  // Open the rating modal
-  const handleRatingClick = (order) => {
-    setSelectedOrder(order); // Set the poster ID
-    setRatingModal(true); // Open the modal
-  };
+  useEffect(() => {
+    if (token) {
+      fetchOrders(token);
+    }
+  }, [token]);
 
   const groupedOrders = groupOrdersByOrderId(orders);
 
@@ -87,14 +80,18 @@ const OrderHistory = () => {
       ) : error ? (
         <p>{error}</p>
       ) : groupedOrders.length === 0 ? (
-        <p>No orders found. (Try logging in again if there are orders.)</p>
+        <p>
+          No orders found. (If there are orders and not visible then try logging
+          in again.)
+        </p>
       ) : (
         <div className="flex flex-col justify-center items-center ">
           {groupedOrders.map((group) => (
             <div
               key={group.orderId}
-              className={`mb-6 pb-5 border relative border-black border-dashed bg-[#FAF9F6] rounded-lg lg:w-[50%] w-[70%] overflow-hidden transition-all duration-500 ${openStates[group.orderId] ? "max-h-[1000px]" : "max-h-[15.8rem]"
-                }`}
+              className={`mb-6 pb-5 border relative border-black border-dashed bg-[#FAF9F6] rounded-lg lg:w-[50%] w-[70%] overflow-hidden transition-all duration-500 ${
+                openStates[group.orderId] ? "max-h-[1000px]" : "max-h-[15.8rem]"
+              }`}
             >
               <div className="flex gap-24 border-b border-black justify-between pl-2 pr-2">
                 <div className="gap-3 items-center">
@@ -128,13 +125,7 @@ const OrderHistory = () => {
                         <p>
                           {order?.delivered ? "Delivered" : "Delivery On Way"}
                         </p>
-                        <button
-                          className="rounded-r-full rounded-l-full bg-black text-white"
-                          onClick={() => handleRatingClick(order)}
-                        >
-                          Rate
-                        </button>
-
+                        
                       </div>
                       {order.poster?.image ? (
                         <img
@@ -170,12 +161,6 @@ const OrderHistory = () => {
             </div>
           ))}
         </div>
-      )}
-      {ratingModal && (
-        <PosterRatingModal
-          setRatingModal={setRatingModal}
-          order={selectedOrder}
-        />
       )}
     </div>
   );

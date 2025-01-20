@@ -80,7 +80,7 @@ export function SidebarDemo() {
       </Sidebar>
 
       {/* Main Content */}
-      <div className="flex-1 w-full h-full">
+      <div className="flex-1 w-full h-full overflow-auto">
         <Dashboard />
       </div>
     </div>

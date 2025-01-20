@@ -23,17 +23,17 @@ exports.createRating = async (req, res) => {
     }
 
     // Check if the user has already reviewed the poster
-    // const alreadyReviewed = await Rating.findOne({
-    //   user: userId,
-    //   poster: posterId,
-    // });
+    const alreadyReviewed = await Rating.findOne({
+      user: userId,
+      poster: posterId,
+    });
 
-    // if (alreadyReviewed) {
-    //   return res.status(403).json({
-    //     success: false,
-    //     message: "Poster already reviewed by user",
-    //   });
-    // }
+    if (alreadyReviewed) {
+      return res.status(403).json({
+        success: false,
+        message: "Poster already reviewed by user",
+      });
+    }
 
     // Create a new rating
     const newRating = await Rating.create({
