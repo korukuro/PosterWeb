@@ -31,7 +31,7 @@ const Product = ({ post }) => {
           <CardItem
             as="p"
             translateZ="100"
-            className="absolute text-neutral-500 text-sm max-w-sm mt-2 dark:text-neutral-300 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 break-words"
+            className="absolute text-neutral-500 text-base max-w-sm mt-2 dark:text-white opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 break-words"
           >
             {post.posterName}
           </CardItem>
