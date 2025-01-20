@@ -13,6 +13,7 @@ const Navbar = () => {
   const token = useSelector((state) => state.auth?.token);
   const user = useSelector((state) => state.profile?.user);
   const cart = useSelector((state) => state.cart || []);
+  const [isFocused, setIsFocused] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -58,15 +59,17 @@ const Navbar = () => {
           <div className="relative">
             <input
               type="search"
-              className="border border-black rounded-xl p-1 focus:outline-none"
+              className="border border-black rounded-xl p-1 focus:outline-none pl-2"
               placeholder="Search"
+              onFocus={() => setIsFocused(true)}  // Set focus state to true when clicked
+          onBlur={() => setIsFocused(false)}
             />
 
-            <img
+            {!isFocused && (<img
               src={loupe}
               alt="Search Icon"
               className="h-7 absolute top-1 right-3"
-            />
+            />)}
           </div>
 
           {/* Categories */}
