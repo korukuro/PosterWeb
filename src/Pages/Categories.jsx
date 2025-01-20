@@ -1,15 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { getAllCategories } from '../services/operations/posterDetailsAPI';
 import CategoryCard from '../components/core/Categories/CategoryCard';
+import { FocusCards } from "../components/ui/Focus-card";
 
 const Categories = () => {
     const [categories, setCategories] = useState([]);
+    const [cards, setCards] = useState([]);
 
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const res = await getAllCategories(); 
-                setCategories(res.data); 
+                const res = await getAllCategories();
+                setCategories(res.data);
+
+                // Dynamically create cards based on categories
+                const generatedCards = res.data.map((category) => ({
+                    title: category.name,
+                    src: "https://via.placeholder.com/300", // Replace with actual image URLs if available
+                }));
+                setCards(generatedCards);
             } catch (error) {
                 console.error("Error fetching categories:", error);
             }
@@ -18,17 +27,10 @@ const Categories = () => {
     }, []);
 
     return (
-        <div>
-            <h1>Categories</h1>
-            {categories.length > 0 ? (
-                <ul>
-                    {categories.map((category) => (
-                        <CategoryCard key={category._id} category={category} />
-                    ))}
-                </ul>
-            ) : (
-                <p>No categories found.</p>
-            )}
+        <div className='mt-16'>
+            
+            <FocusCards cards={cards} />
+            
         </div>
     );
 };

@@ -28,7 +28,7 @@ export const Card = React.memo(({
       <div
         className="text-xl flex flex-col md:text-2xl font-medium bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-200">
         {card.title}
-        <button className="bg-red-600 text-white rounded-lg">Rate</button>
+        
       </div>
     </div>
   </div>
