@@ -21,7 +21,7 @@ export function SidebarDemo() {
         <IconBrandTabler className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
     },
-    
+
     {
       label: "Settings",
       href: "/dashboard/settings",
@@ -59,7 +59,7 @@ export function SidebarDemo() {
     <div
       className={cn(
         "flex flex-col md:flex-row w-full h-screen bg-gray-100 dark:bg-neutral-800",
-        "max-w-full mx-auto border border-neutral-200 dark:border-neutral-700" 
+        "max-w-full mx-auto border border-neutral-200 dark:border-neutral-700"
       )}
     >
       {/* Sidebar */}
@@ -75,7 +75,9 @@ export function SidebarDemo() {
             </div>
           </div>
         </SidebarBody>
-        {confirmationModal && <ConfirmationModal modalData={confirmationModal} />}
+        {confirmationModal && (
+          <ConfirmationModal modalData={confirmationModal} />
+        )}
       </Sidebar>
 
       {/* Main Content */}
@@ -99,11 +101,10 @@ export const LogoIcon = () => {
 
 const Dashboard = () => {
   return (
-    <div className="flex flex-1 overflow-hidden bg-black h-min-screen">
-      <div className="md: rounded-tl-2xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-200 flex flex-col gap-2 flex-1 w-full h-full">
+    <div className="flex flex-1 overflow-hidden bg-black">
+      <div className="md:rounded-tl-2xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-200 flex flex-col gap-2 flex-1 w-full h-full">
         <div className="flex gap-2">
           <Outlet />
-          
         </div>
       </div>
     </div>
