@@ -58,10 +58,15 @@ const Navbar = () => {
           <div className="relative">
             <input
               type="search"
-              className="border border-black rounded-xl p-1 margin-left:4px"
+              className="border border-black rounded-xl p-1 focus:outline-none"
               placeholder="Search"
             />
-            <img src={loupe} alt="Search Icon" className="h-7 absolute top-1 right-3" />
+
+            <img
+              src={loupe}
+              alt="Search Icon"
+              className="h-7 absolute top-1 right-3"
+            />
           </div>
 
           {/* Categories */}
