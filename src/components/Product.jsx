@@ -29,7 +29,7 @@ const Product = ({ post }) => {
           <CardItem
             as="p"
             translateZ="100"
-            className="absolute text-neutral-500 text-base max-w-sm w-60 flex flex-col items-end bottom-4 pr-5 pt-5 bg-[#00000054] h-1/3 dark:text-white opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 break-words"
+            className="absolute text-neutral-500 text-base max-w-sm w-full flex flex-col h-1/4 items-end bottom-4 pr-5 pt-5 rounded-b-lg bg-gradient-to-b from-[#48494a] to-[#000]  dark:text-white opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 break-words"
           >
             {post.posterName}
             <div>₹{post.price}</div>
