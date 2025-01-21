@@ -116,7 +116,7 @@ const PosterDetails = () => {
 
             </div>
             <div className="w-full flex flex-col justify-center space-y-4 ml-20 translate-x-[6rem]">
-              <div className="border-2 border-black w-28 h-14 rounded-full flex justify-evenly items-center">
+              <div className="border border-black w-28 h-14 rounded-full flex justify-evenly items-center">
                 <TiMinus
                   onClick={() => {
                     quantity > 1 ? setQuantity(quantity - 1) : setQuantity(quantity);
