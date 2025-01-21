@@ -33,6 +33,13 @@ const Product = ({ post }) => {
           >
             {post.posterName}
           </CardItem>
+          <CardItem
+            as="p"
+            translateZ="100"
+            className="absolute bottom-5 right-12 text-neutral-500 text-2xl max-w-sm mt-2 dark:text-white opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 break-words"
+          >
+            ₹{post.price}
+          </CardItem>
 
           <CardItem
             translateZ="60"
