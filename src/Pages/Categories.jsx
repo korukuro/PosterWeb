@@ -14,6 +14,7 @@ const Categories = () => {
 
                 const generatedCards = res.data.map((category) => ({
                     title: category.name,
+                    categoryId: category._id,
                 }));
                 setCards(generatedCards);
             } catch (error) {
@@ -22,7 +23,6 @@ const Categories = () => {
         };
         fetchCategories();
     }, []);
-
     return (
         <div className='pt-24 p-6 bg-[#F8FFE5]'>
             <FocusCards cards={cards} />

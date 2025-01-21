@@ -51,7 +51,7 @@ exports.categoryPageDetails = async (req, res) => {
     const selectedCategory = await Category.findById(categoryId)
       .populate({
         path: "poster",
-        populate: "ratingAndReviews",
+        populate: "rating",
       })
       .exec()
 
@@ -73,35 +73,33 @@ exports.categoryPageDetails = async (req, res) => {
     }
 
     // Get posters for other categories
-    const categoriesExceptSelected = await Category.find({
-      _id: { $ne: categoryId },
-    })
-    let differentCategory = await Category.findOne(
-      categoriesExceptSelected[getRandomInt(categoriesExceptSelected.length)]
-        ._id
-    )
-      .populate({
-        path: "poster",
-      })
-      .exec()
-    console.log()
+    // const categoriesExceptSelected = await Category.find({
+    //   _id: { $ne: categoryId },
+    // })
+    // let differentCategory = await Category.findOne(
+    //   categoriesExceptSelected[getRandomInt(categoriesExceptSelected.length)]
+    //     ._id
+    // )
+    //   .populate({
+    //     path: "poster",
+    //   })
+    //   .exec()
+    // console.log()
     // Get top-selling courses across all categories
-    const allCategories = await Category.find()
-      .populate({
-        path: "poster",
-      })
-      .exec()
-    const allCourses = allCategories.flatMap((category) => category.poster)
-    const mostSellingPoster = allCourses
-      .sort((a, b) => b.sold - a.sold)
-      .slice(0, 10)
+    // const allCategories = await Category.find()
+    //   .populate({
+    //     path: "poster",
+    //   })
+    //   .exec()
+    // const allCourses = allCategories.flatMap((category) => category.poster)
+    // const mostSellingPoster = allCourses
+    //   .sort((a, b) => b.sold - a.sold)
+    //   .slice(0, 10)
 
     res.status(200).json({
       success: true,
       data: {
         selectedCategory,
-        differentCategory,
-        mostSellingPoster,
       },
     })
   } catch (error) {
