@@ -65,9 +65,9 @@ const PosterDetails = () => {
           <Spinner />
         </div>
       ) : (
-        <div className="flex gap-10 w-full">
+        <div className="flex gap-10 w-full pt-6 pb-9">
           <div className="w-[45%] h-full m-7 flex justify-end">
-            <div className="w-[24rem] h-[35.1rem] mt-7 border-2 flex items-center relative">
+            <div className="w-[24rem] h-[35.1rem] border-2 flex items-center relative">
               <img
                 src={currentImage || posts?.image} // Display the current image
                 alt="poster-image"
@@ -82,7 +82,7 @@ const PosterDetails = () => {
               </button>
               <button
                 onClick={() => changeImage(currentImage || posts?.image)} // Change the image URL here
-                className="mt-4 px-4 py-2 rounded-full h-7 absolute text-white bg-black"
+                className=" px-4 py-2 rounded-full h-7 absolute text-white bg-black"
               >
                 <SlArrowLeft />
 
