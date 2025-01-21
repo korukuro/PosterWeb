@@ -14,6 +14,7 @@ const Navbar = () => {
   const user = useSelector((state) => state.profile?.user);
   const cart = useSelector((state) => state.cart || []);
   const [isFocused, setIsFocused] = useState(false);
+  const [value, setValue] = useState("");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,7 +40,7 @@ const Navbar = () => {
 
   return (
     <div
-      className={`fixed top-0 left-0 right-0 z-50 bg-[#E2E2E2] shadow-md transition-transform duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 bg-transparent shadow-md transition-transform duration-300 ${
         isVisible ? "translate-y-0" : "-translate-y-full"
       }`}
     >
@@ -58,18 +59,30 @@ const Navbar = () => {
           {/* Search Input */}
           <div className="relative">
             <input
-              type="search"
-              className="border border-black rounded-xl p-1 focus:outline-none pl-2"
+              type="text"
+              value={value}
+              onChange={(e) => setValue(e.target.value)}
+              className="border border-black rounded-xl p-1 focus:outline-none pl-2 pr-8 transition-all duration-300"
               placeholder="Search"
-              onFocus={() => setIsFocused(true)}  // Set focus state to true when clicked
-          onBlur={() => setIsFocused(false)}
+              onFocus={() => setIsFocused(true)} // Set focus state to true
+              onBlur={() => setIsFocused(false)} // Set focus state to false
             />
-
-            {!isFocused && (<img
-              src={loupe}
-              alt="Search Icon"
-              className="h-7 absolute top-1 right-3"
-            />)}
+            {!isFocused && (
+              <img
+                src={loupe}
+                alt="Search Icon"
+                className="h-7 absolute top-1 right-3 opacity-100 transition-opacity duration-300"
+              />
+            )}
+            {isFocused && value && (
+              <button
+                onMouseDown={(e) => e.preventDefault()} // Prevent losing focus
+                onClick={() => setValue("")} // Clear the input value
+                className="absolute right-2 text-base top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-800 transition-transform duration-300"
+              >
+                ✕
+              </button>
+            )}
           </div>
 
           {/* Categories */}
