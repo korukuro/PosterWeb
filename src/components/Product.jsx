@@ -24,9 +24,9 @@ const Product = ({ post }) => {
   };
   return (
     <div>
-      <CardContainer className="w-[20rem] h-96 flex-shrink-0 flex justify-center px-2">
-        <CardBody className="relative group/card h-full flex justify-center items-center rounded-lg">
-          <CardItem
+      <div className="w-[20rem] h-96 flex-shrink-0 flex justify-center px-2">
+        <div className="relative group/card h-full flex justify-center items-center rounded-lg">
+          <div
             translateZ="60"
             className="relative h-full flex justify-center items-center"
           >
@@ -36,18 +36,9 @@ const Product = ({ post }) => {
               alt="poster-image"
               className="object-contain w-full h-full"
             />
-
-            <CardItem
-              as="p"
-              translateZ="100"
-              className="absolute text-neutral-500 text-base w-full flex flex-col h-1/3 items-end bottom-5 pr-5 pt-5 rounded-lg bg-gradient-to-b from-[#48494a74] to-[#000] dark:text-white opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 break-words"
-            >
-              {post.posterName}
-              <div>₹{post.price}</div>
-            </CardItem>
-          </CardItem>
-        </CardBody>
-      </CardContainer>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
