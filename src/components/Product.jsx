@@ -25,20 +25,14 @@ const Product = ({ post }) => {
   return (
     <div>
       <CardContainer className="w-[20rem] h-96 flex-shrink-0 flex justify-center px-2">
-        <CardBody className="relative group/card h-full flex justify-center items-center rounded-lg">
+        <CardBody className="relative group/card h-full flex justify-center items-center rounded-lg border-2 border-black">
           <CardItem
             as="p"
             translateZ="100"
-            className="absolute text-neutral-500 text-base max-w-sm mt-2 dark:text-white opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 break-words"
+            className="absolute text-neutral-500 text-base max-w-sm w-60 flex flex-col items-end bottom-4 pr-5 pt-5 bg-[#00000054] h-1/3 dark:text-white opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 break-words"
           >
             {post.posterName}
-          </CardItem>
-          <CardItem
-            as="p"
-            translateZ="100"
-            className="absolute bottom-5 right-12 text-neutral-500 text-2xl max-w-sm mt-2 dark:text-white opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 break-words"
-          >
-            ₹{post.price}
+            <div>₹{post.price}</div>
           </CardItem>
 
           <CardItem
