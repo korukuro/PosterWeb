@@ -30,7 +30,7 @@ const Home = () => {
 
   return (
     <>
-      <div className="relative overflow-hidden border-2 border-black pt-20">  
+      <div className="relative overflow-hidden pt-20">  
         {/* Main Content */}
 
         <div className="z-10 relative w-full h-full flex justify-center items-center">
