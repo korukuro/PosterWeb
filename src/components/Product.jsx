@@ -34,17 +34,20 @@ const Product = ({ post }) => {
           className="object-contain w-full h-full"
         />
       </div>
-      <div className="w-full pl-5 flex justify-between pr-5">
-        <div>
-          <p>{post.posterName} </p>
-          <p>{post.description}</p>
+      <div className="w-full">
+        <div className="pl-2 pr-2">
+          <div className="flex justify-between pl-3 pr-2">
+            <p>{post.posterName} </p>
+            <span>₹{post.price}</span>
+          </div>
+          <div className="pl-3">
+          <p className="text-sm">{post.description}</p>
           <RatingStars Star_Size={15} />
+          </div>
         </div>
-        <p>₹{post.price}</p>
       </div>
     </div>
   );
-  
 };
 
 export default Product;
