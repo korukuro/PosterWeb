@@ -38,7 +38,7 @@ const Product = ({ post }) => {
         <div>
           <p>{post.posterName} </p>
           <p>{post.description}</p>
-          <RatingStars Star_Size={15} />
+          <RatingStars posterId={post._id} Star_Size={15} />
         </div>
         <p>₹{post.price}</p>
       </div>
