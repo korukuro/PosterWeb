@@ -93,7 +93,8 @@ const PosterDetails = () => {
           <div className="flex flex-col w-[55%] gap-5 p-16">
             <div className="flex items-center justify-between w-[40rem]">
               <h1 className="font-bold text-2xl">{posts?.posterName}</h1>
-              <RatingStars Star_Size={30} />
+              {console.log("Posts", posts)}
+              <RatingStars posterId={posts._id} Star_Size={30} />
             </div>
             <span>{`Price: ₹${posts?.price}`}</span>
             <div className="space-x-4">
