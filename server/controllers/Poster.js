@@ -115,7 +115,7 @@ exports.createPoster = async (req, res) => {
 exports.getAllPoster = async (req, res) => {
     try {
       const allPosters = await Poster.find({})
-      .select("posterName price image ratingAndReviews")
+      .select("posterName price image rating description")
       .populate("admin")
       .exec();
 

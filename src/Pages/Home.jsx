@@ -27,7 +27,7 @@ const Home = () => {
   useEffect(() => {
     fetchProductData();
   }, []);
-
+   console.log("posts", posts);
   return (
     <>
       <div className="relative overflow-hidden pt-20">  

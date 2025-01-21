@@ -9,7 +9,7 @@ const Product = ({ post }) => {
   const navigate = useNavigate();
   // const { cart } = useSelector((state) => state)
   const dispatch = useDispatch();
-
+  console.log(post);
   const addToCart = () => {
     dispatch(add(post));
     toast.success("Item added to Cart");
