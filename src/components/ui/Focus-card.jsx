@@ -13,16 +13,16 @@ import SeriesImage from '../../additionalFile/category-image/Series.jpeg';
 import SportsImage from '../../additionalFile/category-image/Sports.jpeg';
 
 const imageMap = {
-    "Cars": CarsImage,
-    "Anime": AnimeImage,
-    "Comics": ComicImage,
-    "Game": GameImage,
-    "Movie": MovieImage,
-    "Music": MusicImage,
-    "Quotes": QuotesImage,
-    "Scenery": SceneryImage,
-    "Series": SeriesImage,
-    "Sports": SportsImage,
+    "Cars Poster": CarsImage,
+    "Anime Poster": AnimeImage,
+    "Comics Poster": ComicImage,
+    "Game Poster": GameImage,
+    "Movie Poster": MovieImage,
+    "Music Poster": MusicImage,
+    "Quotes Poster": QuotesImage,
+    "Scenery Poster": SceneryImage,
+    "Series Poster": SeriesImage,
+    "Sports Poster": SportsImage,
 };
 
 export const Card = React.memo(({

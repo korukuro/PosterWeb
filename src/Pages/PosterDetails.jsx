@@ -59,7 +59,7 @@ const PosterDetails = () => {
   };
 
   return (
-    <div className="flex justify-evenly w-full mx-auto overflow-x-hidden mt-16 overflow-y-hidden">
+    <div className="flex justify-evenly w-full mx-auto overflow-x-hidden mt-16 overflow-y-hidden ">
       {loading ? (
         <div className="flex justify-center items-center h-full w-full">
           <Spinner />
@@ -88,11 +88,10 @@ const PosterDetails = () => {
 
               </button>
             </div>
-            {/* Button to change image */}
           </div>
 
           <div className="flex flex-col w-[55%] gap-5 p-16">
-            <div className="flex items-center justify-between w-[30rem]">
+            <div className="flex items-center justify-between w-[40rem]">
               <h1 className="font-bold text-2xl">{posts?.posterName}</h1>
               <RatingStars Star_Size={30} />
             </div>
@@ -111,7 +110,9 @@ const PosterDetails = () => {
                 >
                   {size}
                 </button>
+                
               ))}
+
             </div>
             <div className="w-full flex flex-col justify-center space-y-4 ml-20 translate-x-[6rem]">
               <div className="border-2 border-black w-28 h-14 rounded-full flex justify-evenly items-center">
