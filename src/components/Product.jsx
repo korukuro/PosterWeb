@@ -36,43 +36,19 @@ const Product = ({ post }) => {
           className="object-contain w-full h-full"
         />
       </div>
-      <div className="w-full pl-5 flex justify-between pr-5">
-        <div>
-          <p>{post.posterName}</p>
-          <p>{post.description}</p>
+      <div className="w-full flex-col justify-between items-center pr-5 pl-6">
+          <div className="flex justify-between w-full">
+            <p>{post.posterName}</p>
+            <span>₹{post.price}</span>
+          </div>
+
+          <div>
+          <p className="text-sm text-gray-500">{post.description}</p>
           <RatingStars posterId={post._id} Star_Size={15} />
-        </div>
-        <div className="w-full">
-          <div className="pl-2 pr-2">
-            <div className="flex justify-between pl-3 pr-2">
-              <p>{post.posterName}</p>
-              <span>₹{post.price}</span>
-            </div>
-            <div className="pl-3">
-              <p className="text-sm">{post.description}</p>
-              <RatingStars Star_Size={15} />
-            </div>
-            <div className="flex justify-between mt-4">
-              {isInCart ? (
-                <button
-                  onClick={removeItem}
-                  className="text-gray-700 border-2 border-gray-700 rounded-full font-semibold text-[12px] p-1 px-3 uppercase hover:bg-gray-700 hover:text-white transition duration-300 ease-in"
-                >
-                  Remove Item
-                </button>
-              ) : (
-                <button
-                  onClick={addToCart}
-                  className="text-gray-700 border-2 border-gray-700 rounded-full font-semibold text-[12px] p-1 px-3 uppercase hover:bg-gray-700 hover:text-white transition duration-300 ease-in"
-                >
-                  Add to Cart
-                </button>
-              )}
-            </div>
           </div>
         </div>
       </div>
-    </div>
+    
   );
 };
 
