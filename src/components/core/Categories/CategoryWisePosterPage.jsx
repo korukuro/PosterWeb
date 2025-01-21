@@ -61,7 +61,7 @@ const CategoryWisePosterPage = () => {
                 {poster.description}
               </p>
               <p className="text-gray-800 dark:text-gray-200 font-bold">
-                Price: ${poster.price}
+                Price: ₹{poster.price}
               </p>
             </div>
           </div>
