@@ -30,7 +30,7 @@ const Home = () => {
 
   return (
     <>
-      <div className="relative overflow-hidden pt-20">  
+      <div className="relative overflow-hidden pt-28">  
         {/* Main Content */}
 
         <div className="z-10 relative w-full h-full flex justify-center items-center">
@@ -39,7 +39,7 @@ const Home = () => {
               <Spinner />
             </div>
           ) : posts.length > 0 ? (
-            <div className="grid grid-cols-4 auto-rows-custom w-11/12 place-items-center gap-y-2">
+            <div className="grid grid-cols-4 auto-rows-custom w-11/12 place-items-center gap-y-14">
               {posts.map((post) => (
                 <div key={post.id} className="w-[250px] m-0">
                   <Product post={post} />
