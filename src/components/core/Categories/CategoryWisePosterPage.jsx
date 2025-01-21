@@ -1,6 +1,7 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom"; // Import Link
 import React, { useEffect, useState } from "react";
 import { getCategoryWisePoster } from "../../../services/operations/posterDetailsAPI";
+import Spinner from "../../Spinner";
 
 const CategoryWisePosterPage = () => {
   const { id: categoryId } = useParams(); // Get the category ID from the URL
@@ -29,7 +30,7 @@ const CategoryWisePosterPage = () => {
   }, [categoryId]);
 
   // Render the component
-  if (loading) return <div>Loading posters...</div>;
+  if (loading) return <div><Spinner/></div>;
   if (error) return <div className="text-red-500">{error}</div>;
   if (!categoryData || !categoryData.poster.length)
     return <div>No posters found in this category.</div>;
@@ -44,9 +45,10 @@ const CategoryWisePosterPage = () => {
       </p>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {categoryData.poster.map((poster) => (
-          <div
+          <Link
+            to={`/poster/${poster._id}`} // Navigate to the poster information page
             key={poster._id}
-            className="rounded-lg shadow-lg overflow-hidden bg-white dark:bg-gray-800"
+            className="block rounded-lg shadow-lg overflow-hidden bg-white dark:bg-gray-800 hover:shadow-xl transition-shadow duration-300"
           >
             <img
               src={poster.image} // Poster image URL
@@ -64,7 +66,7 @@ const CategoryWisePosterPage = () => {
                 Price: ₹{poster.price}
               </p>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>

@@ -28,7 +28,6 @@ export const getAllPoster = async () =>{
 }
 
 export const getPosterDetails = async (posterId) => {
-    const toastId = toast.loading("Loading");
     let result = [];
     try {
         const response = await apiConnector("POST", POSTER_DETAILS_API, {posterId});
@@ -39,8 +38,6 @@ export const getPosterDetails = async (posterId) => {
     } catch (error) {
         console.error("POSTER_DETAILS_API API ERROR: ", error);
         toast.error(error.message || "Something went wrong");
-    } finally {
-        toast.dismiss(toastId);
     }
     return result;
 };
@@ -114,7 +111,6 @@ export const getAllCategories = async () => {
 
 // get category wise poster
 export const getCategoryWisePoster = async (categoryId)=>{
-    const toastId = toast.loading("Loading");
     let result = [];
     try {
         const response = await apiConnector("POST", GET_CATEGORY_WISE_POSTER_API,
@@ -128,7 +124,6 @@ export const getCategoryWisePoster = async (categoryId)=>{
         console.log("GET_CATEGORY_WISE_POSTER_API API ERROR: ", error);
         toast.error(error.message);
     }
-    toast.dismiss(toastId);
     return result;
 }
 
