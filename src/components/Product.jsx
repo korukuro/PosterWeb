@@ -37,11 +37,11 @@ const Product = ({ post }) => {
       <div className="w-full">
         <div className="pl-2 pr-2">
           <div className="flex justify-between pl-3 pr-2">
-            <p>{post.posterName} </p>
-            <span>₹{post.price}</span>
+            <p className="font-semibold">{post.posterName} </p>
+            <span className="font-semibold">₹{post.price}</span>
           </div>
           <div className="pl-3">
-          <p className="text-sm">{post.description}</p>
+          <p className="text-sm text-gray-500">{post.description}</p>
           <RatingStars Star_Size={15} />
           </div>
         </div>
