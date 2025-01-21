@@ -30,7 +30,7 @@ const Home = () => {
    console.log("posts", posts);
   return (
     <>
-      <div className="relative overflow-hidden pt-32">  
+      <div className="relative overflow-hidden pt-32 pb-28">  
         {/* Main Content */}
 
         <div className="z-10 relative w-full h-full flex justify-center items-center">
