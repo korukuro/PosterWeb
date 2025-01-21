@@ -27,6 +27,7 @@ import CheckOut from "./Pages/CheckOut";
 import Settings from "./components/core/Dashboard/Settings";
 import OrderHistory from "./components/core/Dashboard/OrderHistory";
 import PosterDetails from "./Pages/PosterDetails";
+import CategoryWisePosterPage from "./components/core/Categories/CategoryWisePosterPage";
 
 function App() {
   const location = useLocation();
@@ -55,7 +56,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/categories" element={<Categories />} />
+        <Route path="/categories" element={<Categories />}/>
+        <Route path="/categories/:id" element={<CategoryWisePosterPage />} />
         <Route path="/poster/:id" element={<PosterDetails />} />
 
         {/* Open Route - for Only Non Logged in User */}

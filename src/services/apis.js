@@ -31,6 +31,7 @@ export const posterEndpoints = {
   GET_ALL_CATEGORIES_API: BASE_URL + "/poster/showAllCategories",
   CREATE_POSTER_RATING_API: BASE_URL + "/poster/createRating",
   GET_AVERAGE_RATING_API: BASE_URL + "/poster/getAverageRating",
+  GET_CATEGORY_WISE_POSTER_API: BASE_URL + "/poster/getCategoryPageDetails",
 }
 
 // PAYMENTS ENDPOINTS

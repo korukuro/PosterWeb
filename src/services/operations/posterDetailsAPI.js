@@ -7,6 +7,7 @@ const {
     GET_MULTIPLE_POSTER_API,
     GET_ORDER_HISTORY,
     GET_ALL_CATEGORIES_API,
+    GET_CATEGORY_WISE_POSTER_API
 } = posterEndpoints;
 
 export const getAllPoster = async () =>{
@@ -101,6 +102,7 @@ export const getAllCategories = async () => {
             throw new Error("Could not fetch categories");
         }
         result = response?.data;
+        // console.log("API result:", result);
     } catch (error) {
         console.error("GET_ALL_CATEGORIES_API API ERROR: ", error);
         toast.error(error.message);
@@ -109,4 +111,24 @@ export const getAllCategories = async () => {
     }
     return result;
 };
+
+// get category wise poster
+export const getCategoryWisePoster = async (categoryId)=>{
+    const toastId = toast.loading("Loading");
+    let result = [];
+    try {
+        const response = await apiConnector("POST", GET_CATEGORY_WISE_POSTER_API,
+            { categoryId }
+        );
+        if(!response?.data?.success){
+            throw new Error("Could not fetch poster data");
+        }
+        result = response?.data?.data;
+    } catch (error) {
+        console.log("GET_CATEGORY_WISE_POSTER_API API ERROR: ", error);
+        toast.error(error.message);
+    }
+    toast.dismiss(toastId);
+    return result;
+}
 

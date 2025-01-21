@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { cn } from "../../utils/cd";
-
+import { Link } from "react-router-dom";
 import CarsImage from '../../additionalFile/category-image/Cars.jpeg';
 import AnimeImage from '../../additionalFile/category-image/Anime.jpeg';
 import ComicImage from '../../additionalFile/category-image/Comic.jpeg';
@@ -29,12 +29,13 @@ export const Card = React.memo(({
   card,
   index,
   hovered,
-  setHovered
+  setHovered,
 }) => (
 
-  <div
+  <Link
     onMouseEnter={() => setHovered(index)}
     onMouseLeave={() => setHovered(null)}
+    to={`${card.categoryId}`}
     className={cn(
       "rounded-lg relative bg-gray-100 dark:bg-neutral-900 overflow-hidden h-60 md:h-96 w-full transition-all duration-300 ease-out",
       hovered !== null && hovered !== index && "blur-sm scale-[0.98]"
@@ -55,7 +56,7 @@ export const Card = React.memo(({
         
       </div>
     </div>
-  </div>
+  </Link>
 ));
 
 Card.displayName = "Card";
@@ -64,6 +65,15 @@ export function FocusCards({
   cards
 }) {
   const [hovered, setHovered] = useState(null);
+
+  
+
+  // const handleCardClick = (categoryId) => {
+  //   if (categoryId) {
+  //     fetchCategoryWisePoster(categoryId);
+  //     navigate(`/categories/${categoryId}`);
+  //   }
+  // };
   return (
     (<div
       className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-5xl mx-auto md:px-8 w-full">
