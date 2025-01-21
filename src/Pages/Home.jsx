@@ -39,7 +39,7 @@ const Home = () => {
               <Spinner />
             </div>
           ) : posts.length > 0 ? (
-            <div className="grid grid-cols-4 auto-rows-custom w-11/12 place-items-center">
+            <div className="grid grid-cols-4 auto-rows-custom w-11/12 place-items-center gap-y-2">
               {posts.map((post) => (
                 <div key={post.id} className="w-[250px] m-0">
                   <Product post={post} />
