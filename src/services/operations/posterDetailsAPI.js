@@ -11,7 +11,6 @@ const {
 } = posterEndpoints;
 
 export const getAllPoster = async () =>{
-    const toastId = toast.loading("Loading");
     let result = [];
     try {
         const response = await apiConnector("GET", GET_ALL_POSTER_API);
@@ -23,7 +22,6 @@ export const getAllPoster = async () =>{
         console.log("GET_ALL_POSTER_API API ERROR: ", error);
         toast.error(error.message);
     }
-    toast.dismiss(toastId);
     return result;
 }
 
