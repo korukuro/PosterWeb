@@ -28,6 +28,7 @@ import Settings from "./components/core/Dashboard/Settings";
 import OrderHistory from "./components/core/Dashboard/OrderHistory";
 import PosterDetails from "./Pages/PosterDetails";
 import CategoryWisePosterPage from "./components/core/Categories/CategoryWisePosterPage";
+import ScrollToTop from "./components/common/ScrollToTop";
 
 function App() {
   const location = useLocation();
@@ -46,6 +47,7 @@ function App() {
 
   return (
     <div className="flex flex-col">
+      <ScrollToTop/>
       {/* Conditionally render Navbar */}
       {!shouldHideNavbar && (
         <div>
