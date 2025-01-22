@@ -12,7 +12,12 @@ import image2 from '../../../additionalFile/home-image/homeImage_2.jpg';
 // import image3 from '../../../additionalFile/home-image/homeImage_3.jpg'; // Add more images as needed
 
 const Section_1 = () => {
-  const images = [image1, image2]; // Array of images
+  // Array of objects containing images and headings
+  const slides = [
+    { image: image1, heading: "Posters That Make a Statement." },
+    { image: image2, heading: "Transform Your Walls, Transform Your World!" },
+    // Add more slides as needed
+  ];
 
   return (
     <div className="w-full h-auto overflow-hidden">
@@ -29,13 +34,20 @@ const Section_1 = () => {
         }}
         className="h-[35rem]"
       >
-        {images.map((image, index) => (
+        {slides.map((slide, index) => (
           <SwiperSlide key={index}>
-            <img
-              src={image}
-              alt={`Carousel slide ${index + 1}`}
-              className="w-full h-[35rem] object-cover"
-            />
+            <div className="relative w-full h-full">
+              {/* Heading overlay */}
+              <div className="absolute bottom-20 left-10 bg-black bg-opacity-50 text-white p-4 rounded-lg">
+                <h2 className="text-3xl font-bold">{`"${slide.heading}"`}</h2>
+              </div>
+              {/* Image */}
+              <img
+                src={slide.image}
+                alt={`Carousel slide ${index + 1}`}
+                className="w-full h-[35rem] object-cover"
+              />
+            </div>
           </SwiperSlide>
         ))}
       </Swiper>
