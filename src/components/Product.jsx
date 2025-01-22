@@ -37,18 +37,20 @@ const Product = ({ post }) => {
         />
       </div>
       <div className="w-full flex-col justify-between items-center pr-5 pl-6 mt-6 ">
-          <div className="flex justify-between w-full">
-            <p>{post.posterName}</p>
-            <span>₹{post.price}</span>
-          </div>
+        <div className="flex justify-between w-full">
+          <p>{post.posterName}</p>
+          <span>₹{post.price}</span>
+        </div>
 
-          <div>
-          <p className="text-[0.8rem] text-gray-500 mt-1">{post.description}</p>
+        <div>
+          <p className="text-[0.8rem] text-gray-500 mt-1">{post.description.length > 30
+            ? `${post.description.slice(0, 30)}...`
+            : post.description}</p>
           <p className="mt-2"><RatingStars posterId={post._id} Star_Size={15} /></p>
-          </div>
         </div>
       </div>
-    
+    </div>
+
   );
 };
 
