@@ -27,7 +27,7 @@ const Product = ({ post }) => {
   const isInCart = cart.some((item) => item._id === post._id);
 
   return (
-    <div className="w-[20rem] flex flex-col justify-center px-2">
+    <div className="w-[20rem] flex flex-col justify-center px-2 hover:scale-105 transition-all duration-300">
       <div className="relative h-96 flex justify-center items-center border-2 border-black">
         <img
           onClick={handlePosterDetails}

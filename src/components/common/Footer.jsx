@@ -63,7 +63,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-b w-full flex flex-col lg:flex-row pt-5 border-richblack-700">
+        <div className="border-b w-full flex flex-col lg:flex-row pt-5 pb-8">
           <div className="lg:w-[50%] flex flex-wrap flex-row justify-between lg:border-r lg:border-richblack-700 pl-3 lg:pr-5 gap-3">
             <div className="flex flex-col gap-3 mb-7 lg:pl-0 pt-14">
               <h1 className="text-richblack-50 text-2xl font-bold bg-yellow-400">
