@@ -77,7 +77,7 @@ const Home = () => {
             </div>
           )}
         </div>
-        <div className="mt-5"><InfiniteLoop /></div>
+        <div className="mt-2"><InfiniteLoop /></div>
       </div>
     </>
   );
