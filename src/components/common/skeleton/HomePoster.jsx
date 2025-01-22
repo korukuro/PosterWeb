@@ -11,7 +11,7 @@ const HomePoster = () => {
                     {Array(skeletonCount).fill().map((_, index) => (
                         <div key={index} className="flex justify-center items-center hover:scale-110 transition-all duration-300">
                             {/* Empty space with background color and adjusted width and height */}
-                            <div className="w-[300px] h-[350px] bg-gray-200 rounded-lg shadow-lg animate-pulse" />
+                            <div className="w-[300px] h-[350px] bg-gray-300 rounded-lg shadow-lg animate-pulse" />
                         </div>
                     ))}
                 </div>
