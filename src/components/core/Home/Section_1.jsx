@@ -16,7 +16,7 @@ const Section_1 = () => {
   // Array of objects containing images and headings
   const slides = [
     { image: image1, heading: "Posters That Make a Statement." },
-    { image: image2, heading: "Transform Your Walls, Transform Your World!" },
+    { image: image2, heading: "HAAG DIYA" },
     { image: image3, heading: "Mosambi Ka joos pila do" },
     // Add more slides as needed
   ];
@@ -38,10 +38,10 @@ const Section_1 = () => {
       >
         {slides.map((slide, index) => (
           <SwiperSlide key={index}>
-            <div className="relative w-full">
+            <div className="relative w-full flex justify-center items-center">
               {/* Heading overlay */}
-              <div className="absolute bottom-20 left-10 bg-black bg-opacity-50 text-white p-4 rounded-lg">
-                <h2 className="text-3xl font-bold">{`"${slide.heading}"`}</h2>
+              <div className="absolute top-52 bg-black bg-opacity-50 text-white p-4 rounded-lg">
+                <h2 className="text-6xl font-bold">{`"${slide.heading}"`}</h2>
               </div>
               {/* Image */}
               <img
