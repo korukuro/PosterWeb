@@ -121,7 +121,7 @@ const Navbar = () => {
             <img
               src={user?.image || userIcon}
               alt="User Icon"
-              className="h-10 rounded-full aspect-square object-cover"
+              className="h-10 rounded-full aspect-square object-cover hover:scale-[1.1] transition-all duration-300"
             />
           </Link>
         </div>
