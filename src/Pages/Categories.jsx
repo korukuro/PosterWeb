@@ -29,7 +29,7 @@ const Categories = () => {
         fetchCategories();
     }, []);
     return (
-        <div className='pt-24 p-6 bg-[#F8FFE5]'>
+        <div className='pt-24 p-6 bg-[#000000a2]'>
             {
             loading ? <div><Spinner/></div> : 
              <FocusCards cards={cards} />

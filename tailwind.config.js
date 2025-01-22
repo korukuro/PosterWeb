@@ -7,6 +7,16 @@ module.exports = {
         'custom': '25rem', // Change '100px' to your desired height
       },
     },
+    extend:{
+      animation: {
+        shine: "shine 1s",
+      },
+      keyframes: {
+        shine: {
+          "100%": { left: "125%" },
+        },
+      },
+    },
   },
   plugins: [require('tailwind-scrollbar-hide')],
 

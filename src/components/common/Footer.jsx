@@ -29,7 +29,7 @@ const Footer = () => {
         <div className="border-b border-t w-[100%] flex flex-col lg:flex-row pb-5 pt-5 border-richblack-700 text-white">
           <div className="lg:w-[50%] flex flex-wrap flex-row justify-between lg:border-r lg:border-richblack-700 pl-3 lg:pr-5 gap-3">
             <div className="flex flex-col gap-3 mb-7 lg:pl-0 h-[30rem]">
-              <h1 className="text-richblack-50 text-lg font-bold text-[16px]">
+              <h1 className="text-richblack-50 text-2xl font-bold">
                 About Us
               </h1>
               <p>
