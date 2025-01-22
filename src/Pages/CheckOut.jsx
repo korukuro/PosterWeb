@@ -71,7 +71,7 @@ const CheckOut = () => {
 
   return (
     <div className="flex justify-center pt-24">
-    <div className="flex flex-col lg:flex-row w-[80%] overflow-hidden h-[90vh]">
+    <div className="flex flex-col lg:flex-row w-[80%] overflow-hidden">
       {/* Delivery Details Section */}
       <div className="lg:w-1/2 w-full border-r border-black p-4">
         {!showDeliveryForm ? (
