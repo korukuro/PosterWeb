@@ -29,6 +29,7 @@ import OrderHistory from "./components/core/Dashboard/OrderHistory";
 import PosterDetails from "./Pages/PosterDetails";
 import CategoryWisePosterPage from "./components/core/Categories/CategoryWisePosterPage";
 import ScrollToTop from "./components/common/ScrollToTop";
+import Test from "./Pages/Test";
 
 function App() {
   const location = useLocation();
@@ -47,6 +48,7 @@ function App() {
 
   return (
     <div className="flex flex-col">
+      
       <ScrollToTop/>
       {/* Conditionally render Navbar */}
       {!shouldHideNavbar && (
@@ -57,6 +59,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/test" element={<Test />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/categories" element={<Categories />}/>
         <Route path="/categories/:id" element={<CategoryWisePosterPage />} />

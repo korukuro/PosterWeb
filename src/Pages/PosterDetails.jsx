@@ -18,6 +18,7 @@ import "swiper/css";
 import "swiper/css/effect-flip";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import { AdaptiveImageDiv } from "../components/common/AdaptiveImageDiv";
 
 
 
@@ -67,7 +68,7 @@ const PosterDetails = () => {
       ) : (
         <div className="grid grid-cols-2 mt-8 mb-8 mx-4 gap-4">
           {/* Right  */}
-          <div className=" flex justify-center items-center border-black border-2">
+          {/* <div className=" flex justify-center items-center border-black border-2">
             <Swiper
               modules={[EffectFlip, Navigation, Pagination]}
               effect="flip"
@@ -96,7 +97,8 @@ const PosterDetails = () => {
                 <SlArrowRight />
               </button>
             </Swiper>
-          </div>
+          </div> */}
+          <AdaptiveImageDiv images={posts?.image} />
 
           {/* Left */}
           <div className="flex flex-col gap-5 p-16 ">
