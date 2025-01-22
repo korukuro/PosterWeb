@@ -11,6 +11,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectFlip, Navigation, Pagination } from "swiper/modules";
 import sizeImage from "../additionalFile/sizeImage.png"
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
+import { FaBoxOpen } from "react-icons/fa";
+import { IoPrintSharp } from "react-icons/io5";
 
 import "swiper/css";
 import "swiper/css/effect-flip";
@@ -57,14 +59,15 @@ const PosterDetails = () => {
   const images = [posts?.image, sizeImage];
 
   return (
-    <div className="flex justify-evenly w-full mx-auto overflow-x-hidden pt-16 overflow-y-hidden">
+    <div className="flex justify-evenly w-11/12 mx-auto overflow-x-hidden pt-16 overflow-y-hidden">
       {loading ? (
-        <div className="flex justify-center items-center h-full w-full">
+        <div className="flex h-full w-full">
           <Spinner />
         </div>
       ) : (
-        <div className="flex gap-10 w-full pt-6 pb-9">
-          <div className="w-[45%] h-full m-7 flex justify-end">
+        <div className="grid grid-cols-2 mt-8 mb-8 mx-4 gap-4">
+          {/* Right  */}
+          <div className=" flex justify-center items-center border-black border-2">
             <Swiper
               modules={[EffectFlip, Navigation, Pagination]}
               effect="flip"
@@ -75,40 +78,53 @@ const PosterDetails = () => {
                 prevEl: '.swiper-button-prev',
               }}
               pagination={{ clickable: true }}
-              className="w-[24rem] h-[35.1rem]"
+              className="w-full h-full"
             >
               {images.map((image, index) => (
                 <SwiperSlide key={index}>
                   <img
                     src={image}
                     alt={`poster-image-${index}`}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full p-8 object-contain"
                   />
                 </SwiperSlide>
               ))}
-              <button className="swiper-button-prev absolute -left-10 top-1/2 transform -translate-y-1/2  text-white p-2 rounded-full">
-                <SlArrowLeft />
+              <button className="swiper-button-prev absolute -left-3 top-1/2 transform -translate-y-1/2  text-white p-2 rounded-full border-none">
+                <SlArrowLeft className="" />
               </button>
-              <button className="swiper-button-next absolute -right-10 top-1/2 transform -translate-y-1/2  text-white p-2 rounded-full">
+              <button className="swiper-button-next absolute -right-3 top-1/2 transform -translate-y-1/2  text-white p-2 rounded-full border-none">
                 <SlArrowRight />
               </button>
             </Swiper>
           </div>
 
-          <div className="flex flex-col w-[55%] gap-5 p-16">
-            <div className="flex items-center justify-between w-[40rem]">
+          {/* Left */}
+          <div className="flex flex-col gap-5 p-16 ">
+            <div className="flex flex-col">
               <h1 className="font-bold text-2xl">{posts?.posterName}</h1>
-              <RatingStars Star_Size={30} />
+              <RatingStars posterId={posts?._id} Star_Size={20} />
+            </div>
+            <h3>{posts.description}</h3>
+
+            <div>
+              <div className="flex justify-center items-center gap-2">
+                <IoPrintSharp className="text-5xl"/>
+                <p className="text-xs text-gray-500">This product is made to order and is typically <span className="font-bold">printed in 1-4 working days.</span> Your entire order will ship out together.</p>
+              </div>
+              <div className="flex justify-center items-center gap-2">
+                <FaBoxOpen className="text-5xl "/>
+                <p className="text-xs text-gray-500">Since this product is printed on demand especially for you, <span className="font-bold">it is not eligible for cancellations and returns.</span> Read our Return Policy. </p>
+                </div>
             </div>
             <span>{`Price: ₹${posts?.price}`}</span>
-            <div className="space-x-4">
+            <div className="flex items-center gap-4">
               <span>Size:</span>
               {sizes.map((size) => (
                 <button
                   key={size}
-                  className={`w-20 h-12 text-base rounded-full font-semibold text-[12px] p-1 px-3 uppercase ${selectedSize === size
-                      ? "bg-blue-500 text-white"
-                      : "bg-black text-white"
+                  className={`w-20 h-12 text-base rounded-full font-semibold text-[12px] p-1 px-3  uppercase ${selectedSize === size
+                    ? "bg-black text-white "
+                    : "bg-white text-black"
                     }`}
                   onClick={() => setSelectedSize(size)}
                 >
@@ -116,26 +132,30 @@ const PosterDetails = () => {
                 </button>
               ))}
             </div>
-            <div className="w-full flex flex-col justify-center space-y-4 ml-20 translate-x-[6rem]">
-              <div className="border border-black w-28 h-14 rounded-full flex justify-evenly items-center">
-                <TiMinus
-                  onClick={() => {
-                    quantity > 1
-                      ? setQuantity(quantity - 1)
-                      : setQuantity(quantity);
-                  }}
-                  className="cursor-pointer"
-                />
-                <div>{quantity}</div>
-                <TiPlus
-                  onClick={() => setQuantity(quantity + 1)}
-                  className="cursor-pointer"
-                />
-              </div>
+            <div className="w-full flex flex-col gap-4">
+              <div className="flex items-center gap-4">
 
+
+                <h2>Quantity:</h2>
+                <div className="border border-black w-[30%] h-14 rounded-full flex justify-evenly items-center">
+                  <TiMinus
+                    onClick={() => {
+                      quantity > 1
+                        ? setQuantity(quantity - 1)
+                        : setQuantity(quantity);
+                    }}
+                    className="cursor-pointer"
+                  />
+                  <div className="w-5 flex justify-center items-center">{quantity}</div>
+                  <TiPlus
+                    onClick={() => setQuantity(quantity + 1)}
+                    className="cursor-pointer"
+                  />
+                </div>
+              </div>
               <button
                 onClick={addToCart}
-                className="w-28 h-14 bg-black text-white rounded-full font-semibold text-[12px] p-1 px-3 uppercase hover:bg-gray-800 transition"
+                className=" bg-black h-12 text-white rounded-xl font-semibold text-[12px] p-1 px-3 uppercase transition"
               >
                 Add to Cart
               </button>

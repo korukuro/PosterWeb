@@ -52,7 +52,7 @@ function RatingStars({ posterId,Star_Size = 20 }) { // Set default size
   }, [avgReviewCount])
 
   return (
-    <div className="flex gap-1 text-black">
+    <div className="flex gap-1 text-yellow-500">
       {[...Array(starCount.full)].map((_, i) => (
         <TiStarFullOutline key={`full-${i}`} size={Star_Size} />
       ))}
