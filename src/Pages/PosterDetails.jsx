@@ -75,7 +75,7 @@ const PosterDetails = () => {
                 prevEl: '.swiper-button-prev',
               }}
               pagination={{ clickable: true }}
-              className="w-[24rem] h-[35.1rem] border-2"
+              className="w-[24rem] h-[35.1rem]"
             >
               {images.map((image, index) => (
                 <SwiperSlide key={index}>
