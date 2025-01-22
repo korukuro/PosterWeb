@@ -2,6 +2,7 @@ import { useParams, Link } from "react-router-dom"; // Import Link
 import React, { useEffect, useState } from "react";
 import { getCategoryWisePoster } from "../../../services/operations/posterDetailsAPI";
 import Spinner from "../../Spinner";
+import Product from "../../Product";
 
 const CategoryWisePosterPage = () => {
   const { id: categoryId } = useParams(); // Get the category ID from the URL
@@ -45,28 +46,7 @@ const CategoryWisePosterPage = () => {
       </p>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {categoryData.poster.map((poster) => (
-          <Link
-            to={`/poster/${poster._id}`} // Navigate to the poster information page
-            key={poster._id}
-            className="block rounded-lg shadow-lg overflow-hidden bg-white dark:bg-gray-800 hover:shadow-xl transition-shadow duration-300"
-          >
-            <img
-              src={poster.image} // Poster image URL
-              alt={poster.posterName} // Poster name
-              className="object-cover h-48 w-full"
-            />
-            <div className="p-4">
-              <h3 className="text-lg font-semibold text-gray-800 dark:text-white">
-                {poster.posterName}
-              </h3>
-              <p className="text-gray-600 dark:text-gray-400">
-                {poster.description}
-              </p>
-              <p className="text-gray-800 dark:text-gray-200 font-bold">
-                Price: ₹{poster.price}
-              </p>
-            </div>
-          </Link>
+          <Product post={poster}/>
         ))}
       </div>
     </div>
