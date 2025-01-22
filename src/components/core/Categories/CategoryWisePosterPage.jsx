@@ -14,7 +14,8 @@ const CategoryWisePosterPage = () => {
   const fetchCategoryWisePoster = async (categoryId) => {
     try {
       const response = await getCategoryWisePoster(categoryId);
-      setCategoryData(response.selectedCategory); // Save the category data
+      const shuffledPosters = response.selectedCategory.poster.sort(() => Math.random() - 0.5);
+      setCategoryData({ ...response.selectedCategory, poster: shuffledPosters }); // Save the category data
       setLoading(false);
     } catch (err) {
       console.error("Error fetching category data:", err);
