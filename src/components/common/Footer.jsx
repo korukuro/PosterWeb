@@ -22,7 +22,7 @@ const Footer = () => {
   return (
     <div className="w-full bg-[#d9d9d9]">
       <div className="">
-        <div className="border-b-2 border-r-2 border-l-2 border-black h-44 flex flex-col lg:flex-row">
+        <div className="border-b-2 border-r-2 border-l-2 border-black min-h-[11rem] h-auto flex flex-col lg:flex-row">
           <div className="flex-1 relative">
             <div className="text-2xl w-full text-center absolute top-1/3 hover:underline cursor-pointer transition duration-500">
               SHOP
@@ -33,9 +33,15 @@ const Footer = () => {
               ABOUT
             </div>
             <div className="w-full flex flex-col lg:flex-row justify-center gap-4 bg-red-600 mt-4 lg:mt-0">
-              <span className="hover:underline cursor-pointer transition duration-500">Shop</span>
-              <span className="hover:underline cursor-pointer transition duration-500">Contact</span>
-              <span className="hover:underline cursor-pointer transition duration-500">FAQs</span>
+              <span className="hover:underline cursor-pointer transition duration-500">
+                Shop
+              </span>
+              <span className="hover:underline cursor-pointer transition duration-500">
+                Contact
+              </span>
+              <span className="hover:underline cursor-pointer transition duration-500">
+                FAQs
+              </span>
             </div>
           </div>
           <div className="flex-1 relative">
