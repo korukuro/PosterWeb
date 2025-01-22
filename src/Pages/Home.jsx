@@ -9,6 +9,7 @@ const Home = () => {
   const [loading, setLoading] = useState(false);
   const [posts, setPosts] = useState([]);
   const [visibleCount, setVisibleCount] = useState(6);
+  const texts = ["Hello", "World", "How", "Are", "You", "Doing", "Today", "?","money","money","$","Hello", "World", "How", "Are", "You", "Doing", "Today", "?","money","money","$"];
 
   async function fetchProductData() {
     setLoading(true);
@@ -71,6 +72,15 @@ const Home = () => {
               <p>No data found</p>
             </div>
           )}
+        </div>
+        <div className="flex overflow-hidden bg-black h-40 items-center">
+        <ul className="flex animate-infinite-scroll gap-10 py-4 text-white">
+          {[...texts,...texts].map((text, idx) => {
+            return (
+              <li key={idx} className="text-white">{text}</li>
+            );
+          })}
+        </ul>
         </div>
       </div>
     </>
