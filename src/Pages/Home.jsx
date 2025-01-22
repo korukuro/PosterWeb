@@ -37,7 +37,7 @@ const Home = () => {
   };
   return (
     <>
-      <div className="relative overflow-hidden pb-40">
+      <div className="relative overflow-hidden">
 
         <div className="mt-20"><Section_1 /></div>
         <div className="z-10 relative w-full h-full flex justify-center items-center">
@@ -77,7 +77,7 @@ const Home = () => {
             </div>
           )}
         </div>
-        <div className="mt-5"><InfiniteLoop /></div>
+        <div className="mt-2"><InfiniteLoop /></div>
       </div>
     </>
   );

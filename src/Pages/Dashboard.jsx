@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { Sidebar, SidebarBody, SidebarLink } from "../components/ui/sideBar";
-import {
-  IconBrandTabler,
-  IconSettings,
-} from "@tabler/icons-react";
+import { IconBrandTabler, IconSettings } from "@tabler/icons-react";
 import { cn } from "../utils/cd";
 import { Outlet, useNavigate } from "react-router-dom";
 import ConfirmationModal from "../components/common/ConfirmationModal";
@@ -100,9 +97,9 @@ export const LogoIcon = () => {
 
 const Dashboard = () => {
   return (
-    <div className="flex flex-1 overflow-hidden h-full bg-black mt-16">
-      <div className="md:rounded-tl-2xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-200 flex flex-col gap-2 flex-1 w-full h-full">
-        <div className="flex gap-2 h-full">
+    <div className="flex flex-1 bg-black mt-20">
+      <div className="md:rounded-tl-2xl bg-white dark:bg-neutral-200 flex flex-col gap-2 flex-1 h-auto">
+        <div className="flex gap-2 h-auto">
           <Outlet />
         </div>
       </div>

@@ -79,7 +79,6 @@ const OrderHistory = () => {
 
   return (
     <div className="p-1 w-full h-full">
-      <h2>Order History</h2>
       {loading ? (
         <div className="flex justify-center items-center">
           <Spinner />

@@ -17,8 +17,8 @@ const InfiniteLoop = () => {
   ];
 
   return (
-    <div className="flex overflow-hidden bg-black h-40 items-center">
-      <ul className="flex animate-infinite-scroll gap-10 py-4 text-white text-5xl">
+    <div className="flex overflow-hidden bg-black h-30 items-center">
+      <ul className="flex animate-infinite-scroll gap-10 py-4 text-white text-2xl">
         {[...texts, ...texts].map((text, idx) => {
           return (
             <li key={idx} className="text-white">
