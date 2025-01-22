@@ -83,7 +83,10 @@ const Navbar = () => {
               <button
                 onMouseDown={(e) => e.preventDefault()} // Prevent losing focus
                 onClick={() => setValue("")} // Clear the input value
-                className="absolute right-2 text-base top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-800 transition-transform duration-300"
+                className="absolute right-2 text-base top-1/2 transform -translate-y-1/2 rotate-0 text-gray-500 hover:text-black transition-transform duration-300 ease-in-out"
+                style={{
+                  animation: "rotate-in 0.3s ease-in-out",
+                }}
               >
                 ✕
               </button>
@@ -92,7 +95,7 @@ const Navbar = () => {
 
           {/* Cart Icon */}
           <Link to="/cart">
-            <div className="relative">
+            <div className="relative hover:scale-110 transition-transform duration-300">
               <img src={bag} alt="Shopping Bag" className="h-7" />
               {cart.length > 0 && (
                 <span
@@ -100,26 +103,6 @@ const Navbar = () => {
                   justify-center items-center animate-bounce rounded-full text-white"
                 >
                   {cart.length}
-                  <Link to="/cart">
-                    <div className="relative group border-2 border-black">
-                      {/* Shopping Bag Icon */}
-                      <img
-                        src={bag}
-                        alt="Shopping Bag"
-                        className="h-7 transform transition-transform duration-300 group-hover:scale-110"
-                      />
-                      {/* Cart Badge */}
-                      {cart.length > 0 && (
-                        <span
-                          className="absolute -top-1 -right-2 bg-black text-xs w-5 h-5 flex 
-        justify-center items-center animate-bounce rounded-full text-white 
-        transform transition-transform duration-300 group-hover:scale-125"
-                        >
-                          {cart.length}
-                        </span>
-                      )}
-                    </div>
-                  </Link>
                 </span>
               )}
             </div>
