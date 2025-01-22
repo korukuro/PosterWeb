@@ -46,9 +46,14 @@ const CategoryWisePosterPage = () => {
         {categoryData.description}
       </p>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {categoryData.poster.map((poster) => (
-          <Product post={poster}/>
-        ))}
+      {categoryData.poster && categoryData.poster.length > 0 ?
+          categoryData.poster.map((poster) => (
+            <Product post={poster} />
+          ))
+          :
+          <div>No posters found in this category.</div>
+        }
+      
       </div>
     </div>
   );

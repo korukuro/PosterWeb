@@ -100,7 +100,7 @@ export const getAllCategories = async () => {
     } catch (error) {
         console.error("GET_ALL_CATEGORIES_API API ERROR: ", error);
         toast.error(error.message);
-    }
+    } 
     return result;
 };
 
