@@ -47,7 +47,6 @@ const Navbar = () => {
     }, 300); // Match the duration of the rotation animation
   };
 
-
   return (
     <div
       className={`fixed top-0 left-0 right-0 z-50 bg-white shadow-md transition-transform duration-300 ${
@@ -107,12 +106,12 @@ const Navbar = () => {
 
           {/* Cart Icon */}
           <Link to="/cart">
-            <div className="relative hover:scale-110 transition-transform duration-300">
+            <div className="relative hover:scale-110 active:scale-90 transition-transform duration-300 transform">
               <img src={bag} alt="Shopping Bag" className="h-7" />
               {cart.length > 0 && (
                 <span
                   className="absolute -top-1 -right-2 bg-black text-xs w-5 h-5 flex 
-                  justify-center items-center animate-bounce rounded-full text-white"
+        justify-center items-center animate-bounce rounded-full text-white"
                 >
                   {cart.length}
                 </span>
@@ -125,7 +124,7 @@ const Navbar = () => {
             <img
               src={user?.image || userIcon}
               alt="User Icon"
-              className="h-10 rounded-full aspect-square object-cover hover:scale-[1.1] transition-all duration-300"
+              className="h-10 rounded-full aspect-square object-cover hover:scale-[1.1] active:scale-90 transition-all duration-300"
             />
           </Link>
         </div>
