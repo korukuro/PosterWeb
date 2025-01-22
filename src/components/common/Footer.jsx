@@ -20,7 +20,7 @@ const Community = ["Forums", "Chapters", "Events"];
 
 const Footer = () => {
   return (
-    <div className="w-full h-screen bg-[#d9d9d9]">
+    <div className="w-full bg-[#d9d9d9]">
       <div className="">
         <div className="border-b-2 border-r-2 border-l-2 border-black h-44 flex flex-col lg:flex-row">
           <div className="flex-1 relative">
