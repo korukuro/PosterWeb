@@ -27,7 +27,7 @@ const PosterDetails = () => {
   const [loading, setLoading] = useState(false);
   const posterId = useLocation().pathname.split("/")[2];
   const [quantity, setQuantity] = useState(1);
-  const [selectedSize, setSelectedSize] = useState("");
+  const [selectedSize, setSelectedSize] = useState("A4");
 
   const dispatch = useDispatch();
 
@@ -57,7 +57,6 @@ const PosterDetails = () => {
   };
 
   const sizes = ["A3", "A4", "A5"];
-  const images = [posts?.image, sizeImage];
 
   return (
     <div className="flex justify-evenly w-11/12 mx-auto overflow-x-hidden pt-16 overflow-y-hidden">
