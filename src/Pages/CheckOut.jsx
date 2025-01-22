@@ -70,9 +70,10 @@ const CheckOut = () => {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row w-full h-[42.5rem] bg-gray-50 mt-16 overflow-hidden">
+    <div className="flex justify-center pt-24 pb-52">
+    <div className="flex flex-col lg:flex-row w-[80%] overflow-hidden h-[90vh]">
       {/* Delivery Details Section */}
-      <div className="lg:w-1/2 w-full border-b-2 lg:border-r-2 lg:border-b-0 border-gray-200 p-4">
+      <div className="lg:w-1/2 w-full border-r border-black p-4">
         {!showDeliveryForm ? (
           <div>
             <h2 className="text-xl font-semibold text-gray-800 mb-4">Select Delivery Address</h2>
@@ -125,16 +126,19 @@ const CheckOut = () => {
       </div>
 
       {/* Order Summary Section */}
-      <div className="lg:w-1/2 w-full p-4 lg:p-8 flex flex-col justify-between">
-        <h2 className="text-2xl font-semibold text-gray-800 mb-6">Order Summary</h2>
-        <div className="space-y-6">
+      <div className="lg:w-1/2 w-full p-4 lg:p-8 flex flex-col">
+        <h2 className="text-2xl font-semibold text-gray-800">Order Summary</h2>
+        <div className="space-y-2">
           {/* Cart Items */}
-          <div className="h-[15rem] pr-2 lg:h-[20rem] overflow-y-auto scrollbar-thin scrollbar-track-gray-200 scrollbar-thumb-gray-400 overflow-x-hidden">
+          <div className="pr-2">
             {cart.map((item, index) => (
               <CheckOutItem key={item._id} item={item} itemIndex={index} />
             ))}
           </div>
-
+            <div className="flex justify-between text-md text-gray-600">
+              <span>Total Items:</span>
+              <span>{cart.reduce((total, item) => total + item.quantity, 0)}</span>
+            </div>
           {/* Shipment Details */}
           <div className="flex justify-between text-md text-gray-600">
             <span>Shipment:</span>
@@ -146,16 +150,18 @@ const CheckOut = () => {
             <span>Total:</span>
             <span>₹{totalAmount}</span>
           </div>
-        </div>
+          <p className="text-gray-600 text-[0.8rem]">The shipment is expected to be delivered within 3 to 4 business days.</p>
 
         {/* Pay Now Button */}
         <button
           onClick={handlePayment}
-          className="mt-6 w-full bg-black text-white font-medium text-lg py-3 rounded-lg transition duration-200"
+          className="w-full bg-black text-white font-medium text-lg py-3 rounded-lg transition duration-200"
         >
           PAY NOW
         </button>
+        </div>
       </div>
+    </div>
     </div>
   );
 };
