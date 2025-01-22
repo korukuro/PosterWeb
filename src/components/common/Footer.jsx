@@ -20,15 +20,34 @@ const Community = ["Forums", "Chapters", "Events"];
 
 const Footer = () => {
   return (
-      <div className="w-full bg-black border-t-5 border-white border-dotted">
-        <div className="">
-        <img src={Logo} alt="" className="object-contain invert " />
-        <div className="border-b w-[100%] flex flex-col lg:flex-row pt-5 border-richblack-700 text-white">
+    <div className="w-full h-screen">
+      <div className="">
+        <div className="border-b-2 border-r-2 border-l-2 border-black h-44 flex">
+          <div className="flex-1 relative">
+            <img src={Logo} alt="" className="h-20" />
+            <div className="text-2xl w-full text-center absolute top-1/3">
+              SHOP
+            </div>
+          </div>
+          <div className="flex-1 border-r-2 border-l-2 border-black flex]">
+            <div className="w-full text-2xl text-center mt-12">ABOUT</div>
+            <div className="w-full flex justify-center gap-4 bg-red-600">
+              <span>Shop</span>
+              <span>Contact</span>
+              <span>FAQs</span>
+            </div>
+          </div>
+          <div className="flex-1 relative">
+            <div className="w-full text-2xl text-center absolute top-1/3">
+              CONTACT
+            </div>
+          </div>
+        </div>
+
+        <div className="border-b w-[100%] flex flex-col lg:flex-row pt-5 border-richblack-700 ">
           <div className="lg:w-[50%] flex flex-wrap flex-row justify-between lg:border-r lg:border-richblack-700 pl-3 lg:pr-5 gap-3">
-            <div className="flex flex-col gap-3 mb-7 lg:pl-0 h-[29rem]">
-              <h1 className="text-richblack-50 text-2xl font-bold">
-                About Us
-              </h1>
+            <div className="flex flex-col gap-3 mb-7 lg:pl-0 pt-14">
+              <h1 className="text-richblack-50 text-2xl font-bold bg-yellow-400">About Us</h1>
               <p>
                 Welcome to the ultimate destination where your creative ideas
                 come to life! Transform your walls into stunning masterpieces
@@ -45,33 +64,65 @@ const Footer = () => {
           </div>
 
           {/* Section 2 */}
-          <div className="lg:w-[50%] pt-20 flex flex-wrap flex-row justify-between pl-3 lg:pl-5 gap-3">
+          <div className="lg:w-[50%] pt-14 flex flex-wrap flex-row pl-3 lg:pl-5 gap-3">
             <div className="w-[48%] lg:w-[30%] mb-7 lg:pl-0">
-              <h1 className="text-richblack-50 font-semibold text-[16px]"></h1>
-              <div className="flex flex-col gap-5 mt-2">
-                <div className="hover:underline cursor-pointer transition duration-500">Contact Us</div>
-                <div className="hover:underline cursor-pointer transition duration-500">Cancellation Policy</div>
-                <div className="hover:underline cursor-pointer transition duration-500">FAQs</div>
-
+              <div className="flex flex-col gap-2 mt-2 items-end">
+              <h1 className="font-bold">Help</h1>
+                <div className="hover:underline cursor-pointer transition duration-500">
+                  Shipment
+                </div>
+                <div className="hover:underline cursor-pointer transition duration-500">
+                  Payments
+                </div>
+                <div className="hover:underline cursor-pointer transition duration-500">
+                  Cancellation Policy
+                </div>
+                <div className="hover:underline cursor-pointer transition duration-500">
+                  Track Your Order
+                </div>
+                <div className="hover:underline cursor-pointer transition duration-500">
+                  Return Policy
+                </div>
+              </div>
+            </div>
+            <div className="w-[48%] lg:w-[30%] mb-7 lg:pl-0">
+              <div className="flex flex-col gap-2 mt-2 items-end">
+              <h1 className="font-bold">Legal Info</h1>
+                <div className="hover:underline cursor-pointer transition duration-500">
+                  Terms & Conditions
+                </div>
+                <div className="hover:underline cursor-pointer transition duration-500">
+                  Privacy Policy
+                </div>
+                <div className="hover:underline cursor-pointer transition duration-500">
+                  Conditions
+                </div>
+                <div className="hover:underline cursor-pointer transition duration-500">
+                  Items Inside The Box
+                </div>
+              </div>
+            </div>
+            <div className="w-[48%] lg:w-[25%] mb-7 lg:pl-0">
+              <div className="flex flex-col gap-2 mt-2 items-end">
+                <h1 className="font-bold">FOLLOW US</h1>
+                <div className="hover:underline cursor-pointer transition duration-500">
+                  Instagram
+                </div>
+                <div className="hover:underline cursor-pointer transition duration-500">
+                  LinkdIn
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div className="flex flex-row items-center justify-between w-11/12 max-w-maxContent text-richblack-400 mx-auto pb-14 text-sm">
+          <div className="text-[11rem] w-full text-center font-extrabold font-serif">POSTERWEB</div>
+        <div className="flex flex-row items-center justify-between w-11/12 max-w-maxContent text-richblack-400 mx-auto text-sm">
           <div className="flex gap-5">
-            <div className="text-white hover:underline cursor-pointer transition duration-500">
-              Terms of Service
-            </div>
-            <div className="text-white hover:underline cursor-pointer transition duration-500">
-              Refund Policy
-            </div>
-            <div className="text-white hover:underline cursor-pointer transition duration-500">
-              About Us  
-            </div>
+            
           </div>
         </div>
-        </div>
       </div>
+    </div>
   );
 };
 
