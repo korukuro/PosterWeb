@@ -22,16 +22,18 @@ const Footer = () => {
   return (
     <div className="w-full h-screen">
       <div className="">
-        <div className="border-b-2 border-r-2 border-l-2 border-black h-44 flex">
+        <div className="border-b-2 border-r-2 border-l-2 border-black h-44 flex flex-col lg:flex-row">
           <div className="flex-1 relative">
-            <img src={Logo} alt="" className="h-20" />
+            <img src={Logo} alt="" className="h-20 mx-auto lg:mx-0" />
             <div className="text-2xl w-full text-center absolute top-1/3">
               SHOP
             </div>
           </div>
-          <div className="flex-1 border-r-2 border-l-2 border-black flex]">
-            <div className="w-full text-2xl text-center mt-12">ABOUT</div>
-            <div className="w-full flex justify-center gap-4 bg-red-600">
+          <div className="flex-1 border-r-2 border-l-2 border-black flex flex-row lg:flex-col items-center">
+            <div className="w-full text-2xl text-center mt-4 lg:mt-12">
+              ABOUT
+            </div>
+            <div className="w-full flex flex-col lg:flex-row justify-center gap-4 bg-red-600 mt-4 lg:mt-0">
               <span>Shop</span>
               <span>Contact</span>
               <span>FAQs</span>
@@ -44,11 +46,13 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-b w-[100%] flex flex-col lg:flex-row pt-5 border-richblack-700 ">
+        <div className="border-b w-full flex flex-col lg:flex-row pt-5 border-richblack-700">
           <div className="lg:w-[50%] flex flex-wrap flex-row justify-between lg:border-r lg:border-richblack-700 pl-3 lg:pr-5 gap-3">
             <div className="flex flex-col gap-3 mb-7 lg:pl-0 pt-14">
-              <h1 className="text-richblack-50 text-2xl font-bold bg-yellow-400">About Us</h1>
-              <p>
+              <h1 className="text-richblack-50 text-2xl font-bold bg-yellow-400">
+                About Us
+              </h1>
+              <p className="text-sm lg:text-base">
                 Welcome to the ultimate destination where your creative ideas
                 come to life! Transform your walls into stunning masterpieces
                 with our premium-quality posters, designed to elevate your space
@@ -63,11 +67,10 @@ const Footer = () => {
             <div className="w-[48%] lg:w-[30%] mb-7 lg:pl-0"></div>
           </div>
 
-          {/* Section 2 */}
           <div className="lg:w-[50%] pt-14 flex flex-wrap flex-row pl-3 lg:pl-5 gap-3">
             <div className="w-[48%] lg:w-[30%] mb-7 lg:pl-0">
-              <div className="flex flex-col gap-2 mt-2 items-end">
-              <h1 className="font-bold">Help</h1>
+              <div className="flex flex-col gap-2 mt-2 items-start lg:items-end">
+                <h1 className="font-bold">Help</h1>
                 <div className="hover:underline cursor-pointer transition duration-500">
                   Shipment
                 </div>
@@ -86,8 +89,8 @@ const Footer = () => {
               </div>
             </div>
             <div className="w-[48%] lg:w-[30%] mb-7 lg:pl-0">
-              <div className="flex flex-col gap-2 mt-2 items-end">
-              <h1 className="font-bold">Legal Info</h1>
+              <div className="flex flex-col gap-2 mt-2 items-start lg:items-end">
+                <h1 className="font-bold">Legal Info</h1>
                 <div className="hover:underline cursor-pointer transition duration-500">
                   Terms & Conditions
                 </div>
@@ -103,23 +106,23 @@ const Footer = () => {
               </div>
             </div>
             <div className="w-[48%] lg:w-[25%] mb-7 lg:pl-0">
-              <div className="flex flex-col gap-2 mt-2 items-end">
+              <div className="flex flex-col gap-2 mt-2 items-start lg:items-end">
                 <h1 className="font-bold">FOLLOW US</h1>
                 <div className="hover:underline cursor-pointer transition duration-500">
                   Instagram
                 </div>
                 <div className="hover:underline cursor-pointer transition duration-500">
-                  LinkdIn
+                  LinkedIn
                 </div>
               </div>
             </div>
           </div>
         </div>
-          <div className="text-[11rem] w-full text-center font-extrabold font-serif">POSTERWEB</div>
-        <div className="flex flex-row items-center justify-between w-11/12 max-w-maxContent text-richblack-400 mx-auto text-sm">
-          <div className="flex gap-5">
-            
-          </div>
+        <div className="text-[3rem] lg:text-[11rem] w-full text-center font-extrabold font-serif">
+          POSTERWEB
+        </div>
+        <div className="flex flex-col lg:flex-row items-center justify-between w-11/12 max-w-maxContent text-richblack-400 mx-auto text-sm">
+          <div className="flex gap-5"></div>
         </div>
       </div>
     </div>
