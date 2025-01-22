@@ -48,7 +48,7 @@ const CategoryWisePosterPage = () => {
     return <div>No posters found in this category.</div>;
 
   return (
-    <div className="container mx-auto py-6">
+    <div className="container mx-auto py-6 pb-24">
       <h1 className="text-2xl font-bold mb-6 ">{categoryData.name}</h1>
       <p
         style={{ wordSpacing: "5  rem" }}
