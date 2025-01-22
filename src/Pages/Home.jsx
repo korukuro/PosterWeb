@@ -50,7 +50,7 @@ const Home = () => {
 
           ) : posts.length > 0 ? (
             <div className="flex flex-col justify-center items-center mt-12">
-              <div className="grid grid-cols-3 auto-rows-custom w-11/12 pt-10 pb-24 gap-y-28 gap-x-14 h-auto">
+              <div className="grid grid-cols-3 auto-rows-custom w-11/12 pt-10 pb-24 gap-y-32 gap-x-14 h-auto">
                 {posts.slice(0, visibleCount).map((post) => (
                   <div key={post.id} className=" flex justify-center items-center h-fit">
                     <Product post={post} />
@@ -58,7 +58,7 @@ const Home = () => {
                 ))}
               </div>
               {visibleCount < posts.length && ( // Show "View More" button only if there are more posts to show
-                <div className="flex justify-center">
+                <div className="flex justify-center mt-4">
                   <button
                     onClick={handleViewMore}
                     className="relative px-6 py-3 rounded-lg group overflow-hidden m-2"

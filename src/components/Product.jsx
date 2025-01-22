@@ -51,12 +51,3 @@ const Product = ({ post }) => {
 };
 
 export default Product;
-
-{/* <div className="relative h-96 flex justify-center items-center border-2 border-black">
-        <img
-          onClick={handlePosterDetails}
-          src={post.image}
-          alt="poster-image"
-          className="object-contain w-full h-full p-7"
-        />
-      </div> */}
