@@ -127,7 +127,7 @@ const CheckOut = () => {
 
       {/* Order Summary Section */}
       <div className="lg:w-1/2 w-full p-4 lg:p-8 flex flex-col">
-        <h2 className="text-2xl font-semibold text-gray-800">Order Summary</h2>
+        <h2 className="text-2xl text-gray-800">Order Summary</h2>
         <div className="space-y-2">
           {/* Cart Items */}
           <div className="pr-2">

@@ -21,13 +21,13 @@ const CheckOutItem = ({ item }) => {
 
             <div className="flex flex-col col-span-2 gap-4">
                 <div className="flex justify-between items-center">
-                    <h1 className="text-gray-700 font-semibold text-lg text-left mt-1">{item.posterName}</h1>
-                    <h3 className="text-gray-700 font-semibold text-lg text-left mt-1">{item.size}</h3>
+                    <h1 className="text-black font-semibold text-lg text-left mt-1">{item.posterName}</h1>
+                    <h3 className="text-gray-500 text-lg text-left mt-1">{item.size}</h3>
 
                 </div>
                 <div className="flex justify-between items-center my-2 gap-4">
-                    <span className="text-black-700 font-semibold">${item.price}</span>
-                    <span className="text-gray-700 font-semibold">{`quantity: ${item.quantity}`}</span>
+                    <span className="text-black-500 font-semibold">${item.price}</span>
+                    <span className="text-gray-500">{`quantity: ${item.quantity}`}</span>
 
 
                 </div>
