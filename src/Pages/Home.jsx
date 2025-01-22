@@ -50,7 +50,7 @@ const Home = () => {
 
           ) : posts.length > 0 ? (
             <div className="flex flex-col justify-center items-center mt-12">
-              <div className="grid grid-cols-3 auto-rows-custom w-11/12 pt-10 pb-24 gap-y-24 gap-x-14 h-auto">
+              <div className="grid grid-cols-3 auto-rows-custom w-11/12 pt-10 pb-24 gap-y-28 gap-x-14 h-auto">
                 {posts.slice(0, visibleCount).map((post) => (
                   <div key={post.id} className=" flex justify-center items-center hover:scale-110 transition-all duration-300">
                     <Product post={post} />
