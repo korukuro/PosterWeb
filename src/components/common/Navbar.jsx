@@ -15,6 +15,7 @@ const Navbar = () => {
   const cart = useSelector((state) => state.cart || []);
   const [isFocused, setIsFocused] = useState(false);
   const [value, setValue] = useState("");
+  const [isClearing, setIsClearing] = useState(false); // State for rotation animation
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,6 +38,14 @@ const Navbar = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [lastScrollY]);
+
+  const handleClearInput = () => {
+    setIsClearing(true); // Start rotation animation
+    setTimeout(() => {
+      setValue(""); // Clear input value
+      setIsClearing(false); // Reset animation
+    }, 300); // Match the duration of the rotation animation
+  };
 
   return (
     <div
@@ -82,11 +91,10 @@ const Navbar = () => {
             {isFocused && value && (
               <button
                 onMouseDown={(e) => e.preventDefault()} // Prevent losing focus
-                onClick={() => setValue("")} // Clear the input value
-                className="absolute right-2 text-base top-1/2 transform -translate-y-1/2 rotate-0 text-gray-500 hover:text-black transition-transform duration-300 ease-in-out"
-                style={{
-                  animation: "rotate-in 0.3s ease-in-out",
-                }}
+                onClick={handleClearInput} // Clear the input value
+                className={`absolute right-2 text-base top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-black hover:scale-110 transition-transform duration-200 ease-in-out ${
+                  isClearing ? "rotate-180" : "rotate-0"
+                }`}
               >
                 ✕
               </button>
@@ -113,7 +121,7 @@ const Navbar = () => {
             <img
               src={user?.image || userIcon}
               alt="User Icon"
-              className="h-10 rounded-full aspect-square object-cover"
+              className="h-10 rounded-full aspect-square object-cover hover:scale-[1.1] transition-all duration-300"
             />
           </Link>
         </div>
