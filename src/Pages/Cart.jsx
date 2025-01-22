@@ -19,9 +19,9 @@ const Cart = () => {
   }, [cart]);
 
   return (
-    <div className="bg-[#d9d9d9] h-[42.375rem] mt-16 overflow-hidden">
+    <div className="bg-[#d9d9d9] pt-20 pb-10 overflow-hidden">
       {cart.length > 0 ? (
-        <div className="flex justify-center m-3 cart-box ">
+        <div className="flex justify-center m-3 cart-box">
           <div className="overflow-y-auto overflow-x-hidden h-[40rem] scrollbar-thin scrollbar-black scrollbar-track-gray-200">
             {cart.map((item, index) => {
               return <CartItem key={item.id} item={item} itemIndex={index} />;

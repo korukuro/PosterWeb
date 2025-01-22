@@ -3,9 +3,7 @@ import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { remove } from "../slices/cartSlice";
 import { useNavigate } from "react-router-dom";
-import { TiPlus } from "react-icons/ti";
-import { TiMinus } from "react-icons/ti";
-
+import { useSelector } from "react-redux";
 
 const CartItem = ({ item }) => {
   const dispatch = useDispatch();
@@ -13,13 +11,15 @@ const CartItem = ({ item }) => {
     dispatch(remove({ productId: item._id, size: item.size }));
     toast.error("Item removed from Cart");
   };
+  const { cart } = useSelector((state) => state);
   
   const navigate = useNavigate();
   const handleClick = () => {
     navigate(`/poster/${item._id}`);
   };
   return (
-    <div className="flex cursor-pointer border-b-black h-[max-content] w-[550px] border-b-2 m-4 p-4 cart-item">
+    <div className={`flex cursor-pointer h-[max-content] w-[550px] m-4 p-4 cart-item cart-item ${
+        cart.length > 1 ? "border-b-2 border-b-black" : ""}`}>
       <img
         onClick={handleClick}
         src={item.image}
@@ -28,10 +28,10 @@ const CartItem = ({ item }) => {
       />
 
       <div className="flex flex-col justify-evenly">
-        <h1 className="text-gray-700 font-semibold text-lg text-left mt-1">
+        <h1 className="text-black font-bold text-lg text-left mt-1">
           {item.posterName}
         </h1>
-        <p className=" text-gray-400 font-normal text-[14px] text-left">
+        <p className=" text-black font-semibold text-[16px] text-left">
           {item.size}
         </p>
         <div className="flex justify-between items-center my-2 gap-4">
