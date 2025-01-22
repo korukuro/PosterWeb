@@ -20,7 +20,8 @@ const Community = ["Forums", "Chapters", "Events"];
 
 const Footer = () => {
   return (
-      <div className="w-full bg-black">
+      <div className="w-full bg-black border-t-5 border-white border-dotted">
+        <div className="">
         <img src={Logo} alt="" className="object-contain invert " />
         <div className="border-b w-[100%] flex flex-col lg:flex-row pt-5 border-richblack-700 text-white">
           <div className="lg:w-[50%] flex flex-wrap flex-row justify-between lg:border-r lg:border-richblack-700 pl-3 lg:pr-5 gap-3">
@@ -68,6 +69,7 @@ const Footer = () => {
               About Us  
             </div>
           </div>
+        </div>
         </div>
       </div>
   );

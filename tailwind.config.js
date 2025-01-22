@@ -3,31 +3,22 @@ module.exports = {
   theme: {
     extend: {
       gridAutoRows: {
-        // Define default row height
-        'custom': '25rem', // Change '100px' to your desired height
+        custom: "25rem", // Custom row height
       },
-    },
-    extend:{
       animation: {
         shine: "shine 1s",
+        "infinite-scroll": "infinite-scroll 20s linear infinite",
       },
       keyframes: {
         shine: {
           "100%": { left: "125%" },
         },
+        "infinite-scroll": {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(calc(-50% - 20px))" },
+        },
       },
-    },
-    keyframes: {
-      "infinite-scroll": {
-        "0%": { transform: "translateX(0)" },
-        "100%": { transform: "translateX(calc(-50% - 20px))" },
-      },
-    },
-    animation: {
-      "infinite-scroll": "infinite-scroll 20s linear infinite",
     },
   },
-  plugins: [require('tailwind-scrollbar-hide')],
-
+  plugins: [require("tailwind-scrollbar-hide")],
 };
-
