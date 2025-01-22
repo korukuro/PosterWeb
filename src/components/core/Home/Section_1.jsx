@@ -17,7 +17,7 @@ const Section_1 = () => {
   const slides = [
     { image: image1, heading: "Posters That Make a Statement." },
     { image: image2, heading: "HAAG DIYA" },
-    { image: image3, heading: "Mosambi Ka joos pila do" },
+    { image: image3, heading: "Mosambi Ka juus pila do" },
     // Add more slides as needed
   ];
 
