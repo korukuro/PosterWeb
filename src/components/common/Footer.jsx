@@ -20,15 +20,11 @@ const Community = ["Forums", "Chapters", "Events"];
 
 const Footer = () => {
   return (
-    <div
-      className="relative h-[50rem]"
-      style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)" }}
-    >
-      <div className="fixed h-[50rem] w-full bottom-0 bg-black">
-        <img src={Logo} alt="" className="object-contain mt-14 invert " />
-        <div className="border-b w-[100%] flex flex-col lg:flex-row pb-5 pt-5 border-richblack-700 text-white">
+      <div className="w-full bottom-0 bg-black">
+        <img src={Logo} alt="" className="object-contain invert " />
+        <div className="border-b w-[100%] flex flex-col lg:flex-row pt-5 border-richblack-700 text-white">
           <div className="lg:w-[50%] flex flex-wrap flex-row justify-between lg:border-r lg:border-richblack-700 pl-3 lg:pr-5 gap-3">
-            <div className="flex flex-col gap-3 mb-7 lg:pl-0 h-[30rem]">
+            <div className="flex flex-col gap-3 mb-7 lg:pl-0 h-[29rem]">
               <h1 className="text-richblack-50 text-2xl font-bold">
                 About Us
               </h1>
@@ -74,7 +70,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </div>
   );
 };
 
