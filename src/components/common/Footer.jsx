@@ -24,7 +24,6 @@ const Footer = () => {
       <div className="">
         <div className="border-b-2 border-r-2 border-l-2 border-black h-44 flex flex-col lg:flex-row">
           <div className="flex-1 relative">
-            <img src={Logo} alt="" className="h-20 mx-auto lg:mx-0" />
             <div className="text-2xl w-full text-center absolute top-1/3">
               SHOP
             </div>
