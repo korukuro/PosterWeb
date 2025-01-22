@@ -20,11 +20,11 @@ const Community = ["Forums", "Chapters", "Events"];
 
 const Footer = () => {
   return (
-    <div className="w-full h-screen">
+    <div className="w-full h-screen bg-[#d9d9d9]">
       <div className="">
         <div className="border-b-2 border-r-2 border-l-2 border-black h-44 flex flex-col lg:flex-row">
           <div className="flex-1 relative">
-            <div className="text-2xl w-full text-center absolute top-1/3">
+            <div className="text-2xl w-full text-center absolute top-1/3 hover:underline cursor-pointer transition duration-500">
               SHOP
             </div>
           </div>
@@ -33,13 +33,13 @@ const Footer = () => {
               ABOUT
             </div>
             <div className="w-full flex flex-col lg:flex-row justify-center gap-4 bg-red-600 mt-4 lg:mt-0">
-              <span>Shop</span>
-              <span>Contact</span>
-              <span>FAQs</span>
+              <span className="hover:underline cursor-pointer transition duration-500">Shop</span>
+              <span className="hover:underline cursor-pointer transition duration-500">Contact</span>
+              <span className="hover:underline cursor-pointer transition duration-500">FAQs</span>
             </div>
           </div>
           <div className="flex-1 relative">
-            <div className="w-full text-2xl text-center absolute top-1/3">
+            <div className="w-full text-2xl text-center absolute top-1/3 hover:underline cursor-pointer transition duration-500">
               CONTACT
             </div>
           </div>
@@ -70,7 +70,7 @@ const Footer = () => {
             <div className="w-[48%] lg:w-[30%] mb-7 lg:pl-0">
               <div className="flex flex-col gap-2 mt-2 items-start lg:items-end">
                 <h1 className="font-bold">Help</h1>
-                <div className="hover:underline cursor-pointer transition duration-500">
+                <div className="hover:underline  cursor-pointer transition duration-500">
                   Shipment
                 </div>
                 <div className="hover:underline cursor-pointer transition duration-500">

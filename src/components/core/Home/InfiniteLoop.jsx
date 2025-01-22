@@ -1,33 +1,24 @@
 import React from "react";
 const InfiniteLoop = () => {
   const texts = [
-    "Hello",
-    "World",
-    "How",
-    "Are",
-    "You",
-    "Doing",
-    "Today",
-    "?",
-    "money",
-    "money",
-    "$",
-    "Hello",
-    "World",
-    "How",
-    "Are",
-    "You",
-    "Doing",
-    "Today",
-    "?",
-    "money",
-    "money",
-    "$",
+    "|",
+    "EAST",
+    "OR",
+    "WEST",
+    "POSTERWEB",
+    "IS",
+    "BEST",
+    "|",
+    "BUDGET",
+    "FRIENDLY",
+    "PLUS",
+    "GREAT",
+    "QUALITY",
   ];
 
   return (
     <div className="flex overflow-hidden bg-black h-40 items-center">
-      <ul className="flex animate-infinite-scroll gap-10 py-4 text-white">
+      <ul className="flex animate-infinite-scroll gap-10 py-4 text-white text-5xl">
         {[...texts, ...texts].map((text, idx) => {
           return (
             <li key={idx} className="text-white">
