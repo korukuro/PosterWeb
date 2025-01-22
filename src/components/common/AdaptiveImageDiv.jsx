@@ -58,10 +58,10 @@ export function AdaptiveImageDiv({ images }) {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       <div
-        className="p-8 rounded-lg shadow-lg transition-colors duration-300"
+        className=" p-8 rounded-lg shadow-lg transition-colors duration-300 h-full w-full"
         style={{ backgroundColor, color: textColor }}
       >
-        <div className=" w-[500px] h-[333px]">
+        <div className=" h-full w-full group">
         <Swiper
               modules={[EffectFlip, Navigation, Pagination]}
               effect="flip"
@@ -79,16 +79,19 @@ export function AdaptiveImageDiv({ images }) {
                   <img
                     src={image}
                     alt={`poster-image-${index}`}
-                    className="w-full h-full p-8 object-contain"
+                    className="w-full h-full object-contain border-black border-4"
                   />
                 </SwiperSlide>
               ))}
-              <button className="swiper-button-prev absolute -left-3 top-1/2 transform -translate-y-1/2  text-white p-2 rounded-full border-none">
+              <div className="opacity-0 group-hover:opacity-100">
+
+              <button className="bg-black/50 p-4 swiper-button-prev absolute -left-3 top-1/2 transform -translate-y-1/2 py-7 btn-color border-none rounded-xl">
                 <SlArrowLeft className="" />
               </button>
-              <button className="swiper-button-next absolute -right-3 top-1/2 transform -translate-y-1/2  text-white p-2 rounded-full border-none">
+              <button className="swiper-button-next bg-black/50 p-4 absolute -right-3 top-1/2 transform -translate-y-1/2  btn-color py-7 rounded-xl border-none">
                 <SlArrowRight />
               </button>
+              </div>
             </Swiper>
         </div>
           </div>
