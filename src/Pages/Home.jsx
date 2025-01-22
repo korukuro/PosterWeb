@@ -35,9 +35,9 @@ const Home = () => {
               <Spinner />
             </div>
           ) : posts.length > 0 ? (
-            <div className="grid grid-cols-4 auto-rows-custom w-11/12 pt-10 pb-24 gap-y-64 h-auto">
+            <div className="grid grid-cols-3 auto-rows-custom w-11/12 pt-10 pb-24 gap-y-40 gap-x-14 h-auto ">
               {posts.map((post) => (
-                <div key={post.id} className="w-[250px] m-0">
+                <div key={post.id} className=" flex justify-center items-center">
                   <Product post={post} />
                 </div>
               ))}
