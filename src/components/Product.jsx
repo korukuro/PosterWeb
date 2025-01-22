@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import RatingStars from "../components/common/RatingStars";
+import { AdaptiveImageDivForHome } from "./core/Home/AdaptiveImageDivForHome";
 
 const Product = ({ post }) => {
   const navigate = useNavigate();
@@ -28,13 +29,8 @@ const Product = ({ post }) => {
 
   return (
     <div className="w-[20rem] flex flex-col justify-center px-2 hover:scale-105 transition-all duration-300">
-      <div className="relative h-96 flex justify-center items-center border-2 border-black">
-        <img
-          onClick={handlePosterDetails}
-          src={post.image}
-          alt="poster-image"
-          className="object-contain w-full h-full p-7"
-        />
+      <div className="flex justify-center items-center" onClick={handlePosterDetails}>
+        <AdaptiveImageDivForHome images={post?.image}/>
       </div>
       <div className="w-full flex-col justify-between items-center pr-5 pl-6 mt-6 ">
         <div className="flex justify-between w-full">

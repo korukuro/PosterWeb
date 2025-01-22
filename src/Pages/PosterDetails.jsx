@@ -68,36 +68,6 @@ const PosterDetails = () => {
       ) : (
         <div className="grid grid-cols-2 mt-8 mb-8 mx-4 gap-4">
           {/* Right  */}
-          {/* <div className=" flex justify-center items-center border-black border-2">
-            <Swiper
-              modules={[EffectFlip, Navigation, Pagination]}
-              effect="flip"
-              grabCursor={true}
-              loop={true}
-              navigation={{
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-              }}
-              pagination={{ clickable: true }}
-              className="w-full h-full"
-            >
-              {images.map((image, index) => (
-                <SwiperSlide key={index}>
-                  <img
-                    src={image}
-                    alt={`poster-image-${index}`}
-                    className="w-full h-full p-8 object-contain"
-                  />
-                </SwiperSlide>
-              ))}
-              <button className="swiper-button-prev absolute -left-3 top-1/2 transform -translate-y-1/2  text-white p-2 rounded-full border-none">
-                <SlArrowLeft className="" />
-              </button>
-              <button className="swiper-button-next absolute -right-3 top-1/2 transform -translate-y-1/2  text-white p-2 rounded-full border-none">
-                <SlArrowRight />
-              </button>
-            </Swiper>
-          </div> */}
           <AdaptiveImageDiv images={posts?.image} />
 
           {/* Left */}
