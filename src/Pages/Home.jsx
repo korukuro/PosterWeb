@@ -3,6 +3,7 @@ import Spinner from "../components/Spinner";
 import Product from "../components/Product";
 import { getAllPoster } from "../services/operations/posterDetailsAPI";
 import { IoIosArrowDropdown } from "react-icons/io";
+import Section_1 from "../components/core/Home/Section_1";
 
 const Home = () => {
 
@@ -34,8 +35,8 @@ const Home = () => {
   };
   return (
     <>
-      <div className="relative overflow-hidden pt-28 pb-40">
-
+      <div className="relative overflow-hidden pb-40">
+        <Section_1/>
         <div className="z-10 relative w-full h-full flex justify-center items-center">
           {loading ? (
             <div className="flex justify-center items-center min-h-screen">
