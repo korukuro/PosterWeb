@@ -38,14 +38,15 @@ const CategoryWisePosterPage = () => {
     return <div>No posters found in this category.</div>;
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-2xl font-bold mb-6 text-gray-800 dark:text-white">
+    <div className="container mx-auto py-6">
+      <h1 className="text-2xl font-bold mb-6 ">
         {categoryData.name}
       </h1>
-      <p className="mb-4 text-gray-600 dark:text-gray-400">
+      <p className="mb-4 font-bold text-3xl bg-black pt-5 flex items-center justify-center text-white">
         {categoryData.description}
       </p>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="flex justify-center mt-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
       {categoryData.poster && categoryData.poster.length > 0 ?
           categoryData.poster.map((poster) => (
             <Product post={poster} />
@@ -54,6 +55,7 @@ const CategoryWisePosterPage = () => {
           <div>No posters found in this category.</div>
         }
       
+      </div>
       </div>
     </div>
   );
