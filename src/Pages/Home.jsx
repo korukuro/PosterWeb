@@ -4,6 +4,7 @@ import Product from "../components/Product";
 import { getAllPoster } from "../services/operations/posterDetailsAPI";
 import { IoIosArrowDropdown } from "react-icons/io";
 import Section_1 from "../components/core/Home/Section_1";
+import InfiniteLoop from "../components/core/Home/InfiniteLoop";
 
 const Home = () => {
 
@@ -74,15 +75,7 @@ const Home = () => {
             </div>
           )}
         </div>
-        <div className="flex overflow-hidden bg-black h-40 items-center">
-        <ul className="flex animate-infinite-scroll gap-10 py-4 text-white">
-          {[...texts,...texts].map((text, idx) => {
-            return (
-              <li key={idx} className="text-white">{text}</li>
-            );
-          })}
-        </ul>
-        </div>
+        <InfiniteLoop/>
       </div>
     </>
   );
