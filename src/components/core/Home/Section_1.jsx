@@ -22,7 +22,7 @@ const Section_1 = () => {
   ];
 
   return (
-    <div className="w-full h-auto overflow-hidden border-2 border-black">
+    <div className="w-full h-auto overflow-hidden">
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         spaceBetween={30}
