@@ -135,27 +135,27 @@ const CheckOut = () => {
               <CheckOutItem key={item._id} item={item} itemIndex={index} />
             ))}
           </div>
-            <div className="flex justify-between text-md text-gray-600">
+            <div className="flex justify-between ml-2 text-md text-gray-600">
               <span>Total Items:</span>
               <span>{cart.reduce((total, item) => total + item.quantity, 0)}</span>
             </div>
           {/* Shipment Details */}
-          <div className="flex justify-between text-md text-gray-600">
+          <div className="flex justify-between text-md text-gray-600 ml-2">
             <span>Shipment:</span>
             <span>Free</span>
           </div>
             
           {/* Total Price */}
-          <div className="flex justify-between text-xl font-bold text-gray-800">
+          <div className="flex justify-between text-xl font-bold text-gray-800 ml-2">
             <span>Total:</span>
             <span>₹{totalAmount}</span>
           </div>
-          <p className="text-gray-600 text-[0.8rem]">The shipment is expected to be delivered within 3 to 4 business days.</p>
+          <p className="text-gray-600 text-[0.8rem] ml-2">The shipment is expected to be delivered within 3 to 4 business days.</p>
 
         {/* Pay Now Button */}
         <button
           onClick={handlePayment}
-          className="w-full bg-black text-white font-medium text-lg py-3 rounded-lg transition duration-200"
+          className="w-full bg-black text-white font-medium text-lg py-3 rounded-lg transition duration-200 ml-2"
         >
           PAY NOW
         </button>
