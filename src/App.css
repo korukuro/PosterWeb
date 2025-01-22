@@ -30,3 +30,12 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
   background-color: #000 !important;
   transform: scale(1.2) !important;
 }
+
+.btn-color{
+  color: white !important;
+  font-size: 4rem !important;
+}
+.btn-color:hover{
+  color: white !important;
+}
+
