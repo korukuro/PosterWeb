@@ -41,7 +41,7 @@ function App() {
     "/verify-email",
     "/authentication",
   ];
-  const hideFooterPaths = ["/login", "/signup", "/verify-email"];
+  const hideFooterPaths = ["/login", "/signup", "/verify-email","/checkout"];
 
   const shouldHideNavbar = hideNavbarPaths.includes(location.pathname);
   const shouldHideFooter = hideFooterPaths.includes(location.pathname);
