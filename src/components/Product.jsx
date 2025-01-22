@@ -28,12 +28,12 @@ const Product = ({ post }) => {
 
   return (
     <div className="w-[20rem] flex flex-col justify-center px-2">
-      <div className="relative h-96 flex justify-center items-center">
+      <div className="relative h-96 flex justify-center items-center border-2 border-black">
         <img
           onClick={handlePosterDetails}
           src={post.image}
           alt="poster-image"
-          className="object-contain w-full h-full"
+          className="object-contain w-full h-full p-7"
         />
       </div>
       <div className="w-full flex-col justify-between items-center pr-5 pl-6 mt-6 ">
