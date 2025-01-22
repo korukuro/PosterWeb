@@ -118,7 +118,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="text-[3rem] lg:text-[11rem] w-full text-center font-extrabold font-serif">
+        <div className="text-[3rem] lg:text-[10rem] w-full text-center font-extrabold font-serif">
           POSTERWEB
         </div>
         <div className="flex flex-col lg:flex-row items-center justify-between w-11/12 max-w-maxContent text-richblack-400 mx-auto text-sm">
