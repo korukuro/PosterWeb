@@ -73,7 +73,7 @@ const CheckOut = () => {
     <div className="flex justify-center pt-24">
     <div className="flex flex-col lg:flex-row w-[80%] overflow-hidden">
       {/* Delivery Details Section */}
-      <div className="lg:w-1/2 w-full p-4 h-[90vh]">
+      <div className="lg:w-1/2 w-full p-4 h-[90vh] pt-8">
         {!showDeliveryForm ? (
           <div>
             <h2 className="text-xl font-semibold text-gray-800 mb-4">Select Delivery Address</h2>
