@@ -79,7 +79,7 @@ export function AdaptiveImageDiv({ images }) {
                   <img
                     src={image}
                     alt={`poster-image-${index}`}
-                    className="w-full h-full object-contain border-black border-4"
+                    className={`w-full h-full ${image === sizeImage ? "border-none object-cover" : "border-black border-4 object-contain"}`}
                   />
                 </SwiperSlide>
               ))}
