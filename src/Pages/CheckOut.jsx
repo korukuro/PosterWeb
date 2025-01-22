@@ -140,7 +140,7 @@ const CheckOut = () => {
             <span>Shipment:</span>
             <span>Free</span>
           </div>
-
+            
           {/* Total Price */}
           <div className="flex justify-between text-xl font-bold text-gray-800">
             <span>Total:</span>
