@@ -14,8 +14,13 @@ const CategoryWisePosterPage = () => {
   const fetchCategoryWisePoster = async (categoryId) => {
     try {
       const response = await getCategoryWisePoster(categoryId);
-      const shuffledPosters = response.selectedCategory.poster.sort(() => Math.random() - 0.5);
-      setCategoryData({ ...response.selectedCategory, poster: shuffledPosters }); // Save the category data
+      const shuffledPosters = response.selectedCategory.poster.sort(
+        () => Math.random() - 0.5
+      );
+      setCategoryData({
+        ...response.selectedCategory,
+        poster: shuffledPosters,
+      }); // Save the category data
       setLoading(false);
     } catch (err) {
       console.error("Error fetching category data:", err);
@@ -32,30 +37,33 @@ const CategoryWisePosterPage = () => {
   }, [categoryId]);
 
   // Render the component
-  if (loading) return <div><Spinner/></div>;
+  if (loading)
+    return (
+      <div>
+        <Spinner />
+      </div>
+    );
   if (error) return <div className="text-red-500">{error}</div>;
   if (!categoryData || !categoryData.poster.length)
     return <div>No posters found in this category.</div>;
 
   return (
     <div className="container mx-auto py-6">
-      <h1 className="text-2xl font-bold mb-6 ">
-        {categoryData.name}
-      </h1>
-      <p className="mb-4 font-bold text-3xl bg-black pt-5 flex items-center justify-center text-white">
+      <h1 className="text-2xl font-bold mb-6 ">{categoryData.name}</h1>
+      <p
+        style={{ wordSpacing: "5  rem" }}
+        className="font-bold text-4xl bg-black pt-5 flex items-center justify-center tracking-[1rem] font-serif text-white"
+      >
         {categoryData.description}
       </p>
       <div className="flex justify-center mt-8">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-      {categoryData.poster && categoryData.poster.length > 0 ?
-          categoryData.poster.map((poster) => (
-            <Product post={poster} />
-          ))
-          :
-          <div>No posters found in this category.</div>
-        }
-      
-      </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {categoryData.poster && categoryData.poster.length > 0 ? (
+            categoryData.poster.map((poster) => <Product post={poster} />)
+          ) : (
+            <div>No posters found in this category.</div>
+          )}
+        </div>
       </div>
     </div>
   );
