@@ -34,11 +34,11 @@ const Section_1 = () => {
           delay: 3000, // Time between slides in milliseconds (3 seconds)
           disableOnInteraction: false, // Continue autoplay after user interaction
         }}
-        className="h-[35rem]"
+        className=""
       >
         {slides.map((slide, index) => (
           <SwiperSlide key={index}>
-            <div className="relative w-full h-full">
+            <div className="relative w-full">
               {/* Heading overlay */}
               <div className="absolute bottom-20 left-10 bg-black bg-opacity-50 text-white p-4 rounded-lg">
                 <h2 className="text-3xl font-bold">{`"${slide.heading}"`}</h2>
@@ -47,7 +47,7 @@ const Section_1 = () => {
               <img
                 src={slide.image}
                 alt={`Carousel slide ${index + 1}`}
-                className="w-full h-[35rem] object-cover"
+                className="w-full object-cover"
               />
             </div>
           </SwiperSlide>
