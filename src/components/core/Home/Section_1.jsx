@@ -47,7 +47,7 @@ const Section_1 = () => {
               <img
                 src={slide.image}
                 alt={`Carousel slide ${index + 1}`}
-                className="w-full object-cover"
+                className="w-full h-[50rem] object-cover"
               />
             </div>
           </SwiperSlide>
