@@ -48,6 +48,18 @@ const Footer = () => {
             <div className="w-full text-2xl text-center absolute top-1/3 hover:underline cursor-pointer transition duration-500">
               CONTACT
             </div>
+            <div
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              style={{
+                writingMode: "vertical-rl",
+                textOrientation: "upright",
+                letterSpacing: "-0.01em",
+                cursor: "pointer",
+              }}
+              className="absolute top-0 right-0 bg-blue-400 font-bold pb-2 pl-2 pr-2 hover:bg-blue-500 transition duration-300"
+            >
+              ↑To Top
+            </div>
           </div>
         </div>
 

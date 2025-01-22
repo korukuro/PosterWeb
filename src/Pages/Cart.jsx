@@ -50,7 +50,7 @@ const Cart = () => {
                 </span>
               </p>
               <Link to="/checkout">
-                <button className="bg-[#000000] text-white px-7 py-2 rounded-lg text-md font-bold w-full">
+                <button className="bg-[#000000] text-white px-7 py-2 rounded-lg text-md font-bold w-full hover:scale-110 active:scale-90 transition-transform duration-300 transform">
                   Check Out
                 </button>
               </Link>
