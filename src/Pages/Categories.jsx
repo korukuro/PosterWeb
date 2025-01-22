@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { getAllCategories } from '../services/operations/posterDetailsAPI';
 import { FocusCards } from "../components/ui/Focus-card";
+import { set } from 'mongoose';
+import Spinner from '../components/Spinner';
 
 const Categories = () => {
     const [categories, setCategories] = useState([]);
     const [cards, setCards] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchCategories = async () => {
+            setLoading(true);
             try {
                 const res = await getAllCategories();
                 setCategories(res.data);
@@ -20,13 +24,17 @@ const Categories = () => {
             } catch (error) {
                 console.error("Error fetching categories:", error);
             }
+            setLoading(false);
         };
         fetchCategories();
     }, []);
     return (
         <div className='pt-24 p-6 bg-[#F8FFE5]'>
-            <FocusCards cards={cards} />
+            {
+            loading ? <div><Spinner/></div> : 
+             <FocusCards cards={cards} />
             
+            }
         </div>
     );
 };

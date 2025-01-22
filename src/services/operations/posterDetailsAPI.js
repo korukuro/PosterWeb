@@ -88,7 +88,6 @@ export const getOrderHistory = async (token) => {
 
 // get all categories
 export const getAllCategories = async () => {
-    const toastId = toast.loading("Loading");
     let result = [];
     try {
         const response = await apiConnector("GET", GET_ALL_CATEGORIES_API);
@@ -101,8 +100,6 @@ export const getAllCategories = async () => {
     } catch (error) {
         console.error("GET_ALL_CATEGORIES_API API ERROR: ", error);
         toast.error(error.message);
-    } finally {
-        toast.dismiss(toastId);
     }
     return result;
 };
