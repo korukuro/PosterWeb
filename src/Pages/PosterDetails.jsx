@@ -59,13 +59,13 @@ const PosterDetails = () => {
   };
 
   return (
-    <div className="flex justify-evenly w-full mx-auto overflow-x-hidden mt-16 overflow-y-hidden ">
+    <div className="flex justify-evenly w-full mx-auto overflow-x-hidden pt-16 overflow-y-hidden ">
       {loading ? (
         <div className="flex justify-center items-center h-full w-full">
           <Spinner />
         </div>
       ) : (
-        <div className="flex gap-10 w-full pt-6 pb-9">
+        <div className="flex gap-10 w-full pt-6 pb-9 ">
           <div className="w-[45%] h-full m-7 flex justify-end">
             <div className="w-[24rem] h-[35.1rem] border-2 flex items-center relative">
               <img
@@ -93,8 +93,7 @@ const PosterDetails = () => {
           <div className="flex flex-col w-[55%] gap-5 p-16">
             <div className="flex items-center justify-between w-[40rem]">
               <h1 className="font-bold text-2xl">{posts?.posterName}</h1>
-              {console.log("Posts", posts)}
-              <RatingStars posterId={posts._id} Star_Size={30} />
+              <RatingStars Star_Size={30} />
             </div>
             <span>{`Price: ₹${posts?.price}`}</span>
             <div className="space-x-4">
