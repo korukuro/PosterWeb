@@ -9,6 +9,7 @@ import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 
 import image1 from '../../../additionalFile/home-image/homeImage_1.jpg';
 import image2 from '../../../additionalFile/home-image/homeImage_2.jpg';
+import image3 from '../../../additionalFile/home-image/homeImage_3.jpg';
 // import image3 from '../../../additionalFile/home-image/homeImage_3.jpg'; // Add more images as needed
 
 const Section_1 = () => {
@@ -16,11 +17,12 @@ const Section_1 = () => {
   const slides = [
     { image: image1, heading: "Posters That Make a Statement." },
     { image: image2, heading: "Transform Your Walls, Transform Your World!" },
+    { image: image3, heading: "Mosambi Ka joos pila do" },
     // Add more slides as needed
   ];
 
   return (
-    <div className="w-full h-auto overflow-hidden">
+    <div className="w-full h-auto overflow-hidden border-2 border-black">
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         spaceBetween={30}
