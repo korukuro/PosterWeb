@@ -12,8 +12,8 @@ const Home = () => {
     setLoading(true);
     try {
       const data = await getAllPoster();
-
-      setPosts(data);
+      const shuffledData = data.sort(() => Math.random() - 0.5);
+      setPosts(shuffledData);
     } catch (error) {
       console.log("Data nhi aaya");
       setPosts([]);
