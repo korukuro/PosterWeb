@@ -36,15 +36,15 @@ const Product = ({ post }) => {
           className="object-contain w-full h-full"
         />
       </div>
-      <div className="w-full flex-col justify-between items-center pr-5 pl-6">
+      <div className="w-full flex-col justify-between items-center pr-5 pl-6 mt-6 ">
           <div className="flex justify-between w-full">
             <p>{post.posterName}</p>
             <span>₹{post.price}</span>
           </div>
 
           <div>
-          <p className="text-sm text-gray-500">{post.description}</p>
-          <RatingStars posterId={post._id} Star_Size={15} />
+          <p className="text-[0.8rem] text-gray-500 mt-1">{post.description}</p>
+          <p className="mt-2"><RatingStars posterId={post._id} Star_Size={15} /></p>
           </div>
         </div>
       </div>

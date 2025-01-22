@@ -56,6 +56,11 @@ const Navbar = () => {
 
         {/* Search Bar and Icons */}
         <div className="flex items-center font-medium gap-4">
+          {/* Categories */}
+          <Link to="/categories" className="hover:underline">
+            Categories
+          </Link>
+
           {/* Search Input */}
           <div className="relative">
             <input
@@ -85,9 +90,6 @@ const Navbar = () => {
             )}
           </div>
 
-          {/* Categories */}
-          <Link to="/categories">Categories</Link>
-
           {/* Cart Icon */}
           <Link to="/cart">
             <div className="relative">
@@ -98,6 +100,26 @@ const Navbar = () => {
                   justify-center items-center animate-bounce rounded-full text-white"
                 >
                   {cart.length}
+                  <Link to="/cart">
+                    <div className="relative group border-2 border-black">
+                      {/* Shopping Bag Icon */}
+                      <img
+                        src={bag}
+                        alt="Shopping Bag"
+                        className="h-7 transform transition-transform duration-300 group-hover:scale-110"
+                      />
+                      {/* Cart Badge */}
+                      {cart.length > 0 && (
+                        <span
+                          className="absolute -top-1 -right-2 bg-black text-xs w-5 h-5 flex 
+        justify-center items-center animate-bounce rounded-full text-white 
+        transform transition-transform duration-300 group-hover:scale-125"
+                        >
+                          {cart.length}
+                        </span>
+                      )}
+                    </div>
+                  </Link>
                 </span>
               )}
             </div>
