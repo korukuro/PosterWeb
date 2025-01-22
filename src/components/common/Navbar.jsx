@@ -47,6 +47,7 @@ const Navbar = () => {
     }, 300); // Match the duration of the rotation animation
   };
 
+
   return (
     <div
       className={`fixed top-0 left-0 right-0 z-50 bg-white shadow-md transition-transform duration-300 ${
@@ -76,19 +77,22 @@ const Navbar = () => {
               type="text"
               value={value}
               onChange={(e) => setValue(e.target.value)}
-              className="border border-black rounded-xl p-1 focus:outline-none pl-2 pr-8 transition-all duration-300"
+              className={`border border-black rounded-xl p-1 focus:outline-none pl-2 pr-8 transition-all duration-300 ${
+                isFocused || value ? "w-60" : "w-44"
+              }`}
               placeholder="Search"
               onFocus={() => setIsFocused(true)} // Set focus state to true
               onBlur={() => setIsFocused(false)} // Set focus state to false
             />
-            {!isFocused && (
+
+            {!isFocused && !value && (
               <img
                 src={loupe}
                 alt="Search Icon"
-                className="h-7 absolute top-1 right-3 opacity-100 transition-opacity duration-300"
+                className="h-6 absolute top-[0.3rem] right-3 opacity-100 transition-opacity duration-300"
               />
             )}
-            {isFocused && value && (
+            {value && (
               <button
                 onMouseDown={(e) => e.preventDefault()} // Prevent losing focus
                 onClick={handleClearInput} // Clear the input value
