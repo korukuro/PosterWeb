@@ -12,35 +12,41 @@ const CartItem = ({ item }) => {
     toast.error("Item removed from Cart");
   };
   const { cart } = useSelector((state) => state);
-  
+
   const navigate = useNavigate();
   const handleClick = () => {
     navigate(`/poster/${item._id}`);
   };
   return (
-    <div className={`flex cursor-pointer h-[max-content] w-[550px] m-4 p-4 cart-item cart-item ${
-        cart.length > 1 ? "border-b-2 border-b-black" : ""}`}>
-      <img
-        onClick={handleClick}
-        src={item.image}
-        alt="item img"
-        className="w-[40%] mx-1 mr-5 p-2"
-      />
+    <div className="grid grid-cols-3 border-2 border-black h-[13rem] w-full">
+      <div className="h-full w-full border-2 border-black relative">
+        <img
+          onClick={handleClick}
+          src={item.image}
+          alt="item img"
+          className="h-full object-cover"
+        />
+        <span className="absolute top-0 z-10 bg-black text-white rounded-full w-6 flex justify-center items-center animate-bounce">{`${item.quantity}`}</span>
+      </div>
 
-      <div className="flex flex-col justify-evenly">
-        <h1 className="text-black font-bold text-lg text-left mt-1">
-          {item.posterName}
-        </h1>
-        <p className=" text-black font-semibold text-[16px] text-left">
-          {item.size}
+      <div className=" col-span-2 flex justify-between w-full">
+        <div>
+          <h1 className="font-bold">
+            {item.posterName}
+          </h1>
+          <h3 className="text-sm text-gray-500">{item.description}</h3>
+          <p className="text-sm text-gray-500">
+          Size : {item.size}
         </p>
-        <div className="flex justify-between items-center my-2 gap-4">
-          <span className="text-black-700 font-semibold">₹{item.price}</span>
-          <span className="text-black-700 font-semibold">{`quantity: ${item.quantity}`}</span>
-          <div className=" cursor-pointer bg-red-300 p-[0.4rem] rounded-full">
+        </div>
+        
+        <div className="">
+          <span className="">MRP : ₹ {item.price}</span>
+
+          <div className="">
             <RiDeleteBin5Line
               onClick={removeItem}
-              className=" text-md text-red-800"
+              className=""
             />
           </div>
         </div>

@@ -6,11 +6,10 @@ import emptyBox from "../additionalFile/empty-box.png";
 import spider from "../additionalFile/spider.png";
 
 const Cart = () => {
-  const { cart } = useSelector((state) => state); // Ensure correct access to cart state
+  const { cart } = useSelector((state) => state);
   const [totalAmount, setTotalAmount] = useState(0);
 
   useEffect(() => {
-    // Calculate total price whenever the cart changes
     const total = cart.reduce(
       (sum, item) => sum + item.price * item.quantity,
       0
@@ -19,10 +18,10 @@ const Cart = () => {
   }, [cart]);
 
   return (
-    <div className="pt-20 pb-10 overflow-hidden">
+    <div className=" w-10/12 mx-auto">
       {cart.length > 0 ? (
-        <div className="flex justify-center m-3 cart-box">
-          <div className="overflow-y-auto overflow-x-hidden h-[40rem] scrollbar-thin scrollbar-black scrollbar-track-gray-200">
+        <div className="grid grid-cols-3 m-3 border-2 border-red-600 mt-24">
+          <div className="col-span-2">
             {cart.map((item, index) => {
               return <CartItem key={item.id} item={item} itemIndex={index} />;
             })}

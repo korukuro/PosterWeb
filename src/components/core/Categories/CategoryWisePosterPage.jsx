@@ -1,7 +1,6 @@
 import { useParams, Link } from "react-router-dom"; // Import Link
 import React, { useEffect, useState } from "react";
 import { getCategoryWisePoster } from "../../../services/operations/posterDetailsAPI";
-import Spinner from "../../Spinner";
 import Product from "../../Product";
 import HomeSkeleton from "../../common/skeleton/HomeSkeleton";
 const CategoryWisePosterPage = () => {
