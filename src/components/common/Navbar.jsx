@@ -46,10 +46,10 @@ const Navbar = () => {
       setIsClearing(false); // Reset animation
     }, 300); // Match the duration of the rotation animation
   };
-  const [bgColor, setBgColor] = useState("#E53935");
+  const [bgColor, setBgColor] = useState("rgba(229, 57, 53,0.9)");
 
   const generateRandomColor = () => {
-    const colors = ["#42A5F5", "#FFEE58", "#E53935"]; // Red, Yellow, Blue
+    const colors = ["rgba(66, 165, 245, 0.9)", "rgba(255, 238, 88, 0.9)", "rgba(229, 57, 53,0.9)"]; // Red, Yellow, Blue
     const randomColor = colors[Math.floor(Math.random() * colors.length)];
     setBgColor(randomColor);
   };
