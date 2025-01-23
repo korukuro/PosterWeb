@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getAllCategories } from "../services/operations/posterDetailsAPI";
 import { FocusCards } from "../components/ui/Focus-card";
-import { set } from "mongoose";
 import Spinner from "../components/Spinner";
 
 import { motion } from "framer-motion";

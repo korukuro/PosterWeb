@@ -66,7 +66,11 @@ const Navbar = () => {
         {/* Search Bar and Icons */}
         <div className="flex items-center font-medium gap-4">
           {/* Categories */}
-          <Link to="/categories" className="hover:underline">
+          <Link
+            to="/categories"
+            className="relative inline-block px-6 py-1 font-bold text-white bg-red-600 hover:bg-blue-700 transition-all duration-300"
+            style={{ clipPath: "polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%)" }}
+          >
             Categories
           </Link>
 
