@@ -26,7 +26,7 @@ const LoginSignupAndImg = () => {
             <Link to="/login">
               <button
                 className={`${
-                  vistcheck === "Login" ? "bg-[#0000008e]" : "bg-[#0000004d]"
+                  vistcheck === "Login" ? "bg-[#0000008e]" : ""
                 } text-white px-5 w-[8rem] h-[3.5rem] rounded-l-full text-md font-bold hover:scale-105 transition-transform`}
               >
                 Login
@@ -37,7 +37,7 @@ const LoginSignupAndImg = () => {
             <Link to="/signup">
               <button
                 className={`${
-                  vistcheck === "Signup" ? "bg-[#0000008e]" : "bg-[#0000004d]"
+                  vistcheck === "Signup" ? "bg-[#0000008e]" : ""
                 } text-white px-5 w-[8rem] h-[3.5rem] rounded-l-full text-md font-bold hover:scale-105 transition-transform`}
               >
                 Signup
