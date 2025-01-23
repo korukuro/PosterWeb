@@ -39,7 +39,7 @@ const CategoryWisePosterPage = () => {
   if (loading)
     return (
       <div className="flex justify-center items-center mt-20 mb-5">
-        <HomeSkeleton skeletonCount={categoryData.poster.length}/>
+        <HomeSkeleton skeletonCount={6}/>
       </div>
     );
   if (error) return <div className="text-red-500">{error}</div>;
