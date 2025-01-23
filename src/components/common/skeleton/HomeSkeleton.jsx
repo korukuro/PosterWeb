@@ -11,7 +11,7 @@ const HomeSkeleton = () => {
                     className="w-[20rem] flex flex-col justify-center px-2 hover:scale-105 transition-all duration-300"
                 >
                     {/* Image Section */}
-                    <div className="flex justify-center items-center h-[200px] w-full bg-gray-300 animate-pulse rounded-lg"></div>
+                    <div className="flex justify-center items-center h-[25rem] w-full bg-gray-300 animate-pulse rounded-lg"></div>
 
                     {/* Content Section */}
                     <div className="w-full flex flex-col justify-between items-center pr-5 pl-6 mt-6">
