@@ -18,37 +18,40 @@ const CartItem = ({ item }) => {
     navigate(`/poster/${item._id}`);
   };
   return (
-    <div className="grid grid-cols-3 border-2 border-black h-[13rem] w-full">
-      <div className="h-full w-full border-2 border-black relative">
+    <div className="flex h-[16rem] border-b-2 pb-10 border-gray-200">
+
+      {/* Left */}
+      <div className="h-full w-[20%] flex border-2 border-black relative">
         <img
           onClick={handleClick}
           src={item.image}
           alt="item img"
-          className="h-full object-cover"
+          className="object-cover w-full h-full cursor-pointer"
         />
-        <span className="absolute top-0 z-10 bg-black text-white rounded-full w-6 flex justify-center items-center animate-bounce">{`${item.quantity}`}</span>
+        <span className="absolute top-0 right-0 z-10 bg-black text-white rounded-full w-6 flex justify-center items-center animate-bounce">{`${item.quantity}`}</span>
       </div>
 
-      <div className=" col-span-2 flex justify-between w-full">
+      {/* Right */}
+      <div className="w-[80%] flex justify-between flex-col p-4">
         <div>
-          <h1 className="font-bold">
-            {item.posterName}
-          </h1>
+          <div className="flex font-bold justify-between">
+            <h1 className="">{item.posterName}</h1>
+            <span className="">MRP : ₹ {item.price}</span>
+          </div>
           <h3 className="text-sm text-gray-500">{item.description}</h3>
           <p className="text-sm text-gray-500">
-          Size : {item.size}
-        </p>
+            Size : {item.size}
+          </p>
         </div>
         
-        <div className="">
-          <span className="">MRP : ₹ {item.price}</span>
-
-          <div className="">
+        
+        <div className="flex justify-end">
+          
             <RiDeleteBin5Line
               onClick={removeItem}
-              className=""
+              className="cursor-pointer text-xl text-red-500 hover:text-red-700"
             />
-          </div>
+          
         </div>
       </div>
     </div>

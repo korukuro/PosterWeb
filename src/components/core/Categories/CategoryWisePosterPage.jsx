@@ -19,7 +19,7 @@ const CategoryWisePosterPage = () => {
       setCategoryData({
         ...response.selectedCategory,
         poster: shuffledPosters,
-      }); // Save the category data
+      });
       setLoading(false);
     } catch (err) {
       console.error("Error fetching category data:", err);
@@ -39,7 +39,7 @@ const CategoryWisePosterPage = () => {
   if (loading)
     return (
       <div className="flex justify-center items-center mt-20 mb-5">
-        <HomeSkeleton/>
+        <HomeSkeleton skeletonCount={categoryData.poster.length}/>
       </div>
     );
   if (error) return <div className="text-red-500">{error}</div>;

@@ -43,7 +43,7 @@ const Home = () => {
         <div className="mt-20"><Section_1 /></div>
         <div className="z-10 relative w-full h-full flex justify-center items-center">
           {loading ? (
-            <HomeSkeleton />
+            <HomeSkeleton skeletonCount={6} />
 
           ) : posts.length > 0 ? (
             <div className="flex flex-col justify-center items-center mt-12">
