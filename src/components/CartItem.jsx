@@ -1,5 +1,4 @@
 import { RiDeleteBin5Line } from "react-icons/ri";
-import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { remove } from "../slices/cartSlice";
 import { useNavigate } from "react-router-dom";
@@ -9,7 +8,6 @@ const CartItem = ({ item }) => {
   const dispatch = useDispatch();
   const removeItem = () => {
     dispatch(remove({ productId: item._id, size: item.size }));
-    toast.error("Item removed from Cart");
   };
   const { cart } = useSelector((state) => state);
 

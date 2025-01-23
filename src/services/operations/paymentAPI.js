@@ -26,7 +26,6 @@ async function loadScript(src) {
 
 // Buy the Poster
 export async function BuyPoster(token, posterDetails, userDetails, deliveryId, navigate, dispatch) {
-  const toastId = toast.loading("Initializing payment...");
   try {
     // Step 1: Load Razorpay SDK
     const isScriptLoaded = await loadScript("https://checkout.razorpay.com/v1/checkout.js");
@@ -73,8 +72,19 @@ export async function BuyPoster(token, posterDetails, userDetails, deliveryId, n
       handler: async (response) => {
         try {
           console.log("Payment Successful Response:", response);
-          await sendPaymentSuccessEmail(response, amount, token);
-          await verifyPayment({ ...response, posterDetails, deliveryId }, token, navigate, dispatch);
+          // Show loading toast before starting verification
+          // const verifyToastId = toast.loading("Processing payment...");
+
+          // Verify the payment
+          await verifyPayment(
+            { ...response, posterDetails, deliveryId },
+            token,
+            navigate,
+            dispatch
+          );
+
+          // Dismiss the loading toast
+          // toast.dismiss(verifyToastId);
         } catch (error) {
           console.error("Handler Error:", error);
           toast.error("An error occurred while processing payment.");
@@ -97,16 +107,14 @@ export async function BuyPoster(token, posterDetails, userDetails, deliveryId, n
   } catch (error) {
     console.error("Payment Initialization Error:", error);
     toast.error(error.message || "Could not complete payment.");
-  } finally {
-    toast.dismiss(toastId);
   }
 }
 
 // Verify the Payment
 async function verifyPayment(paymentData, token, navigate, dispatch) {
-  const toastId = toast.loading("Verifying payment...");
+  // const toastId = toast.loading("Verifying payment...");
   dispatch(setPaymentLoading(true));
-
+  
   try {
     console.log("Verifying Payment Data:", paymentData);
 
@@ -133,7 +141,7 @@ async function verifyPayment(paymentData, token, navigate, dispatch) {
     console.error("Payment Verification Error:", error);
     toast.error(error.message || "Could not verify payment.");
   } finally {
-    toast.dismiss(toastId);
+    // toast.dismiss(toastId);
     dispatch(setPaymentLoading(false));
   }
 }
