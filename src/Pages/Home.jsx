@@ -63,7 +63,7 @@ const Home = () => {
 
                     <span className="absolute bottom-0 left-1/2 w-0 h-[2px] bg-black transition-all duration-300 ease-out group-hover:w-full group-hover:left-0"></span>
 
-                    <span className="z-10 flex justify-center items-center gap-2">View More <span className=" opacity-0 group-hover:opacity-100 transition-all duration-300 "><IoIosArrowDropdown /></span> </span>
+                    <span className="z-10 flex justify-center items-center gap-2">View More</span>
                   </button>
                 </div>
               )}
