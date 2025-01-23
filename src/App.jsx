@@ -47,7 +47,7 @@ function App() {
   const shouldHideFooter = hideFooterPaths.includes(location.pathname);
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col noto-sans">
       
       <ScrollToTop/>
       {/* Conditionally render Navbar */}
