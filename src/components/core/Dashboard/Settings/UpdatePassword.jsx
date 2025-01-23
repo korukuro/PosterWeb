@@ -35,11 +35,11 @@ export default function UpdatePassword() {
   return (
     <>
       <form onSubmit={handleSubmit(submitPasswordForm)}>
-        <div className="my-10 flex flex-col gap-y-6 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-8 px-12">
+        <div className="flex flex-col gap-y-2 rounded-md pl-28">
           <h2 className="text-lg font-semibold text-richblack-5">Password</h2>
-          <div className="flex flex-col gap-5 lg:flex-row">
+          <div className="flex flex-col gap-11 lg:flex-row">
             {/* Current Password */}
-            <div className="relative flex flex-col gap-2 lg:w-[48%]">
+            <div className="relative flex flex-col gap-2 lg:w-[42%]">
               <label htmlFor="oldPassword" className="lable-style">
                 Current Password
               </label>
@@ -48,7 +48,7 @@ export default function UpdatePassword() {
                 name="oldPassword"
                 id="oldPassword"
                 placeholder="Enter Current Password"
-                className="form-style rounded-md h-10 p-2 w-[25rem]"
+                className="form-style rounded-sm h-14 p-2 border border-black focus:outline-none bg-transparent"
                 {...register("oldPassword", { required: true })}
               />
               {oldPasswordValue && (
@@ -71,7 +71,7 @@ export default function UpdatePassword() {
             </div>
 
             {/* New Password */}
-            <div className="relative flex flex-col gap-2 lg:w-[48%]">
+            <div className="relative flex flex-col gap-2 lg:w-[42%]">
               <label htmlFor="newPassword" className="lable-style">
                 New Password
               </label>
@@ -80,7 +80,7 @@ export default function UpdatePassword() {
                 name="newPassword"
                 id="newPassword"
                 placeholder="Enter New Password"
-                className="form-style rounded-md h-10 p-2 w-[25rem]"
+                className="form-style rounded-sm h-14 p-2 border border-black focus:outline-none bg-transparent"
                 {...register("newPassword", { required: true })}
               />
               {newPasswordValue && (
@@ -105,12 +105,12 @@ export default function UpdatePassword() {
         </div>
 
         {/* Buttons */}
-        <div className="flex justify-end gap-2">
+        <div className="flex justify-end gap-2 mt-5 pr-11">
           <button
             onClick={() => {
               navigate("/dashboard/my-profile");
             }}
-            className="cursor-pointer rounded-md bg-richblack-700 py-2 px-5 font-semibold text-richblack-50"
+            className="cursor-pointer border border-red-600 py-2 px-5 text-red-600 hover:scale-105 transition-all duration-300"
           >
             Cancel
           </button>

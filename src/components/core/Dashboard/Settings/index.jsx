@@ -7,10 +7,7 @@ import { BackgroundBeams } from "../../../../components/ui/background-beam";
 
 export default function Settings() {
   return (
-    <div className="flex flex-col gap-8">
-      <h1 className="mt-16 ml-12 text-3xl font-medium underline text-richblack-5">
-        Edit Profile
-      </h1>
+    <div className="flex flex-col w-full gap-8 pt-10">
       {/* Change Profile Picture */}
       <ChangeProfilePicture />
       {/* Profile */}
