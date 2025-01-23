@@ -76,7 +76,7 @@ function SignupForm() {
     <div>
       {/* Form */}
       <form onSubmit={handleOnSubmit} className="flex w-full flex-col gap-y-4">
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div className="grid grid-cols gap-4 sm:grid-cols-2">
           <label>
             <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
               First Name <sup className="text-pink-200">*</sup>
@@ -88,7 +88,7 @@ function SignupForm() {
               value={firstName}
               onChange={handleOnChange}
               placeholder="Enter first name"
-              className="form-style w-full bg-gray-300 border-2 border-black rounded-lg h-10 pl-2"
+              className="form-style w-full rounded-sm text-gray-700 p-2 border border-black focus:outline-none"
             />
           </label>
           <label>
@@ -102,7 +102,7 @@ function SignupForm() {
               value={lastName}
               onChange={handleOnChange}
               placeholder="Enter last name"
-              className="form-style w-full bg-gray-300 border-2 border-black rounded-lg h-10 pl-2"
+              className="form-style w-full rounded-sm text-gray-700 p-2 border border-black focus:outline-none"
             />
           </label>
         </div>
@@ -118,7 +118,7 @@ function SignupForm() {
             value={email}
             onChange={handleOnChange}
             placeholder="Enter email address"
-            className="form-style w-full bg-gray-300 border-2 border-black rounded-lg h-10 pl-2"
+            className="form-style w-full rounded-sm text-gray-700 p-2 border border-black focus:outline-none"
           />
         </label>
         <div className="gap-x-4">
@@ -133,7 +133,7 @@ function SignupForm() {
               value={password}
               onChange={handleOnChange}
               placeholder="Enter Password"
-              className="form-style w-full !pr-10 bg-gray-300 border-2 border-black rounded-lg h-10 pl-2"
+              className="form-style w-full rounded-sm text-gray-700 p-2 border border-black focus:outline-none"
             />
             {password && <span
               onClick={() => setShowPassword((prev) => !prev)}
@@ -159,7 +159,7 @@ function SignupForm() {
               value={confirmPassword}
               onChange={handleOnChange}
               placeholder="Confirm Password"
-              className="form-style w-full !pr-10 bg-gray-300 border-2 border-black rounded-lg h-10 pl-2"
+              className="form-style w-full rounded-sm text-gray-700 p-2 border border-black focus:outline-none"
             />
             {conformPasswordValue&&<span
               onClick={() => setShowConfirmPassword((prev) => !prev)}
