@@ -6,6 +6,8 @@ import Spinner from "../components/Spinner";
 
 import { motion } from "framer-motion";
 import { AuroraBackground } from "../components/ui/background";
+import { set } from 'mongoose';
+import CategoriesSkeleton from '../components/common/skeleton/CategoriesSkeleton';
 
 const Categories = () => {
   const [categories, setCategories] = useState([]);

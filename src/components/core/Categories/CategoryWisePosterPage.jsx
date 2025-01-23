@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { getCategoryWisePoster } from "../../../services/operations/posterDetailsAPI";
 import Spinner from "../../Spinner";
 import Product from "../../Product";
-
+import HomeSkeleton from "../../common/skeleton/HomeSkeleton";
 const CategoryWisePosterPage = () => {
   const { id: categoryId } = useParams(); // Get the category ID from the URL
   const [categoryData, setCategoryData] = useState(null); // State to hold category and poster data
@@ -39,8 +39,8 @@ const CategoryWisePosterPage = () => {
   // Render the component
   if (loading)
     return (
-      <div>
-        <Spinner />
+      <div className="flex justify-center items-center mt-20 mb-5">
+        <HomeSkeleton/>
       </div>
     );
   if (error) return <div className="text-red-500">{error}</div>;

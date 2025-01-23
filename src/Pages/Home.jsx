@@ -5,7 +5,8 @@ import { getAllPoster } from "../services/operations/posterDetailsAPI";
 import { IoIosArrowDropdown } from "react-icons/io";
 import Section_1 from "../components/core/Home/Section_1";
 import InfiniteLoop from "../components/core/Home/InfiniteLoop";
-import HomePoster from "../components/common/skeleton/HomePoster";
+import HomeSkeleton from "../components/common/skeleton/HomeSkeleton";
+
 
 const Home = () => {
 
@@ -42,11 +43,7 @@ const Home = () => {
         <div className="mt-20"><Section_1 /></div>
         <div className="z-10 relative w-full h-full flex justify-center items-center">
           {loading ? (
-            // <div className="flex justify-center items-center min-h-screen">
-            //   <Spinner />
-            // </div>
-
-            <HomePoster />
+            <HomeSkeleton />
 
           ) : posts.length > 0 ? (
             <div className="flex flex-col justify-center items-center mt-12">
