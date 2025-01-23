@@ -83,33 +83,28 @@ const Cart = () => {
             <div className="flex flex-col gap-4 justify-center items-center">
               <div className="flex gap-6 mb-8">
                 {loading ? (
-                  <div className="flex"><HomeSkeleton skeletonCount={3} /></div>
+                  <div className="flex">
+                    <HomeSkeleton skeletonCount={3} />
+                  </div>
                 ) : filteredPosts.length > 0 ? (
                   filteredPosts.slice(0, 3).map((post) => (
                     <div className="min-w-[15rem] flex" key={post._id}>
                       <Product post={post} />
                     </div>
                   ))
-
                 ) : (
                   <div>No recommendations found</div>
                 )}
               </div>
-              <Link
-                to="/categories"
-                className="relative group text-black mb-4"
-              >
+              <Link to="/categories" className="relative group text-black mb-4">
                 View More
-                <span
-                  className="absolute bottom-0 left-1/2 w-0 h-[2px] bg-black transition-all duration-300 transform -translate-x-1/2 group-hover:w-full"
-                ></span>
+                <span className="absolute bottom-0 left-1/2 w-0 h-[2px] bg-black transition-all duration-300 transform -translate-x-1/2 group-hover:w-full"></span>
               </Link>
-
             </div>
           </div>
         </div>
       ) : (
-        <div className="flex flex-col justify-center h-[85vh] items-center transition-all duration-300">
+        <div className="flex flex-col justify-center pb-60 pt-36 items-center transition-all duration-300">
           <img
             src={emptyBox}
             alt="empty-box"
@@ -118,9 +113,16 @@ const Cart = () => {
           <img
             src={spider}
             alt="empty-box"
-            className="w-[150px] top-12 right-5 absolute opacity-40"
+            className="w-[150px] right-5 absolute opacity-40 transition-all duration-500 ease-in-out"
+            style={{ top: "0" }}
+            onLoad={(e) => {
+              e.target.style.top = "3.5rem";
+            }}
           />
-          <h1 className="font-semibold text-gray-700 m-4">NO ITEM IN THE BAG</h1>
+
+          <h1 className="font-semibold text-gray-700 m-4">
+            NO ITEM IN THE BAG
+          </h1>
         </div>
       )}
     </div>

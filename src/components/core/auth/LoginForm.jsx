@@ -33,11 +33,8 @@ function LoginForm() {
   };
 
   return (
-    <form
-      onSubmit={handleOnSubmit}
-      className="mt-10 flex w-full flex-col gap-y-4 rounded-[8px] ml-4 "
-    >
-      <label className="w-full top-[47.194rem] ">
+    <form onSubmit={handleOnSubmit} className="flex w-full flex-col gap-y-8">
+      <label className="w-[82%]">
         <p className="mb-1 text-[1.2rem] leading-[1.375rem] text-richblack-5 ">
           E-mail
         </p>
@@ -47,11 +44,11 @@ function LoginForm() {
           name="email"
           value={email}
           onChange={handleOnChange}
-          placeholder="Enter email address"
-          className="form-style w-full bg-gray-300 rounded-lg text-gray-700 p-2 border-2 border-black"
+          placeholder="Enter email"
+          className="form-style w-full rounded-sm text-gray-700 p-2 border border-black focus:outline-none"
         />
       </label>
-      <label className="relative mt-4">
+      <label className="w-[82%]">
         <p className="mb-1 text-[1.2rem] leading-[1.375rem] text-richblack-5">
           PASSWORD
         </p>
@@ -62,7 +59,7 @@ function LoginForm() {
           value={password}
           onChange={handleOnChange}
           placeholder="Enter Password"
-          className="form-style w-full bg-gray-300 rounded-lg text-gray-700 p-2 border-2 border-black"
+          className="form-style w-full rounded-sm text-gray-700 p-2 border border-black focus:outline-none"
         />
         {password && ( // Conditionally render the eye icon only if there's text in the input
           <span
@@ -77,33 +74,19 @@ function LoginForm() {
           </span>
         )}
       </label>
-      <div className="flex items-center justify-between w-full mt-6">
+      <div className="flex items-center justify-between w-full mt-6 pl-2 pr-12">
         <Link to="/forgot-password">
-          <p className="text-base text-blue-700">forgot password?</p>
+          <p className="text-base text-blue-700 hover:underline">
+            forgot password?
+          </p>
         </Link>
 
         <button
           type="submit"
-          className="rounded-l-full rounded-r-full bg-black text-white py-[0.6rem] px-[0.90rem] font-bold"
+          className="rounded-md bg-black text-white py-[0.6rem] px-[2rem] font-bold hover:scale-105 transition-transform duration-300"
         >
           LOGIN
         </button>
-      </div>
-      <div className="flex items-center my-4">
-        <div className="flex-grow border-t border-black"></div>
-        <span className="mx-1 text-gray-700 font-semibold text-xl">or</span>
-        <div className="flex-grow border-t border-black"></div>
-      </div>
-      <div className="flex items-center justify-evenly">
-        <span>Login With</span>
-        <div className="flex items-center">
-          <img src={googleLogo} alt="google logo" width={18} />
-          <span className="text-blue-700 ml-1 text-base">Google</span>
-        </div>
-        <div className="flex items-center">
-          <img src={facebookLogo} alt="facebook logo" width={18} />
-          <span className="text-blue-700 ml-1 text-base">facebook</span>
-        </div>
       </div>
     </form>
   );

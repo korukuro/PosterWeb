@@ -6,17 +6,15 @@ import LoginSignupAndImg from "../components/common/LoginSignupAndImg";
 function Login() {
   return (
 
-    <div className="h-screen grid grid-cols-3">
+    <div className="grid grid-cols-3">
       <div className="col-span-2">
         <LoginSignupAndImg />
       </div>
-      <div className="">
-          {/* <img src={logo} alt="" className="ml-[35%]"/> */}
         <Template
           title="Welcome Back!!"
           formType="login"
         />
-      </div>
+      
     </div>
   );
 }
