@@ -19,6 +19,7 @@ import "swiper/css/effect-flip";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { AdaptiveImageDiv } from "../components/common/AdaptiveImageDiv";
+import PosterDetailsSkeleton from "../components/common/skeleton/PosterDetailsSkeleton";
 
 
 
@@ -61,9 +62,10 @@ const PosterDetails = () => {
   return (
     <div className="flex justify-evenly w-11/12 mx-auto overflow-x-hidden pt-16 overflow-y-hidden">
       {loading ? (
-        <div className="flex h-full w-full">
-          <Spinner />
-        </div>
+        // <div className="flex h-full w-full">
+        //   <Spinner />
+        // </div>
+        <PosterDetailsSkeleton />
       ) : (
         <div className="grid grid-cols-2 mt-8 mb-8 mx-4 gap-4">
           {/* Right  */}

@@ -3,6 +3,7 @@ import { getAllCategories } from '../services/operations/posterDetailsAPI';
 import { FocusCards } from "../components/ui/Focus-card";
 import { set } from 'mongoose';
 import Spinner from '../components/Spinner';
+import CategoriesSkeleton from '../components/common/skeleton/CategoriesSkeleton';
 
 const Categories = () => {
     const [categories, setCategories] = useState([]);
@@ -31,7 +32,7 @@ const Categories = () => {
     return (
         <div className='pt-24 p-6 bg-[#000000a2]'>
             {
-            loading ? <div><Spinner/></div> : 
+            loading ? <div className='flex justify-center items-center'><CategoriesSkeleton/></div> : 
              <FocusCards cards={cards} />
             
             }
