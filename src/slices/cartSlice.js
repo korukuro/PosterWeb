@@ -73,8 +73,12 @@ export const cartSlice = createSlice({
       saveCartToLocalStorage(newState);
       return newState; // Clears the cart
     },
+    removePurchasedPosters(state, action) {
+      const purchasedPosterIds = action.payload;
+      return state.filter((item) => !purchasedPosterIds.includes(item._id));
+    },
   },
 });
 
-export const { add, addWithQuantity, remove, resetCart } = cartSlice.actions;
+export const { add, addWithQuantity, remove, resetCart, removePurchasedPosters } = cartSlice.actions;
 export default cartSlice.reducer;

@@ -20,6 +20,10 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { AdaptiveImageDiv } from "../components/common/AdaptiveImageDiv";
 import PosterDetailsSkeleton from "../components/common/skeleton/PosterDetailsSkeleton";
+import { clearDirectCheckoutItem } from "../slices/buynowSlice";
+import { useSelector } from "react-redux";
+import { setDirectCheckoutItem } from "../slices/buynowSlice";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -29,6 +33,11 @@ const PosterDetails = () => {
   const posterId = useLocation().pathname.split("/")[2];
   const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState("A4");
+
+  const navigate = useNavigate();
+
+  const buyNowItem = useSelector((state) => state.buynow);
+
 
   const dispatch = useDispatch();
 
@@ -45,6 +54,12 @@ const PosterDetails = () => {
   }
 
   useEffect(() => {
+    if (buyNowItem) {
+      dispatch(clearDirectCheckoutItem());
+    }
+  }, [buyNowItem, dispatch]);
+
+  useEffect(() => {
     fetchProductData(posterId);
   }, [posterId]);
 
@@ -56,6 +71,31 @@ const PosterDetails = () => {
     dispatch(addWithQuantity({ poster: posts, quantity, size: selectedSize }));
     toast.success(`${quantity} item(s) of size ${selectedSize} added to Cart`);
   };
+
+  const buyDirectly = () => {
+    if (!selectedSize) {
+      toast.error("Please select a size before buying the product.");
+      return;
+    }
+
+    const selectedPostDetails = posts.size.find((size) => size === selectedSize);
+
+    dispatch(
+      setDirectCheckoutItem({
+        posts: {
+          ...posts,
+          size: [selectedPostDetails], // Only include the selected size
+        },
+        size: selectedSize,
+        quantity,
+      })
+    );
+
+
+    // Navigate to checkout
+    navigate(`/buynow`);
+  };
+
 
   const sizes = ["A3", "A4", "A5"];
 
@@ -81,13 +121,13 @@ const PosterDetails = () => {
 
             <div>
               <div className="flex justify-center items-center gap-2">
-                <IoPrintSharp className="text-5xl"/>
+                <IoPrintSharp className="text-5xl" />
                 <p className="text-xs text-gray-500">This product is made to order and is typically <span className="font-bold">printed in 1-4 working days.</span> Your entire order will ship out together.</p>
               </div>
               <div className="flex justify-center items-center gap-2">
-                <FaBoxOpen className="text-5xl "/>
+                <FaBoxOpen className="text-5xl " />
                 <p className="text-xs text-gray-500">Since this product is printed on demand especially for you, <span className="font-bold">it is not eligible for cancellations and returns.</span> Read our Return Policy. </p>
-                </div>
+              </div>
             </div>
             <span>{`Price: ₹${posts?.price}`}</span>
             <div className="flex items-center gap-4">
@@ -131,6 +171,12 @@ const PosterDetails = () => {
                 className=" bg-black h-12 text-white rounded-xl font-semibold text-[12px] p-1 px-3 uppercase transition"
               >
                 Add to Cart
+              </button>
+              <button
+                onClick={buyDirectly}
+                className=" bg-black h-12 text-white rounded-xl font-semibold text-[12px] p-1 px-3 uppercase transition"
+              >
+                Buy it Now
               </button>
             </div>
           </div>

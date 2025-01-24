@@ -30,6 +30,7 @@ import PosterDetails from "./Pages/PosterDetails";
 import CategoryWisePosterPage from "./components/core/Categories/CategoryWisePosterPage";
 import ScrollToTop from "./components/common/ScrollToTop";
 import Test from "./Pages/Test";
+import BuyNow from "./Pages/BuyNow";
 
 function App() {
   const location = useLocation();
@@ -64,6 +65,7 @@ function App() {
         <Route path="/categories" element={<Categories />}/>
         <Route path="/categories/:id" element={<CategoryWisePosterPage />} />
         <Route path="/poster/:id" element={<PosterDetails />} />
+        
 
         {/* Open Route - for Only Non Logged in User */}
         <Route
@@ -127,7 +129,15 @@ function App() {
               <CheckOut />
             </PrivateRoute>
           }
-        />
+          />
+        <Route
+          path="buynow"
+          element={
+            <PrivateRoute>
+              <BuyNow />
+            </PrivateRoute>
+          }
+          />
 
         {/* 404 Page */}
         <Route path="*" element={<Error />} />

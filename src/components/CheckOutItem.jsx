@@ -2,8 +2,7 @@ import { useDispatch } from "react-redux";
 import { remove } from "../slices/cartSlice";
 import { useNavigate } from "react-router-dom";
 
-const CheckOutItem = ({ item }) => {
-    // console.log("item: ", item);
+const CheckOutItem = ({ item,quantity }) => {
     const dispatch = useDispatch();
     const removeItem = () => {
         dispatch(remove(item._id));
@@ -27,7 +26,7 @@ const CheckOutItem = ({ item }) => {
                 </div>
                 <div className="flex justify-between items-center my-2 gap-4">
                     <span className="text-black-500 font-semibold">₹{item.price}</span>
-                    <span className="text-gray-500 text-sm">{`quantity: ${item.quantity}`}</span>
+                    <span className="text-gray-500 text-sm">{`quantity: ${item.quantity?item.quantity:quantity}`}</span>
 
 
                 </div>

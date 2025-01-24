@@ -1,5 +1,5 @@
 import { toast } from "react-hot-toast";
-import { resetCart } from "../../slices/cartSlice";
+import { removePurchasedPosters } from "../../slices/cartSlice";
 import { setPaymentLoading } from "../../slices/posterSlice";
 import { apiConnector } from "../apiConnector";
 import { paymentEndpoints } from "../apis";
@@ -73,7 +73,7 @@ export async function BuyPoster(token, posterDetails, userDetails, deliveryId, n
         try {
           console.log("Payment Successful Response:", response);
           // Show loading toast before starting verification
-          // const verifyToastId = toast.loading("Processing payment...");
+          const verifyToastId = toast.loading("Processing payment...");
 
           // Verify the payment
           await verifyPayment(
@@ -84,7 +84,7 @@ export async function BuyPoster(token, posterDetails, userDetails, deliveryId, n
           );
 
           // Dismiss the loading toast
-          // toast.dismiss(verifyToastId);
+          toast.dismiss(verifyToastId);
         } catch (error) {
           console.error("Handler Error:", error);
           toast.error("An error occurred while processing payment.");
@@ -135,8 +135,11 @@ async function verifyPayment(paymentData, token, navigate, dispatch) {
     }
 
     toast.success("Payment Successful! Posters are added to your account.");
+
+    const purchasedPosterIds = paymentData.posterDetails.map((poster) => poster.posterId);
+    dispatch(removePurchasedPosters(purchasedPosterIds));
+
     navigate("/"); // Navigate to home or relevant page
-    dispatch(resetCart()); // Clear the cart
   } catch (error) {
     console.error("Payment Verification Error:", error);
     toast.error(error.message || "Could not verify payment.");
