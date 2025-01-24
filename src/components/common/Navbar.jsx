@@ -5,6 +5,8 @@ import logo from "../../additionalFile/logo.png";
 import loupe from "../../additionalFile/loupe.png";
 import bag from "../../additionalFile/shopping-bag.png";
 import userIcon from "../../additionalFile/user.png";
+import { getAllPoster } from "../../services/operations/posterDetailsAPI";
+
 
 const Navbar = () => {
   const [isVisible, setIsVisible] = useState(true);
@@ -14,8 +16,26 @@ const Navbar = () => {
   const user = useSelector((state) => state.profile?.user);
   const cart = useSelector((state) => state.cart || []);
   const [isFocused, setIsFocused] = useState(false);
-  const [value, setValue] = useState("");
-  const [isClearing, setIsClearing] = useState(false); // State for rotation animation
+  const [isClearing, setIsClearing] = useState(false);
+  const [searchInput, setSearchInput] = useState("");
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  async function fetchProductData() {
+      setLoading(true);
+      try {
+        const data = await getAllPoster();
+        console.log("Data aaya", data);
+        setPosts(data);
+      } catch (error) {
+        console.log("Data nhi aaya");
+        setPosts([]);
+      }
+      setLoading(false);
+    }
+  useEffect(() => {
+    fetchProductData();
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,7 +62,7 @@ const Navbar = () => {
   const handleClearInput = () => {
     setIsClearing(true); // Start rotation animation
     setTimeout(() => {
-      setValue(""); // Clear input value
+      setSearchInput(""); // Clear input value
       setIsClearing(false); // Reset animation
     }, 300); // Match the duration of the rotation animation
   };
@@ -53,6 +73,12 @@ const Navbar = () => {
     const randomColor = colors[Math.floor(Math.random() * colors.length)];
     setBgColor(randomColor);
   };
+
+  // Filter Products
+  const filterProducts = posts.filter((post) =>{
+    return post.posterName.toLowerCase().includes(searchInput.toLowerCase());
+  })
+  // console.log("filteredProducts", filterProducts);
 
   return (
     <div
@@ -70,7 +96,6 @@ const Navbar = () => {
           />
         </NavLink>
 
-        {/* Search Bar and Icons */}
         <div className="flex items-center font-medium gap-4">
           {/* Categories */}
           <div className="transition-all duration-300 transform hover:scale-105">
@@ -91,24 +116,26 @@ const Navbar = () => {
           <div className="relative">
             <input
               type="text"
-              value={value}
-              onChange={(e) => setValue(e.target.value)}
+              id="search"
+              autoComplete="off"
+              value={searchInput}
+              onChange={(e) => setSearchInput(e.target.value)}
               className={`border border-black rounded-xl p-1 focus:outline-none pl-2 pr-8 transition-all duration-300 ${
-                isFocused || value ? "w-60" : "w-44"
+                isFocused || searchInput ? "w-60" : "w-44"
               }`}
               placeholder="Search"
               onFocus={() => setIsFocused(true)} // Set focus state to true
               onBlur={() => setIsFocused(false)} // Set focus state to false
             />
 
-            {!isFocused && !value && (
+            {!isFocused && !searchInput && (
               <img
                 src={loupe}
                 alt="Search Icon"
                 className="h-6 absolute top-[0.3rem] right-3 opacity-100 transition-opacity duration-300"
               />
             )}
-            {value && (
+            {searchInput && (
               <button
                 onMouseDown={(e) => e.preventDefault()} // Prevent losing focus
                 onClick={handleClearInput} // Clear the input value
@@ -119,6 +146,28 @@ const Navbar = () => {
                 ✕
               </button>
             )}
+
+{searchInput && filterProducts.length > 0 && (
+  <div className="absolute left-0 mt-1 w-full max-w-md bg-white shadow-lg border rounded-lg z-10">
+    {filterProducts.map((product) => (
+      <Link
+        to={`/poster/${product._id}`}
+        key={product._id}
+        className="flex items-center px-4 py-2 hover:bg-gray-200 transition-colors gap-4"
+      >
+        {/* Poster Image */}
+        <img
+          src={product.image || "default-placeholder-image.png"} // Ensure a fallback image is provided
+          alt={product.posterName}
+          className="h-10 w-10 sm:h-12 sm:w-12 rounded-md object-cover"
+        />
+        {/* Poster Name */}
+        <span className="text-sm sm:text-base truncate">{product.posterName}</span>
+      </Link>
+    ))}
+  </div>
+)}
+
           </div>
 
           {/* Cart Icon */}
