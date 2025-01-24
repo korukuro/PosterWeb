@@ -56,7 +56,7 @@ const Footer = () => {
                 letterSpacing: "-0.01em",
                 cursor: "pointer",
               }}
-              className="absolute top-0 right-0 bg-blue-400 font-bold pb-2 pl-2 pr-2 hover:bg-blue-500 transition duration-300"
+              className="absolute top-0 right-0 bg-blue-400 font-bold pb-2 pl-2 pr-2 hover:bg-blue-500 hover:translate-y-[-4px] transition duration-300"
             >
               ↑To Top
             </div>
