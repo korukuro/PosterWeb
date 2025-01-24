@@ -25,7 +25,6 @@ const Navbar = () => {
       setLoading(true);
       try {
         const data = await getAllPoster();
-        console.log("Data aaya", data);
         setPosts(data);
       } catch (error) {
         console.log("Data nhi aaya");
