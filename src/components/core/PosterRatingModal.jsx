@@ -18,11 +18,9 @@ export default function PosterRatingModal({ setRatingModal,order }) {
 
   useEffect(() => {
     setValue("posterRating", 0)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const ratingChanged = (newRating) => {
-    // console.log(newRating)
     setValue("posterRating", newRating)
   }
 
@@ -40,22 +38,6 @@ export default function PosterRatingModal({ setRatingModal,order }) {
   return (
     <div className="fixed inset-0 z-[1000] !mt-0 grid h-screen w-screen place-items-center overflow-auto bg-white bg-opacity-10 backdrop-blur-sm">
       <div className="my-10 w-11/12 max-w-[700px] rounded-lg border border-richblack-400 bg-richblack-800">
-        {/* Modal Body
-        <div className="p-6">
-          <div className="flex items-center justify-center gap-x-4">
-            <img
-              src={user?.image}
-              alt={user?.firstName + "profile"}
-              className="aspect-square w-[50px] rounded-full object-cover"
-            />
-            <div className="">
-              <p className="font-semibold text-richblack-5">
-                {user?.firstName} {user?.lastName}
-              </p>
-              <p className="text-sm text-richblack-5">Posting Publicly</p>
-            </div>
-          </div>
-          > */}
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="mt-6 flex flex-col items-center">

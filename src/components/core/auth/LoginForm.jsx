@@ -5,12 +5,10 @@ import { Link, useNavigate } from "react-router-dom";
 import "../../../font/font.css";
 
 import { login } from "../../../services/operations/authAPI";
-import googleLogo from "../../../additionalFile/google.png";
-import facebookLogo from "../../../additionalFile/facebook.png";
 
 function LoginForm() {
-  const navigate = useNavigate(); //what is useNavigate? It is a hook that returns a navigate function that can be used to programmatically navigate to a different location.eg: navigate('/login')
-  const dispatch = useDispatch(); //what is dispatch? It is a function that is used to dispatch actions to the Redux store.eg: dispatch(login(email, password, navigate))
+  const navigate = useNavigate(); 
+  const dispatch = useDispatch(); 
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -61,7 +59,7 @@ function LoginForm() {
           placeholder="Enter Password"
           className="form-style w-full rounded-sm text-gray-700 p-2 border border-black focus:outline-none"
         />
-        {password && ( // Conditionally render the eye icon only if there's text in the input
+        {password && ( 
           <span
             onClick={() => setShowPassword((prev) => !prev)}
             className="absolute right-3 top-[35px] z-[10] cursor-pointer"

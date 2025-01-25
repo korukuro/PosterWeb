@@ -7,7 +7,6 @@ import bag from "../../additionalFile/shopping-bag.png";
 import userIcon from "../../additionalFile/user.png";
 import { getAllPoster } from "../../services/operations/posterDetailsAPI";
 
-
 const Navbar = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -22,16 +21,16 @@ const Navbar = () => {
   const [loading, setLoading] = useState(false);
 
   async function fetchProductData() {
-      setLoading(true);
-      try {
-        const data = await getAllPoster();
-        setPosts(data);
-      } catch (error) {
-        console.log("Data nhi aaya");
-        setPosts([]);
-      }
-      setLoading(false);
+    setLoading(true);
+    try {
+      const data = await getAllPoster();
+      setPosts(data);
+    } catch (error) {
+      console.log("Data nhi aaya");
+      setPosts([]);
     }
+    setLoading(false);
+  }
   useEffect(() => {
     fetchProductData();
   }, []);
@@ -68,15 +67,19 @@ const Navbar = () => {
   const [bgColor, setBgColor] = useState("rgba(229, 57, 53,0.9)");
 
   const generateRandomColor = () => {
-    const colors = ["rgba(66, 165, 245, 0.9)", "rgba(255, 238, 88, 0.9)", "rgba(229, 57, 53,0.9)"]; // Red, Yellow, Blue
+    const colors = [
+      "rgba(66, 165, 245, 0.9)",
+      "rgba(255, 238, 88, 0.9)",
+      "rgba(229, 57, 53,0.9)",
+    ]; // Red, Yellow, Blue
     const randomColor = colors[Math.floor(Math.random() * colors.length)];
     setBgColor(randomColor);
   };
 
   // Filter Products
-  const filterProducts = posts.filter((post) =>{
+  const filterProducts = posts.filter((post) => {
     return post.posterName.toLowerCase().includes(searchInput.toLowerCase());
-  })
+  });
   // console.log("filteredProducts", filterProducts);
 
   return (
@@ -98,17 +101,17 @@ const Navbar = () => {
         <div className="flex items-center font-medium gap-4">
           {/* Categories */}
           <div className="transition-all duration-300 transform hover:scale-105">
-          <Link
-            to="/categories"
-            className="relative inline-block px-8 py-1 text-black transition-all duration-300"
-            style={{
-              clipPath: "polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%)",
-              backgroundColor: bgColor,
-            }}
-            onMouseEnter={generateRandomColor} // Change color on hover
-          >
-            Categories
-          </Link>
+            <Link
+              to="/categories"
+              className="relative inline-block px-8 py-1 text-black transition-all duration-300"
+              style={{
+                clipPath: "polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%)",
+                backgroundColor: bgColor,
+              }}
+              onMouseEnter={generateRandomColor} // Change color on hover
+            >
+              Categories
+            </Link>
           </div>
 
           {/* Search Input */}
@@ -121,7 +124,7 @@ const Navbar = () => {
               onChange={(e) => setSearchInput(e.target.value)}
               className={`border border-black rounded-xl p-1 focus:outline-none pl-2 pr-8 transition-all duration-300 ${
                 isFocused || searchInput ? "w-60" : "w-44"
-              }`}
+              } font-normal`}
               placeholder="Search"
               onFocus={() => setIsFocused(true)} // Set focus state to true
               onBlur={() => setIsFocused(false)} // Set focus state to false
@@ -146,27 +149,28 @@ const Navbar = () => {
               </button>
             )}
 
-{searchInput && filterProducts.length > 0 && (
-  <div className="absolute left-0 mt-1 w-full max-w-md bg-white shadow-lg border rounded-lg z-10">
-    {filterProducts.map((product) => (
-      <Link
-        to={`/poster/${product._id}`}
-        key={product._id}
-        className="flex items-center px-4 py-2 hover:bg-gray-200 transition-colors gap-4"
-      >
-        {/* Poster Image */}
-        <img
-          src={product.image || "default-placeholder-image.png"} // Ensure a fallback image is provided
-          alt={product.posterName}
-          className="h-10 w-10 sm:h-12 sm:w-12 rounded-md object-cover"
-        />
-        {/* Poster Name */}
-        <span className="text-sm sm:text-base truncate">{product.posterName}</span>
-      </Link>
-    ))}
-  </div>
-)}
-
+            {searchInput && filterProducts.length > 0 && (
+              <div className="absolute left-0 mt-1 w-full max-w-md bg-white shadow-lg border rounded-lg z-10">
+                {filterProducts.map((product) => (
+                  <Link
+                    to={`/poster/${product._id}`}
+                    key={product._id}
+                    className="flex items-center px-4 py-2 hover:bg-gray-200 transition-colors gap-4"
+                  >
+                    {/* Poster Image */}
+                    <img
+                      src={product.image || "default-placeholder-image.png"} // Ensure a fallback image is provided
+                      alt={product.posterName}
+                      className="h-10 w-10 sm:h-12 sm:w-12 rounded-md object-cover"
+                    />
+                    {/* Poster Name */}
+                    <span className="text-sm sm:text-base truncate">
+                      {product.posterName}
+                    </span>
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Cart Icon */}

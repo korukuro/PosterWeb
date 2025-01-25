@@ -6,7 +6,6 @@ const CheckOutItem = ({ item,quantity }) => {
     const dispatch = useDispatch();
     const removeItem = () => {
         dispatch(remove(item._id));
-        // toast.error("Item removed from Cart");
     }
     const navigate = useNavigate();
     const handleClick = () => {

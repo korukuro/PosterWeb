@@ -28,15 +28,12 @@ function SignupForm() {
   const { firstName, lastName, email, password, confirmPassword } = formData;
 
   const {
-      register,
-      handleSubmit,
       formState: { errors },
       watch,
     } = useForm();
 
   const conformPasswordValue = watch("conformPassword", "");
 
-  // Handle input fields, when some value changes
   const handleOnChange = (e) => {
     setFormData((prevData) => ({
       ...prevData,
@@ -56,10 +53,7 @@ function SignupForm() {
       ...formData,
     };
 
-    // Setting signup data to state
-    // To be used after otp verification
     dispatch(setSignupData(signupData));
-    // Send OTP to user for verification
     dispatch(sendOtp(formData.email, navigate));
 
     // Reset

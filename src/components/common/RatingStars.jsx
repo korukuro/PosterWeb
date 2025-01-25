@@ -5,11 +5,9 @@ import {
   TiStarOutline,
 } from "react-icons/ti"
 import { getAvgRating } from "../../services/operations/RatingAPI"
-import { useParams } from "react-router-dom"
 import { useSelector } from "react-redux"
 
 function RatingStars({ posterId,Star_Size = 20 }) { // Set default size
-  // const { id: posterId } = useParams()
   const { token } = useSelector((state) => state.auth)
 
   // State to store the average rating and star counts
