@@ -58,7 +58,7 @@ export function AdaptiveImageDiv({ images }) {
   return (
     <div className="flex flex-col items-center justify-center lg:min-h-screen bg-gray-100">
       <div
-        className="p-4 lg:p-8 rounded-lg shadow-lg transition-colors duration-300 lg:h-full w-full border-2 border-black"
+        className="p-4 lg:p-8 lg:rounded-lg shadow-lg transition-colors duration-300 lg:h-full w-full"
         style={{ backgroundColor, color: textColor }}
       >
         <div className=" lg:h-full w-full">
@@ -79,7 +79,7 @@ export function AdaptiveImageDiv({ images }) {
                   <img
                     src={image}
                     alt={`poster-image-${index}`}
-                    className={`w-full h-full ${image === sizeImage ? "border-none object-cover" : "border-black border-4 object-contain"}`}
+                    className={`w-full lg:h-full ${image === sizeImage ? "border-none object-cover" : "border-black border-2 lg:border-4 object-contain"}`}
                   />
                 </SwiperSlide>
               ))}

@@ -107,12 +107,12 @@ const PosterDetails = () => {
         // </div>
         <PosterDetailsSkeleton />
       ) : (
-        <div className="grid grid-cols-1 lg:grid-cols-2 mt-4 lg:mt-8 mb-8 lg:mx-4 lg:gap-4 border-2 border-black">
+        <div className="grid grid-cols-1 lg:grid-cols-2 mt-7 lg:mt-8 mb-5 lg:mb-8 lg:mx-4 lg:gap-4">
           {/* Right  */}
           <AdaptiveImageDiv images={posts?.image} />
 
           {/* Left */}
-          <div className="flex flex-col gap-5 p-16 ">
+          <div className="flex flex-col gap-5 p-8 lg:p-16">
             <div className="flex flex-col">
               <h1 className="font-bold text-2xl">{posts?.posterName}</h1>
               <RatingStars posterId={posts?._id} Star_Size={20} />
@@ -150,7 +150,7 @@ const PosterDetails = () => {
 
 
                 <h2>Quantity:</h2>
-                <div className="border border-black w-[30%] h-14 rounded-full flex justify-evenly items-center">
+                <div className="border border-black w-[30%] h-10 lg:h-14 rounded-full flex justify-evenly items-center">
                   <TiMinus
                     onClick={() => {
                       quantity > 1

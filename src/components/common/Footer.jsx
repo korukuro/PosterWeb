@@ -16,7 +16,7 @@ const Footer = () => {
             <div className="w-full text-2xl text-center mt-4 lg:mt-12 ">
               ABOUT
             </div>
-            <div className="w-full flex flex-wrap justify-center gap-4 bg-red-600 mt-4 lg:mt-0">
+            <div className="w-full flex flex-wrap items-center justify-center gap-4 bg-red-600 h-9 lg:h-auto mt-4 lg:mt-0">
               <span className="hover:underline cursor-pointer transition duration-500">
                 Shop
               </span>
