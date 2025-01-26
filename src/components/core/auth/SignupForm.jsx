@@ -28,9 +28,9 @@ function SignupForm() {
   const { firstName, lastName, email, password, confirmPassword } = formData;
 
   const {
-      formState: { errors },
-      watch,
-    } = useForm();
+    formState: { errors },
+    watch,
+  } = useForm();
 
   const conformPasswordValue = watch("conformPassword", "");
 
@@ -67,10 +67,10 @@ function SignupForm() {
   };
 
   return (
-    <div>
+    <div className="flex justify-center items-center px-4 sm:px-8">
       {/* Form */}
-      <form onSubmit={handleOnSubmit} className="flex w-full flex-col gap-y-4">
-        <div className="grid grid-cols gap-4 sm:grid-cols-2">
+      <form onSubmit={handleOnSubmit} className="flex w-full max-w-md flex-col gap-y-4">
+        <div className="grid gap-4 sm:grid-cols-2">
           <label>
             <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
               First Name <sup className="text-pink-200">*</sup>
@@ -116,7 +116,7 @@ function SignupForm() {
           />
         </label>
         <div className="gap-x-4">
-          <label className="relative">
+          <label className="relative w-full">
             <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
               Create Password <sup className="text-pink-200">*</sup>
             </p>
@@ -129,20 +129,22 @@ function SignupForm() {
               placeholder="Enter Password"
               className="form-style w-full rounded-sm text-gray-700 p-2 border border-black focus:outline-none"
             />
-            {password && <span
-              onClick={() => setShowPassword((prev) => !prev)}
-              className="absolute right-3 top-[2.2rem] z-[10] cursor-pointer"
-            >
-              {showPassword ? (
-                <AiOutlineEyeInvisible fontSize={24} fill="#AFB2BF" />
-              ) : (
-                <AiOutlineEye fontSize={24} fill="#AFB2BF" />
-              )}
-            </span>}
+            {password && (
+              <span
+                onClick={() => setShowPassword((prev) => !prev)}
+                className="absolute right-3 top-[2.2rem] z-[10] cursor-pointer"
+              >
+                {showPassword ? (
+                  <AiOutlineEyeInvisible fontSize={24} fill="#AFB2BF" />
+                ) : (
+                  <AiOutlineEye fontSize={24} fill="#AFB2BF" />
+                )}
+              </span>
+            )}
           </label>
         </div>
         <div>
-          <label className="relative">
+          <label className="relative w-full">
             <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
               Confirm Password <sup className="text-pink-200">*</sup>
             </p>
@@ -155,16 +157,18 @@ function SignupForm() {
               placeholder="Confirm Password"
               className="form-style w-full rounded-sm text-gray-700 p-2 border border-black focus:outline-none"
             />
-            {conformPasswordValue&&<span
-              onClick={() => setShowConfirmPassword((prev) => !prev)}
-              className="absolute right-3 top-[2.2rem] z-[10] cursor-pointer"
-            >
-              {showConfirmPassword ? (
-                <AiOutlineEyeInvisible fontSize={24} fill="#AFB2BF" />
-              ) : (
-                <AiOutlineEye fontSize={24} fill="#AFB2BF" />
-              )}
-            </span>}
+            {conformPasswordValue && (
+              <span
+                onClick={() => setShowConfirmPassword((prev) => !prev)}
+                className="absolute right-3 top-[2.2rem] z-[10] cursor-pointer"
+              >
+                {showConfirmPassword ? (
+                  <AiOutlineEyeInvisible fontSize={24} fill="#AFB2BF" />
+                ) : (
+                  <AiOutlineEye fontSize={24} fill="#AFB2BF" />
+                )}
+              </span>
+            )}
           </label>
         </div>
         <button
