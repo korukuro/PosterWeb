@@ -85,11 +85,7 @@ const Navbar = () => {
         isVisible ? "translate-y-0" : "-translate-y-full"
       }`}
     >
-<<<<<<< HEAD
       <div className="flex justify-between pt-0 text-black items-center h-[5rem] border-2 border-black">
-=======
-      <div className="flex relative justify-between text-black p-3 items-center h-[5rem]">
->>>>>>> fb9b34fc6d6425c46af8aa9ebc17dcea86c396fd
         {/* Logo */}
         <NavLink to="/">
           <img
