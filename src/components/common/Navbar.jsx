@@ -10,6 +10,7 @@ import { getAllPoster } from "../../services/operations/posterDetailsAPI";
 const Navbar = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const token = useSelector((state) => state.auth?.token);
   const user = useSelector((state) => state.profile?.user);
@@ -88,7 +89,7 @@ const Navbar = () => {
         isVisible ? "translate-y-0" : "-translate-y-full"
       }`}
     >
-      <div className="flex justify-between text-black p-3 items-center h-[5rem]">
+      <div className="flex relative justify-between text-black p-3 items-center h-[5rem]">
         {/* Logo */}
         <NavLink to="/">
           <img
@@ -98,7 +99,31 @@ const Navbar = () => {
           />
         </NavLink>
 
-        <div className="flex items-center font-medium gap-4">
+         {/* Hamburger Menu for Mobile */}
+         <div className="sm:hidden absolute top-1/3 right-4">
+          <button
+            onClick={() => setMenuOpen((prev) => !prev)}
+            className="flex flex-col gap-1 focus:outline-none"
+          >
+            <span
+              className={`h-1 w-6 bg-black rounded transition-transform ${
+                menuOpen ? "rotate-45 translate-y-2" : ""
+              }`}
+            ></span>
+            <span
+              className={`h-1 w-6 bg-black rounded transition-opacity ${
+                menuOpen ? "opacity-0" : ""
+              }`}
+            ></span>
+            <span
+              className={`h-1 w-6 bg-black rounded transition-transform ${
+                menuOpen ? "-rotate-45 -translate-y-2" : ""
+              }`}
+            ></span>
+          </button>
+        </div>
+
+        <div className="lg:flex lg:items-center lg:visible font-medium gap-4 invisible">
           {/* Categories */}
           <div className="transition-all duration-300 transform hover:scale-105">
             <Link
@@ -198,6 +223,29 @@ const Navbar = () => {
           </Link>
         </div>
       </div>
+      {/* Mobile Dropdown Menu */}
+      {menuOpen && (
+        <div className="sm:hidden bg-white shadow-md">
+          <Link
+            to="/categories"
+            className="block px-4 py-2 text-black hover:bg-gray-100"
+          >
+            Categories
+          </Link>
+          <Link
+            to="/cart"
+            className="block px-4 py-2 text-black hover:bg-gray-100"
+          >
+            Cart
+          </Link>
+          <Link
+            to={token ? "/dashboard/order-history" : "/login"}
+            className="block px-4 py-2 text-black hover:bg-gray-100"
+          >
+            {token ? "Profile" : "Login"}
+          </Link>
+        </div>
+      )}
     </div>
   );
 };
