@@ -100,14 +100,14 @@ const PosterDetails = () => {
   const sizes = ["A3", "A4", "A5"];
 
   return (
-    <div className="flex justify-evenly w-11/12 mx-auto overflow-x-hidden pt-16 overflow-y-hidden">
+    <div className="flex justify-evenly lg:w-11/12 lg:mx-auto overflow-x-hidden pt-16 overflow-y-hidden">
       {loading ? (
         // <div className="flex h-full w-full">
         //   <Spinner />
         // </div>
         <PosterDetailsSkeleton />
       ) : (
-        <div className="grid grid-cols-2 mt-8 mb-8 mx-4 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 mt-4 lg:mt-8 mb-8 lg:mx-4 lg:gap-4 border-2 border-black">
           {/* Right  */}
           <AdaptiveImageDiv images={posts?.image} />
 

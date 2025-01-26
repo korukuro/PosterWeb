@@ -56,12 +56,12 @@ export function AdaptiveImageDiv({ images }) {
   const textColor = getContrastYIQ(backgroundColor);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex flex-col items-center justify-center lg:min-h-screen bg-gray-100">
       <div
-        className=" p-8 rounded-lg shadow-lg transition-colors duration-300 h-full w-full"
+        className="p-4 lg:p-8 rounded-lg shadow-lg transition-colors duration-300 lg:h-full w-full border-2 border-black"
         style={{ backgroundColor, color: textColor }}
       >
-        <div className=" h-full w-full group">
+        <div className=" lg:h-full w-full">
         <Swiper
               modules={[EffectFlip, Navigation, Pagination]}
               effect="flip"
