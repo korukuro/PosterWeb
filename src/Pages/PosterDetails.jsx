@@ -120,7 +120,7 @@ const PosterDetails = () => {
             <h3>{posts.description}</h3>
 
             <div>
-              <div className="flex justify-center items-center gap-2">
+              <div className="flex justify-center items-center gap-2 mb-2 lg:mb-0">
                 <IoPrintSharp className="text-5xl" />
                 <p className="text-xs text-gray-500">This product is made to order and is typically <span className="font-bold">printed in 1-4 working days.</span> Your entire order will ship out together.</p>
               </div>
