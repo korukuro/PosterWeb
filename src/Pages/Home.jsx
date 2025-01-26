@@ -10,10 +10,6 @@ const Home = () => {
   const [loading, setLoading] = useState(false);
   const [posts, setPosts] = useState([]);
   const [visibleCount, setVisibleCount] = useState(6);
-  const texts = [
-    "Hello", "World", "How", "Are", "You", "Doing", "Today", "?", "money", "money", "$",
-    "Hello", "World", "How", "Are", "You", "Doing", "Today", "?", "money", "money", "$",
-  ];
 
   async function fetchProductData() {
     setLoading(true);
