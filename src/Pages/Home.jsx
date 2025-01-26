@@ -49,7 +49,7 @@ const Home = () => {
         initial={{ opacity: 0}}
         animate={{ opacity: 1}}
         transition={{ duration: 1.3}}
-        className="mt-20"
+        className="mt-20 h-60 lg:h-auto"
       >
         <Section_1 />
       </motion.div>
@@ -64,8 +64,8 @@ const Home = () => {
         {loading ? (
           <HomeSkeleton skeletonCount={6} />
         ) : posts.length > 0 ? (
-          <div className="flex flex-col justify-center items-center mt-12">
-            <div className="grid grid-cols-3 auto-rows-custom w-11/12 pt-10 pb-24 gap-y-32 gap-x-14 h-auto">
+          <div className="flex flex-col justify-center items-center lg:mt-12">
+            <div className="grid grid-cols-1 lg:grid-cols-3 auto-rows-custom w-11/12 pt-0 lg:pt-10 pb-24 gap-y-32 gap-x-14 h-auto">
               {posts.slice(0, visibleCount).map((post) => (
                 <motion.div
                   key={post.id}

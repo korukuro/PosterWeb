@@ -22,7 +22,7 @@ const Section_1 = () => {
   ];
 
   return (
-    <div className="w-full h-auto overflow-hidden">
+    <div className="w-full h-72 lg:h-auto overflow-hidden">
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         spaceBetween={30}
@@ -40,14 +40,14 @@ const Section_1 = () => {
           <SwiperSlide key={index}>
             <div className="relative w-full flex justify-center items-center">
               {/* Heading overlay */}
-              <div className="absolute top-52 bg-black bg-opacity-50 text-white p-4 rounded-lg">
-                <h2 className="text-6xl font-bold">{`"${slide.heading}"`}</h2>
+              <div className="absolute lg:top-52 bg-black bg-opacity-50 text-white p-4 rounded-lg">
+                <h2 className="lg:text-6xl font-bold">{`"${slide.heading}"`}</h2>
               </div>
               {/* Image */}
               <img
                 src={slide.image}
                 alt={`Carousel slide ${index + 1}`}
-                className="w-full h-[50rem] object-cover"
+                className="w-full lg:h-[50rem] object-cover"
               />
             </div>
           </SwiperSlide>

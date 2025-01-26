@@ -119,7 +119,7 @@ const Navbar = () => {
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}
               className={`border border-black rounded-xl lg:p-1 pl-1 focus:outline-none lg:pl-2 pr-6 lg:pr-8 transition-all duration-300 h-7 lg:h-8 ${
-                isFocused || searchInput ? "w-24 lg:w-44 sm:w-60" : "w-20 lg:w-36 sm:w-44"
+                isFocused || searchInput ? "w-[5.3rem] lg:w-44 sm:w-60" : "w-20 lg:w-36 sm:w-44"
               } font-normal`}
               placeholder="Search"
               onFocus={() => setIsFocused(true)}

@@ -28,25 +28,26 @@ const Product = ({ post }) => {
   const isInCart = cart.some((item) => item._id === post._id);
 
   return (
-    <div className="w-[20rem] flex flex-col justify-center px-2 hover:scale-105 transition-all duration-300">
+    <div className="w-[20rem] sm:w-[16rem] md:w-[18rem] lg:w-[20rem] flex flex-col justify-center px-2 hover:scale-105 transition-all duration-300">
       <div className="flex justify-center items-center" onClick={handlePosterDetails}>
         <AdaptiveImageDivForHome images={post?.image}/>
       </div>
-      <div className="w-full flex-col justify-between items-center pr-5 pl-6 mt-6 ">
+      <div className="w-full flex-col justify-between items-center pr-5 pl-6 mt-6">
         <div className="flex justify-between w-full">
-          <p>{post.posterName}</p>
-          <span>₹{post.price}</span>
+          <p className="text-sm sm:text-base">{post.posterName}</p>
+          <span className="text-sm sm:text-base">₹{post.price}</span>
         </div>
 
         <div>
-          <p className="text-[0.8rem] text-gray-500 mt-1">{post.description.length > 30
+          <p className="text-[0.8rem] sm:text-sm text-gray-500 mt-1">{post.description.length > 30
             ? `${post.description.slice(0, 30)}...`
             : post.description}</p>
-          <p className="mt-2"><RatingStars posterId={post._id} Star_Size={15} /></p>
+          <p className="mt-2">
+            <RatingStars posterId={post._id} Star_Size={15} />
+          </p>
         </div>
       </div>
     </div>
-
   );
 };
 
