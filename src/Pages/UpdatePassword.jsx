@@ -35,7 +35,7 @@ function UpdatePassword() {
   }
 
   return (
-    <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center">
+    <div className="grid h-screen place-items-center">
       {loading ? (
         <div className="spinner"></div>
       ) : (
@@ -44,12 +44,12 @@ function UpdatePassword() {
             Choose new password
           </h1>
           <p className="my-4 text-[1.125rem] leading-[1.625rem] text-richblack-100">
-            Almost done. Enter your new password and youre all set.
+            Almost done. Enter your new password and your all set.
           </p>
           <form onSubmit={handleOnSubmit}>
             <label className="relative">
               <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
-                New Password <sup className="text-pink-200">*</sup>
+                New Password <sup className="text-black">*</sup>
               </p>
               <input
                 required
@@ -58,11 +58,11 @@ function UpdatePassword() {
                 value={password}
                 onChange={handleOnChange}
                 placeholder="Enter Password"
-                className="form-style w-full !pr-10"
+                className="form-style w-full rounded-sm text-gray-700 p-2 border border-black focus:outline-none"
               />
               <span
                 onClick={() => setShowPassword((prev) => !prev)}
-                className="absolute right-3 top-[38px] z-[10] cursor-pointer"
+                className="absolute right-3 top-[36px] z-[10] cursor-pointer"
               >
                 {showPassword ? (
                   <AiOutlineEyeInvisible fontSize={24} fill="#AFB2BF" />
@@ -73,7 +73,7 @@ function UpdatePassword() {
             </label>
             <label className="relative mt-3 block">
               <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
-                Confirm New Password <sup className="text-pink-200">*</sup>
+                Confirm New Password <sup className="text-black">*</sup>
               </p>
               <input
                 required
@@ -82,11 +82,11 @@ function UpdatePassword() {
                 value={confirmPassword}
                 onChange={handleOnChange}
                 placeholder="Confirm Password"
-                className="form-style w-full !pr-10"
+                className="form-style w-full rounded-sm text-gray-700 p-2 border border-black focus:outline-none"
               />
               <span
                 onClick={() => setShowConfirmPassword((prev) => !prev)}
-                className="absolute right-3 top-[38px] z-[10] cursor-pointer"
+                className="absolute right-3 top-[36px] z-[10] cursor-pointer"
               >
                 {showConfirmPassword ? (
                   <AiOutlineEyeInvisible fontSize={24} fill="#AFB2BF" />
@@ -98,7 +98,7 @@ function UpdatePassword() {
 
             <button
               type="submit"
-              className="mt-6 w-full rounded-[8px] bg-yellow-50 py-[12px] px-[12px] font-medium text-richblack-900"
+              className="mt-6 w-full rounded-[8px] bg-black py-[12px] px-[12px] font-medium text-white hover:bg-opacity-90 transition duration-300"
             >
               Reset Password
             </button>
