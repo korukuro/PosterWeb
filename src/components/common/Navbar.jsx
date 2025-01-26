@@ -10,6 +10,7 @@ import { getAllPoster } from "../../services/operations/posterDetailsAPI";
 const Navbar = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const token = useSelector((state) => state.auth?.token);
   const user = useSelector((state) => state.profile?.user);
@@ -84,7 +85,11 @@ const Navbar = () => {
         isVisible ? "translate-y-0" : "-translate-y-full"
       }`}
     >
+<<<<<<< HEAD
       <div className="flex justify-between pt-0 text-black items-center h-[5rem] border-2 border-black">
+=======
+      <div className="flex relative justify-between text-black p-3 items-center h-[5rem]">
+>>>>>>> fb9b34fc6d6425c46af8aa9ebc17dcea86c396fd
         {/* Logo */}
         <NavLink to="/">
           <img
@@ -194,6 +199,29 @@ const Navbar = () => {
           </Link>
         </div>
       </div>
+      {/* Mobile Dropdown Menu */}
+      {menuOpen && (
+        <div className="sm:hidden bg-white shadow-md">
+          <Link
+            to="/categories"
+            className="block px-4 py-2 text-black hover:bg-gray-100"
+          >
+            Categories
+          </Link>
+          <Link
+            to="/cart"
+            className="block px-4 py-2 text-black hover:bg-gray-100"
+          >
+            Cart
+          </Link>
+          <Link
+            to={token ? "/dashboard/order-history" : "/login"}
+            className="block px-4 py-2 text-black hover:bg-gray-100"
+          >
+            {token ? "Profile" : "Login"}
+          </Link>
+        </div>
+      )}
     </div>
   );
 };
