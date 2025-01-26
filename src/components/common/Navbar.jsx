@@ -40,11 +40,9 @@ const Navbar = () => {
       const currentScrollY = window.scrollY;
 
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        // Scrolling down and passed threshold
-        setIsVisible(false);
+        setIsVisible(false); // Scrolling down and passed threshold
       } else {
-        // Scrolling up
-        setIsVisible(true);
+        setIsVisible(true); // Scrolling up
       }
 
       setLastScrollY(currentScrollY);
@@ -76,11 +74,9 @@ const Navbar = () => {
     setBgColor(randomColor);
   };
 
-  // Filter Products
   const filterProducts = posts.filter((post) => {
     return post.posterName.toLowerCase().includes(searchInput.toLowerCase());
   });
-  // console.log("filteredProducts", filterProducts);
 
   return (
     <div
@@ -88,27 +84,27 @@ const Navbar = () => {
         isVisible ? "translate-y-0" : "-translate-y-full"
       }`}
     >
-      <div className="flex justify-between text-black p-3 items-center h-[5rem]">
+      <div className="flex justify-between pt-0 text-black items-center h-[5rem] border-2 border-black">
         {/* Logo */}
         <NavLink to="/">
           <img
             src={logo}
-            className="h-20 mr-2 mix-blend-darken"
+            className="h-14 lg:h-20 mr-2 mix-blend-darken"
             alt="shopping app"
           />
         </NavLink>
 
-        <div className="flex items-center font-medium gap-4">
+        <div className="flex flex-wrap items-center font-medium gap-1 lg:gap-4">
           {/* Categories */}
-          <div className="transition-all duration-300 transform hover:scale-105">
+          <div className="transition-all duration-300 transform lg:hover:scale-105">
             <Link
               to="/categories"
-              className="relative inline-block px-8 py-1 text-black transition-all duration-300"
+              className="relative inline-block px-6 lg:py-1 sm:px-8 text-sm sm:text-base text-black transition-all duration-300"
               style={{
                 clipPath: "polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%)",
                 backgroundColor: bgColor,
               }}
-              onMouseEnter={generateRandomColor} // Change color on hover
+              onMouseEnter={generateRandomColor}
             >
               Categories
             </Link>
@@ -122,26 +118,26 @@ const Navbar = () => {
               autoComplete="off"
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}
-              className={`border border-black rounded-xl p-1 focus:outline-none pl-2 pr-8 transition-all duration-300 ${
-                isFocused || searchInput ? "w-60" : "w-44"
+              className={`border border-black rounded-xl lg:p-1 pl-1 focus:outline-none lg:pl-2 pr-6 lg:pr-8 transition-all duration-300 h-7 lg:h-8 ${
+                isFocused || searchInput ? "w-24 lg:w-44 sm:w-60" : "w-20 lg:w-36 sm:w-44"
               } font-normal`}
               placeholder="Search"
-              onFocus={() => setIsFocused(true)} // Set focus state to true
-              onBlur={() => setIsFocused(false)} // Set focus state to false
+              onFocus={() => setIsFocused(true)}
+              onBlur={() => setIsFocused(false)}
             />
 
             {!isFocused && !searchInput && (
               <img
                 src={loupe}
                 alt="Search Icon"
-                className="h-6 absolute top-[0.3rem] right-3 opacity-100 transition-opacity duration-300"
+                className="h-6 absolute top-[0.3rem] right-3 opacity-100 transition-opacity duration-300 hidden lg:block"
               />
             )}
             {searchInput && (
               <button
-                onMouseDown={(e) => e.preventDefault()} // Prevent losing focus
-                onClick={handleClearInput} // Clear the input value
-                className={`absolute right-2 text-base top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-black hover:scale-110 transition-transform duration-200 ease-in-out ${
+                onMouseDown={(e) => e.preventDefault()}
+                onClick={handleClearInput}
+                className={`absolute right-2 text-base top-1/2 lg:transform -translate-y-1/2 text-gray-500 hover:text-black lg:hover:scale-110 transition-transform duration-200 ease-in-out ${
                   isClearing ? "rotate-180" : "rotate-0"
                 }`}
               >
@@ -150,7 +146,7 @@ const Navbar = () => {
             )}
 
             {searchInput && filterProducts.length > 0 && (
-              <div className="absolute left-0 mt-1 w-full max-w-md bg-white shadow-lg border rounded-lg z-10">
+              <div className="absolute left-0 mt-1 w-full max-w-xs sm:max-w-md bg-white shadow-lg border rounded-lg z-10">
                 {filterProducts.map((product) => (
                   <Link
                     to={`/poster/${product._id}`}
@@ -159,7 +155,7 @@ const Navbar = () => {
                   >
                     {/* Poster Image */}
                     <img
-                      src={product.image || "default-placeholder-image.png"} // Ensure a fallback image is provided
+                      src={product.image || "default-placeholder-image.png"}
                       alt={product.posterName}
                       className="h-10 w-10 sm:h-12 sm:w-12 rounded-md object-cover"
                     />
@@ -193,7 +189,7 @@ const Navbar = () => {
             <img
               src={user?.image || userIcon}
               alt="User Icon"
-              className="h-10 rounded-full aspect-square object-cover hover:scale-[1.1] active:scale-90 transition-all duration-300"
+              className="h-8 sm:h-10 rounded-full aspect-square object-cover hover:scale-[1.1] active:scale-90 transition-all duration-300"
             />
           </Link>
         </div>
