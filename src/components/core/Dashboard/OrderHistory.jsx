@@ -78,7 +78,7 @@ const OrderHistory = () => {
   const groupedOrders = groupOrdersByOrderId(orders);
 
   return (
-    <div className="p-1 w-full h-full">
+    <div className="p-1 w-[28rem] lg:w-full h-full">
       {loading ? (
         <div className="flex justify-center items-center">
           <Spinner />
@@ -92,39 +92,39 @@ const OrderHistory = () => {
           {groupedOrders.map((group) => (
             <div
               key={group.orderId}
-              className={`mb-6 pb-5 border relative border-black border-dashed bg-[#FAF9F6] rounded-lg lg:w-[50%] w-[70%] overflow-hidden transition-all duration-500 ${openStates[group.orderId] ? "max-h-[1000px]" : "max-h-[15.8rem]"
+              className={`mb-6 pb-5 border relative border-black border-dashed bg-[#FAF9F6] rounded-lg lg:w-[50%] w-[100%] overflow-hidden transition-all duration-500 ${openStates[group.orderId] ? "max-h-[1000px]" : "h-[14rem] lg:h-[15.8rem]"
                 }`}
             >
-              <div className="flex gap-24 border-b border-black justify-between pl-2 pr-2">
+              <div className="flex gap-5 lg:gap-24 border-b border-black justify-between pl-2 pr-1 lg:pr-2">
                 <div className="gap-3 items-center">
-                  <h3 className="font-normal text-lg">Order ID:</h3>
-                  <p>{group.orderId}</p>
+                  <h3 className="font-normal lg:text-lg">Order ID:</h3>
+                  <p className="text-sm lg:text-base">{group.orderId}</p>
                 </div>
-                <div className="flex gap-10">
+                <div className="flex gap-4 lg:gap-10">
                   <div className="flex flex-col items-center justify-center">
-                    <h3 className="font-normal text-lg">Date Placed</h3>
-                    <p>{new Date(group.purchaseDate).toLocaleDateString()}</p>
+                    <h3 className="font-normal lg:text-lg">Date Placed</h3>
+                    <p className="text-sm lg:text-base">{new Date(group.purchaseDate).toLocaleDateString()}</p>
                   </div>
                   <div className="flex flex-col items-center justify-center">
-                    <h3 className="font-normal text-lg">Total Amount</h3>
-                    <p>₹{group.totalPrice}</p>
+                    <h3 className="font-normal lg:text-lg">Total Amount</h3>
+                    <p className="text-sm lg:text-base">₹{group.totalPrice}</p>
                   </div>
                 </div>
               </div>
               <ul className="relative">
                 {group.orders.map((order, idx) => (
                   <li key={idx} className="p-1 border-b border-gray-200">
-                    <div className="flex gap-10 justify-between pl-28 pr-20">
-                      <div className="flex flex-col gap-2 mt-4">
-                        <h3 className="text-lg underline underline-offset-1 ">
+                    <div className="flex lg:gap-10 justify-between pl-2 lg:pl-28 pr-10 lg:pr-20">
+                      <div className="flex flex-col gap-2 lg:mt-4">
+                        <h3 className=" text-base lg:text-lg underline underline-offset-1 text-wrap">
                           {order.poster?.posterName ||
                             "Poster Title Unavailable"}
                         </h3>
-                        <p>
+                        <p className="text-sm lg:text-base">
                           Price: ₹{order.poster?.price || "N/A"}
                         </p>
-                        <p>Quantity: {order?.quantity || 0}</p>
-                        <p>
+                        <p className="text-sm lg:text-base">Quantity: {order?.quantity || 0}</p>
+                        <p className="text-sm lg:text-base">
                           {order?.delivered ? "Delivered" : "Delivery On Way"}
                         </p>
                         <button
@@ -137,18 +137,18 @@ const OrderHistory = () => {
                       </div>
                       {order.poster?.image ? (
                         <img
-                          src={order.poster?.image}
-                          alt={order.poster?.posterName}
-                          width={120}
-                          className="rounded-lg"
-                        />
+                        src={order.poster?.image}
+                        alt={order.poster?.posterName}
+                        width={120}
+                        className="rounded-lg lg:w-[130px] lg:h-[11rem] w-[100px] h-[150px]"
+                      />
                       ) : (
                         <p>Image unavailable</p>
                       )}
                       {/* Badge for additional orders */}
                       {group.orders.length > 1 &&
                         !openStates[group.orderId] && (
-                          <div className="absolute top-36 right-5 rounded-full w-8 p-1 bg-white text-black dark:bg-gray-700 dark:text-white">
+                          <div className="absolute top-32 lg:top-36 right-5 rounded-full w-8 p-1 bg-white text-black dark:bg-gray-700 dark:text-white">
                             +{group.orders.length - 1}
                           </div>
                         )}
