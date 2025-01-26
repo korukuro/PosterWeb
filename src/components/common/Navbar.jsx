@@ -94,7 +94,7 @@ const Navbar = () => {
         <NavLink to="/">
           <img
             src={logo}
-            className="h-20 mr-2 mix-blend-darken"
+            className="h-16 lg:h-20 mr-2 mix-blend-darken"
             alt="shopping app"
           />
         </NavLink>
