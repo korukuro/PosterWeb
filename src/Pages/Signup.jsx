@@ -8,7 +8,7 @@ function Signup() {
         <LoginSignupAndImg />
       </div>
       <Template
-        title=""
+        title="Create an Account"
         formType="signup"
       />
     </div>
