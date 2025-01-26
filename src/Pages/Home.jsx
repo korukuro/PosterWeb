@@ -65,7 +65,7 @@ const Home = () => {
           <HomeSkeleton skeletonCount={6} />
         ) : posts.length > 0 ? (
           <div className="flex flex-col justify-center items-center lg:mt-12">
-            <div className="grid grid-cols-1 lg:grid-cols-3 auto-rows-custom w-11/12 pt-0 lg:pt-10 pb-24 gap-y-32 gap-x-14 h-auto">
+            <div className="grid grid-cols-2 lg:grid-cols-3 auto-rows-custom lg:w-11/12 pt-0 lg:pt-10 pb-24 gap-y-24 lg:gap-y-32 lg:gap-x-14 h-auto">
               {posts.slice(0, visibleCount).map((post) => (
                 <motion.div
                   key={post.id}

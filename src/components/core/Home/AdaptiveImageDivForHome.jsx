@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState, useRef } from "react";
+
 export function AdaptiveImageDivForHome({ images }) {
   const [backgroundColor, setBackgroundColor] = useState("rgb(255, 255, 255)");
   const canvasRef = useRef(null);
@@ -38,24 +39,23 @@ export function AdaptiveImageDivForHome({ images }) {
     const rgb = color.match(/\d+/g);
     if (!rgb || rgb.length !== 3) return "black";
     const yiq =
-      (parseInt(rgb[0]) * 299 + parseInt(rgb[1]) * 587 + parseInt(rgb[2]) * 114) /
-      1000;
+      (parseInt(rgb[0]) * 299 + parseInt(rgb[1]) * 587 + parseInt(rgb[2]) * 114) / 1000;
     return yiq >= 128 ? "black" : "white";
   };
 
   const textColor = getContrastYIQ(backgroundColor);
 
   return (
-    <div className="h-[25rem] w-full flex justify-center items-center">
+    <div className="h-[21rem] sm:h-[20rem] md:h-[22rem] lg:h-[25rem] w-full flex justify-center items-center">
       <div
-        className=" p-4 rounded-lg shadow-lg transition-colors duration-300 h-full w-full"
+        className="p-1 lg:p-2 rounded-lg shadow-lg transition-colors duration-300 h-full w-full"
         style={{ backgroundColor, color: textColor }}
       >
         <div className="flex justify-center items-center h-full w-full">
           <img
             src={images}
             alt={`poster-image}`}
-            className={`w-full h-full border-black border-4 object-cover`}
+            className="w-auto lg:w-full h-80 sm:h-[16rem] md:h-[18rem] lg:h-full border-black border-2 lg:border-4 object-cover"
           />
         </div>
       </div>

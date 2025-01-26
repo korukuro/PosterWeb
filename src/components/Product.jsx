@@ -28,7 +28,7 @@ const Product = ({ post }) => {
   const isInCart = cart.some((item) => item._id === post._id);
 
   return (
-    <div className="w-[20rem] sm:w-[16rem] md:w-[18rem] lg:w-[20rem] flex flex-col justify-center px-2 hover:scale-105 transition-all duration-300">
+    <div className="w-[16rem] sm:w-[16rem] md:w-[18rem] lg:w-[20rem] flex flex-col justify-center px-2 lg:hover:scale-105 transition-all duration-300">
       <div className="flex justify-center items-center" onClick={handlePosterDetails}>
         <AdaptiveImageDivForHome images={post?.image}/>
       </div>
