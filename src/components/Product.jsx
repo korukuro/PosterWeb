@@ -34,7 +34,7 @@ const Product = ({ post }) => {
       </div>
       <div className="w-full flex-col justify-between items-center pr-5 pl-6 mt-6">
         <div className="flex justify-between w-full">
-          <p className="text-sm sm:text-base">{post.posterName}</p>
+          <p className="text-sm sm:text-base">{post.posterName.slice(0,15)}...</p>
           <span className="text-sm sm:text-base">₹{post.price}</span>
         </div>
 
