@@ -36,11 +36,11 @@ const ViewAllPoster = () => {
         className="z-10 relative w-full h-full flex justify-center items-center"
       >
         {loading ? (
-            <div className='mt-24 h-screen'>
-                <HomeSkeleton skeletonCount={posts.length} />
+            <div className='mt-24'>
+                <HomeSkeleton skeletonCount={9} />
             </div>
         ) : posts.length > 0 ? (
-          <div className="flex flex-col justify-center items-center lg:mt-12">
+          <div className="flex flex-col justify-center items-center mt-24">
             <div className="grid grid-cols-2 lg:grid-cols-3 auto-rows-custom lg:w-11/12 pt-0 lg:pt-10 pb-24 gap-y-24 lg:gap-y-32 lg:gap-x-14 h-auto">
               {posts.map((post) => (
                 <motion.div
