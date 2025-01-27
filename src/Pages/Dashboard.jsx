@@ -132,8 +132,8 @@ const Dashboard = () => {
       transition={{ duration: 0.8 }}
       className="flex flex-1 bg-black mt-20"
     >
-      <div className="md:rounded-tl-2xl bg-white dark:bg-neutral-200 flex flex-col gap-2 flex-1 h-auto">
-        <div className="flex gap-2 h-auto">
+      <div className="md:rounded-tl-2xl bg-white dark:bg-neutral-200 flex flex-col gap-2 flex-1 lg:h-auto overflow-x-hidden">
+        <div className="flex gap-2 lg:h-auto">
           <Outlet />
         </div>
       </div>

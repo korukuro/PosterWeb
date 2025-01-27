@@ -80,19 +80,22 @@ export const DesktopSidebar = ({ className, children, ...props }) => {
 export const MobileSidebar = ({ className, children, ...props }) => {
   const { open, setOpen } = useSidebar();
   return (
-    <div
-      className={cn(
-        "h-10 px-4 py-4 flex flex-row md:hidden items-center justify-between bg-neutral-100 dark:bg-neutral-800 w-full",
-        className
-      )}
-      {...props}
-    >
-      <div className="flex justify-end z-20 w-full">
+    <>
+      {/* Mobile Menu Button */}
+      <div
+        className={cn(
+          "h-10 px-4 py-4 flex flex-row md:hidden items-center justify-between bg-neutral-100 dark:bg-neutral-800 w-full",
+          className
+        )}
+        {...props}
+      >
         <IconMenu2
-          className="text-neutral-800 dark:text-neutral-200"
+          className="text-neutral-800 dark:text-neutral-200 cursor-pointer"
           onClick={() => setOpen(!open)}
         />
       </div>
+
+      {/* Mobile Sidebar */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -104,13 +107,13 @@ export const MobileSidebar = ({ className, children, ...props }) => {
               ease: "easeInOut",
             }}
             className={cn(
-              "fixed h-full w-full inset-0 bg-white dark:bg-neutral-900 p-10 z-[100] flex flex-col justify-between",
+              "fixed top-0 left-0 h-full w-[250px] bg-white dark:bg-neutral-900 z-[100] flex flex-col p-4 md:hidden shadow-lg",
               className
             )}
           >
             <div
-              className="absolute right-10 top-10 z-50 text-neutral-800 dark:text-neutral-200"
-              onClick={() => setOpen(!open)}
+              className="absolute top-4 right-4 text-neutral-800 dark:text-neutral-200 cursor-pointer"
+              onClick={() => setOpen(false)}
             >
               <IconX />
             </div>
@@ -118,7 +121,7 @@ export const MobileSidebar = ({ className, children, ...props }) => {
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </>
   );
 };
 
