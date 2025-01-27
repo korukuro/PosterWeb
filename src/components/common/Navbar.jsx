@@ -6,11 +6,18 @@ import loupe from "../../additionalFile/loupe.png";
 import bag from "../../additionalFile/shopping-bag.png";
 import userIcon from "../../additionalFile/user.png";
 import { getAllPoster } from "../../services/operations/posterDetailsAPI";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logout } from "../../services/operations/authAPI";
+import ConfirmationModal from "./ConfirmationModal";
 
 const Navbar = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const [profileMenuOpen, setProfileMenuOpen] = useState(false);
+  const [confirmationModal, setConfirmationModal] = useState(null);
 
   const token = useSelector((state) => state.auth?.token);
   const user = useSelector((state) => state.profile?.user);
@@ -20,6 +27,8 @@ const Navbar = () => {
   const [searchInput, setSearchInput] = useState("");
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  const dispatch = useDispatch();
 
   async function fetchProductData() {
     setLoading(true);
@@ -83,11 +92,25 @@ const Navbar = () => {
   });
   // console.log("filteredProducts", filterProducts);
 
+  const handleLogout = () => {
+    setConfirmationModal({
+      text1: "Are you sure?",
+      text2: "You will be logged out of your account.",
+      btn1Text: "Logout",
+      btn2Text: "Cancel",
+      btn1Handler: () => {
+        dispatch(logout(navigate));
+        setConfirmationModal(null);
+      },
+      btn2Handler: () => setConfirmationModal(null),
+    });
+  };
+
+
   return (
     <div
-      className={`fixed top-0 left-0 right-0 z-50 bg-white shadow-md transition-transform duration-300 ${
-        isVisible ? "translate-y-0" : "-translate-y-full"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 bg-white shadow-md transition-transform duration-300 ${isVisible ? "translate-y-0" : "-translate-y-full"
+        }`}
     >
       <div className="flex relative justify-between text-black p-3 items-center h-[5rem]">
         {/* Logo */}
@@ -99,26 +122,23 @@ const Navbar = () => {
           />
         </NavLink>
 
-         {/* Hamburger Menu for Mobile */}
-         <div className="sm:hidden absolute top-1/3 right-4">
+        {/* Hamburger Menu for Mobile */}
+        <div className="sm:hidden absolute top-1/3 right-4">
           <button
             onClick={() => setMenuOpen((prev) => !prev)}
             className="flex flex-col gap-1 focus:outline-none"
           >
             <span
-              className={`h-1 w-6 bg-black rounded transition-transform ${
-                menuOpen ? "rotate-45 translate-y-2" : ""
-              }`}
+              className={`h-1 w-6 bg-black rounded transition-transform ${menuOpen ? "rotate-45 translate-y-2" : ""
+                }`}
             ></span>
             <span
-              className={`h-1 w-6 bg-black rounded transition-opacity ${
-                menuOpen ? "opacity-0" : ""
-              }`}
+              className={`h-1 w-6 bg-black rounded transition-opacity ${menuOpen ? "opacity-0" : ""
+                }`}
             ></span>
             <span
-              className={`h-1 w-6 bg-black rounded transition-transform ${
-                menuOpen ? "-rotate-45 -translate-y-2" : ""
-              }`}
+              className={`h-1 w-6 bg-black rounded transition-transform ${menuOpen ? "-rotate-45 -translate-y-2" : ""
+                }`}
             ></span>
           </button>
         </div>
@@ -147,9 +167,8 @@ const Navbar = () => {
               autoComplete="off"
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}
-              className={`border border-black rounded-xl p-1 focus:outline-none pl-2 pr-8 transition-all duration-300 ${
-                isFocused || searchInput ? "w-60" : "w-44"
-              } font-normal`}
+              className={`border border-black rounded-xl p-1 focus:outline-none pl-2 pr-8 transition-all duration-300 ${isFocused || searchInput ? "w-60" : "w-44"
+                } font-normal`}
               placeholder="Search"
               onFocus={() => setIsFocused(true)} // Set focus state to true
               onBlur={() => setIsFocused(false)} // Set focus state to false
@@ -166,9 +185,8 @@ const Navbar = () => {
               <button
                 onMouseDown={(e) => e.preventDefault()} // Prevent losing focus
                 onClick={handleClearInput} // Clear the input value
-                className={`absolute right-2 text-base top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-black hover:scale-110 transition-transform duration-200 ease-in-out ${
-                  isClearing ? "rotate-180" : "rotate-0"
-                }`}
+                className={`absolute right-2 text-base top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-black hover:scale-110 transition-transform duration-200 ease-in-out ${isClearing ? "rotate-180" : "rotate-0"
+                  }`}
               >
                 ✕
               </button>
@@ -238,15 +256,57 @@ const Navbar = () => {
           >
             Cart
           </Link>
-          <Link
-            to={token ? "/dashboard/order-history" : "/login"}
-            className="block px-4 py-2 text-black hover:bg-gray-100"
-          >
-            {token ? "Profile" : "Login"}
-          </Link>
+
+          {/* Profile or Login */}
+          {token ? (
+            <div className="relative">
+              <button
+                onClick={() => setProfileMenuOpen(!profileMenuOpen)}
+                className="w-full text-left px-4 py-2 text-black hover:bg-gray-100"
+              >
+                Profile
+              </button>
+              {profileMenuOpen && (
+                <div className="absolute left-0 w-full bg-gray-50 shadow-md mt-1 z-10">
+                  <Link
+                    to="/dashboard/order-history"
+                    className="block px-4 py-2 text-black hover:bg-gray-100"
+                  >
+                    Order History
+                  </Link>
+                  <Link
+                    to="/dashboard/settings"
+                    className="block px-4 py-2 text-black hover:bg-gray-100"
+                  >
+                    Settings
+                  </Link>
+                  <button
+                    onClick={handleLogout}
+                    className="w-full text-left px-4 py-2 text-black hover:bg-gray-100"
+                  >
+                    Logout
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            <Link
+              to="/login"
+              className="block px-4 py-2 text-black hover:bg-gray-100"
+            >
+              Login
+            </Link>
+          )}
         </div>
       )}
+      {confirmationModal && (
+        <ConfirmationModal modalData={confirmationModal} />
+      )}
+
+
+
     </div>
+
   );
 };
 
