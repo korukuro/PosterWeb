@@ -123,7 +123,7 @@ const Cart = () => {
       )}
     </div>
     <Link
-      to="/categories"
+      to="/allposters"
       className="relative group text-black mb-4 text-sm lg:text-base"
     >
       View More

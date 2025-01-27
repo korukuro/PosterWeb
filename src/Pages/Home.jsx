@@ -5,11 +5,13 @@ import Section_1 from "../components/core/Home/Section_1";
 import InfiniteLoop from "../components/core/Home/InfiniteLoop";
 import HomeSkeleton from "../components/common/skeleton/HomeSkeleton";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [loading, setLoading] = useState(false);
   const [posts, setPosts] = useState([]);
   const [visibleCount, setVisibleCount] = useState(6);
+  const navigate = useNavigate();
 
   async function fetchProductData() {
     setLoading(true);
@@ -29,8 +31,8 @@ const Home = () => {
   }, []);
 
   const handleViewMore = () => {
-    setVisibleCount((prevCount) => prevCount + 6); // Show 6 more posts
-  };
+    navigate("/allposters");
+  }
 
   return (
     <motion.div
@@ -74,7 +76,6 @@ const Home = () => {
                 </motion.div>
               ))}
             </div>
-            {visibleCount < posts.length && (
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -89,7 +90,6 @@ const Home = () => {
                   <span className="z-10 flex justify-center items-center gap-2">View More</span>
                 </button>
               </motion.div>
-            )}
           </div>
         ) : (
           <motion.div

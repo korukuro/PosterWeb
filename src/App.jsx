@@ -31,6 +31,7 @@ import CategoryWisePosterPage from "./components/core/Categories/CategoryWisePos
 import ScrollToTop from "./components/common/ScrollToTop";
 import Test from "./Pages/Test";
 import BuyNow from "./Pages/BuyNow";
+import ViewAllPoster from "./Pages/ViewAllPoster";
 
 function App() {
   const location = useLocation();
@@ -62,6 +63,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/test" element={<Test />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/allposters" element={<ViewAllPoster />} />
         <Route path="/categories" element={<Categories />}/>
         <Route path="/categories/:id" element={<CategoryWisePosterPage />} />
         <Route path="/poster/:id" element={<PosterDetails />} />
