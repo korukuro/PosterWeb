@@ -67,7 +67,7 @@ function SignupForm() {
   };
 
   return (
-    <div className="flex justify-center items-center px-4 sm:px-8">
+    <div className="flex justify-center items-center px-8">
       {/* Form */}
       <form onSubmit={handleOnSubmit} className="flex w-full max-w-md flex-col gap-y-4">
         <div className="grid gap-4 sm:grid-cols-2">

@@ -20,8 +20,8 @@ const LoginSignupAndImg = () => {
             className="w-full h-full object-cover"
           />
 
-          {/* Buttons Overlay */}
-          <div className="absolute top-1/4 right-0 flex flex-col gap-4 justify-center items-start pl-8">
+          {/* Buttons Overlay for Large Screens */}
+          <div className="absolute top-1/4 right-0 flex-col gap-4 justify-center items-start pl-8 hidden md:flex">
             {/* Login Button */}
             <Link to="/login">
               <button
@@ -39,6 +39,31 @@ const LoginSignupAndImg = () => {
                 className={`${
                   vistcheck === "Signup" ? "bg-[#0000008e]" : ""
                 } text-white px-5 w-[8rem] h-[3.5rem] rounded-l-full text-md font-bold hover:scale-105 transition-transform`}
+              >
+                Signup
+              </button>
+            </Link>
+          </div>
+
+          {/* Buttons Overlay for Mobile Screens */}
+          <div className="absolute top-32 left-0 right-0  flex justify-evenly md:hidden z-10">
+            {/* Login Button */}
+            <Link to="/login">
+              <button
+                className={`${
+                  vistcheck === "Login" ? "bg-white text-black h-[50px]" : "text-white"
+                }  px-4 py-2 rounded-full text-sm font-bold hover:scale-105 transition-transform`}
+              >
+                Login
+              </button>
+            </Link>
+
+            {/* Signup Button */}
+            <Link to="/signup">
+              <button
+                className={`${
+                  vistcheck === "Signup" ? "bg-white text-black h-[50px]" : "text-white"
+                } px-4 py-2 rounded-full text-sm font-bold hover:scale-105 transition-transform`}
               >
                 Signup
               </button>

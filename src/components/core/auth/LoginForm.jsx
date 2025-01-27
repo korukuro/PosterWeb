@@ -48,7 +48,7 @@ function LoginForm() {
       </label>
       <label className="w-[82%]">
         <p className="mb-1 text-[1.1rem] leading-[1.375rem] text-richblack-5">
-          PASSWORD
+          Password
         </p>
         <input
           required
