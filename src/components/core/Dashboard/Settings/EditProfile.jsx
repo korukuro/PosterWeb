@@ -128,7 +128,7 @@ export default function EditProfile() {
             </div>
           </div>
 
-          <div className="flex flex-col lg:w-[87.5%]">
+          {/* <div className="flex flex-col lg:w-[87.5%]">
               <label htmlFor="about" className="lable-style font-semibold">
                 Address
               </label>
@@ -216,7 +216,7 @@ export default function EditProfile() {
                 </span>
               )}
             </div>
-          </div>
+          </div> */}
         </div>
 
         <div className="flex justify-end pr-14 gap-2 mt-5">
