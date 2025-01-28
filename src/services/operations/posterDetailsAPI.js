@@ -65,7 +65,6 @@ export const getOrderHistory = async (token) => {
     let result = [];
     try {
         const response = await apiConnector("GET", GET_ORDER_HISTORY, null, { Authorization: `Bearer ${token}` });
-        // console.log("API response:", response);
 
         if (!response || !response.data) {
             throw new Error("No response from server");
@@ -76,7 +75,6 @@ export const getOrderHistory = async (token) => {
         }
 
         result = response.data;
-        // console.log("API result:", result);
     } catch (error) {
         console.error("GET_ORDER_HISTORY API ERROR:", error);
         toast.error(error.message || "Something went wrong");
@@ -91,12 +89,10 @@ export const getAllCategories = async () => {
     let result = [];
     try {
         const response = await apiConnector("GET", GET_ALL_CATEGORIES_API);
-        // console.log("API response:", response);
         if (!response?.data?.success) {
             throw new Error("Could not fetch categories");
         }
         result = response?.data;
-        // console.log("API result:", result);
     } catch (error) {
         console.error("GET_ALL_CATEGORIES_API API ERROR: ", error);
         toast.error(error.message);

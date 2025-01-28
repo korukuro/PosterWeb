@@ -14,8 +14,6 @@ export async function getAvgRating(posterId,token) {
             }
         );
 
-        console.log("GET AVG RATING API RESPONSE:", response);
-
         if (!response.data?.success) {
             throw new Error(response.data?.message || "Failed to fetch rating");
         }
@@ -34,8 +32,6 @@ export const createRating = async (data, token) => {
     const response = await apiConnector("POST", CREATE_POSTER_RATING_API, data, {
       Authorization: `Bearer ${token}`,
     });
-
-    console.log("CREATE_RATING_API API RESPONSE............", response);
 
     toast.success("Rating Added");
     result = response?.data?.data;

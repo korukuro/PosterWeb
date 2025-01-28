@@ -36,7 +36,7 @@ const Navbar = () => {
       const data = await getAllPoster();
       setPosts(data);
     } catch (error) {
-      console.log("Data nhi aaya");
+      console.log("No data found");
       setPosts([]);
     }
     setLoading(false);
@@ -90,7 +90,6 @@ const Navbar = () => {
   const filterProducts = posts.filter((post) => {
     return post.posterName.toLowerCase().includes(searchInput.toLowerCase());
   });
-  // console.log("filteredProducts", filterProducts);
 
   const handleLogout = () => {
     setConfirmationModal({

@@ -32,9 +32,6 @@ export async function BuyPoster(token, posterDetails, userDetails, deliveryId, n
     if (!isScriptLoaded) {
       throw new Error("Razorpay SDK loading failed. Check your internet connection.");
     }
-
-    // Step 2: Create an order through the backend
-    console.log("Initiating payment with details:", { posterDetails, deliveryId });
     const payload = {
       posterDetails,
       deliveryId, // Pass delivery address to backend
@@ -47,8 +44,6 @@ export async function BuyPoster(token, posterDetails, userDetails, deliveryId, n
       payload,
       { Authorization: `Bearer ${token}` }
     );
-
-    console.log("Order Response:", orderResponse);
 
     if (!orderResponse?.data?.success) {
       throw new Error(orderResponse?.data?.message || "Payment initiation failed.");
@@ -71,7 +66,6 @@ export async function BuyPoster(token, posterDetails, userDetails, deliveryId, n
       },
       handler: async (response) => {
         try {
-          console.log("Payment Successful Response:", response);
           // Show loading toast before starting verification
           const verifyToastId = toast.loading("Processing payment...");
 
@@ -116,7 +110,6 @@ async function verifyPayment(paymentData, token, navigate, dispatch) {
   dispatch(setPaymentLoading(true));
   
   try {
-    console.log("Verifying Payment Data:", paymentData);
 
     const response = await apiConnector(
       "POST",
@@ -127,8 +120,6 @@ async function verifyPayment(paymentData, token, navigate, dispatch) {
       },
       { Authorization: `Bearer ${token}` }
     );
-
-    console.log("Verify Payment Response:", response);
 
     if (!response?.data?.success) {
       throw new Error(response?.data?.message || "Payment verification failed.");
@@ -153,8 +144,6 @@ async function verifyPayment(paymentData, token, navigate, dispatch) {
 // Send Payment Success Email
 async function sendPaymentSuccessEmail(paymentResponse, amount, token) {
   try {
-    console.log("Sending Payment Success Email:", paymentResponse);
-
     const emailResponse = await apiConnector(
       "POST",
       SEND_PAYMENT_SUCCESS_EMAIL_API,
@@ -165,8 +154,6 @@ async function sendPaymentSuccessEmail(paymentResponse, amount, token) {
       },
       { Authorization: `Bearer ${token}` }
     );
-
-    console.log("Email Response:", emailResponse);
   } catch (error) {
     console.error("Payment Success Email Error:", error);
   }

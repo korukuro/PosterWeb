@@ -75,7 +75,6 @@ const BuyNow = () => {
       alert("Payment failed. Please try again.");
     }
   };
-  {console.log("directCheckoutItem",directCheckoutItem)}
 
   return (
     <div className="flex justify-center pt-24">

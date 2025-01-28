@@ -16,8 +16,6 @@ export function getDeliveryAddress(token) {
     try {
       const response = await apiConnector("GET", GET_DELIVERY_ADDRESS_API, null, { Authorization: `Bearer ${token}` })
 
-    //   console.log("GET DELIVERY ADDRESS API RESPONSE............", response)
-
       if (!response.data.success) {
         throw new Error(response.data.message)
       }
@@ -44,8 +42,7 @@ export function addDelivery(address, city, state, pincode, phoneNumber, isDefaul
         phoneNumber,
         isDefault
       },{Authorization: `Bearer ${token}`})
-
-      console.log("ADD DELIVERY API RESPONSE............", response)
+      
       dispatch(getDeliveryAddress(token));
       if (!response.data) {
         throw new Error(response.data.message)

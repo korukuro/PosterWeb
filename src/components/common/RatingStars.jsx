@@ -25,7 +25,6 @@ function RatingStars({ posterId,Star_Size = 20 }) { // Set default size
 
         // Fetch rating from API
         const response = await getAvgRating(posterId, token)
-        console.log("API Response:", response)
 
         if (response >= 0) {
           setAvgReviewCount(response)
