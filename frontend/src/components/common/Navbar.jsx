@@ -128,7 +128,7 @@ const Navbar = () => {
             className="flex flex-col gap-[0.26rem] focus:outline-none"
           >
             <span
-              className={` w-6 border border-black rounded transition-transform ${menuOpen ? "rotate-45 translate-y-2" : ""
+              className={`w-6 border border-black rounded transition-transform ${menuOpen ? "rotate-45 translate-y-[3px]" : ""
                 }`}
             ></span>
             <span
