@@ -138,7 +138,7 @@ const Cart = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.3 }}
-          className="flex flex-col justify-center pb-60 pt-36 items-center transition-all duration-300"
+          className="flex flex-col justify-center pb-60 pt-48 items-center transition-all duration-300"
         >
           <img
             src={emptyBox}
@@ -148,7 +148,7 @@ const Cart = () => {
           <img
             src={spider}
             alt="spider"
-            className="w-[100px] lg:w-[150px] right-5 absolute opacity-40 transition-all duration-500 ease-in-out"
+            className="w-[100px] lg:w-[150px] right-5 absolute opacity-40 transition-all duration-700 ease-in-out"
             style={{ top: "0" }}
             onLoad={(e) => {
               e.target.style.top = "3.5rem";
