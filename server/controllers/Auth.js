@@ -6,7 +6,6 @@ const otpGenerator = require("otp-generator")
 const mailSender = require("../utils/mailSender")
 const { passwordUpdated } = require("../mail/passwordUpdate")
 const Profile = require("../models/Profile")
-const { OAuth2Client } = require("google-auth-library");
 
 require("dotenv").config()
 
