@@ -122,21 +122,21 @@ const Navbar = () => {
         </NavLink>
 
         {/* Hamburger Menu for Mobile */}
-        <div className="sm:hidden absolute top-1/3 right-4">
+        <div className="sm:hidden absolute top-8 right-4">
           <button
             onClick={() => setMenuOpen((prev) => !prev)}
-            className="flex flex-col gap-1 focus:outline-none"
+            className="flex flex-col gap-[0.26rem] focus:outline-none"
           >
             <span
-              className={`h-1 w-6 bg-black rounded transition-transform ${menuOpen ? "rotate-45 translate-y-2" : ""
+              className={` w-6 border border-black rounded transition-transform ${menuOpen ? "rotate-45 translate-y-2" : ""
                 }`}
             ></span>
             <span
-              className={`h-1 w-6 bg-black rounded transition-opacity ${menuOpen ? "opacity-0" : ""
+              className={`w-6 border border-black rounded transition-opacity ${menuOpen ? "opacity-0" : ""
                 }`}
             ></span>
             <span
-              className={`h-1 w-6 bg-black rounded transition-transform ${menuOpen ? "-rotate-45 -translate-y-2" : ""
+              className={`w-6 border border-black rounded transition-transform ${menuOpen ? "-rotate-45 -translate-y-2" : ""
                 }`}
             ></span>
           </button>
