@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Product from "../components/Product";
 import { getAllPoster } from "../services/operations/posterDetailsAPI";
-import Section_1 from "../components/core/Home/Section_1";
+import Section1 from "../components/core/Home/Section_1";
 import InfiniteLoop from "../components/core/Home/InfiniteLoop";
 import HomeSkeleton from "../components/common/skeleton/HomeSkeleton";
 import { motion } from "framer-motion";
@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 const Home = () => {
   const [loading, setLoading] = useState(false);
   const [posts, setPosts] = useState([]);
-  const [visibleCount, setVisibleCount] = useState(6);
+  const visibleCount = 6;
   const navigate = useNavigate();
 
   async function fetchProductData() {
@@ -49,7 +49,7 @@ const Home = () => {
         transition={{ duration: 1.3}}
         className="mt-20 h-60 lg:h-auto"
       >
-        <Section_1 />
+        <Section1 />
       </motion.div>
 
       {/* Product Grid */}

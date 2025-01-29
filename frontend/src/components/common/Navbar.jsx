@@ -26,12 +26,10 @@ const Navbar = () => {
   const [isClearing, setIsClearing] = useState(false);
   const [searchInput, setSearchInput] = useState("");
   const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
 
   async function fetchProductData() {
-    setLoading(true);
     try {
       const data = await getAllPoster();
       setPosts(data);
@@ -39,7 +37,6 @@ const Navbar = () => {
       console.log("No data found");
       setPosts([]);
     }
-    setLoading(false);
   }
   useEffect(() => {
     fetchProductData();
