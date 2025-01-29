@@ -49,7 +49,7 @@ export function AdaptiveImageDivForHome({ images }) {
   const textColor = getContrastYIQ(backgroundColor);
 
   return (
-    <div className="sm:h-[20rem] md:h-[22rem] lg:h-[25rem] w-full flex justify-center items-center border-2 ">
+    <div className="sm:h-[20rem] md:h-[22rem] lg:h-[25rem] w-full flex justify-center items-center">
       <div
         className="p-2 lg:p-2 rounded-lg shadow-lg transition-colors duration-300 h-auto lg:h-full lg:w-full flex justify-center items-center"
         style={{ backgroundColor, color: textColor }}
