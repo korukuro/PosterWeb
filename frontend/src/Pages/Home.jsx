@@ -63,7 +63,7 @@ const Home = () => {
           <HomeSkeleton skeletonCount={6} />
         ) : posts.length > 0 ? (
           <div className="flex flex-col justify-center items-center lg:mt-12 mt-5">
-            <div className="grid grid-cols-2 lg:grid-cols-3 auto-rows-custom lg:w-11/12 pt-0 lg:pt-10 pb-24 gap-y-20 lg:gap-y-32 lg:gap-x-14 h-auto">
+            <div className="grid grid-cols-2 lg:grid-cols-3 auto-rows-custom lg:w-11/12 pt-0 lg:pt-10 lg:pb-24 lg:gap-y-32 lg:gap-x-14 h-auto">
               {posts.slice(0, visibleCount).map((post) => (
                 <motion.div
                   key={post.id}
@@ -80,7 +80,7 @@ const Home = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1.3}}
-                className="flex justify-center mt-4"
+                className="flex justify-center lg:mt-4"
               >
                 <button
                   onClick={handleViewMore}
