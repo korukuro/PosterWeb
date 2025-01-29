@@ -1,4 +1,4 @@
-import { useParams, Link } from "react-router-dom"; // Import Link
+import { useParams } from "react-router-dom"; // Import Link
 import React, { useEffect, useState } from "react";
 import { getCategoryWisePoster } from "../../../services/operations/posterDetailsAPI";
 import Product from "../../Product";

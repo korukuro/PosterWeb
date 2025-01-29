@@ -3,8 +3,6 @@ import DeleteAccount from "./DeleteAccount";
 import EditProfile from "./EditProfile";
 import UpdatePassword from "./UpdatePassword";
 
-import { BackgroundBeams } from "../../../../components/ui/background-beam";
-
 export default function Settings() {
   return (
     <div className="flex flex-col w-full gap-8 pt-10">

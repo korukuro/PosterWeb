@@ -1,12 +1,6 @@
-import { useDispatch } from "react-redux";
-import { remove } from "../slices/cartSlice";
 import { useNavigate } from "react-router-dom";
 
 const CheckOutItem = ({ item,quantity }) => {
-    const dispatch = useDispatch();
-    const removeItem = () => {
-        dispatch(remove(item._id));
-    }
     const navigate = useNavigate();
     const handleClick = () => {
         navigate(`/poster/${item._id}`);

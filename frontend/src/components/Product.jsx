@@ -1,31 +1,14 @@
-import { add, remove } from "../slices/cartSlice";
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import RatingStars from "../components/common/RatingStars";
 import { AdaptiveImageDivForHome } from "./core/Home/AdaptiveImageDivForHome";
 
 const Product = ({ post }) => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const cart = useSelector((state) => state.cart);
-
-  const addToCart = () => {
-    dispatch(add(post));
-    toast.success("Item added to Cart");
-  };
-
-  const removeItem = () => {
-    dispatch(remove(post._id));
-    toast.error("Item removed from Cart");
-  };
 
   const handlePosterDetails = () => {
     navigate(`/poster/${post._id}`);
   };
-
-  const isInCart = cart.some((item) => item._id === post._id);
 
   return (
     <div className="w-[16rem] sm:w-[16rem] md:w-[18rem] lg:w-[20rem] flex flex-col justify-center px-2 lg:hover:scale-105 transition-all duration-300">

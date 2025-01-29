@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addDelivery } from "../../../services/operations/deliveryAPI";
-import { useNavigate } from "react-router-dom";
 
 const DeliveryForm = ({setShowDeliveryForm}) => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const [deliveryDetails, setDeliveryDetails] = useState({
     firstName: "",

@@ -2,7 +2,6 @@ import { RiDeleteBin5Line } from "react-icons/ri";
 import { useDispatch } from "react-redux";
 import { remove } from "../slices/cartSlice";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 
 const CartItem = ({ item }) => {
   const dispatch = useDispatch();
