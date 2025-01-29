@@ -39,7 +39,10 @@ export function AdaptiveImageDivForHome({ images }) {
     const rgb = color.match(/\d+/g);
     if (!rgb || rgb.length !== 3) return "black";
     const yiq =
-      (parseInt(rgb[0]) * 299 + parseInt(rgb[1]) * 587 + parseInt(rgb[2]) * 114) / 1000;
+      (parseInt(rgb[0]) * 299 +
+        parseInt(rgb[1]) * 587 +
+        parseInt(rgb[2]) * 114) /
+      1000;
     return yiq >= 128 ? "black" : "white";
   };
 
@@ -51,11 +54,11 @@ export function AdaptiveImageDivForHome({ images }) {
         className="p-2 lg:p-2 rounded-lg shadow-lg transition-colors duration-300 h-auto lg:h-full lg:w-full flex justify-center items-center"
         style={{ backgroundColor, color: textColor }}
       >
-          <img
-            src={images}
-            alt={`poster-image}`}
-            className="w-auto lg:w-full h-60 sm:h-[16rem] md:h-[18rem] lg:h-full border-black border-2 lg:border-4 object-cover"
-          />
+        <img
+          src={images}
+          alt={`poster-image`}
+          className="min-w-[155px] w-auto lg:w-full h-60 sm:h-[16rem] md:h-[18rem] lg:h-full border-black border-2 lg:border-4 object-cover"
+        />
       </div>
       <canvas ref={canvasRef} style={{ display: "none" }} />
     </div>

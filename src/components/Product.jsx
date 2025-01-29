@@ -38,14 +38,12 @@ const Product = ({ post }) => {
           <span className="text-sm sm:text-base">₹{post.price}</span>
         </div>
 
-        <div>
           <p className="text-[0.8rem] sm:text-sm text-gray-500 mt-1">{post.description.length > 30
             ? `${post.description.slice(0, 30)}...`
             : post.description}</p>
           <p className="mt-2">
             <RatingStars posterId={post._id} Star_Size={15} />
           </p>
-        </div>
       </div>
     </div>
   );
