@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "../../utils/cd";
+import { cn } from "../../utils/cd"; // Ensure this path is correct
 import { Link } from "react-router-dom";
 import React, { useState, createContext, useContext } from "react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -9,6 +9,7 @@ import { IconMenu2, IconX } from "@tabler/icons-react";
 // Create a context for managing sidebar state
 const SidebarContext = createContext(undefined);
 
+// Custom hook to access sidebar context
 export const useSidebar = () => {
   const context = useContext(SidebarContext);
   if (!context) {
@@ -107,7 +108,7 @@ export const MobileSidebar = ({ className, children, ...props }) => {
               ease: "easeInOut",
             }}
             className={cn(
-              "fixed top-0 left-0 h-full w-[250px] bg-white dark:bg-neutral-900 z-[100] flex flex-col p-4 md:hidden shadow-lg",
+              "fixed top-0 left-0 h-full w-[250px] bg-white dark:bg-neutral-900 z-[1000] flex flex-col p-4 md:hidden shadow-lg",
               className
             )}
           >

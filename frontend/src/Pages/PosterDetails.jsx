@@ -2,18 +2,12 @@ import React, { useEffect, useState } from "react";
 import { TiPlus, TiMinus } from "react-icons/ti";
 import { getPosterDetails } from "../services/operations/posterDetailsAPI";
 import { useLocation } from "react-router-dom";
-import Spinner from "../components/Spinner";
 import { addWithQuantity } from "../slices/cartSlice";
 import { useDispatch } from "react-redux";
 import { toast } from "react-hot-toast";
 import RatingStars from "../components/common/RatingStars";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectFlip, Navigation, Pagination } from "swiper/modules";
-import sizeImage from "../additionalFile/sizeImage.png"
-import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 import { FaBoxOpen } from "react-icons/fa";
 import { IoPrintSharp } from "react-icons/io5";
-
 import "swiper/css";
 import "swiper/css/effect-flip";
 import "swiper/css/navigation";
@@ -24,8 +18,6 @@ import { clearDirectCheckoutItem } from "../slices/buynowSlice";
 import { useSelector } from "react-redux";
 import { setDirectCheckoutItem } from "../slices/buynowSlice";
 import { useNavigate } from "react-router-dom";
-
-
 
 const PosterDetails = () => {
   const [posts, setPosts] = useState({});
