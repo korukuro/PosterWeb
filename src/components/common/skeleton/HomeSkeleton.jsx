@@ -3,11 +3,11 @@ import React from 'react';
 const HomeSkeleton = ({skeletonCount}) => {
 
     return (
-        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
+        <div className="grid grid-cols-2 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-6 lg:p-4 w-full px-1">
             {Array.from({ length: skeletonCount }).map((_, index) => (
                 <div
                     key={index}
-                    className="w-[20rem] flex flex-col justify-center px-2 hover:scale-105 transition-all duration-300"
+                    className="h-[25rem] lg:w-[20rem] flex flex-col justify-center lg:px-2 lg:hover:scale-105 transition-all duration-30"
                 >
                     {/* Image Section */}
                     <div className="flex justify-center items-center h-[25rem] w-full bg-gray-300 animate-pulse rounded-lg"></div>

@@ -2,7 +2,7 @@ import React from "react";
 
 const PosterDetailsSkeleton = () => {
   return (
-    <div className="flex justify-evenly w-11/12 mx-auto overflow-x-hidden pt-16 overflow-y-hidden">
+    <div className="flex justify-evenly w-11/12 mx-auto overflow-x-hidden md:p-16 lg:pt-16 overflow-y-hidden">
       <div className="grid lg:grid-cols-2 grid-cols-1 mt-8 mb-8 mx-4 gap-4">
         {/* Right Section */}
         <div className="h-[500px] w-full bg-gray-300 animate-pulse rounded-lg"></div>
