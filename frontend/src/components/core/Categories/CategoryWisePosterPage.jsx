@@ -49,7 +49,7 @@ const CategoryWisePosterPage = () => {
   return (
       
     <div className="flex justify-center items-center mt-16 lg:mt-28 border-2 w-full">
-    <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 auto-rows-custom w-full lg:w-11/12 pt-0 lg:pl-16 lg:pt-10 pb-24 gap-y-24 lg:gap-y-32 lg:gap-x-14 h-auto justify-items-center">
+    <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 auto-rows-custom w-full lg:w-11/12 pt-0 lg:pl-16 lg:pt-10 pb-24 gap-y-10 lg:gap-y-32 lg:gap-x-14 h-auto justify-items-center">
       {categoryData.poster && categoryData.poster.length > 0 ? (
         categoryData.poster.map((poster) => <Product post={poster} />)
       ) : (
