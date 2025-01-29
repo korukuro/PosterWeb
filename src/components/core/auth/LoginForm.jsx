@@ -72,7 +72,7 @@ function LoginForm() {
           </span>
         )}
       </label>
-      <div className="flex items-center justify-between w-full mt-6 pl-2 pr-12">
+      <div className="flex items-center justify-between w-full mt-6 pl-2 lg:pr-12">
         <Link to="/forgot-password">
           <p className="text-base text-blue-700 hover:underline">
             forgot password?

@@ -17,7 +17,7 @@ const LoginSignupAndImg = () => {
           <img
             src={leftImage}
             alt="Collage"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover filter blur-sm lg:filter-none"
           />
 
           {/* Buttons Overlay for Large Screens */}

@@ -66,14 +66,13 @@ function SignupForm() {
     });
   };
 
-  return (
-    <div className="flex justify-center items-center px-8">
+  return (<>
       {/* Form */}
-      <form onSubmit={handleOnSubmit} className="flex w-full max-w-md flex-col gap-y-4">
+      <form onSubmit={handleOnSubmit} className="flex w-[18rem] lg:w-full max-w-md flex-col gap-y-4">
         <div className="grid gap-4 sm:grid-cols-2">
           <label>
             <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
-              First Name <sup className="text-pink-200">*</sup>
+              First Name <sup className="text-black">*</sup>
             </p>
             <input
               required
@@ -87,7 +86,7 @@ function SignupForm() {
           </label>
           <label>
             <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
-              Last Name <sup className="text-pink-200">*</sup>
+              Last Name <sup className="text-black">*</sup>
             </p>
             <input
               required
@@ -103,7 +102,7 @@ function SignupForm() {
 
         <label className="w-full">
           <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
-            Email Address <sup className="text-pink-200">*</sup>
+            Email Address <sup className="text-black">*</sup>
           </p>
           <input
             required
@@ -118,7 +117,7 @@ function SignupForm() {
         <div className="gap-x-4">
           <label className="relative w-full">
             <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
-              Create Password <sup className="text-pink-200">*</sup>
+              Create Password <sup className="text-black">*</sup>
             </p>
             <input
               required
@@ -146,7 +145,7 @@ function SignupForm() {
         <div>
           <label className="relative w-full">
             <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
-              Confirm Password <sup className="text-pink-200">*</sup>
+              Confirm Password <sup className="text-black">*</sup>
             </p>
             <input
               required
@@ -179,7 +178,7 @@ function SignupForm() {
           <FaArrowRight />
         </button>
       </form>
-    </div>
+      </>
   );
 }
 

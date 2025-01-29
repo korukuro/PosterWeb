@@ -50,7 +50,7 @@ const CategoryWisePosterPage = () => {
     <div className="container mx-auto pt-20 pb-24">
       
       <div className="flex justify-center mt-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-2 lg:grid-cols-3 auto-rows-custom lg:w-11/12 pt-0 lg:pt-10 pb-24 gap-y-24 lg:gap-y-32 lg:gap-x-14 h-auto">
           {categoryData.poster && categoryData.poster.length > 0 ? (
             categoryData.poster.map((poster) => <Product post={poster} />)
           ) : (

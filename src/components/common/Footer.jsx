@@ -60,7 +60,7 @@ const Footer = () => {
 
         <div className="border-b w-full flex flex-col lg:flex-row pt-5 lg:pb-8">
           <div className="lg:w-[50%] flex flex-wrap flex-row justify-between lg:border-r lg:border-richblack-700 lg:pl-3 lg:pr-5 gap-3">
-            <div className="flex flex-col gap-3 mb-7 lg:pl-0 lg:pt-14 border-b lg:border-0 pb-5 lg:pb-0 border-t pt-5">
+            <div className="flex flex-col gap-3 mb-7 lg:pl-0 lg:pt-14 border-b lg:border-0 pb-5 lg:pb-0 border-t pt-5 pl-1 pr-1">
               <h1 className="text-richblack-50 text-2xl font-bold bg-yellow-400">
                 About Us
               </h1>
