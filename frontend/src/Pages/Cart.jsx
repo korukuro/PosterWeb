@@ -138,7 +138,7 @@ const Cart = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.3 }}
-          className="flex flex-col justify-center pb-60 pt-48 items-center transition-all duration-300"
+          className="flex flex-col justify-center pb-60 pt-48 items-center transition-all duration-300 h-screen"
         >
           <img
             src={emptyBox}

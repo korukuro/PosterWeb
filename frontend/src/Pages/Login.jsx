@@ -9,8 +9,8 @@ function Login() {
       <div className="col-span-2">
         <LoginSignupAndImg />
         {/* Template Overlay for Mobile Screens */}
-      <div className="absolute top-40 left-0 right-0  flex items-center justify-center md:hidden ">
-        <div className="bg-white rounded-2xl shadow-xl p-2 w-11/12 max-w-md">
+      <div className="absolute top-40 left-0 right-0 flex items-center justify-center md:hidden ">
+        <div className="bg-white rounded-2xl shadow-xl p-2 w-11/12 max-w-md border-2 h-96">
           <Template title="Welcome Back!!" formType="login" />
         </div>
       </div>
