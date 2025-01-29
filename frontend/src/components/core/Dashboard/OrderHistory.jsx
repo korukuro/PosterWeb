@@ -124,15 +124,16 @@ const OrderHistory = () => {
                           Price: ₹{order.poster?.price || "N/A"}
                         </p>
                         <p className="text-sm lg:text-sm text-gray-800">Quantity: {order?.quantity || 0}</p>
-                        <p className="text-sm lg:text-xs">
-                          {order?.delivered ? "Delivered" : "Delivery On Way"}
-                        </p>
+              
                         <button
                           className="rounded-r-full rounded-l-full bg-black text-white w-28"
                           onClick={() => handleRatingClick(order)}
                         >
                           Rate
                         </button>
+                        <p className={`text-sm lg:text-xs absolute bottom-0 left-5 ${order?.delivered ? "text-green-500 font-semibold" : "text-red-500 font-semibold"}`}>
+                         {order?.delivered ? "Delivered" : "Delivery On Way"}
+                        </p>
 
                       </div>
                       {order.poster?.image ? (
