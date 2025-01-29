@@ -124,7 +124,7 @@ const OrderHistory = () => {
                           Price: ₹{order.poster?.price || "N/A"}
                         </p>
                         <p className="text-sm lg:text-sm text-gray-800">Quantity: {order?.quantity || 0}</p>
-                        <p className="text-sm lg:text-sm">
+                        <p className="text-sm lg:text-xs">
                           {order?.delivered ? "Delivered" : "Delivery On Way"}
                         </p>
                         <button
