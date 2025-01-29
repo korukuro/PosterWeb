@@ -116,7 +116,7 @@ const OrderHistory = () => {
                   <li key={idx} className="p-1 border-b border-gray-200">
                     <div className="flex lg:gap-10 justify-between pl-2 lg:pl-28 pr-10 lg:pr-20">
                       <div className="flex flex-col gap-2 lg:mt-4">
-                        <h3 className=" text-base lg:text-base underline underline-offset-1 text-wrap">
+                        <h3 className=" text-base lg:text-sm underline underline-offset-1 text-wrap">
                           {order.poster?.posterName ||
                             "Poster Title Unavailable"}
                         </h3>
@@ -124,7 +124,7 @@ const OrderHistory = () => {
                           Price: ₹{order.poster?.price || "N/A"}
                         </p>
                         <p className="text-sm lg:text-sm text-gray-800">Quantity: {order?.quantity || 0}</p>
-                        <p className="text-sm lg:text-base">
+                        <p className="text-sm lg:text-sm">
                           {order?.delivered ? "Delivered" : "Delivery On Way"}
                         </p>
                         <button
