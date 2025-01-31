@@ -242,12 +242,14 @@ const Navbar = () => {
           <Link
             to="/categories"
             className="block px-4 py-2 text-black hover:bg-gray-100"
+            onClick={() => setMenuOpen(false)}
           >
             Categories
           </Link>
           <Link
             to="/cart"
             className="block px-4 py-2 text-black hover:bg-gray-100"
+            onClick={() => setMenuOpen(false)}
           >
             Cart
           </Link>
@@ -257,21 +259,30 @@ const Navbar = () => {
             <div className="relative">
               <button
                 onClick={() => setProfileMenuOpen(!profileMenuOpen)}
-                className="w-full text-left px-4 py-2 text-black hover:bg-gray-100"
+                className="w-full text-left px-4 py-2 text-black flex gap-1 items-center hover:bg-gray-100"
               >
-                Profile
+                <span>Profile</span>
+                <span className={`text-xs transition-transform duration-200 ${profileMenuOpen ? "rotate-180" : "rotate-0"}`}>▼</span>
               </button>
               {profileMenuOpen && (
                 <div className="absolute left-0 w-full bg-gray-50 shadow-md mt-1 z-10">
                   <Link
                     to="/dashboard/order-history"
                     className="block px-4 py-2 text-black hover:bg-gray-100"
+                    onClick={() => {
+                      setProfileMenuOpen(false);
+                      setMenuOpen(false);
+                    }}
                   >
                     Order History
                   </Link>
                   <Link
                     to="/dashboard/settings"
                     className="block px-4 py-2 text-black hover:bg-gray-100"
+                    onClick={() => {
+                      setProfileMenuOpen(false);
+                      setMenuOpen(false);
+                    }}
                   >
                     Settings
                   </Link>
@@ -297,9 +308,6 @@ const Navbar = () => {
       {confirmationModal && (
         <ConfirmationModal modalData={confirmationModal} />
       )}
-
-
-
     </div>
 
   );
