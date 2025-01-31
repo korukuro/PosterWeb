@@ -57,12 +57,12 @@ export default function ChangeProfilePicture() {
   return (
     <>
       <div className="flex items-center justify-between rounded-md pr-36 pl-28">
-      <h1 className="text-3xl font-semibold">
+      <h1 className="md:text-2xl lg:text-3xl font-semibold">
         Edit profile
       </h1>
         <div className="flex items-center gap-x-4 pt-6">
           
-          <div className="space-y-2">
+          <div className="space-y-2 md:text-sm lg:text-base">
             <p>Change Profile Picture</p>
             <div className="flex flex-row gap-3">
               <input
@@ -75,7 +75,7 @@ export default function ChangeProfilePicture() {
               <button
                 onClick={handleClick}
                 disabled={loading}
-                className="cursor-pointer rounded-md bg-richblack-700 py-2 px-5 text-blue-500 border border-blue-500 hover:bg-blue-500 hover:text-white transition-all duration-300"
+                className="md:text-sm cursor-pointer rounded-md bg-richblack-700 md:px-3 lg:py-2 lg:px-5 text-blue-500 border border-blue-500 hover:bg-blue-500 hover:text-white transition-all duration-300"
               >
                 Choose File
               </button>
@@ -92,7 +92,7 @@ export default function ChangeProfilePicture() {
           <img
             src={previewSource || user?.image}
             alt={`profile-${user?.firstName}`}
-            className="aspect-square w-[78px] rounded-full object-cover"
+            className="aspect-square md:text-sm lg:text-base w-[40px] md:w-[60px] lg:w-[78px] rounded-full object-cover"
           />
         </div>
       </div>

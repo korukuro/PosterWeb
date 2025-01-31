@@ -10,7 +10,6 @@ import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import image1 from '../../../additionalFile/home-image/homeImage_1.jpg';
 import image2 from '../../../additionalFile/home-image/homeImage_2.jpg';
 import image3 from '../../../additionalFile/home-image/homeImage_3.jpg';
-// import image3 from '../../../additionalFile/home-image/homeImage_3.jpg'; // Add more images as needed
 
 const Section_1 = () => {
   // Array of objects containing images and headings
@@ -47,7 +46,7 @@ const Section_1 = () => {
               <img
                 src={slide.image}
                 alt={`Carousel slide ${index + 1}`}
-                className="w-full lg:h-[50rem] object-cover"
+                className="w-full md:h-[30rem] lg:h-[50rem] object-cover md:object-fill"
               />
             </div>
           </SwiperSlide>

@@ -3,7 +3,6 @@ import React from "react";
 const Footer = () => {
   return (
     <div className="w-full bg-[#d9d9d9]">
-      <div className="">
         <div className="lg:border-b lg:border-r lg:border-l border-black min-h-[6rem] h-auto flex flex-col lg:flex-row lg:min-h-[11rem] ">
           {/* SHOP Section - Hidden on mobile */}
           <div className="flex-1 relative hidden lg:block">
@@ -12,7 +11,7 @@ const Footer = () => {
             </div>
           </div>
           {/* ABOUT Section - Always visible */}
-          <div className="flex-1 lg:border-r lg:border-l border-black flex flex-col sm:flex-row lg:flex-col items-center relative">
+          <div className="flex-1 lg:border-r lg:border-l border-black flex flex-col sm:flex-row md:flex-col lg:flex-col items-center relative">
             <div className="w-full text-2xl text-center mt-4 lg:mt-12 ">
               ABOUT
             </div>
@@ -60,7 +59,7 @@ const Footer = () => {
 
         <div className="border-b w-full flex flex-col lg:flex-row pt-5 lg:pb-8">
           <div className="lg:w-[50%] flex flex-wrap flex-row justify-between lg:border-r lg:border-richblack-700 lg:pl-3 lg:pr-5 gap-3">
-            <div className="flex flex-col gap-3 mb-7 lg:pl-0 lg:pt-14 border-b lg:border-0 pb-5 lg:pb-0 border-t pt-5 pl-1 pr-1">
+            <div className="flex flex-col gap-3 mb-7 lg:pl-0 lg:pt-14 border-b lg:border-0 pb-5 lg:pb-0 border-t pt-5 pl-1 pr-1 md:pl-5 md:pr-5">
               <h1 className="text-richblack-50 text-2xl font-bold bg-yellow-400">
                 About Us
               </h1>
@@ -77,7 +76,7 @@ const Footer = () => {
 
           <div className="lg:w-[50%] lg:pt-14 flex lg:flex-wrap flex-row pl-3 lg:pl-5 lg:gap-3 gap-5">
             <div className="w-[48%] sm:w-[45%] lg:w-[30%] mb-7 lg:pl-0">
-              <div className="flex flex-col gap-2 mt-2 items-start lg:items-end">
+              <div className="flex flex-col gap-2 mt-2 items-start lg:items-end md:pl-4">
                 <h1 className="font-bold text-sm sm:text-base">Help</h1>
                 <div className="hover:underline  cursor-pointer transition duration-500 text-sm sm:text-base">
                   Shipment
@@ -133,7 +132,6 @@ const Footer = () => {
           <div className="flex gap-5"></div>
         </div>
       </div>
-    </div>
   );
 };
 

@@ -32,7 +32,7 @@ export default function EditProfile() {
         {/* Profile Information */}
         <div className="flex flex-col gap-y-2 pl-28">
           <div className="flex flex-col gap-11 lg:flex-row">
-            <div className="flex flex-col lg:w-[42%]">
+            <div className="flex flex-col md:w-[70%] lg:w-[42%]">
               <label htmlFor="firstName" className="lable-style font-semibold">
                 First Name
               </label>
@@ -41,7 +41,7 @@ export default function EditProfile() {
                 name="firstName"
                 id="firstName"
                 placeholder="Enter first name"
-                className="form-style rounded-sm h-14 p-2 border border-black focus:outline-none bg-transparent"
+                className="form-style rounded-sm lg:h-14 p-2 border border-black focus:outline-none bg-transparent"
                 {...register("firstName", { required: true })}
                 defaultValue={user?.firstName}
               />
@@ -51,7 +51,7 @@ export default function EditProfile() {
                 </span>
               )}
             </div>
-            <div className="flex flex-col lg:w-[42%]">
+            <div className="flex flex-col md:w-[70%] lg:w-[42%]">
               <label htmlFor="lastName" className="lable-style font-semibold">
                 Last Name
               </label>
@@ -60,7 +60,7 @@ export default function EditProfile() {
                 name="lastName"
                 id="lastName"
                 placeholder="Enter last name"
-                className="form-style rounded-sm h-14 p-2 border border-black focus:outline-none bg-transparent"
+                className="form-style rounded-sm lg:h-14 p-2 border border-black focus:outline-none bg-transparent"
                 {...register("lastName", { required: true })}
                 defaultValue={user?.lastName}
               />
@@ -73,7 +73,7 @@ export default function EditProfile() {
           </div>
 
           <div className="flex flex-col gap-11 lg:flex-row">
-            <div className="flex flex-col lg:w-[42%]">
+            <div className="flex flex-col md:w-[70%] lg:w-[42%]">
               <label htmlFor="dateOfBirth" className="lable-style font-semibold">
                 Date of Birth
               </label>
@@ -81,7 +81,7 @@ export default function EditProfile() {
                 type="date"
                 name="dateOfBirth"
                 id="dateOfBirth"
-                className="form-style rounded-sm h-14 p-2 border border-black focus:outline-none bg-transparent"
+                className="form-style rounded-sm lg:h-14 p-2 border border-black focus:outline-none bg-transparent"
                 {...register("dateOfBirth", {
                   required: {
                     value: true,
@@ -100,7 +100,7 @@ export default function EditProfile() {
                 </span>
               )}
             </div>
-            <div className="flex flex-col  lg:w-[42%]">
+            <div className="flex flex-col  md:w-[70%] lg:w-[42%]">
               <label htmlFor="gender" className="lable-style font-semibold">
                 Gender
               </label>
@@ -108,7 +108,7 @@ export default function EditProfile() {
                 type="text"
                 name="gender"
                 id="gender"
-                className="form-style rounded-sm h-14 p-2 border border-black focus:outline-none bg-transparent"
+                className="form-style rounded-sm lg:h-14 p-2 border border-black focus:outline-none bg-transparent"
                 {...register("gender", { required: true })}
                 defaultValue={user?.additionalDetails?.gender}
               >
@@ -127,96 +127,6 @@ export default function EditProfile() {
               )}
             </div>
           </div>
-
-          {/* <div className="flex flex-col lg:w-[87.5%]">
-              <label htmlFor="about" className="lable-style font-semibold">
-                Address
-              </label>
-              <input
-                type="text"
-                name="address"
-                id="address"
-                placeholder="Enter Address Details"
-                className="form-style rounded-sm h-14 p-2 border border-black focus:outline-none bg-transparent"
-                {...register("address", { required: true })}
-                defaultValue={user?.additionalDetails?.address}
-              />
-              {errors.address && (
-                <span className="-mt-1 text-[12px] text-yellow-100">
-                  Please enter your Address.
-                </span>
-              )}
-            </div>
-
-          <div className="flex flex-col gap-5 lg:flex-row">
-            <div className="flex flex-col lg:w-[87.5%]">
-              <label htmlFor="contactNumber" className="lable-style font-semibold">
-                Contact Number
-              </label>
-              <input
-                type="tel"
-                name="contactNumber"
-                id="contactNumber"
-                placeholder="Enter Contact Number"
-                className="form-style rounded-sm h-14 p-2 border border-black focus:outline-none bg-transparent"
-                {...register("contactNumber", {
-                  required: {
-                    value: true,
-                    message: "Please enter your Contact Number.",
-                  },
-                  maxLength: { value: 12, message: "Invalid Contact Number" },
-                  minLength: { value: 10, message: "Invalid Contact Number" },
-                })}
-                defaultValue={user?.additionalDetails?.contactNumber}
-              />
-              {errors.contactNumber && (
-                <span className="-mt-1 text-[12px] text-yellow-100">
-                  {errors.contactNumber.message}
-                </span>
-              )}
-            </div>
-            
-          </div>
-          <div className="flex flex-col gap-11 lg:flex-row">
-            <div className="flex flex-col lg:w-[42%]">
-              <label htmlFor="City  " className="lable-style font-semibold">
-                City
-              </label>
-              <input
-                type="text"
-                name="City"
-                id="City"
-                placeholder="Enter city"
-                className="form-style rounded-sm h-14 p-2 border border-black focus:outline-none bg-transparent"
-                {...register("City", { required: true })}
-                defaultValue={user?.City}
-              />
-              {errors.City && (
-                <span className="-mt-1 text-[12px] text-yellow-100">
-                  Please enter your first name.
-                </span>
-              )}
-            </div>
-            <div className="flex flex-col lg:w-[42%]">
-              <label htmlFor="State" className="lable-style font-semibold">
-                State
-              </label>
-              <input
-                type="text"
-                name="State"
-                id="State"
-                placeholder="Enter state"
-                className="form-style rounded-sm h-14 p-2 border border-black focus:outline-none bg-transparent"
-                {...register("State", { required: true })}
-                defaultValue={user?.State}
-              />
-              {errors.State && (
-                <span className="-mt-1 text-[12px] text-yellow-100">
-                  Please enter your last name.
-                </span>
-              )}
-            </div>
-          </div> */}
         </div>
 
         <div className="flex justify-end pr-14 gap-2 mt-5">
@@ -224,7 +134,7 @@ export default function EditProfile() {
             onClick={() => {
               navigate("/dashboard/my-profile")
             }}
-            className="cursor-pointer py-2 px-5 text-red-700 border border-red-700 hover:scale-105 transition-all duration-300"
+            className="cursor-pointer py-2 px-2 md:px-3 lg:px-5 text-red-700 border border-red-700 hover:scale-105 transition-all duration-300"
           >
             Cancel
           </button>

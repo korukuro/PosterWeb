@@ -57,7 +57,7 @@ export function AdaptiveImageDivForHome({ images }) {
         <img
           src={images}
           alt={`poster-image`}
-          className="min-w-[155px] w-auto lg:w-full h-60 sm:h-[16rem] md:h-[18rem] lg:h-full border-black border-2 lg:border-4 object-cover"
+          className="min-w-[155px] w-auto md:min-w-[190px] lg:w-full h-60 sm:h-[16rem] md:h-[18rem] lg:h-full border-black border-2 lg:border-4 object-cover md:object-fill"
         />
       </div>
       <canvas ref={canvasRef} style={{ display: "none" }} />

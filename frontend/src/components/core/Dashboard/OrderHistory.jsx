@@ -88,19 +88,19 @@ const OrderHistory = () => {
       ) : groupedOrders.length === 0 ? (
         <p>No orders found. (Try logging in again if there are orders.)</p>
       ) : (
-        <div className="flex flex-col justify-center items-center ">
+        <div className="flex flex-col justify-center md:pl-96 lg:pl-0 items-center">
           {groupedOrders.map((group) => (
             <div
               key={group.orderId}
-              className={`mb-6 pb-5 border relative border-black border-dashed bg-[#FAF9F6] rounded-lg lg:w-[50%] w-[100%] overflow-hidden transition-all duration-500 ${openStates[group.orderId] ? "max-h-[1000px]" : "h-[14rem] lg:h-[15.8rem]"
+              className={`mb-6 pb-5 border relative border-black border-dashed bg-[#FAF9F6] rounded-lg lg:w-[50%] w-[100%] md:w-auto overflow-hidden transition-all duration-500 ${openStates[group.orderId] ? "max-h-[1000px]" : "h-[14rem] md:h-[14.5rem] lg:h-[15.8rem]"
                 }`}
             >
-              <div className="flex gap-5 lg:gap-24 border-b border-black justify-between pl-2 pr-1 lg:pr-2">
+              <div className="flex gap-5 md:gap-36 lg:gap-24 border-b border-black justify-between pl-2 pr-1 lg:pr-2">
                 <div className="gap-3 items-center">
                   <h3 className="font-normal lg:text-lg">Order ID:</h3>
                   <p className="text-sm lg:text-base">{group.orderId}</p>
                 </div>
-                <div className="flex gap-4 lg:gap-10">
+                <div className="flex gap-4 md:gap-14 lg:gap-10">
                   <div className="flex flex-col items-center justify-center">
                     <h3 className="font-normal lg:text-lg">Date Placed</h3>
                     <p className="text-sm lg:text-base">{new Date(group.purchaseDate).toLocaleDateString()}</p>

@@ -99,7 +99,7 @@ const PosterDetails = () => {
         // </div>
         <PosterDetailsSkeleton />
       ) : (
-        <div className="grid grid-cols-1 lg:grid-cols-2 mt-7 lg:mt-8 mb-5 lg:mb-8 lg:mx-4 lg:gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 mt-7 lg:mt-8 mb-5 lg:mb-8 lg:mx-4 lg:gap-4">
           {/* Right  */}
           <AdaptiveImageDiv images={posts?.image} />
 
@@ -112,12 +112,12 @@ const PosterDetails = () => {
             <h3>{posts.description}</h3>
 
             <div>
-              <div className="flex justify-center items-center gap-2 mb-2 lg:mb-0">
-                <IoPrintSharp className="text-5xl" />
+              <div className="flex justify-center items-center gap-2 mb-2 md:mb-2 lg:mb-0">
+                <IoPrintSharp className="text-5xl md:text-4xl" />
                 <p className="text-xs text-gray-500">This product is made to order and is typically <span className="font-bold">printed in 1-4 working days.</span> Your entire order will ship out together.</p>
               </div>
               <div className="flex justify-center items-center gap-2">
-                <FaBoxOpen className="text-5xl " />
+                <FaBoxOpen className="text-5xl md:text-4xl " />
                 <p className="text-xs text-gray-500">Since this product is printed on demand especially for you, <span className="font-bold">it is not eligible for cancellations and returns.</span> Read our Return Policy. </p>
               </div>
             </div>

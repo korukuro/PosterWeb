@@ -103,8 +103,8 @@ const Cart = () => {
   <h2 className="text-lg lg:text-xl font-semibold mb-4 text-center lg:text-left">
     You may also like
   </h2>
-  <div className="flex flex-col lg:flex-row gap-4 justify-center lg:justify-start items-center">
-    <div className="lg:flex lg:flex-wrap justify-center items-center gap-4 lg:gap-6 mb-8">
+  <div className="flex flex-col lg:flex gap-4 justify-center lg:justify-start items-center">
+    <div className="md:flex lg:flex lg:flex-wrap justify-center items-center gap-4 lg:gap-6 mb-8">
       {loading ? (
         <div className="flex justify-center w-full">
           <HomeSkeleton skeletonCount={3} />
@@ -112,7 +112,7 @@ const Cart = () => {
       ) : filteredPosts.length > 0 ? (
         filteredPosts.slice(0, 3).map((post) => (
           <div
-            className="w-[90%] sm:w-[45%] md:w-[30%] lg:min-w-[15rem] lg:flex mb-4"
+            className="w-[90%] sm:w-[45%] md:w-[30%] lg:min-w-[15rem] md:flex lg:flex mb-4"
             key={post._id}
           >
             <Product post={post} />
@@ -148,7 +148,7 @@ const Cart = () => {
           <img
             src={spider}
             alt="spider"
-            className="w-[100px] lg:w-[150px] right-5 absolute opacity-40 transition-all duration-700 ease-in-out"
+            className="w-[100px] md:w-[130px] lg:w-[150px] right-5 absolute opacity-40 transition-all duration-700 ease-in-out"
             style={{ top: "0" }}
             onLoad={(e) => {
               e.target.style.top = "3.5rem";
