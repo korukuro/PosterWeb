@@ -11,7 +11,7 @@ const Footer = () => {
             </div>
           </div>
           {/* ABOUT Section - Always visible */}
-          <div className="flex-1 lg:border-r lg:border-l border-black flex flex-col sm:flex-row md:flex-col lg:flex-col items-center relative">
+          <div className="flex-1 lg:border-r lg:border-l border-black flex flex-col sm:flex-col md:flex-col lg:flex-col items-center relative">
             <div className="w-full text-2xl text-center mt-4 lg:mt-12 ">
               ABOUT
             </div>

@@ -11,6 +11,7 @@ import QuotesImage from '../../additionalFile/category-image/Quotes.jpeg';
 import SceneryImage from '../../additionalFile/category-image/Scenery.jpeg';
 import SeriesImage from '../../additionalFile/category-image/Series.jpeg';
 import SportsImage from '../../additionalFile/category-image/Sports.jpeg';
+import ArtImage from '../../additionalFile/category-image/Art.jpeg';
 
 const imageMap = {
     "Cars Poster": CarsImage,
@@ -23,6 +24,7 @@ const imageMap = {
     "Scenery Poster": SceneryImage,
     "Series Poster": SeriesImage,
     "Sports Poster": SportsImage,
+    "Art Poster": ArtImage,
 };
 
 export const Card = React.memo(({
@@ -38,17 +40,17 @@ export const Card = React.memo(({
     to={`${card.categoryId}`}
     className={cn(
       "rounded-lg relative bg-gray-100 dark:bg-neutral-900 overflow-hidden h-60 md:h-96 w-full transition-all duration-300 ease-out",
-      hovered !== null && hovered !== index && "blur-sm scale-[0.98]"
+      hovered !== null && hovered !== index && "lg:blur-sm lg:scale-[0.98]"
     )}>
     <img
       src={imageMap[card.title]}
       alt={card.title}
       fill
-      className="object-cover absolute inset-0" />
+      className="absolute inset-0" />
     <div
       className={cn(
         "absolute inset-0 bg-black/50 flex items-end py-8 px-4 transition-opacity duration-300",
-        hovered === index ? "opacity-100" : "opacity-0"
+        hovered === index ? "lg:opacity-100" : "lg:opacity-0"
       )}>
       <div
         className="text-xl flex flex-col md:text-2xl font-medium bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-200">

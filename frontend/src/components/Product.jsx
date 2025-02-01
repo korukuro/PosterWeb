@@ -11,7 +11,7 @@ const Product = ({ post }) => {
   };
 
   return (
-    <div className="w-[12.5rem] md:w-[18rem] lg:w-[20rem] flex flex-col justify-center px-2 lg:hover:scale-105 transition-all duration-300">
+    <div className="w-[12.5rem] md:w-[18rem] lg:w-[20rem] flex flex-col justify-center lg:hover:scale-105 transition-all duration-300">
       <div className="flex-col justify-center items-center" onClick={handlePosterDetails}>
         <AdaptiveImageDivForHome images={post?.image}/>
       <div className="w-full flex-col justify-center md:pr-5 md:pl-5 lg:pr-5 lg:pl-6 lg:mt-6 pr-1 pl-1 mt-3">

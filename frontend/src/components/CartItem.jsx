@@ -17,12 +17,12 @@ const CartItem = ({ item }) => {
     <div className="flex h-[16rem] border-b-2 pb-10 border-gray-200">
 
       {/* Left */}
-      <div className="h-full lg:w-[20%] flex border-2 border-black relative">
+      <div className="h-full lg:w-[18%] flex border-2 border-black relative">
         <img
           onClick={handleClick}
           src={item.image}
           alt="item img"
-          className="object-cover w-full h-full cursor-pointer"
+          className="object-fill w-full h-full cursor-pointer"
         />
         <span className="absolute top-0 right-0 z-10 bg-black text-white rounded-full w-6 flex justify-center items-center animate-bounce">{`${item.quantity}`}</span>
       </div>

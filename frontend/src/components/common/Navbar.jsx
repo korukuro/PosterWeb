@@ -118,7 +118,7 @@ const Navbar = () => {
         </NavLink>
 
         {/* Hamburger Menu for Mobile */}
-        <div className="sm:hidden md:block absolute top-8 right-4">
+        <div className="sm:block md:block absolute top-8 right-4">
           <button
             onClick={() => setMenuOpen((prev) => !prev)}
             className="flex flex-col gap-[0.26rem] focus:outline-none"

@@ -104,7 +104,7 @@ const Cart = () => {
     You may also like
   </h2>
   <div className="flex flex-col lg:flex gap-4 justify-center lg:justify-start items-center">
-    <div className="md:flex lg:flex lg:flex-wrap justify-center items-center gap-4 lg:gap-6 mb-8">
+    <div className="sm:flex md:flex lg:flex lg:flex-wrap justify-center items-center gap-4 sm:gap-10 lg:gap-6 mb-8 sm:w-full sm:h-full">
       {loading ? (
         <div className="flex justify-center w-full">
           <HomeSkeleton skeletonCount={3} />
@@ -138,12 +138,12 @@ const Cart = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.3 }}
-          className="flex flex-col justify-center pb-60 pt-48 items-center transition-all duration-300 h-screen"
+          className="flex flex-col justify-center lg:pb-60 lg:pt-48 items-center transition-all duration-300 h-screen sm:h-screen md:h-screen lg:h-screen"
         >
           <img
             src={emptyBox}
             alt="empty-box"
-            className="w-40 lg:w-50 mix-blend-darken"
+            className="w-30 sm:w-40 lg:w-50 mix-blend-darken"
           />
           <img
             src={spider}

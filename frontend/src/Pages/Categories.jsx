@@ -45,9 +45,9 @@ const Categories = () => {
             duration: 0.8,
             ease: "easeInOut",
           }}
-          className="relative flex flex-col gap-4 items-center justify-center px-4 pt-24"
+          className="relative flex flex-col gap-4 items-center justify-center px-4 pt-24 "
         >
-          <div className="text-3xl md:text-8xl font-bold dark:text-white text-center pb-10 tracking-widest">
+          <div className="text-3xl md:text-8xl font-bold dark:text-black text-center pb-10 tracking-widest">
             Collections
           </div>
         </motion.div>
@@ -79,7 +79,7 @@ const Categories = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8 }}
-            >
+              >
               <FocusCards cards={cards} />
             </motion.div>
           ) : (
