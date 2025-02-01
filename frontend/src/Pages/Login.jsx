@@ -6,7 +6,7 @@ function Login() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 relative">
       {/* LoginSignupAndImg Component */}
-      <div className="col-span-2">
+      <div className="md:col-span-3 lg:col-span-2">
         <LoginSignupAndImg />
         {/* Template Overlay for Mobile Screens */}
       <div className="absolute top-40 left-0 right-0 flex items-center justify-center lg:hidden ">

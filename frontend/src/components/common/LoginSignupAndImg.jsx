@@ -46,12 +46,12 @@ const LoginSignupAndImg = () => {
           </div>
 
           {/* Buttons Overlay for Mobile Screens */}
-          <div className="absolute top-32 left-0 right-0  flex justify-evenly sm:block md:block lg:hidden z-10">
+          <div className="absolute left-0 right-0 top-4 lg:hidden z-10 flex justify-center gap-x-20">
             {/* Login Button */}
             <Link to="/login">
               <button
                 className={`${
-                  vistcheck === "Login" ? "bg-white text-black h-[50px]" : "text-white"
+                  vistcheck === "Login" ? "bg-white text-black h-[50px]" : "bg-black text-white h-[50px]"
                 }  px-4 py-2 rounded-full text-sm font-bold hover:scale-105 transition-transform`}
               >
                 Login
@@ -62,7 +62,7 @@ const LoginSignupAndImg = () => {
             <Link to="/signup">
               <button
                 className={`${
-                  vistcheck === "Signup" ? "bg-white text-black h-[50px]" : "text-white"
+                  vistcheck === "Signup" ? "bg-white text-black h-[50px]" : "bg-black text-white h-[50px]"
                 } px-4 py-2 rounded-full text-sm font-bold hover:scale-105 transition-transform`}
               >
                 Signup
