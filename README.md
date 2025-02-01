@@ -11,7 +11,7 @@ Website link : https://posterweb-frontend.onrender.com
 
 ## Installation
 
-Install posterWeb with npm
+Install PosterWeb with npm
 
 ```bash
   cd frontend
