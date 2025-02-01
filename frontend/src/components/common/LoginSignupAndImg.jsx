@@ -17,11 +17,11 @@ const LoginSignupAndImg = () => {
           <img
             src={leftImage}
             alt="Collage"
-            className="w-full h-full object-cover filter blur-sm md:filter-none lg:filter-none"
+            className="w-full h-full object-cover filter blur-sm sm:blur-sm md:blur-sm lg:filter-none"
           />
 
           {/* Buttons Overlay for Large Screens */}
-          <div className="absolute top-1/4 right-0 flex-col gap-4 justify-center items-start pl-8 hidden md:flex">
+          <div className="absolute top-1/4 right-0 flex-col gap-4 justify-center items-start pl-8 hidden sm:hidden md:hidden lg:flex">
             {/* Login Button */}
             <Link to="/login">
               <button
@@ -46,7 +46,7 @@ const LoginSignupAndImg = () => {
           </div>
 
           {/* Buttons Overlay for Mobile Screens */}
-          <div className="absolute top-32 left-0 right-0  flex justify-evenly md:hidden z-10">
+          <div className="absolute top-32 left-0 right-0  flex justify-evenly sm:block md:block lg:hidden z-10">
             {/* Login Button */}
             <Link to="/login">
               <button
