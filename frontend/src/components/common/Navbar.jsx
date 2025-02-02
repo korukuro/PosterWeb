@@ -107,7 +107,7 @@ const Navbar = () => {
       className={`fixed top-0 left-0 right-0 z-50 bg-white shadow-md transition-transform duration-300 ${isVisible ? "translate-y-0" : "-translate-y-full"
         }`}
     >
-      <div className="flex relative justify-between text-black p-3 items-center h-[5rem]">
+      <div className="flex relative lg:justify-between justify-center text-black p-3 items-center h-[5rem]">
         {/* Logo */}
         <NavLink to="/">
           <img
@@ -118,7 +118,7 @@ const Navbar = () => {
         </NavLink>
 
         {/* Hamburger Menu for Mobile */}
-        <div className="sm:block md:block absolute top-8 right-4">
+        <div className="sm:block md:block lg:hidden absolute top-8 right-4">
           <button
             onClick={() => setMenuOpen((prev) => !prev)}
             className="flex flex-col gap-[0.26rem] focus:outline-none"

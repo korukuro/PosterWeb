@@ -11,7 +11,7 @@ import Cart from "./Pages/Cart";
 import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
 import VerifyEmail from "./Pages/VerifyEmail";
-import { SidebarDemo } from "./Pages/Dashboard";
+import Dashboard from "./Pages/Dashboard";
 import { Error } from "./Pages/Error";
 import ForgotPassword from "./Pages/ForgotPassword";
 import UpdatePassword from "./Pages/UpdatePassword";
@@ -115,7 +115,7 @@ function App() {
         <Route
           element={
             <PrivateRoute>
-              <SidebarDemo />
+              <Dashboard />
             </PrivateRoute>
           }
         >

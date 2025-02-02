@@ -29,7 +29,7 @@ exports.resetPasswordToken = async (req, res) => {
     );
 
     // Create reset link
-    const url = `http://localhost:3000/update-password/${token}`
+    const url = `https://posterweb-frontend.onrender.com/update-password/${token}`
 
     // Send email
     await mailSender(
