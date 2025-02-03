@@ -14,7 +14,6 @@ const OrderHistory = () => {
   const [ratingModal, setRatingModal] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState(null);
 
-
   // Fetch orders from API
   const fetchOrders = async () => {
     try {
@@ -92,8 +91,11 @@ const OrderHistory = () => {
           {groupedOrders.map((group) => (
             <div
               key={group.orderId}
-              className={`mb-6 pb-5 border relative border-black border-dashed bg-[#FAF9F6] rounded-lg lg:w-[50%] w-[100%] md:w-auto overflow-hidden transition-all duration-500 ${openStates[group.orderId] ? "max-h-[1000px]" : "h-[14rem] sm:h-[18.5rem] md:h-[14.5rem] lg:h-[15.8rem]"
-                }`}
+              className={`mb-6 pb-5 border relative border-black border-dashed bg-[#FAF9F6] rounded-lg w-[100%] md:w-auto overflow-hidden transition-all duration-500 ${
+                openStates[group.orderId]
+                  ? "max-h-[1000px]"
+                  : "h-[14rem] sm:h-[18.5rem] md:h-[14.5rem] lg:h-[15.8rem]"
+              }`}
             >
               <div className="flex gap-5 sm:gap-3 md:gap-36 lg:gap-24 border-b border-black justify-between pl-2 pr-1 lg:pr-2">
                 <div className="gap-3 items-center">
@@ -103,7 +105,9 @@ const OrderHistory = () => {
                 <div className="flex gap-4 md:gap-14 lg:gap-10">
                   <div className="flex flex-col items-center justify-center">
                     <h3 className="font-normal lg:text-lg">Date Placed</h3>
-                    <p className="text-sm lg:text-base">{new Date(group.purchaseDate).toLocaleDateString()}</p>
+                    <p className="text-sm lg:text-base">
+                      {new Date(group.purchaseDate).toLocaleDateString()}
+                    </p>
                   </div>
                   <div className="flex flex-col items-center justify-center">
                     <h3 className="font-normal lg:text-lg">Total Amount</h3>
@@ -113,36 +117,37 @@ const OrderHistory = () => {
               </div>
               <ul className="relative">
                 {group.orders.map((order, idx) => (
-                  <li key={idx} className="p-1 border-b border-gray-200">
+                  <li
+                    key={idx}
+                    className="relative p-1 border-b border-gray-200 lg:h-48 lg:pt-5"
+                  >
                     <div className="flex lg:gap-10 justify-between pl-2 lg:pl-28 pr-10 lg:pr-20">
-                      <div className="flex flex-col gap-2 lg:mt-4">
-                        <h3 className=" text-base lg:text-sm underline underline-offset-1 text-wrap">
+                      <div className="flex flex-col gap-2 lg:mt-2">
+                        <h3 className=" text-base lg:text-sm underline underline-offset-1 text-wrap lg:mb-2">
                           {order.poster?.posterName ||
                             "Poster Title Unavailable"}
                         </h3>
                         <p className="text-sm lg:text-sm text-gray-800">
                           Price: ₹{order.poster?.price || "N/A"}
                         </p>
-                        <p className="text-sm lg:text-sm text-gray-800">Quantity: {order?.quantity || 0}</p>
-              
+                        <p className="text-sm lg:text-sm text-gray-800">
+                          Quantity: {order?.quantity || 0}
+                        </p>
+
                         <button
-                          className="rounded-r-full rounded-l-full bg-black text-white w-28"
+                          className="rounded-r-full rounded-l-full bg-black text-white w-20 lg:mt-2 lg:text-sm"
                           onClick={() => handleRatingClick(order)}
                         >
                           Rate
                         </button>
-                        <p className={`text-sm lg:text-xs absolute bottom-0 left-5 ${order?.delivered ? "text-green-500 font-semibold" : "text-red-500 font-semibold"}`}>
-                         {order?.delivered ? "Delivered" : "Delivery On Way"}
-                        </p>
-
                       </div>
                       {order.poster?.image ? (
                         <img
-                        src={order.poster?.image}
-                        alt={order.poster?.posterName}
-                        width={120}
-                        className="rounded-lg lg:w-[130px] lg:h-[11rem] w-[100px] h-[150px]"
-                      />
+                          src={order.poster?.image}
+                          alt={order.poster?.posterName}
+                          width={120}
+                          className="rounded-lg lg:w-[100px] lg:h-[8rem] w-[100px] h-[150px]"
+                        />
                       ) : (
                         <p>Image unavailable</p>
                       )}
@@ -154,10 +159,20 @@ const OrderHistory = () => {
                           </div>
                         )}
                     </div>
+                    <p
+                      className={`text-sm lg:text-xs absolute ${
+                        group.orders?.length > 1 ? "bottom-4" : "bottom-0"
+                      } left-5 ${
+                        order?.delivered
+                          ? "text-green-500 font-semibold"
+                          : "text-red-500 font-semibold"
+                      }`}
+                    >
+                      {order?.delivered ? "Delivered" : "Delivery On Way"}
+                    </p>
                   </li>
                 ))}
               </ul>
-
               {/* Dropdown Button */}
               {group.orders.length > 1 && (
                 <div
