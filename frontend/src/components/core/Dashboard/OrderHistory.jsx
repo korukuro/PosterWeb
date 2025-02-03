@@ -78,7 +78,7 @@ const OrderHistory = () => {
   const groupedOrders = groupOrdersByOrderId(orders);
 
   return (
-    <div className="p-1 w-[28rem] lg:w-full h-full">
+    <div className="p-1 w-[28rem] lg:w-full">
       {loading ? (
         <div className="flex justify-center items-center">
           <Spinner />
