@@ -121,7 +121,7 @@ function App() {
         >
           {/* Route for all users */}
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="dashboard/Settings" element={<Settings />} />
+          {/* <Route path="dashboard/Settings" element={<Settings />} /> */}
           {/* <Route path="dashboard/order-history" element={<OrderHistory />} /> */}
         </Route>
 
