@@ -23,18 +23,19 @@ const Dashboard = () => {
       })
   }
   return (
-    <div className="h-screen flex">
+    <div className="lg:h-screen flex flex-col items-center lg:flex pb-1 lg:p-0">
       {/* <h1>Dashboard</h1> */}
       {/* <Link to="/dashboard/settings">Settings</Link> <br />
       <Link to="/dashboard/order-history">Order history</Link> <br />*/}
       {/* <button onClick={handleLogOut} className="absolute">Log Out</button>  */}
       {/* <Outlet /> */}
-      <section className="w-[45%] mt-20 h-screen gap-3 pt-5 flex flex-col items-end">
-        <div className="border border-red-600 h-[20rem] w-[30rem] rounded-lg"><EditProfile/></div>
-        <div className="border border-red-600 h-[18.5rem] w-[30rem] rounded-lg"></div>
+      <section className="lg:w-[45%] mt-20 lg:h-screen gap-3 pt-5 flex flex-col lg:items-end w-[95%]">
+        <div className="border border-dashed border-black lg:h-[20rem] lg:w-[30rem] rounded-lg lg:shadow-md"><EditProfile/></div>
+        <div className="border border-dashed border-black w-1/2 h-[20rem] lg:h-[18.5rem] lg:w-[30rem] rounded-lg lg:shadow-md"></div>
       </section>
-      <section className=" w-[55%] mt-20 h-screen pt-5 pl-2">
-        <div className="border border-red-600 w-[47rem] h-[39.3rem] rounded-lg overflow-auto scrollbar-hide"><OrderHistory/></div>
+      <section className="lg:w-[55%] mt-5 lg:mt-20 lg:h-screen lg:pt-5 lg:pl-2">
+      <h1 className="border-b border-black mb-1 lg:hidden">Order History</h1>
+        <div className="lg:border lg:border-red-600 h-[29.5rem] lg:w-[47rem] lg:h-[39.3rem] rounded-lg overflow-auto scrollbar-hide lg:shadow-md"><OrderHistory/></div>
       </section>
 
       {confirmationModal && (

@@ -77,7 +77,7 @@ const OrderHistory = () => {
   const groupedOrders = groupOrdersByOrderId(orders);
 
   return (
-    <div className="p-1 w-[28rem] lg:w-full">
+    <div className="lg:p-1 lg:w-full">
       {loading ? (
         <div className="flex justify-center items-center">
           <Spinner />
@@ -87,31 +87,31 @@ const OrderHistory = () => {
       ) : groupedOrders.length === 0 ? (
         <p>No orders found. (Try logging in again if there are orders.)</p>
       ) : (
-        <div className="flex flex-col justify-center md:pl-96 lg:pl-0 items-center">
+        <div className="flex flex-col justify-center md:pl-96 lg:pl-0 items-center p-0">
           {groupedOrders.map((group) => (
             <div
               key={group.orderId}
-              className={`mb-6 pb-5 border relative border-black border-dashed bg-[#FAF9F6] rounded-lg w-[100%] md:w-auto overflow-hidden transition-all duration-500 ${
+              className={`mb-6 pb-5 border relative border-black border-dashed bg-[#FAF9F6] rounded-lg md:w-auto overflow-hidden transition-all duration-500 ${
                 openStates[group.orderId]
                   ? "max-h-[1000px]"
-                  : "h-[14rem] sm:h-[18.5rem] md:h-[14.5rem] lg:h-[15.8rem]"
+                  : "h-[12rem] sm:h-[18.5rem] md:h-[14.5rem] lg:h-[15.8rem]"
               }`}
             >
               <div className="flex gap-5 sm:gap-3 md:gap-36 lg:gap-24 border-b border-black justify-between pl-2 pr-1 lg:pr-2">
                 <div className="gap-3 items-center">
-                  <h3 className="font-normal lg:text-lg">Order ID:</h3>
-                  <p className="text-sm lg:text-base">{group.orderId}</p>
+                  <h3 className="font-normal text-sm lg:text-lg">Order ID:</h3>
+                  <p className="text-xs lg:text-base">{group.orderId}</p>
                 </div>
                 <div className="flex gap-4 md:gap-14 lg:gap-10">
                   <div className="flex flex-col items-center justify-center">
-                    <h3 className="font-normal lg:text-lg">Date Placed</h3>
-                    <p className="text-sm lg:text-base">
+                    <h3 className="font-normal text-sm lg:text-lg">Date Placed</h3>
+                    <p className="text-xs lg:text-base">
                       {new Date(group.purchaseDate).toLocaleDateString()}
                     </p>
                   </div>
                   <div className="flex flex-col items-center justify-center">
-                    <h3 className="font-normal lg:text-lg">Total Amount</h3>
-                    <p className="text-sm lg:text-base">₹{group.totalPrice}</p>
+                    <h3 className="font-normal text-sm lg:text-lg">Total Amount</h3>
+                    <p className="text-xs lg:text-base">₹{group.totalPrice}</p>
                   </div>
                 </div>
               </div>
@@ -119,11 +119,11 @@ const OrderHistory = () => {
                 {group.orders.map((order, idx) => (
                   <li
                     key={idx}
-                    className="relative p-1 border-b border-gray-200 lg:h-48 lg:pt-5"
+                    className="relative p-1 border-b border-gray-200 h-36 pt-3 lg:h-48 lg:pt-5"
                   >
                     <div className="flex lg:gap-10 justify-between pl-2 lg:pl-28 pr-10 lg:pr-20">
-                      <div className="flex flex-col gap-2 lg:mt-2">
-                        <h3 className=" text-base lg:text-sm underline underline-offset-1 text-wrap lg:mb-2">
+                      <div className="flex flex-col gap-1 lg:mt-2">
+                        <h3 className=" text-sm lg:text-sm text-wrap lg:mb-2">
                           {order.poster?.posterName ||
                             "Poster Title Unavailable"}
                         </h3>
@@ -135,7 +135,7 @@ const OrderHistory = () => {
                         </p>
 
                         <button
-                          className="rounded-r-full rounded-l-full bg-black text-white w-20 lg:mt-2 lg:text-sm"
+                          className="rounded-r-full rounded-l-full bg-black text-sm text-white w-16 lg:w-20 mt-2 lg:mt-2 lg:text-sm"
                           onClick={() => handleRatingClick(order)}
                         >
                           Rate
@@ -146,7 +146,7 @@ const OrderHistory = () => {
                           src={order.poster?.image}
                           alt={order.poster?.posterName}
                           width={120}
-                          className="rounded-lg lg:w-[100px] lg:h-[8rem] w-[100px] h-[150px]"
+                          className="rounded-lg w-[80px] h-[110px] lg:w-[100px] lg:h-[8rem]"
                         />
                       ) : (
                         <p>Image unavailable</p>
@@ -154,14 +154,14 @@ const OrderHistory = () => {
                       {/* Badge for additional orders */}
                       {group.orders.length > 1 &&
                         !openStates[group.orderId] && (
-                          <div className="absolute top-32 lg:top-36 right-5 rounded-full w-8 p-1 bg-white text-black dark:bg-gray-700 dark:text-white">
+                          <div className="absolute text-sm lg:text-base top-[6.5rem] right-2 lg:top-36 lg:right-5 rounded-full w-7 lg:w-8 p-1 bg-white text-black dark:bg-gray-700 dark:text-white">
                             +{group.orders.length - 1}
                           </div>
                         )}
                     </div>
                     <p
-                      className={`text-sm lg:text-xs absolute ${
-                        group.orders?.length > 1 ? "bottom-4" : "bottom-0"
+                      className={`text-xs lg:text-xs absolute ${
+                        group.orders?.length > 1 ? "bottom-2 lg:bottom-4" : "bottom-0"
                       } left-5 ${
                         order?.delivered
                           ? "text-green-500 font-semibold"
