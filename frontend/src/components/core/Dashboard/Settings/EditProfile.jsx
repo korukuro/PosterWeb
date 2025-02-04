@@ -44,7 +44,7 @@ export default function EditProfile() {
             type="text"
             id="firstName"
             placeholder="Enter first name"
-            className="border border-black rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500 bg-transparent"
+            className="bg-gray-200 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500 "
             {...register("firstName", { required: true })}
             defaultValue={user?.firstName}
           />
@@ -61,7 +61,7 @@ export default function EditProfile() {
             type="text"
             id="lastName"
             placeholder="Enter last name"
-            className="border border-black rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500 bg-transparent"
+            className="bg-gray-200 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500 "
             {...register("lastName", { required: true })}
             defaultValue={user?.lastName}
           />
@@ -80,7 +80,7 @@ export default function EditProfile() {
           <input
             type="date"
             id="dateOfBirth"
-            className="border border-black rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500 bg-transparent"
+            className="bg-gray-200 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500 "
             {...register("dateOfBirth", {
               required: "Please enter your Date of Birth.",
               max: {
@@ -101,7 +101,7 @@ export default function EditProfile() {
           </label>
           <select
             id="gender"
-            className="border border-black rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500 bg-transparent"
+            className="bg-gray-200 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500 "
             {...register("gender", { required: "Please select a gender." })}
             defaultValue={user?.additionalDetails?.gender}
           >
@@ -124,7 +124,7 @@ export default function EditProfile() {
             type="number"
             id="number"
             placeholder="Phone Number"
-            className="border border-black rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500 bg-transparent"
+            className="bg-gray-200 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500 "
             {...register("contactNumber", { required: true })}
             defaultValue={user?.contactNumber}
           />

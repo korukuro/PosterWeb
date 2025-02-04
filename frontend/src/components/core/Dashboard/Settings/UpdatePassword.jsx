@@ -50,13 +50,13 @@ export default function UpdatePassword() {
             type={showOldPassword ? "text" : "password"}
             id="oldPassword"
             placeholder="Enter Current Password"
-            className="border border-black rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500 bg-transparent"
+            className=" bg-gray-200 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500"
             {...register("oldPassword", { required: true })}
           />
           {oldPasswordValue && (
             <span
               onClick={() => setShowOldPassword((prev) => !prev)}
-              className="absolute right-3 top-10 cursor-pointer"
+              className="absolute right-3 top-1/2 cursor-pointer"
             >
               {showOldPassword ? (
                 <AiOutlineEyeInvisible fontSize={22} fill="#555" />
@@ -79,13 +79,13 @@ export default function UpdatePassword() {
             type={showNewPassword ? "text" : "password"}
             id="newPassword"
             placeholder="Enter New Password"
-            className="border border-black rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500 bg-transparent"
+            className="bg-gray-200 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500"
             {...register("newPassword", { required: true })}
           />
           {newPasswordValue && (
             <span
               onClick={() => setShowNewPassword((prev) => !prev)}
-              className="absolute right-3 top-10 cursor-pointer"
+              className="absolute right-3 top-1/2 cursor-pointer"
             >
               {showNewPassword ? (
                 <AiOutlineEyeInvisible fontSize={22} fill="#555" />
