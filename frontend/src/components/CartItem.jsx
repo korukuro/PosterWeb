@@ -17,7 +17,7 @@ const CartItem = ({ item }) => {
     <div className="flex h-[16rem] border-b-2 pb-10 border-gray-200">
 
       {/* Left */}
-      <div className="h-full lg:w-[18%] flex border-2 border-black relative">
+      <div className="h-full w-[60%] lg:w-[18%] flex border-2 border-black relative">
         <img
           onClick={handleClick}
           src={item.image}
