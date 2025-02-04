@@ -87,14 +87,14 @@ const OrderHistory = () => {
       ) : groupedOrders.length === 0 ? (
         <p>No orders found. (Try logging in again if there are orders.)</p>
       ) : (
-        <div className="flex flex-col justify-center md:pl-96 lg:pl-0 items-center p-0">
+        <div className="flex flex-col justify-center items-center p-0">
           {groupedOrders.map((group) => (
             <div
               key={group.orderId}
               className={`mb-6 pb-5 border relative border-black border-dashed bg-[#FAF9F6] rounded-lg md:w-auto overflow-hidden transition-all duration-500 ${
                 openStates[group.orderId]
                   ? "max-h-[1000px]"
-                  : "h-[12rem] sm:h-[18.5rem] md:h-[14.5rem] lg:h-[15.8rem]"
+                  : "h-[12rem] sm:h-[28.5rem] md:h-[14.5rem] lg:h-[15.8rem]"
               }`}
             >
               <div className="flex gap-5 sm:gap-3 md:gap-36 lg:gap-24 border-b border-black justify-between pl-2 pr-1 lg:pr-2">
