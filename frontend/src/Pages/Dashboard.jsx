@@ -24,7 +24,7 @@ const Dashboard = () => {
         dispatch(logout(navigate));
         setConfirmationModal(null);
       },
-      btn2Handler: () => setConfirmationModal(null),
+      btn2Handler: () => setConfirmationModal(null)
     });
   };
 
