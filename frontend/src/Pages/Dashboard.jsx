@@ -3,7 +3,6 @@ import EditProfile from "../components/core/Dashboard/Settings/EditProfile";
 import UpdatePassword from "../components/core/Dashboard/Settings/UpdatePassword";
 
 const Dashboard = () => {
-  
   return (
     <div className="sm:h-auto flex flex-col items-center lg:gap-2 lg:flex-row pb-1 sm:pb-2 relative lg:min-h-screen pt-24 lg:pt-28 grid-col">
       <section className="lg:w-[50%] gap-3 flex flex-col lg:items-end w-[95%]">
@@ -15,7 +14,6 @@ const Dashboard = () => {
         </div>
       </section>
 
-      
       <h1 className="border-b border-black mb-1 lg:hidden pl-3">
         Order History
       </h1>
