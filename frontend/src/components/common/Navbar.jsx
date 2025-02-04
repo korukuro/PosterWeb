@@ -6,19 +6,15 @@ import loupe from "../../additionalFile/loupe.png";
 import bag from "../../additionalFile/shopping-bag.png";
 import userIcon from "../../additionalFile/user.png";
 import { getAllPoster } from "../../services/operations/posterDetailsAPI";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { logout } from "../../services/operations/authAPI";
-import ConfirmationModal from "./ConfirmationModal";
-import { MdOutlineLogout } from "react-icons/md";
+
 
 const Navbar = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
-  const navigate = useNavigate();
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);
-  const [confirmationModal, setConfirmationModal] = useState(null);
+
 
   const token = useSelector((state) => state.auth?.token);
   const user = useSelector((state) => state.profile?.user);
@@ -27,8 +23,6 @@ const Navbar = () => {
   const [isClearing, setIsClearing] = useState(false);
   const [searchInput, setSearchInput] = useState("");
   const [posts, setPosts] = useState([]);
-
-  const dispatch = useDispatch();
 
   async function fetchProductData() {
     try {
@@ -88,20 +82,6 @@ const Navbar = () => {
   const filterProducts = posts.filter((post) => {
     return post.posterName.toLowerCase().includes(searchInput.toLowerCase());
   });
-
-  const handleLogout = () => {
-    setConfirmationModal({
-      text1: "Are you sure?",
-      text2: "You will be logged out of your account.",
-      btn1Text: "Logout",
-      btn2Text: "Cancel",
-      btn1Handler: () => {
-        dispatch(logout(navigate));
-        setConfirmationModal(null);
-      },
-      btn2Handler: () => setConfirmationModal(null),
-    });
-  };
 
   return (
     <div
@@ -235,11 +215,6 @@ const Navbar = () => {
               className="h-10 rounded-full aspect-square object-cover hover:scale-[1.1] active:scale-90 transition-all duration-300"
             />
           </Link>
-
-
-          <button onClick={handleLogout} className="text-3xl text-gray-600 hover:scale-[1.1]">
-            <MdOutlineLogout />
-          </button>
         </div>
       </div>
       {/* Mobile Dropdown Menu */}
@@ -266,39 +241,8 @@ const Navbar = () => {
                 onClick={() => setProfileMenuOpen(!profileMenuOpen)}
                 className="w-full text-left px-4 py-2 text-black flex gap-1 items-center hover:bg-gray-100"
               >
-                <span>Profile</span>
-                <span className={`text-xs transition-transform duration-200 ${profileMenuOpen ? "rotate-180" : "rotate-0"}`}>▼</span>
+                <Link to="/dashboard" onClick={() => setMenuOpen(false)}>Profile</Link>
               </button>
-              {profileMenuOpen && (
-                <div className="absolute left-0 w-full bg-gray-50 shadow-md mt-1 z-10">
-                  <Link
-                    to="/dashboard/order-history"
-                    className="block px-4 py-2 text-black hover:bg-gray-100"
-                    onClick={() => {
-                      setProfileMenuOpen(false);
-                      setMenuOpen(false);
-                    }}
-                  >
-                    Order History
-                  </Link>
-                  <Link
-                    to="/dashboard/settings"
-                    className="block px-4 py-2 text-black hover:bg-gray-100"
-                    onClick={() => {
-                      setProfileMenuOpen(false);
-                      setMenuOpen(false);
-                    }}
-                  >
-                    Settings
-                  </Link>
-                  <button
-                    onClick={handleLogout}
-                    className="w-full text-left px-4 py-2 text-black hover:bg-gray-100"
-                  >
-                    Logout
-                  </button>
-                </div>
-              )}
             </div>
           ) : (
             <Link
@@ -310,9 +254,6 @@ const Navbar = () => {
             </Link>
           )}
         </div>
-      )}
-      {confirmationModal && (
-        <ConfirmationModal modalData={confirmationModal} />
       )}
     </div>
 
