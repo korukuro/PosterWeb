@@ -50,7 +50,7 @@ export default function UpdatePassword() {
             type={showOldPassword ? "text" : "password"}
             id="oldPassword"
             placeholder="Enter Current Password"
-            className="border border-black rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-transparent"
+            className="border border-black rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500 bg-transparent"
             {...register("oldPassword", { required: true })}
           />
           {oldPasswordValue && (
@@ -79,7 +79,7 @@ export default function UpdatePassword() {
             type={showNewPassword ? "text" : "password"}
             id="newPassword"
             placeholder="Enter New Password"
-            className="border border-black rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-transparent"
+            className="border border-black rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500 bg-transparent"
             {...register("newPassword", { required: true })}
           />
           {newPasswordValue && (
