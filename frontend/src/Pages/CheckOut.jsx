@@ -80,8 +80,8 @@ const CheckOut = () => {
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, ease: "easeInOut" }}
-          className="lg:w-1/2 w-full p-4 h-[90vh] pt-8"
+          transition={{ duration: 0.6, ease: "easeInOut"}}
+          className="lg:w-1/2 w-full p-4 pt-8"
         >
           {!showDeliveryForm ? (
             <div>
