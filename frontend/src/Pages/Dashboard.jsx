@@ -28,7 +28,7 @@ const Dashboard = () => {
   };
   return (
       
-    <div className="sm:h-auto mt-16 lg:mt-1 flex flex-col items-center lg:gap-2 lg:flex-row pb-1 sm:pb-2 relative lg:min-h-screen pt-24 lg:pt-28 grid-col">
+    <div className="sm:h-auto mt-16 lg:mt-10 flex flex-col items-center lg:gap-2 lg:flex-row pb-1 sm:pb-2 relative lg:min-h-screen pt-24 lg:pt-28 grid-col">
       <section className="lg:w-[50%] gap-3 flex flex-col lg:items-end w-[95%]">
         <div className="border border-dashed border-black flex justify-center items-center lg:h-[70%] lg:w-[90%] rounded-lg lg:shadow-md">
           <EditProfile />
