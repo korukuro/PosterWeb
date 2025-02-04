@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import { getAllPoster } from '../services/operations/posterDetailsAPI';
 import HomeSkeleton from '../components/common/skeleton/HomeSkeleton';
 import Product from '../components/Product';
-import { useNavigate } from 'react-router-dom';
 
 const ViewAllPoster = () => {
     const [posts, setPosts] = useState([]);
@@ -41,7 +40,7 @@ const ViewAllPoster = () => {
             </div>
         ) : posts.length > 0 ? (
           <div className="flex flex-col justify-center items-center mt-24">
-            <div className="grid grid-cols-2 lg:grid-cols-3 auto-rows-custom lg:w-11/12 pt-0 lg:pt-10 pb-24 gap-y-24 lg:gap-y-32 lg:gap-x-14 h-auto">
+            <div className="grid grid-cols-2 lg:grid-cols-3 auto-rows-custom lg:w-11/12 pt-0 lg:pt-10 pb-24 lg:gap-y-32 lg:gap-x-14 h-auto">
               {posts.map((post) => (
                 <motion.div
                   key={post.id}

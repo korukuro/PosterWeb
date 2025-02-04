@@ -7,7 +7,7 @@ const HomeSkeleton = ({skeletonCount}) => {
             {Array.from({ length: skeletonCount }).map((_, index) => (
                 <div
                     key={index}
-                    className="h-[25rem] lg:w-[20rem] flex flex-col justify-center lg:px-2 lg:hover:scale-105 transition-all duration-30"
+                    className="h-[25rem] w-[11rem] lg:w-[20rem] flex flex-col justify-center lg:px-2 lg:hover:scale-105 transition-all duration-30"
                 >
                     {/* Image Section */}
                     <div className="flex justify-center items-center h-[25rem] w-full bg-gray-300 animate-pulse rounded-lg"></div>
