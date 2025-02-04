@@ -56,7 +56,7 @@ export default function ChangeProfilePicture() {
   }, [imageFile])
   return (
     <>
-      <div className="flex items-center justify-between rounded-md pr-36 pl-28">
+      <div className="flex items-center justify-between rounded-md">
       <h1 className="md:text-2xl lg:text-3xl font-semibold">
         Edit profile
       </h1>
