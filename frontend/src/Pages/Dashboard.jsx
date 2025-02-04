@@ -24,18 +24,19 @@ const Dashboard = () => {
       })
   }
   return (
-    <div className="sm:h-auto min-h-screen flex flex-col items-center lg:flex-row pb-1 sm:pb-2 relative">
+    <div className="sm:h-auto flex flex-col items-center lg:gap-2 lg:flex-row pb-1 sm:pb-2 relative lg:min-h-screen pt-16 lg:pt-28">
      
-      <button onClick={handleLogOut} className="absolute">Log Out</button>
+      
     
-      <section className="lg:w-[45%] mt-24 min-h-screen gap-3 pt-5 flex flex-col lg:items-end w-[95%]">
+      <section className="lg:w-[45%] gap-3 flex flex-col lg:items-end w-[95%]">
         <div className="border border-dashed border-black flex justify-center items-center lg:h-[70%] lg:w-[90%] rounded-lg lg:shadow-md"><EditProfile/></div>
         <div className="border border-dashed border-black flex justify-center items-center lg:h-[70%] lg:w-[90%] rounded-lg lg:shadow-md"><UpdatePassword/></div>
       </section>
 
-      <section className="lg:w-[55%] mt-10 lg:mt-24 min-h-screen">
+      <section className="lg:w-[50%] lg:pt-5 lg:pb-10 border-2 border-black">
+        <button onClick={handleLogOut} className="absolute">Log Out</button>
         <h1 className="border-b border-black mb-1 lg:hidden pl-3">Order History</h1>
-        <div className=" h-[29.5rem] sm:w-screen sm:overflow-x-hidden lg:w-[100%] rounded-lg overflow-auto scrollbar-hide"><OrderHistory/></div>
+        <div className=" h-[29.5rem] sm:w-screen sm:overflow-x-hidden lg:w-auto border-2 rounded-lg overflow-auto scrollbar-hide"><OrderHistory/></div>
       </section>
 
       {confirmationModal && (
