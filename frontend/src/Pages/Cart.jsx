@@ -104,24 +104,25 @@ const Cart = () => {
     You may also like
   </h2>
   <div className="flex flex-col lg:flex gap-4 justify-center lg:justify-start items-center">
-    <div className="sm:flex md:flex lg:flex lg:flex-wrap justify-center items-center gap-4 sm:gap-10 lg:gap-6 mb-8 sm:w-full sm:h-full">
-      {loading ? (
-        <div className="flex justify-center w-full">
-          <HomeSkeleton skeletonCount={3} />
-        </div>
-      ) : filteredPosts.length > 0 ? (
-        filteredPosts.slice(0, 3).map((post) => (
-          <div
-            className="w-[90%] sm:w-[45%] md:w-[30%] lg:min-w-[15rem] md:flex lg:flex mb-4"
-            key={post._id}
-          >
-            <Product post={post} />
-          </div>
-        ))
-      ) : (
-        <div className="text-center">No recommendations found</div>
-      )}
+  <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-6 lg:gap-6 mb-8 sm:w-full sm:h-full">
+  {loading ? (
+    <div className="flex justify-center w-full">
+      <HomeSkeleton skeletonCount={3} />
     </div>
+  ) : filteredPosts.length > 0 ? (
+    filteredPosts.slice(0, 3).map((post) => (
+      <div
+        className="w-1/2 sm:w-1/2 md:w-[30%] lg:min-w-[15rem] flex mb-4"
+        key={post._id}
+      >
+        <Product post={post} />
+      </div>
+    ))
+  ) : (
+    <div className="text-center">No recommendations found</div>
+  )}
+</div>
+
     <Link
       to="/allposters"
       className="relative group text-black mb-4 text-sm lg:text-base"
