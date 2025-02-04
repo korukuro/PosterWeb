@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 const Home = () => {
   const [loading, setLoading] = useState(false);
   const [posts, setPosts] = useState([]);
-  const visibleCount = 6;
+  const visibleCount = 8;
   const navigate = useNavigate();
 
   async function fetchProductData() {
