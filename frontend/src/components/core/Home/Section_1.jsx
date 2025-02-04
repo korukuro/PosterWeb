@@ -21,24 +21,8 @@ const Section_1 = () => {
   // Array of objects containing images and headings
   const slides = [
     { image: image1, heading: "Posters That Make a Statement." },
-    { image: image2, heading: "HAAG DIYA" },
-    { image: image3, heading: "Mosambi Ka juus pila do" },
-    { 
-      image: image4, 
-      heading: (
-        <SplitText
-          text="Hello, Tailwind!"
-          className="text-8xl font-semibold text-center"
-          delay={150}
-          animationFrom={{ opacity: 0, transform: 'translate3d(0,50px,0)' }}
-          animationTo={{ opacity: 1, transform: 'translate3d(0,0,0)' }}
-          easing="easeOutCubic"
-          threshold={0.2}
-          rootMargin="-50px"
-          onLetterAnimationComplete={handleAnimationComplete}
-        />
-      )
-    },
+    { image: image2, heading: "Express Yourself, Shop Unique Posters Now!" },
+    { image: image3, heading: "Art That Speaks, Posters That Inspire!" },
   ];
 
   return (
@@ -59,7 +43,7 @@ const Section_1 = () => {
           <SwiperSlide key={index}>
             <div className="relative w-full flex justify-center items-center">
               {/* Heading overlay */}
-              <div className="absolute lg:top-52 bg-black bg-opacity-50 text-white p-4 rounded-lg">
+              <div className="absolute lg:bottom-32 bg-black bg-opacity-50 text-white p-4 rounded-lg">
                 <h2 className="lg:text-6xl font-bold">{slide.heading}</h2>
               </div>
               {/* Image */}
