@@ -5,6 +5,7 @@ import ConfirmationModal from "../components/common/ConfirmationModal";
 import { useState } from "react";
 import OrderHistory from "../components/core/Dashboard/OrderHistory";
 import EditProfile from "../components/core/Dashboard/Settings/EditProfile";
+import UpdatePassword from "../components/core/Dashboard/Settings/UpdatePassword";
 
 const Dashboard = () => {
 
@@ -27,11 +28,11 @@ const Dashboard = () => {
       {/* <h1>Dashboard</h1> */}
       {/* <Link to="/dashboard/settings">Settings</Link> <br />
       <Link to="/dashboard/order-history">Order history</Link> <br />*/}
-      {/* <button onClick={handleLogOut} className="absolute">Log Out</button>  */}
+      <button onClick={handleLogOut} className="absolute">Log Out</button>
       {/* <Outlet /> */}
       <section className="lg:w-[45%] mt-20 lg:h-screen gap-3 pt-5 flex flex-col lg:items-end w-[95%]">
         <div className="border border-dashed border-black lg:h-[20rem] lg:w-[30rem] rounded-lg lg:shadow-md"><EditProfile/></div>
-        <div className="border border-dashed border-black w-1/2 h-[20rem] lg:h-[18.5rem] lg:w-[30rem] rounded-lg lg:shadow-md"></div>
+        <div className="border border-dashed border-black w-1/2 h-[20rem] lg:h-[18.5rem] lg:w-[30rem] rounded-lg lg:shadow-md"><UpdatePassword/></div>
       </section>
       <section className="lg:w-[55%] mt-5 lg:mt-20 lg:h-screen lg:pt-5 lg:pl-2">
       <h1 className="border-b border-black mb-1 lg:hidden ">Order History</h1>
