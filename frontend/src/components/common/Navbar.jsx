@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from "../../services/operations/authAPI";
 import ConfirmationModal from "./ConfirmationModal";
+import { MdOutlineLogout } from "react-icons/md";
 
 const Navbar = () => {
   const [isVisible, setIsVisible] = useState(true);
@@ -234,77 +235,82 @@ const Navbar = () => {
               className="h-10 rounded-full aspect-square object-cover hover:scale-[1.1] active:scale-90 transition-all duration-300"
             />
           </Link>
+
+
+          <button onClick={handleLogout} className="text-3xl text-gray-600 hover:scale-[1.1]">
+            <MdOutlineLogout />
+          </button>
         </div>
       </div>
       {/* Mobile Dropdown Menu */}
-  {menuOpen && (
-    <div className="absolute right-0 mt-2 w-48 bg-white shadow-md rounded-md">
-      <Link
-        to="/categories"
-        className="block px-4 py-2 text-black hover:bg-gray-100"
-        onClick={() => setMenuOpen(false)}
-      >
-        Categories
-      </Link>
-      <Link
-        to="/cart"
-        className="block px-4 py-2 text-black hover:bg-gray-100"
-        onClick={() => setMenuOpen(false)}
-      >
-        Cart
-      </Link>
-      {/* Profile or Login */}
-      {token ? (
-        <div className="relative">
-          <button
-            onClick={() => setProfileMenuOpen(!profileMenuOpen)}
-            className="w-full text-left px-4 py-2 text-black flex gap-1 items-center hover:bg-gray-100"
+      {menuOpen && (
+        <div className="absolute right-0 mt-2 w-48 bg-white shadow-md rounded-md">
+          <Link
+            to="/categories"
+            className="block px-4 py-2 text-black hover:bg-gray-100"
+            onClick={() => setMenuOpen(false)}
           >
-            <span>Profile</span>
-            <span className={`text-xs transition-transform duration-200 ${profileMenuOpen ? "rotate-180" : "rotate-0"}`}>▼</span>
-          </button>
-          {profileMenuOpen && (
-            <div className="absolute left-0 w-full bg-gray-50 shadow-md mt-1 z-10">
-              <Link
-                to="/dashboard/order-history"
-                className="block px-4 py-2 text-black hover:bg-gray-100"
-                onClick={() => {
-                  setProfileMenuOpen(false);
-                  setMenuOpen(false);
-                }}
-              >
-                Order History
-              </Link>
-              <Link
-                to="/dashboard/settings"
-                className="block px-4 py-2 text-black hover:bg-gray-100"
-                onClick={() => {
-                  setProfileMenuOpen(false);
-                  setMenuOpen(false);
-                }}
-              >
-                Settings
-              </Link>
+            Categories
+          </Link>
+          <Link
+            to="/cart"
+            className="block px-4 py-2 text-black hover:bg-gray-100"
+            onClick={() => setMenuOpen(false)}
+          >
+            Cart
+          </Link>
+          {/* Profile or Login */}
+          {token ? (
+            <div className="relative">
               <button
-                onClick={handleLogout}
-                className="w-full text-left px-4 py-2 text-black hover:bg-gray-100"
+                onClick={() => setProfileMenuOpen(!profileMenuOpen)}
+                className="w-full text-left px-4 py-2 text-black flex gap-1 items-center hover:bg-gray-100"
               >
-                Logout
+                <span>Profile</span>
+                <span className={`text-xs transition-transform duration-200 ${profileMenuOpen ? "rotate-180" : "rotate-0"}`}>▼</span>
               </button>
+              {profileMenuOpen && (
+                <div className="absolute left-0 w-full bg-gray-50 shadow-md mt-1 z-10">
+                  <Link
+                    to="/dashboard/order-history"
+                    className="block px-4 py-2 text-black hover:bg-gray-100"
+                    onClick={() => {
+                      setProfileMenuOpen(false);
+                      setMenuOpen(false);
+                    }}
+                  >
+                    Order History
+                  </Link>
+                  <Link
+                    to="/dashboard/settings"
+                    className="block px-4 py-2 text-black hover:bg-gray-100"
+                    onClick={() => {
+                      setProfileMenuOpen(false);
+                      setMenuOpen(false);
+                    }}
+                  >
+                    Settings
+                  </Link>
+                  <button
+                    onClick={handleLogout}
+                    className="w-full text-left px-4 py-2 text-black hover:bg-gray-100"
+                  >
+                    Logout
+                  </button>
+                </div>
+              )}
             </div>
+          ) : (
+            <Link
+              to="/login"
+              className="block px-4 py-2 text-black hover:bg-gray-100"
+              onClick={() => setMenuOpen(false)}
+            >
+              Login
+            </Link>
           )}
         </div>
-      ) : (
-        <Link
-          to="/login"
-          className="block px-4 py-2 text-black hover:bg-gray-100"
-          onClick={() => setMenuOpen(false)}
-        >
-          Login
-        </Link>
       )}
-    </div>
-  )}
       {confirmationModal && (
         <ConfirmationModal modalData={confirmationModal} />
       )}
