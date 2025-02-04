@@ -33,7 +33,7 @@ export default function EditProfile() {
         <div className="flex flex-col gap-y-2 lg:gap-y-7 lg:pt-2 pl-2 lg:pl-0">
           <h1 className="font-bold text-lg lg:text-xl pl-2 pt-2">Profile</h1>
           <div className="flex flex-col pl-2 lg:gap-2 lg:flex-row lg:pl-2">
-            <div className="flex flex-col w-[85%] md:w-[70%] lg:w-[48%]">
+            <div className="flex flex-col w-[85%] sm:w-[40%] md:w-[70%] lg:w-[48%]">
               <label htmlFor="firstName" className="lable-style font-semibold text-sm lg:text-base">
                 First Name
               </label>
