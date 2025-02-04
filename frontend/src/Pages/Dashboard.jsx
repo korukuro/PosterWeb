@@ -1,6 +1,12 @@
+import { useNavigate } from "react-router-dom";
 import OrderHistory from "../components/core/Dashboard/OrderHistory";
 import EditProfile from "../components/core/Dashboard/Settings/EditProfile";
 import UpdatePassword from "../components/core/Dashboard/Settings/UpdatePassword";
+import { MdOutlineLogout } from "react-icons/md";
+import ConfirmationModal from "../components/common/ConfirmationModal";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
+import { logout } from "../services/operations/authAPI";
 
 const Dashboard = () => {
   return (
@@ -20,7 +26,12 @@ const Dashboard = () => {
       <div className="h-[38rem] lg:pt-1 lg:pb-1 sm:w-screen sm:overflow-x-hidden lg:w-auto overflow-y-auto scrollbar-hide lg:border-t-2 lg:border-b-2 border-black">
         <OrderHistory />
       </div>
+      {confirmationModal && (
+        <ConfirmationModal modalData={confirmationModal} />
+      )}
     </div>
+
   );
+
 };
 export default Dashboard;

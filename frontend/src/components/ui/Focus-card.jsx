@@ -24,7 +24,7 @@ const imageMap = {
     "Scenery Poster": SceneryImage,
     "Series Poster": SeriesImage,
     "Sports Poster": SportsImage,
-    "Art Poster": ArtImage,
+    "Art": ArtImage,
 };
 
 export const Card = React.memo(({
