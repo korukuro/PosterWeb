@@ -91,7 +91,7 @@ const OrderHistory = () => {
           {groupedOrders.map((group) => (
             <div
               key={group.orderId}
-              className={`mb-6 pb-5 border relative border-black border-dashed bg-[#FAF9F6] rounded-lg md:w-auto overflow-hidden transition-all duration-500 ${
+              className={`border relative border-black border-dashed bg-[#FAF9F6] rounded-lg md:w-auto overflow-hidden transition-all duration-500 ${
                 openStates[group.orderId]
                   ? "max-h-[1000px]"
                   : "h-[12rem] sm:h-[28.5rem] md:h-[14.5rem] lg:h-[15.8rem]"

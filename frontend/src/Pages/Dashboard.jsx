@@ -19,7 +19,7 @@ const Dashboard = () => {
       <h1 className="border-b border-black mb-1 lg:hidden pl-3">
         Order History
       </h1>
-      <div className="h-[38rem] sm:w-screen sm:overflow-x-hidden lg:w-auto rounded-lg overflow-y-auto scrollbar-hide">
+      <div className="h-[38rem] lg:pt-1 lg:pb-1 sm:w-screen sm:overflow-x-hidden lg:w-auto overflow-y-auto scrollbar-hide lg:border-t-2 lg:border-b-2 border-black">
         <OrderHistory />
       </div>
     </div>
