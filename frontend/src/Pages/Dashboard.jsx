@@ -33,7 +33,7 @@ const Dashboard = () => {
         <div className="border border-dashed border-black flex justify-center items-center lg:h-[70%] lg:w-[90%] rounded-lg lg:shadow-md"><UpdatePassword/></div>
       </section>
 
-      <section className="lg:w-[55%] mt-10 lg:mt-24 min-h-screen lg:pt-5 lg:pl-2">
+      <section className="lg:w-[55%] mt-10 lg:mt-24 min-h-screen">
         <h1 className="border-b border-black mb-1 lg:hidden pl-3">Order History</h1>
         <div className=" h-[29.5rem] sm:w-screen sm:overflow-x-hidden lg:w-[100%] rounded-lg overflow-auto scrollbar-hide"><OrderHistory/></div>
       </section>
