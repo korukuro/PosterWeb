@@ -33,90 +33,84 @@ export default function UpdatePassword() {
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit(submitPasswordForm)}>
-        <div className="flex flex-col gap-y-2 rounded-md pl-28">
-          <h2 className="text-lg font-semibold text-richblack-5">Password</h2>
-          <div className="flex flex-col md:gap-5 lg:gap-11 lg:flex-row">
-            {/* Current Password */}
-            <div className="relative flex flex-col gap-2 md:w-[70%] lg:w-[42%]">
-              <label htmlFor="oldPassword" className="lable-style">
-                Current Password
-              </label>
-              <input
-                type={showOldPassword ? "text" : "password"}
-                name="oldPassword"
-                id="oldPassword"
-                placeholder="Enter Current Password"
-                className="form-style rounded-sm lg:h-14 p-2 border border-black focus:outline-none bg-transparent"
-                {...register("oldPassword", { required: true })}
-              />
-              {oldPasswordValue && (
-                <span
-                  onClick={() => setShowOldPassword((prev) => !prev)}
-                  className="absolute right-[8rem] top-[2.4rem] z-[10] cursor-pointer"
-                >
-                  {showOldPassword ? (
-                    <AiOutlineEyeInvisible fontSize={24} fill="#AFB2BF" />
-                  ) : (
-                    <AiOutlineEye fontSize={24} fill="#AFB2BF" />
-                  )}
-                </span>
-              )}
-              {errors.oldPassword && (
-                <span className="-mt-1 text-[12px] text-yellow-100">
-                  Please enter your Current Password.
-                </span>
-              )}
-            </div>
+    <form
+      onSubmit={handleSubmit(submitPasswordForm)}
+      className="w-full max-w-lg mx-auto p-4 space-y-6"
+    >
+      <h2 className="font-bold text-lg lg:text-xl">Update Password</h2>
 
-            {/* New Password */}
-            <div className="relative flex flex-col gap-2 md:w-[70%] lg:w-[42%]">
-              <label htmlFor="newPassword" className="lable-style">
-                New Password
-              </label>
-              <input
-                type={showNewPassword ? "text" : "password"}
-                name="newPassword"
-                id="newPassword"
-                placeholder="Enter New Password"
-                className="form-style rounded-sm lg:h-14 p-2 border border-black focus:outline-none bg-transparent"
-                {...register("newPassword", { required: true })}
-              />
-              {newPasswordValue && (
-                <span
-                  onClick={() => setShowNewPassword((prev) => !prev)}
-                  className="absolute right-[8rem] top-[2.4rem] z-[10] cursor-pointer"
-                >
-                  {showNewPassword ? (
-                    <AiOutlineEyeInvisible fontSize={24} fill="#AFB2BF" />
-                  ) : (
-                    <AiOutlineEye fontSize={24} fill="#AFB2BF" />
-                  )}
-                </span>
+      {/* Password Inputs */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {/* Current Password */}
+        <div className="relative flex flex-col">
+          <label htmlFor="oldPassword" className="font-semibold text-sm lg:text-base">
+            Current Password
+          </label>
+          <input
+            type={showOldPassword ? "text" : "password"}
+            id="oldPassword"
+            placeholder="Enter Current Password"
+            className="border border-black rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-transparent"
+            {...register("oldPassword", { required: true })}
+          />
+          {oldPasswordValue && (
+            <span
+              onClick={() => setShowOldPassword((prev) => !prev)}
+              className="absolute right-3 top-10 cursor-pointer"
+            >
+              {showOldPassword ? (
+                <AiOutlineEyeInvisible fontSize={22} fill="#555" />
+              ) : (
+                <AiOutlineEye fontSize={22} fill="#555" />
               )}
-              {errors.newPassword && (
-                <span className="-mt-1 text-[12px] text-yellow-100">
-                  Please enter your New Password.
-                </span>
-              )}
-            </div>
-          </div>
+            </span>
+          )}
+          {errors.oldPassword && (
+            <span className="text-sm text-red-500">Please enter your Current Password.</span>
+          )}
         </div>
 
-        {/* Buttons */}
-        <div className="flex justify-end gap-2 mt-5 pr-11">
-          <button
-            onClick={() => {
-              navigate("/dashboard/my-profile");
-            }}
-            className="cursor-pointer border border-red-600 py-2 px-2 md:px-3 lg:px-5 md:text-sm lg:text-base text-red-600 hover:scale-105 transition-all duration-300"
-          >
-            Cancel
-          </button>
-          <IconBtn type="submit" text="Update" />
+        {/* New Password */}
+        <div className="relative flex flex-col">
+          <label htmlFor="newPassword" className="font-semibold text-sm lg:text-base">
+            New Password
+          </label>
+          <input
+            type={showNewPassword ? "text" : "password"}
+            id="newPassword"
+            placeholder="Enter New Password"
+            className="border border-black rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-transparent"
+            {...register("newPassword", { required: true })}
+          />
+          {newPasswordValue && (
+            <span
+              onClick={() => setShowNewPassword((prev) => !prev)}
+              className="absolute right-3 top-10 cursor-pointer"
+            >
+              {showNewPassword ? (
+                <AiOutlineEyeInvisible fontSize={22} fill="#555" />
+              ) : (
+                <AiOutlineEye fontSize={22} fill="#555" />
+              )}
+            </span>
+          )}
+          {errors.newPassword && (
+            <span className="text-sm text-red-500">Please enter your New Password.</span>
+          )}
         </div>
-      </form>
-    </>
+      </div>
+
+      {/* Buttons */}
+      <div className="flex justify-end gap-3">
+        <button
+          type="button"
+          onClick={() => navigate("/dashboard/my-profile")}
+          className="border border-red-500 text-red-500 px-4 py-2 rounded-md hover:bg-red-500 hover:text-white transition"
+        >
+          Cancel
+        </button>
+        <IconBtn type="submit" text="Update" />
+      </div>
+    </form>
   );
 }
