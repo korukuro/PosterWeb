@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom"; // Import Link
 import React, { useEffect, useState } from "react";
 import { getCategoryWisePoster } from "../../../services/operations/posterDetailsAPI";
 import Product from "../../Product";
-import HomeSkeleton from "../../common/skeleton/HomeSkeleton";
+import CategoriesSkeleton from "../../common/skeleton/CategoriesSkeleton";
 const CategoryWisePosterPage = () => {
   const { id: categoryId } = useParams(); // Get the category ID from the URL
   const [categoryData, setCategoryData] = useState(null); // State to hold category and poster data
@@ -39,7 +39,7 @@ const CategoryWisePosterPage = () => {
   if (loading)
     return (
       <div className="flex justify-center items-center mt-20 mb-5">
-        <HomeSkeleton skeletonCount={6}/>
+        <CategoriesSkeleton skeletonCount={6}/>
       </div>
     );
   if (error) return <div className="text-red-500">{error}</div>;
