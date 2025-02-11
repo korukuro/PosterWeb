@@ -46,8 +46,8 @@ function LoginForm() {
           className="form-style w-full rounded-sm text-gray-700 p-2 border border-black focus:outline-none"
         />
       </label>
-      <label className="w-[82%]">
-        <p className="relative mb-1 text-[1.1rem] leading-[1.375rem] text-richblack-5">
+      <label className="relative w-[82%]">
+        <p className=" mb-1 text-[1.1rem] leading-[1.375rem] text-richblack-5">
           Password
         </p>
         <input

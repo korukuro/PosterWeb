@@ -156,7 +156,7 @@ function SignupForm() {
               placeholder="Confirm Password"
               className="form-style w-full rounded-sm text-gray-700 p-2 border border-black focus:outline-none"
             />
-            {conformPasswordValue && (
+            {password && (
               <span
                 onClick={() => setShowConfirmPassword((prev) => !prev)}
                 className="absolute right-3 top-[2.2rem] z-[10] cursor-pointer"
